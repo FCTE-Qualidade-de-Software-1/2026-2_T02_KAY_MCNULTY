@@ -1,0 +1,31 @@
+/* Ajustes visuais leves sobre o tema Material */
+:root {
+  --md-text-font: "Inter", system-ui, sans-serif;
+}
+
+.md-typeset h1 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.md-typeset h2 {
+  font-weight: 600;
+  margin-top: 2.2em;
+}
+
+/* Botões de destaque na página inicial */
+.md-typeset .md-button {
+  border-radius: 0.5rem;
+  font-weight: 600;
+}
+
+/* Cartões em grade */
+.md-typeset .grid.cards > ul > li {
+  border-radius: 0.6rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.md-typeset .grid.cards > ul > li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}

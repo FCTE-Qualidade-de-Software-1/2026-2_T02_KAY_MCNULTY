@@ -1,0 +1,101 @@
+site_name: Nome do Projeto
+site_description: Descrição curta do projeto, usada em SEO e ao compartilhar o link.
+site_author: Seu Nome
+site_url: https://SEU-USUARIO.github.io/NOME-DO-REPO/
+
+repo_url: https://github.com/SEU-USUARIO/NOME-DO-REPO
+repo_name: SEU-USUARIO/NOME-DO-REPO
+edit_uri: edit/main/docs/
+
+copyright: Copyright &copy; 2026 Seu Nome
+
+theme:
+  name: material
+  language: pt-BR
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Ativar modo escuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Ativar modo claro
+  font:
+    text: Inter
+    code: JetBrains Mono
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - content.action.edit
+
+nav:
+  - Início: index.md
+  - Primeiros passos:
+      - Instalação: primeiros-passos/instalacao.md
+      - Configuração: primeiros-passos/configuracao.md
+  - Guia de uso:
+      - Visão geral: guia/visao-geral.md
+      - Exemplos: guia/exemplos.md
+  - FAQ: faq.md
+  - Contribuindo: contribuindo.md
+
+plugins:
+  - search:
+      lang: pt
+
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/SEU-USUARIO
+
+extra_css:
+  - stylesheets/extra.css
