@@ -26,8 +26,12 @@
 
 <!-- Espaço reservado para a régua de pontuação -->
 
----
-
 ## 5. Diagrama Hierárquico GQM
-
-<!-- Espaço reservado para o diagrama GQM de Confiabilidade -->
+ 
+O diagrama da Figura 1 mostra o desdobramento do objetivo em questões e métricas, com os três níveis identificados. As questões Q2 e Q4 são respondidas por duas métricas cada.
+ 
+![Diagrama Confiabilidade](../img/Confiabilidade.png)
+ 
+*Figura 1 – Hierarquia GQM da característica Confiabilidade. Fonte: elaboração da equipe.*
+ 
+---
