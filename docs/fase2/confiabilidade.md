@@ -12,7 +12,7 @@ A avaliação da característica de **Confiabilidade** fundamenta-se na norma **
 
 * **Recuperabilidade (*Recoverability*):** Capacidade de o sistema retomar o estado desejado e restaurar os dados afetados após uma interrupção ou falha.
 
-Como a auditoria é externa e em ambiente de produção (caixa-preta), a Confiabilidade é observada **somente a partir da camada do cliente**: comportamento da interface, códigos de status HTTP e respostas do servidor. Falhas internas de infraestrutura só são inferidas pelo seu efeito visível ao cidadão.
+A profundidade da avaliação em cada módulo e os limites do escopo estão definidos em [Escopo e Limites da Avaliação](../fase1/escopo-limites.md), seção 4.
 
 ---
 
@@ -76,8 +76,8 @@ Os mesmos fluxos servem de base para as métricas M2 a M6. Os cenários detalhad
 | **F4** | Protocolo | Preencher o formulário e anexar documento até a tela de revisão |
 | **F5** | Chatbot | Realizar uma conversa de três perguntas frequentes |
 
-!!! warning "Restrições éticas e de segurança da coleta"
-    A coleta ocorre em produção. Por isso: (i) fluxos que criariam registro real (agendamento e protocolo) **não são confirmados**, ou são cancelados imediatamente quando houver opção de cancelamento; (ii) não se realiza teste de carga, e a frequência de requisições é baixa (ver M1); (iii) nenhuma credencial ou dado pessoal real de terceiros é utilizado.
+!!! note "Restrições da coleta"
+    A coleta ocorre em produção, com as restrições descritas em [Escopo e Limites da Avaliação](../fase1/escopo-limites.md), seção 4.2. Em especial: sem teste de carga, e sem confirmar registros reais.
 
 **Definição de falha (usada em M1, M2 e M3):** considera-se falha qualquer das ocorrências a seguir durante a execução: resposta HTTP 5xx; *timeout* superior a 30 segundos; tela em branco ou mensagem de erro exibida ao usuário; resultado incorreto ou incompleto; ou travamento que exija recarregar a página para prosseguir.
 
