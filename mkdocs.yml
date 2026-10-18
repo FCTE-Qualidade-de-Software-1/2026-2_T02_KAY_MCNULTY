@@ -1,5 +1,5 @@
-site_name: Qualidade de Software 1 - Detran Digital DF
-site_description: Avaliação da Qualidade do Portal Detran Digital DF - Equipe Kay McNulty
+site_name: Kay McNulty
+site_description: Documentação do projeto da equipe Kay McNulty, Qualidade de Software 2026-2 (T02), UnB/FCTE.
 site_author: Equipe Kay McNulty
 site_url: https://fcte-qualidade-de-software-1.github.io/2026-2_T02_KAY_MCNULTY/
 
@@ -7,23 +7,25 @@ repo_url: https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_KAY_MCNULTY
 repo_name: FCTE-Qualidade-de-Software-1/2026-2_T02_KAY_MCNULTY
 edit_uri: edit/main/docs/
 
-copyright: Copyright &copy; 2026 Equipe Kay McNulty - UnB FGA
+copyright: Versão 1.0 · Atualizado em 18/10/2026 · Equipe Kay McNulty · Qualidade de Software 2026-2
 
 theme:
   name: material
   language: pt-BR
+  favicon: img/Icon.png
+  logo: img/Icon.png
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
-      accent: indigo
+      primary: black
+      accent: black
       toggle:
         icon: material/weather-night
         name: Ativar modo escuro
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: black
+      accent: black
       toggle:
         icon: material/weather-sunny
         name: Ativar modo claro
@@ -70,6 +72,10 @@ nav:
 plugins:
   - search:
       lang: pt
+  - git-revision-date-localized:
+      type: date
+      locale: pt
+      enable_creation_date: true
 
 markdown_extensions:
   - abbr

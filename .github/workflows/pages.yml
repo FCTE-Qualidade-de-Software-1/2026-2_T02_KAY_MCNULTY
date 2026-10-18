@@ -35,6 +35,10 @@ jobs:
         with:
           path: site
 
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
