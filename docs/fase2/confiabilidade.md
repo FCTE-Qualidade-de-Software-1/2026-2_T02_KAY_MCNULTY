@@ -1,7 +1,5 @@
 # GQM – Característica: Confiabilidade
 
-**Responsáveis:** João e Davi
-
 A avaliação da característica de **Confiabilidade** fundamenta-se na norma **ISO/IEC 25010:2023**, sendo desdobrada em suas quatro subcaracterísticas:
 
 * **Ausência de Falhas (*Faultlessness*):** Capacidade de o sistema executar suas funções sem falhas em operação normal. Na versão 2023 da norma, esta subcaracterística substitui a antiga *Maturidade*.
