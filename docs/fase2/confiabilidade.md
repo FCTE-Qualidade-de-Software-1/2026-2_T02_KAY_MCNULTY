@@ -62,118 +62,88 @@ O objetivo de medição foi estruturado seguindo rigorosamente o template formal
 
 ## 3. Definição Formal das Métricas (Nível Quantitativo)
 
-As métricas foram estruturadas conectando o GQM com o modelo de informação do **Practical Software Measurement (PSM)**, detalhando medidas básicas, derivadas, procedimentos de coleta e interpretação. As seis métricas respondem às quatro questões: Q1 por M1, Q2 por M2 e M3, Q3 por M4, e Q4 por M5 e M6.
+As métricas conectam o GQM ao modelo de informação do **Practical Software Measurement (PSM)**. Os termos usados nas medições são:
 
-### Fluxos-alvo de medição
+* **Fluxo:** sequência de passos de um serviço, do acesso à conclusão ou à última etapa reversível.
+* **Falha:** comportamento que impede a conclusão do fluxo ou compromete seu resultado (erro HTTP não previsto, tela em branco, travamento, redirecionamento indevido, perda de dados).
+* **Operação anômala:** entrada inválida ou ação atípica (envio duplicado, campo vazio, arquivo inválido, botão voltar).
+* **Interrupção:** perda temporária das condições normais (recarga, perda de conexão, sessão invalidada).
 
-Os mesmos fluxos servem de base para as métricas M2 a M6. Os cenários detalhados serão refinados na Fase 3 (Projeto da Avaliação).
+### Métrica M1 – Taxa de Disponibilidade Observada (TDO) – Associada a Q1
 
-| Fluxo | Módulo | Descrição do fluxo |
-| :---: | :--- | :--- |
-| **F1** | Infração | Consultar débitos e infrações de um veículo |
-| **F2** | Infração | Gerar guia de pagamento (DUD / PIX) |
-| **F3** | Atendimento | Percorrer o agendamento até a tela de confirmação |
-| **F4** | Protocolo | Preencher o formulário e anexar documento até a tela de revisão |
-| **F5** | Chatbot | Realizar uma conversa de três perguntas frequentes |
+* **Medidas básicas (PSM):** Cₒₖ = verificações com HTTP 2xx/3xx e elemento esperado renderizado; Cₜₒₜ = verificações realizadas.
+* **Medida derivada:** **TDO = (Cₒₖ / Cₜₒₜ) × 100%**
+* **Coleta:** monitoramento automatizado das páginas públicas e do widget do Chatbot, a cada 15 min por 14 dias, em CSV no repositório. Manutenções oficiais são apresentadas com e sem exclusão.
+* **Interpretação:** quanto maior, melhor.
 
-!!! note "Restrições da coleta"
-    A coleta ocorre em produção, com as restrições descritas em [Escopo e Limites da Avaliação](../fase1/escopo-limites.md), seção 4.2. Em especial: sem teste de carga, e sem confirmar registros reais.
+### Métrica M2 – Taxa de Conclusão de Fluxos sem Falha (TCFF) – Associada a Q2
 
-**Definição de falha (usada em M1, M2 e M3):** considera-se falha qualquer das ocorrências a seguir durante a execução: resposta HTTP 5xx; *timeout* superior a 30 segundos; tela em branco ou mensagem de erro exibida ao usuário; resultado incorreto ou incompleto; ou travamento que exija recarregar a página para prosseguir.
+* **Medidas básicas (PSM):** Fₒₖ = execuções concluídas sem falha; Fₑₓₑ = execuções realizadas nos quatro módulos.
+* **Medida derivada:** **TCFF = (Fₒₖ / Fₑₓₑ) × 100%**
+* **Coleta:** execução manual e repetida dos fluxos principais, com evidências (captura, gravação de tela, aba de rede) em planilha.
+* **Interpretação:** quanto maior, melhor.
 
----
+### Métrica M3 – Densidade de Falhas por Fluxo (DFF) – Associada a Q2
 
-### Métrica M1: Taxa de Disponibilidade Observada (TDO) – Associada a Q1
-Avalia a proporção de verificações em que o portal e seus módulos estiveram acessíveis e respondendo corretamente durante a janela de observação.
+* **Medidas básicas (PSM):** Fd = falhas distintas (uma por causa observável); Flₜₒₜ = fluxos distintos testados.
+* **Medida derivada:** **DFF = Fd / Flₜₒₜ**
+* **Coleta:** mesma planilha da M2, com classificação e eliminação de duplicidades.
+* **Interpretação:** quanto menor, melhor; zero indica ausência de falhas.
 
-* **Medidas Básicas (PSM):**
-  * **V_ok:** Número de verificações em que o endereço monitorado respondeu com status HTTP 2xx ou 3xx, em até 10 segundos, com conteúdo esperado na página (e sem tela de manutenção).
-  * **V_tot:** Número total de verificações realizadas na janela de observação.
-* **Medida Derivada (Fórmula):**
-  > **TDO = (V_ok / V_tot) × 100%**
-* **Procedimento de Coleta:** Monitoramento externo de baixa frequência: uma requisição `GET` a cada 15 minutos por endereço público monitorado (página inicial e páginas de entrada de cada um dos 4 módulos que não exijam login) durante 7 dias consecutivos, com *script* automatizado que registra data, horário, status HTTP e tempo de resposta. A frequência é deliberadamente baixa para não caracterizar carga sobre a infraestrutura pública. O resultado é analisado também por faixa de horário.
-* **Critério de Interpretação:** Quanto maior a porcentagem, maior a disponibilidade percebida pelo cidadão. Como a medição é externa, quedas de rede do próprio avaliador são descartadas por verificação cruzada (acesso simultâneo a um serviço de referência).
+### Métrica M4 – Taxa de Tolerância a Operações Anômalas (TTOA) – Associada a Q3
 
----
+* **Medidas básicas (PSM):** Sₜₒₗ = cenários anômalos em que o portal permaneceu operante e consistente; Sₜₒₜ = cenários executados.
+* **Medida derivada:** **TTOA = (Sₜₒₗ / Sₜₒₜ) × 100%**
+* **Coleta:** cenários anômalos predefinidos em cada módulo, com registro do comportamento e das respostas HTTP.
+* **Interpretação:** quanto maior, melhor. Não se tolera erro 5xx, tela em branco, travamento ou perda de estado.
 
-### Métrica M2: Taxa de Conclusão de Fluxos sem Falha (TCFF) – Associada a Q2
-Avalia a proporção de execuções dos fluxos principais concluídas sem nenhuma falha, em condições normais de uso.
+### Métrica M5 – Taxa de Recuperação de Tarefas após Interrupção (TRTI) – Associada a Q4
 
-* **Medidas Básicas (PSM):**
-  * **E_ok:** Número de execuções dos fluxos F1 a F5 concluídas sem falha.
-  * **E_tot:** Número total de execuções realizadas dos fluxos F1 a F5 (mínimo de 10 repetições por fluxo, distribuídas em dias e turnos diferentes: manhã, tarde e noite).
-* **Medida Derivada (Fórmula):**
-  > **TCFF = (E_ok / E_tot) × 100%**
-* **Procedimento de Coleta:** Execução manual dos fluxos em navegador desktop e em smartphone real, registrando em planilha a data, o horário, o fluxo, o resultado e o tipo de falha. Os códigos HTTP e erros de script são verificados no `DevTools` (abas *Network* e *Console*). Cada falha recebe captura de tela como evidência.
-* **Critério de Interpretação:** Quanto maior a porcentagem, maior a ausência de falhas em operação normal. O resultado também é calculado por módulo para localizar onde as falhas se concentram.
+* **Medidas básicas (PSM):** Rₒₖ = cenários retomados sem perda de dados; Rₜₒₜ = cenários de interrupção executados.
+* **Medida derivada:** **TRTI = (Rₒₖ / Rₜₒₜ) × 100%**
+* **Coleta:** simulação de recarga, modo offline e sessão invalidada durante os fluxos, com gravação de tela e planilha.
+* **Interpretação:** quanto maior, melhor.
 
----
+### Métrica M6 – Tempo Médio de Recuperação (TMR) – Associada a Q4
 
-### Métrica M3: Densidade de Falhas por Fluxo (DFF) – Associada a Q2
-Complementa a TCFF ao medir a quantidade de falhas por execução, pois uma mesma execução pode apresentar mais de uma falha.
-
-* **Medidas Básicas (PSM):**
-  * **F_tot:** Número total de falhas registradas (conforme a definição de falha) nas execuções dos fluxos F1 a F5.
-  * **E_tot:** Número total de execuções realizadas (o mesmo valor usado em M2).
-* **Medida Derivada (Fórmula):**
-  > **DFF = F_tot / E_tot** (falhas por execução)
-* **Procedimento de Coleta:** Mesmo registro da M2, contando cada falha distinta observada em cada execução e classificando-a por tipo (erro HTTP 5xx, *timeout*, tela em branco, resultado incorreto ou travamento).
-* **Critério de Interpretação:** Quanto **menor** o valor, melhor. Valores próximos de zero indicam fluxos estáveis. O detalhamento por tipo de falha orienta a causa provável.
-
----
-
-### Métrica M4: Taxa de Tolerância a Operações Anômalas (TTOA) – Associada a Q3
-Mede a proporção de operações anômalas do usuário em que o portal permaneceu estável, sem travar, perder dados ou exibir erro técnico.
-
-* **Medidas Básicas (PSM):**
-  * **A_ok:** Número de operações anômalas em que o portal permaneceu estável e respondeu com mensagem orientativa ou bloqueio adequado.
-  * **A_tot:** Número total de operações anômalas aplicadas.
-* **Medida Derivada (Fórmula):**
-  > **TTOA = (A_ok / A_tot) × 100%**
-* **Procedimento de Coleta:** Aplicação controlada, nos fluxos F2 a F5, de: (a) dados inválidos nos campos (placa, RENAVAM, CPF e datas); (b) ação repetida, como clique duplo em botões de envio (sem confirmar registro real); (c) uso do botão voltar do navegador no meio do fluxo; (d) anexo fora do padrão (formato ou tamanho inválido). Cada operação é classificada como estável ou não estável, com registro da mensagem exibida.
-* **Critério de Interpretação:** Quanto maior a porcentagem, maior a tolerância do portal a uso fora do fluxo ideal.
-
----
-
-### Métrica M5: Taxa de Recuperação de Tarefas após Interrupção (TRTI) – Associada a Q4
-Mede a capacidade de o cidadão retomar a tarefa, sem perda de dados, após uma interrupção.
-
-* **Medidas Básicas (PSM):**
-  * **C_rec:** Número de cenários de interrupção em que o fluxo foi retomado sem perda de dados e sem necessidade de recomeçar do início.
-  * **C_tot:** Número total de cenários de interrupção induzidos.
-* **Medida Derivada (Fórmula):**
-  > **TRTI = (C_rec / C_tot) × 100%**
-* **Procedimento de Coleta:** Indução controlada, no meio dos fluxos F2 a F5, dos cenários: (a) perda de conexão seguida de restabelecimento (modo *offline* do `DevTools`); (b) recarregamento da página (`F5`) com formulário parcialmente preenchido; (c) expiração de sessão (aguardar o limite de inatividade). Cada cenário é classificado como recuperado ou não recuperado.
-* **Critério de Interpretação:** Quanto maior a porcentagem, maior a recuperabilidade. Valores baixos indicam perda de dados ou reinício forçado, com risco de o cidadão perder prazos legais.
-
----
-
-### Métrica M6: Tempo Médio de Recuperação (TMR) – Associada a Q4
-Mede o tempo que o cidadão leva para retomar a tarefa após a interrupção.
-
-* **Medidas Básicas (PSM):**
-  * **T_i:** Tempo, em segundos, entre o restabelecimento da condição normal e o retorno ao ponto em que a tarefa foi interrompida, em cada cenário recuperado.
-  * **N_rec:** Número de cenários recuperados (mesmo valor de C_rec da M5).
-* **Medida Derivada (Fórmula):**
-  > **TMR = (Σ T_i) / N_rec** (em segundos)
-* **Procedimento de Coleta:** Cronometragem dos cenários da M5 com gravação de tela. Os cenários não recuperados não entram no cálculo e ficam registrados pela M5.
-* **Critério de Interpretação:** Quanto **menor** o tempo, melhor. Valores altos indicam que o cidadão precisa refazer etapas, o que pesa em serviços com prazo legal.
+* **Medidas básicas (PSM):** Tᵢ = segundos entre o restabelecimento das condições normais e a retomada da tarefa no cenário i; Rᵣₑₜ = cenários com retomada.
+* **Medida derivada:** **TMR = (Σ Tᵢ) / Rᵣₑₜ**
+* **Coleta:** cronometragem sobre as gravações da M5. Cenários sem recuperação já são penalizados na M5.
+* **Interpretação:** quanto menor, melhor.
 
 ---
 
 ## 4. Níveis de Pontuação e Critérios de Julgamento
 
-A interpretação técnica dos resultados consolidados da característica de Confiabilidade segue a seguinte matriz de decisão:
+A interpretação dos resultados quantitativos é balizada pela matriz de julgamento da Tabela 1. A cada nível corresponde uma nota, utilizada na agregação descrita adiante.
 
-| Nível de Julgamento | TDO (M1) | TCFF (M2) | DFF (M3) | TTOA (M4) | TRTI (M5) | TMR (M6) | Parecer Técnico e Ação Recomendada |
-| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :--- |
-| **Excelente** | ≥ 99,5% | ≥ 98% | ≤ 0,02 | ≥ 95% | ≥ 90% | ≤ 30 s | Confiabilidade exemplar. O portal está sempre disponível, não apresenta falhas perceptíveis e permite retomar tarefas rapidamente. Manter boas práticas. |
-| **Bom** | 98% a 99,49% | 90% a 97,99% | > 0,02 a 0,05 | 85% a 94,99% | 75% a 89,99% | > 30 a 60 s | Confiabilidade adequada. Falhas raras e pontuais, sem impedimento de conclusão do serviço pelo cidadão. |
-| **Satisfatório** | 95% a 97,99% | 80% a 89,99% | > 0,05 a 0,10 | 70% a 84,99% | 60% a 74,99% | > 60 a 120 s | Confiabilidade limítrofe. O cidadão precisa repetir a operação ou recomeçar o fluxo. Priorizar correções nos módulos mais críticos. |
-| **Insuficiente** | < 95% | < 80% | > 0,10 | < 70% | < 60% | > 120 s | Confiabilidade crítica e reprovada. Falhas frequentes, indisponibilidade ou perda de dados que podem fazer o cidadão perder prazos legais. Ação de melhoria obrigatória. |
+**Tabela 1 – Níveis de pontuação das métricas de confiabilidade.**
 
-!!! note "Regra de consolidação"
-    O nível de cada questão é o **menor nível obtido entre as suas métricas**. O nível final da característica é o **menor nível entre as quatro questões**, pois uma falha grave em qualquer dimensão (por exemplo, indisponibilidade) compromete o serviço independentemente das demais. Os resultados também são apresentados por módulo.
+| Métrica | Excelente (4) | Bom (3) | Satisfatório (2) | Insuficiente (1) |
+| :--- | :---: | :---: | :---: | :---: |
+| TDO (M1) | ≥ 99,5% | 98% a < 99,5% | 95% a < 98% | < 95% |
+| TCFF (M2) | ≥ 95% | 85% a < 95% | 70% a < 85% | < 70% |
+| DFF (M3) | 0 | > 0 a ≤ 0,5 | > 0,5 a ≤ 1,0 | > 1,0 |
+| TTOA (M4) | ≥ 95% | 85% a < 95% | 70% a < 85% | < 70% |
+| TRTI (M5) | ≥ 90% | 75% a < 90% | 60% a < 75% | < 60% |
+| TMR (M6) | ≤ 30 s | > 30 a ≤ 60 s | > 60 a ≤ 120 s | > 120 s |
+
+A interpretação qualitativa de cada nível é apresentada na Tabela 2.
+
+**Tabela 2 – Interpretação e julgamento técnico por nível.**
+
+| Nível | Interpretação e julgamento técnico |
+| :--- | :--- |
+| **Excelente** | Confiabilidade exemplar. Portal acessível, sem falhas, tolerante a anomalias e com recuperação rápida. |
+| **Bom** | Confiabilidade adequada. Falhas pontuais ou recuperações mais lentas, sem impedir o serviço. |
+| **Satisfatório** | Confiabilidade limítrofe. O cidadão precisa repetir etapas, recarregar ou tentar mais tarde. |
+| **Insuficiente** | Confiabilidade crítica e reprovada. Indisponibilidade relevante, falhas recorrentes, instabilidade e perda de dados em interrupções. |
+
+**Regra de agregação.** A nota de cada questão é a média das notas de suas métricas: Q1 = M1; Q2 = média de M2 e M3; Q3 = M4; Q4 = média de M5 e M6. A nota de G1 é a média simples das quatro questões, pois a Fase 1 não priorizou subcaracterísticas.
+
+Escala: < 1,5 Insuficiente; 1,5 a < 2,5 Satisfatório; 2,5 a < 3,5 Bom; ≥ 3,5 Excelente.
+
+Se alguma questão receber nota 1, o julgamento de G1 é registrado com ressalva. Os resultados também são comparados às hipóteses das questões.
 
 ---
 
