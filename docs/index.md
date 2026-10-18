@@ -1,61 +1,27 @@
-# Nome do Projeto
+# Avaliação da Qualidade do Portal Detran Digital DF
 
-Uma frase objetiva que explica o que o projeto faz e para quem ele serve.
-
-[Começar agora](primeiros-passos/instalacao.md){ .md-button .md-button--primary }
-[Ver no GitHub](https://github.com/SEU-USUARIO/NOME-DO-REPO){ .md-button }
+Documentação oficial da avaliação de qualidade de produto de software desenvolvida na disciplina **Qualidade de Software 1 (FGA0315)** da Universidade de Brasília (UnB), ministrada pela Profa. Dra. Cristiane Soares Ramos.
 
 ---
 
-## Por que usar
+## Informações do Projeto
 
-<div class="grid cards" markdown>
+* **Produto Avaliado:** Portal Detran Digital DF ([portal.detran.df.gov.br](https://portal.detran.df.gov.br/#/home))
+* **Equipe:** Kay McNulty (Turma 02)
+* **Integrantes:**
+  * Artur Galdino
+  * Nicole Jovita
+  * Davi
+  * João
+  * Natan França
+  * Yan
+* **Repositório:** [GitHub da Equipe](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_KAY_MCNULTY)
 
-- :material-rocket-launch: **Rápido de começar**
+---
 
-    Instale e rode em poucos minutos, sem configuração complicada.
+## Estrutura da Documentação
 
-- :material-puzzle: **Flexível**
-
-    Adapte o projeto ao seu fluxo de trabalho com poucas linhas.
-
-- :material-shield-check: **Confiável**
-
-    Testado, documentado e mantido de forma contínua.
-
-- :material-open-source-initiative: **Código aberto**
-
-    Contribuições são bem-vindas. Veja o guia em [Contribuindo](contribuindo.md).
-
-</div>
-
-## Visão rápida
-
-=== "Instalar"
-
-    ```bash
-    pip install nome-do-projeto
-    ```
-
-=== "Usar"
-
-    ```python
-    import nome_do_projeto
-
-    nome_do_projeto.executar()
-    ```
-
-## Como funciona
-
-```mermaid
-flowchart LR
-    A[Entrada] --> B[Processamento]
-    B --> C[Resultado]
-```
-
-## Próximos passos
-
-- [Instalação](primeiros-passos/instalacao.md)
-- [Configuração](primeiros-passos/configuracao.md)
-- [Guia de uso](guia/visao-geral.md)
-- [Perguntas frequentes](faq.md)
+* **[Planejamento da Avaliação (Fase 1)](fase1/proposito-stakeholders.md):** Estabelecimento dos requisitos da avaliação conforme a norma ISO/IEC 25040 (SQuaRE).
+* **[Especificação da Avaliação (Fase 2 - GQM)](fase2/index.md):** Especificação formal das medições pelo método Goal-Question-Metric para Usabilidade, Confiabilidade e Compatibilidade.
+* **[Gestão do Projeto (PSM)](gestao/atas.md):** Acompanhamento da equipe baseado em métricas do Practical Software Measurement (PSM/CID), atas e esforço.
+* **[Entregas](entregas/entrega1.md):** Histórico e releases de cada ponto de controle da disciplina.

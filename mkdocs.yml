@@ -1,13 +1,13 @@
-site_name: Nome do Projeto
-site_description: Descrição curta do projeto, usada em SEO e ao compartilhar o link.
-site_author: Seu Nome
-site_url: https://SEU-USUARIO.github.io/NOME-DO-REPO/
+site_name: Qualidade de Software 1 - Detran Digital DF
+site_description: Avaliação da Qualidade do Portal Detran Digital DF - Equipe Kay McNulty
+site_author: Equipe Kay McNulty
+site_url: https://fcte-qualidade-de-software-1.github.io/2026-2_T02_KAY_MCNULTY/
 
-repo_url: https://github.com/SEU-USUARIO/NOME-DO-REPO
-repo_name: SEU-USUARIO/NOME-DO-REPO
+repo_url: https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_KAY_MCNULTY
+repo_name: FCTE-Qualidade-de-Software-1/2026-2_T02_KAY_MCNULTY
 edit_uri: edit/main/docs/
 
-copyright: Copyright &copy; 2026 Seu Nome
+copyright: Copyright &copy; 2026 Equipe Kay McNulty - UnB FGA
 
 theme:
   name: material
@@ -49,14 +49,23 @@ theme:
 
 nav:
   - Início: index.md
-  - Primeiros passos:
-      - Instalação: primeiros-passos/instalacao.md
-      - Configuração: primeiros-passos/configuracao.md
-  - Guia de uso:
-      - Visão geral: guia/visao-geral.md
-      - Exemplos: guia/exemplos.md
-  - FAQ: faq.md
-  - Contribuindo: contribuindo.md
+  - Planejamento (Fase 1):
+      - Propósito e Stakeholders: fase1/proposito-stakeholders.md
+      - Arquitetura e Módulos: fase1/arquitetura-modulos.md
+      - Modelo de Qualidade: fase1/modelo-qualidade.md
+      - Escopo e Limites da Avaliação: fase1/escopo-limites.md
+      - Alinhamento aos ODS: fase1/ods.md
+  - Especificação GQM (Fase 2):
+      - Visão Geral do GQM: fase2/index.md
+      - Compatibilidade: fase2/compatibilidade.md
+      - Usabilidade: fase2/usabilidade.md
+      - Confiabilidade: fase2/confiabilidade.md
+  - Gestão do Projeto (PSM):
+      - Atas de Reunião: gestao/atas.md
+      - Métricas de Gestão PSM: gestao/metricas-psm.md
+      - Tabela de Contribuição: gestao/tabela-contribuicao.md
+  - Entregas:
+      - Entrega 1: entregas/entrega1.md
 
 plugins:
   - search:
@@ -88,14 +97,20 @@ markdown_extensions:
       alternate_style: true
   - pymdownx.tasklist:
       custom_checkbox: true
+  - pymdownx.arithmatex:
+      generic: true
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/SEU-USUARIO
+      link: https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_KAY_MCNULTY
 
 extra_css:
   - stylesheets/extra.css
