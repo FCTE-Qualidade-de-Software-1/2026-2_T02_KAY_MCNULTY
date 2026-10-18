@@ -25,10 +25,26 @@ A avaliação da característica de Compatibilidade abrange transversalmente os 
 
 ---
 
-## 3. Profundidade e Limites de Usabilidade (Natan e Yan)
+## 3. Profundidade e Limites de Usabilidade 
 
-> **[ESPAÇO RESERVADO PARA A DUPLA NATAN E YAN]**  
-> Inserir aqui a profundidade de inspeção de Usabilidade nos 4 módulos e os limites do escopo (ex.: métodos de avaliação heurística e testes de tarefas vs o que não será feito, como testes laboratoriais presenciais com centenas de usuários).
+A avaliação de Usabilidade abrange transversalmente os módulos de Infração, Atendimento, Protocolo e Chatbot, com foco em **Aprendibilidade**, **Operabilidade** e **Proteção contra Erros de Usuário**, conforme a especificação GQM registrada em [GQM – Característica: Usabilidade](../fase2/usabilidade.md).
+
+### 3.1 Profundidade da avaliação nos quatro módulos
+
+* **Módulo de Infração:** avaliar a facilidade de aprendizado durante a consulta de débitos e a compreensão das informações de infrações; observar a quantidade de passos necessários para emitir guias e acessar o código PIX; e verificar máscaras, validações e mensagens de orientação nos campos de placa, CPF e RENAVAM.
+* **Módulo de Atendimento:** avaliar a facilidade de localizar unidades, compreender o calendário e selecionar datas e horários; observar a navegação e as áreas de toque em telas móveis; e verificar se há uma tela de confirmação com resumo dos dados antes da finalização do agendamento.
+* **Módulo de Protocolo:** avaliar a clareza dos campos e da terminologia usada no cadastramento de processos; observar a quantidade de passos e o esforço necessário para anexar documentos em ambientes web e mobile; e verificar alertas sobre limites e formatos de arquivos, além da clareza das mensagens em caso de falha no envio.
+* **Módulo Chatbot:** avaliar a compreensão do diálogo inicial e das opções disponíveis; observar a visibilidade e o posicionamento do componente em telas móveis, inclusive quando o teclado virtual está aberto; e verificar como o assistente responde a entradas vazias, incoerentes ou não reconhecidas e se oferece alternativas de recuperação.
+
+### 3.2 Procedimentos e evidências
+
+A inspeção será complementada por testes de tarefas guiadas com uma amostragem técnica reduzida de cidadãos e engenheiros avaliadores. Os registros devem permitir verificar a conclusão autônoma das tarefas, os passos/cliques realizados, os erros observados, as mensagens apresentadas e as possibilidades de recuperação. As evidências podem incluir registros de observação, capturas ou gravações de tela e planilhas de coleta, respeitando a privacidade dos participantes.
+
+### 3.3 Limites do escopo e justificativas
+
+* **Testes laboratoriais em larga escala:** não serão realizados testes presenciais de usabilidade com centenas de participantes, pois exigiriam infraestrutura e prazo incompatíveis com o planejamento acadêmico. Os resultados serão interpretados considerando o tamanho e o perfil da amostra efetivamente utilizada.
+* **Auditoria avançada e exaustiva de acessibilidade:** embora a inclusão de pessoas com deficiência seja relevante para serviços públicos, esta etapa não contempla uma auditoria completa de acessibilidade com testes exaustivos de leitores de tela (por exemplo, NVDA e TalkBack), avaliação especializada de contraste e cobertura integral das diretrizes WCAG. Essas atividades ficam reservadas a estudos focados em acessibilidade.
+* **Alteração do portal:** a avaliação é diagnóstica e adota a abordagem caixa-preta (*Black-Box Testing*). Não haverá alteração de código-fonte, refatoração ou aplicação direta de correções no ambiente de produção.
 
 ---
 
