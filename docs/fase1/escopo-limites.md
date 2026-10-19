@@ -25,26 +25,28 @@ A avaliação da característica de Compatibilidade abrange transversalmente os 
 
 ---
 
-## 3. Profundidade e Limites de Usabilidade 
+## 3. Profundidade e Limites de Usabilidade
 
-A avaliação de Usabilidade abrange transversalmente os módulos de Infração, Atendimento, Protocolo e Chatbot, com foco em **Aprendibilidade**, **Operabilidade** e **Proteção contra Erros de Usuário**, conforme a especificação GQM registrada em [GQM – Característica: Usabilidade](../fase2/usabilidade.md).
+A avaliação de Usabilidade abrange transversalmente os módulos de Infração, Atendimento, Protocolo e Chatbot, com foco em **Aprendibilidade**, **Operabilidade** e **Proteção contra Erros de Usuário**, conforme a especificação GQM registrada em [GQM – Característica: Usabilidade](../fase2/usabilidade.md). Cada item da profundidade abaixo indica a métrica que o sustenta: **M1** (TCAPA, Aprendibilidade), **M2** (IEFO, Operabilidade) e **M3** (TPRE, Proteção contra Erros de Usuário). As métricas **M4** (IPH, inspeção heurística de Nielsen, associada à Operabilidade e à Proteção contra Erros de Usuário) e **M5** (SUS, percepção dos participantes, associada à Aprendibilidade e à Operabilidade) complementam essas medidas nos quatro módulos.
 
 ### 3.1 Profundidade da avaliação nos quatro módulos
 
-* **Módulo de Infração:** avaliar a facilidade de aprendizado durante a consulta de débitos e a compreensão das informações de infrações; observar a quantidade de passos necessários para emitir guias e acessar o código PIX; e verificar máscaras, validações e mensagens de orientação nos campos de placa, CPF e RENAVAM.
-* **Módulo de Atendimento:** avaliar a facilidade de localizar unidades, compreender o calendário e selecionar datas e horários; observar a navegação e as áreas de toque em telas móveis; e verificar se há uma tela de confirmação com resumo dos dados antes da finalização do agendamento.
-* **Módulo de Protocolo:** avaliar a clareza dos campos e da terminologia usada no cadastramento de processos; observar a quantidade de passos e o esforço necessário para anexar documentos em ambientes web e mobile; e verificar alertas sobre limites e formatos de arquivos, além da clareza das mensagens em caso de falha no envio.
-* **Módulo Chatbot:** avaliar a compreensão do diálogo inicial e das opções disponíveis; observar a visibilidade e o posicionamento do componente em telas móveis, inclusive quando o teclado virtual está aberto; e verificar como o assistente responde a entradas vazias, incoerentes ou não reconhecidas e se oferece alternativas de recuperação.
+* **Módulo de Infração:** avaliar a facilidade de aprendizado durante a consulta de débitos e a compreensão das informações de infrações (M1); observar a quantidade de passos necessários para emitir guias e acessar o código PIX (M2); e verificar máscaras, validações e mensagens de orientação nos campos de placa, CPF e RENAVAM.
+* **Módulo de Atendimento:** avaliar a facilidade de localizar unidades, compreender o calendário e selecionar datas e horários (M1); observar a navegação e as áreas de toque em telas móveis (M2); e verificar se há uma tela de confirmação com resumo dos dados antes da finalização do agendamento (observação qualitativa associada à Q3, fora do cálculo do M3).
+* **Módulo de Protocolo:** avaliar a clareza dos campos e da terminologia usada no cadastramento de processos (M1); observar a quantidade de passos e o esforço necessário para anexar documentos em ambientes web e mobile (M2); e verificar alertas sobre limites e formatos de arquivos, além da clareza das mensagens em caso de falha no envio.
+* **Módulo Chatbot:** avaliar a compreensão do diálogo inicial e das opções disponíveis (M1); observar a visibilidade e o posicionamento do componente em telas móveis, inclusive quando o teclado virtual está aberto (M2); e verificar como o assistente responde a entradas vazias, incoerentes ou não reconhecidas e se oferece alternativas de recuperação.
 
 ### 3.2 Procedimentos e evidências
 
-A inspeção será complementada por testes de tarefas guiadas com uma amostragem técnica reduzida de cidadãos e engenheiros avaliadores. Os registros devem permitir verificar a conclusão autônoma das tarefas, os passos/cliques realizados, os erros observados, as mensagens apresentadas e as possibilidades de recuperação. As evidências podem incluir registros de observação, capturas ou gravações de tela e planilhas de coleta, respeitando a privacidade dos participantes.
+A inspeção heurística (M4) será conduzida por avaliadores independentes, que registram os problemas encontrados em cada módulo e consolidam as listas ao final. Ela será complementada por testes de tarefas guiadas com uma amostragem técnica reduzida de cidadãos e engenheiros avaliadores, executadas em desktop e mobile, após os quais será aplicado o questionário SUS (M5). As tarefas, o fluxo de referência de cada uma e os cenários de erro serão definidos previamente e registrados junto aos resultados. Os registros devem permitir verificar a conclusão autônoma das tarefas, os passos/cliques realizados, os erros observados, as mensagens apresentadas e as possibilidades de recuperação. As evidências podem incluir registros de observação, capturas ou gravações de tela e planilhas de coleta, respeitando a privacidade dos participantes: os registros não devem expor dados pessoais reais (CPF, placa ou RENAVAM de terceiros), e os participantes devem ser informados sobre a finalidade acadêmica e sobre o registro da sessão antes do teste.
 
 ### 3.3 Limites do escopo e justificativas
 
 * **Testes laboratoriais em larga escala:** não serão realizados testes presenciais de usabilidade com centenas de participantes, pois exigiriam infraestrutura e prazo incompatíveis com o planejamento acadêmico. Os resultados serão interpretados considerando o tamanho e o perfil da amostra efetivamente utilizada.
 * **Auditoria avançada e exaustiva de acessibilidade:** embora a inclusão de pessoas com deficiência seja relevante para serviços públicos, esta etapa não contempla uma auditoria completa de acessibilidade com testes exaustivos de leitores de tela (por exemplo, NVDA e TalkBack), avaliação especializada de contraste e cobertura integral das diretrizes WCAG. Essas atividades ficam reservadas a estudos focados em acessibilidade.
 * **Alteração do portal:** a avaliação é diagnóstica e adota a abordagem caixa-preta (*Black-Box Testing*). Não haverá alteração de código-fonte, refatoração ou aplicação direta de correções no ambiente de produção.
+* **Ações reais em produção:** como a avaliação ocorre no ambiente de produção do Detran-DF, os cenários de erro e as tarefas não devem gerar efeitos reais, como protocolos, agendamentos ou pagamentos efetivos. Os fluxos são interrompidos antes da confirmação final ou, quando isso não for possível, o registro criado é cancelado em seguida.
+* **Estado do portal:** os resultados refletem a versão do portal na data da avaliação. Data, navegadores e dispositivos utilizados devem ser registrados junto aos resultados.
 
 ---
 
