@@ -63,7 +63,7 @@ nav:
       - Usabilidade: fase2/usabilidade.md
       - Confiabilidade: fase2/confiabilidade.md
   - Gestão do Projeto (PSM):
-      - Atas de Reunião: gestao/atas.md
+      # - Atas de Reunião: gestao/atas.md
       - Métricas de Gestão PSM: gestao/metricas-psm.md
       - Tabela de Contribuição: gestao/tabela-contribuicao.md
   - Entregas:
