@@ -2,12 +2,14 @@
 """
 update_metrics.py
 
-Extrai métricas do histórico Git (commits, adições, remoções) e da API de Issues do GitHub
-para gerar automaticamente gráficos Mermaid (xychart-beta) e tabelas Markdown alinhadas
-ao modelo PSM/CID e à rubrica AG-C5 da equipe Kay McNulty (Turma 01 - 2026.2).
+Extrai métricas do histórico Git (commits, adições, remoções) e da API de Issues/PRs do GitHub
+para gerar dinamicamente os gráficos Mermaid (xychart-beta) e as tabelas Markdown de Gestão
+(Tabela de Contribuição AG-C5, Recursos e Custos, Distribuição por Área Técnica e Desempenho de Processos)
+para a equipe Kay McNulty (Turma 01 - 2026.2).
 """
 
 import json
+import math
 import os
 import re
 import subprocess
@@ -23,86 +25,118 @@ SNIPPETS_DIR = REPO_ROOT / "snippets"
 
 REPO_OWNER = "FCTE-Qualidade-de-Software-1"
 REPO_NAME = "2026-2_T02_KAY_MCNULTY"
-VALOR_HORA_BRL = 50.0  # R$ 50,00/h conforme Tabela 3 da documentação da equipe
+VALOR_HORA_BRL = 50.0  # R$ 50,00/h conforme diretriz orçamentária da equipe
 
-# Definição dos integrantes e duplas conforme docs/gestao/metricas-psm.md
+# Definição canônica dos integrantes, duplas e responsabilidades
 TEAM_MEMBERS = [
     {
         "name": "Artur Fernandes Galdino",
         "handle": "ArturFGaldino",
         "matricula": "241010923",
         "dupla": "Dupla 1 (Compatibilidade)",
-        "papel": "Analista de Compatibilidade / Arquitetura e Escopo",
+        "area": "Compatibilidade",
+        "papel": "Analista de Compatibilidade / Mapeamento de Arquitetura e Escopo",
+        "responsabilidades": "• Mapeamento arquitetural do Portal Detran Digital DF e delimitação dos 4 módulos avaliados: Infração, Atendimento, Protocolo e Chatbot (Issue #01).<br>• Especificação conceitual e operacional da árvore GQM de Compatibilidade (Issue #03).<br>• Formulação das métricas operacionais ($TCBN$, $ICR$, $TSIS$), procedimentos de coleta e limiares de decisão de Compatibilidade (Issue #04).<br>• Co-redação do propósito da avaliação, partes interessadas e limites de escopo (Issues #05 e #07).",
     },
     {
         "name": "Nicole Jovita Fernandes",
         "handle": "nicolejovita",
         "matricula": "241012347",
         "dupla": "Dupla 1 (Compatibilidade)",
-        "papel": "Analista de Requisitos / Stakeholders e ODS",
+        "area": "Compatibilidade",
+        "papel": "Analista de Requisitos / Stakeholders, Modelo ISO 25010 e ODS",
+        "responsabilidades": "• Justificativa e delimitação de profundidade de Compatibilidade cross-browser/cross-platform (Issue #02).<br>• Mapeamento formal de stakeholders e matriz de decisões apoiadas pela avaliação (Issue #05).<br>• Adaptação gráfica do modelo SQuaRE (ISO/IEC 25010) e matriz de priorização de características (Issue #06).<br>• Conexão dos serviços de trânsito aos Objetivos de Desenvolvimento Sustentável da ONU — ODS 9 (Meta 9.c) e ODS 16 (Meta 16.6) (Issue #08).",
     },
     {
         "name": "Davi Ursolino de Oliveira",
         "handle": "DaviUrsulino",
         "matricula": "241012202",
         "dupla": "Dupla 2 (Confiabilidade)",
-        "papel": "Analista de Confiabilidade / GQM e Métricas",
+        "area": "Confiabilidade",
+        "papel": "Analista de Confiabilidade / Especificação GQM e Métricas",
+        "responsabilidades": "• Especificação GQM formal da característica de Confiabilidade (Seção 4.3 do artigo) (Issue #10).<br>• Definição das métricas quantitativas de Confiabilidade ($TDO$, $TCFF$, $DFF$, $TTOA$, $TRTI$, $TMR$), procedimentos de cálculo e níveis de julgamento (Issue #11).<br>• Construção e validação do diagrama visual da árvore GQM de Confiabilidade em Mermaid (Issue #12).<br>• Padronização matemática das equações em LaTeX/MathJax e revisão de consistência teórica (Issue #13).",
     },
     {
         "name": "João Eduardo Pereira Rabelo",
         "handle": "JoaoEduardoP",
         "matricula": "180053299",
         "dupla": "Dupla 2 (Confiabilidade)",
-        "papel": "Analista de Confiabilidade / Metodologia PSM",
+        "area": "Confiabilidade",
+        "papel": "Analista de Confiabilidade / Metodologia e Métricas PSM",
+        "responsabilidades": "• Fundamentação e justificativa técnica da característica de Confiabilidade em serviços governamentais (Issue #09).<br>• Apoio na modelagem do processo de avaliação sob a ótica da norma ISO/IEC 25040.<br>• Estruturação das categorias de acompanhamento do modelo PSM/CID (Processos, Calendário e Recursos).<br>• Auditoria de conformidade das atas de reunião e governança de releases.",
     },
     {
         "name": "Natan José França",
         "handle": "Natan8643",
         "matricula": "241011537",
         "dupla": "Dupla 3 (Usabilidade)",
-        "papel": "Analista de Usabilidade / Diagrama GQM e Limiares",
+        "area": "Usabilidade",
+        "papel": "Analista de Usabilidade / Diagrama GQM e Níveis de Julgamento",
+        "responsabilidades": "• Delimitação de escopo e justificativa da característica de Usabilidade / Capacidade de Interação (Issue #14).<br>• Modelagem do objetivo, questões analíticas e hipóteses de Usabilidade nos 4 módulos (Issue #15).<br>• Estabelecimento das réguas de pontuação e critérios de julgamento para proteção contra erros ($TCAPA$, $IEFO$, $TPRE$) (Issue #16).<br>• Elaboração do diagrama visual GQM de Usabilidade e revisão do texto para o artigo (Issue #17).",
     },
     {
         "name": "Yan Santos Rodrigues",
         "handle": "yanrdgs-dev",
         "matricula": "241025480",
         "dupla": "Dupla 3 (Usabilidade)",
-        "papel": "Analista de Usabilidade / Especificação e Heurísticas",
+        "area": "Usabilidade",
+        "papel": "Analista de Usabilidade / Especificação Operacional e Heurísticas",
+        "responsabilidades": "• Justificativa ergonômica da avaliação diante do perfil de letramento digital dos condutores do DF (Issue #14).<br>• Especificação operacional dos procedimentos de inspeção por Heurísticas de Nielsen e questionário $SUS$ (Issue #15).<br>• Definição das métricas quantitativas de usabilidade e procedimentos de coleta (Issue #16).<br>• Redação e validação formal da documentação da Fase 2 de Usabilidade na GitPage (Issue #17).",
     },
 ]
 
 TRACKED_AUTHORS = [m["handle"] for m in TEAM_MEMBERS]
 MEMBER_BY_HANDLE = {m["handle"]: m for m in TEAM_MEMBERS}
 
-# Cores distintas e acessíveis para os 6 integrantes nos gráficos Mermaid
+# Paleta Mermaid acessível para 6 séries
 COLOR_PALETTE = "#2563eb, #7c3aed, #db2777, #ea580c, #16a34a, #0891b2"
 MERMAID_INIT = f'%%{{init: {{"themeVariables": {{"xyChart": {{"plotColorPalette": "{COLOR_PALETTE}"}}}}}}}}%%\n'
 
-# Horas de referência por issue homologadas no catálogo do PC1 (docs/gestao/metricas-psm.md)
+# Horas dedicadas homologadas no catálogo de issues do PC1
 DEFAULT_HOURS_CATALOG = {
-    1: 4.0,  # Arquitetura e Escopo dos 4 módulos
-    2: 2.0,  # Justificativa Compatibilidade
-    3: 2.0,  # GQM Compatibilidade
-    4: 2.0,  # Métricas Compatibilidade
-    5: 2.0,  # Propósito e Stakeholders
-    6: 2.0,  # Modelo ISO 25010
-    7: 2.0,  # Escopo e Limites
-    8: 2.0,  # Alinhamento ODS
-    9: 4.0,  # Confiabilidade Fases 1 e 2
-    10: 2.0, # Especificação GQM Confiabilidade
-    11: 2.0, # Métricas Confiabilidade
-    12: 2.0, # Diagrama Mermaid Confiabilidade
-    13: 2.0, # Padronização LaTeX Confiabilidade
-    14: 4.0, # Justificativa Usabilidade
-    15: 2.0, # GQM e Heurísticas Usabilidade
-    16: 2.0, # Métricas Usabilidade
-    17: 2.0, # Redação Usabilidade
-    18: 2.0, # Estruturação PSM
+    1: 4.0,   # Arquitetura e Escopo dos 4 módulos (Artur & Nicole)
+    2: 2.0,   # Justificativa Compatibilidade (Nicole)
+    3: 3.0,   # GQM Compatibilidade (Artur)
+    4: 3.0,   # Métricas Compatibilidade (Artur & Nicole)
+    5: 2.0,   # Propósito e Stakeholders (Artur & Nicole)
+    6: 2.0,   # Modelo ISO 25010 (Artur & Nicole)
+    7: 2.0,   # Escopo e Limites (Artur & Nicole)
+    8: 2.0,   # Alinhamento ODS (Artur & Nicole)
+    9: 4.0,   # Confiabilidade Fases 1 e 2 (João Eduardo)
+    10: 3.0,  # Especificação GQM Confiabilidade (Davi)
+    11: 3.0,  # Métricas Confiabilidade (Davi)
+    12: 2.0,  # Diagrama Mermaid Confiabilidade (Davi)
+    13: 2.0,  # Padronização LaTeX Confiabilidade (Davi)
+    14: 3.0,  # Justificativa Usabilidade (Natan & Yan)
+    15: 3.0,  # GQM e Heurísticas Usabilidade (Natan & Yan)
+    16: 3.0,  # Métricas Usabilidade (Natan & Yan)
+    17: 3.0,  # Redação Usabilidade (Natan & Yan)
+    18: 3.0,  # Estruturação PSM e Governança (Artur & João Eduardo)
+}
+
+# Responsáveis canônicos para issues/PRs caso o GitHub retorne sem assignees
+FALLBACK_ASSIGNEES = {
+    18: ["ArturFGaldino", "JoaoEduardoP"],
 }
 
 
-def normalize_author(name: str, email: str) -> str:
-    """Normaliza o autor do Git para o handle oficial no GitHub da equipe."""
+def fmt_br_currency(val: float) -> str:
+    """Formata valor monetário no padrão BRL (R$ 1.200,00)."""
+    formatted = f"{val:,.2f}"
+    # Troca vírgula por ponto de milhar e ponto por vírgula decimal
+    parts = formatted.split(".")
+    integer_part = parts[0].replace(",", ".")
+    decimal_part = parts[1]
+    return f"R$ {integer_part},{decimal_part}"
+
+
+def fmt_br_number(val: float, decimals: int = 1) -> str:
+    """Formata número no padrão brasileiro com vírgula decimal."""
+    return f"{val:.{decimals}f}".replace(".", ",")
+
+
+def normalize_author(name: str, email: str = "") -> str:
+    """Normaliza autor do Git para o handle correspondente."""
     combined = f"{name} {email}".lower()
     if "github-actions" in combined or "actions@github.com" in combined:
         return "github-actions[bot]"
@@ -122,20 +156,20 @@ def normalize_author(name: str, email: str) -> str:
 
 
 def get_git_log_data():
-    """Extrai timestamps de commits, autores normalizados, adições e deleções."""
+    """Extrai timestamps de commits, autores e co-autores (Co-authored-by), adições e deleções."""
     cmd = [
         "git",
         "log",
         "--numstat",
         "--date=iso-strict",
-        "--format=COMMIT|%ad|%an|%ae",
+        "--format=@@@COMMIT|%ad|%an|%ae%n%B%n@@@END_COMMIT",
     ]
     try:
         result = subprocess.run(cmd, cwd=REPO_ROOT, capture_output=True, text=True, check=True)
-        lines = result.stdout.splitlines()
+        raw_output = result.stdout
     except Exception as e:
         print(f"Aviso ao ler git log: {e}", file=sys.stderr)
-        lines = []
+        raw_output = ""
 
     commits_by_week = defaultdict(lambda: defaultdict(int))
     additions_by_week = defaultdict(lambda: defaultdict(int))
@@ -145,45 +179,73 @@ def get_git_log_data():
     total_deletions = defaultdict(int)
     all_weeks = set()
 
-    current_week = None
-    current_author = None
-
-    for line in lines:
-        line = line.strip()
-        if not line:
+    commit_blocks = raw_output.split("@@@COMMIT|")[1:]
+    for block in commit_blocks:
+        if "@@@END_COMMIT" not in block:
             continue
-        if line.startswith("COMMIT|"):
-            parts = line.split("|")
-            date_str = parts[1]
-            author_name = parts[2]
-            author_email = parts[3] if len(parts) > 3 else ""
+        header_and_body, numstat_part = block.split("@@@END_COMMIT", 1)
+        lines = header_and_body.splitlines()
+        if not lines:
+            continue
+        header = lines[0]
+        body = "\n".join(lines[1:])
+        header_parts = header.split("|")
+        if len(header_parts) < 3:
+            continue
+        date_str = header_parts[0]
+        an = header_parts[1]
+        ae = header_parts[2] if len(header_parts) > 2 else ""
 
+        try:
             dt = datetime.fromisoformat(date_str)
             iso_year, iso_week, _ = dt.isocalendar()
             week_key = f"{iso_year}-W{iso_week:02d}"
+        except Exception:
+            continue
 
-            current_week = week_key
-            current_author = normalize_author(author_name, author_email)
-            all_weeks.add(week_key)
+        all_weeks.add(week_key)
 
-            commits_by_week[week_key][current_author] += 1
-            total_commits[current_author] += 1
-        else:
-            # linha do numstat: <adicionados> <removidos> <arquivo>
-            parts = line.split("\t")
-            if len(parts) >= 3 and current_week and current_author:
-                added = int(parts[0]) if parts[0].isdigit() else 0
-                deleted = int(parts[1]) if parts[1].isdigit() else 0
-                additions_by_week[current_week][current_author] += added
-                deletions_by_week[current_week][current_author] += deleted
-                total_additions[current_author] += added
-                total_deletions[current_author] += deleted
+        # Identificar autor principal e co-autores informados na mensagem do commit
+        contributors = set()
+        primary_handle = normalize_author(an, ae)
+        if primary_handle != "Unknown" and primary_handle != "github-actions[bot]":
+            contributors.add(primary_handle)
+
+        coauthors_matches = re.findall(r"co-authored-by:\s*([^<\n\r]+)(?:<([^>\n\r]+)>)?", body, re.IGNORECASE)
+        for ca_name, ca_email in coauthors_matches:
+            ca_handle = normalize_author(ca_name.strip(), (ca_email or "").strip())
+            if ca_handle != "Unknown" and ca_handle != "github-actions[bot]":
+                contributors.add(ca_handle)
+
+        if not contributors:
+            continue
+
+        # Registrar o commit para cada autor/co-autor
+        for handle in contributors:
+            commits_by_week[week_key][handle] += 1
+            total_commits[handle] += 1
+
+        # Somar numstat de adições e remoções
+        tot_added = 0
+        tot_deleted = 0
+        for numline in numstat_part.strip().splitlines():
+            parts = numline.split("\t")
+            if len(parts) >= 2:
+                tot_added += int(parts[0]) if parts[0].isdigit() else 0
+                tot_deleted += int(parts[1]) if parts[1].isdigit() else 0
+
+        # Ratear as linhas alteradas igualmente entre os participantes do commit
+        weight = 1.0 / len(contributors)
+        for handle in contributors:
+            additions_by_week[week_key][handle] += int(round(tot_added * weight))
+            deletions_by_week[week_key][handle] += int(round(tot_deleted * weight))
+            total_additions[handle] += int(round(tot_added * weight))
+            total_deletions[handle] += int(round(tot_deleted * weight))
 
     if not all_weeks:
         now_year, now_week, _ = datetime.now().isocalendar()
         all_weeks.add(f"{now_year}-W{now_week:02d}")
 
-    # Gerar sequência contínua de semanas
     sorted_weeks = sorted(all_weeks)
     earliest_yr, earliest_wk = [int(x) for x in sorted_weeks[0].split("-W")]
     latest_yr, latest_wk = [int(x) for x in sorted_weeks[-1].split("-W")]
@@ -211,7 +273,7 @@ def get_git_log_data():
 
 
 def resolve_token(*env_names):
-    """Obtém token do GitHub das variáveis de ambiente ou ferramentas configuradas."""
+    """Obtém token de autorização do GitHub."""
     for name in env_names:
         val = os.environ.get(name)
         if val:
@@ -225,8 +287,8 @@ def resolve_token(*env_names):
     return None
 
 
-def fetch_github_issues():
-    """Consulta as issues do repositório via API REST do GitHub com paginação."""
+def fetch_all_github_items():
+    """Consulta todas as issues e pull requests da API REST do GitHub."""
     token = resolve_token("GITHUB_TOKEN", "GH_TOKEN")
     headers = {"User-Agent": "KayMcNulty-MetricsAutomation", "Accept": "application/vnd.github.v3+json"}
     if token:
@@ -247,20 +309,17 @@ def fetch_github_issues():
                     break
                 page += 1
         except Exception as e:
-            print(f"Aviso ao consultar issues da API do GitHub: {e}", file=sys.stderr)
+            print(f"Aviso ao consultar API do GitHub: {e}", file=sys.stderr)
             break
 
-    # Filtrar apenas issues legítimas (remover PRs)
-    issues_only = [item for item in all_items if "pull_request" not in item]
-    return issues_only
+    return all_items
 
 
-def extract_hours_from_issue(issue: dict) -> float:
-    """Extrai horas estimadas/realizadas do corpo da issue ou do catálogo homologado."""
-    num = issue.get("number")
-    body = issue.get("body") or ""
+def extract_hours_from_item(item: dict) -> float:
+    """Extrai horas do corpo da issue ou do catálogo homologado."""
+    num = item.get("number")
+    body = item.get("body") or ""
 
-    # Busca padrões como: 'Horas Dedicadas: 4h' ou 'Esforço: 2.5h'
     match = re.search(r"(?:horas?(?:\s*dedicadas?)?|esfor[çc]o)[:\s\*]+(\d+(?:[.,]\d+)?)\s*h?", body, re.IGNORECASE)
     if match:
         try:
@@ -268,16 +327,15 @@ def extract_hours_from_issue(issue: dict) -> float:
         except ValueError:
             pass
 
-    # Fallback para o catálogo documentado de issues do PC1
     if num in DEFAULT_HOURS_CATALOG:
         return DEFAULT_HOURS_CATALOG[num]
 
-    return 2.0  # estimativa padrão conservadora
+    return 2.0
 
 
 def get_issue_and_effort_metrics():
-    """Calcula estatísticas de issues abertas, fechadas e esforço (h) por membro."""
-    issues = fetch_github_issues()
+    """Calcula estatísticas de issues/PRs abertas, fechadas e esforço real em horas por membro."""
+    items = fetch_all_github_items()
 
     counts = {
         author: {
@@ -289,15 +347,30 @@ def get_issue_and_effort_metrics():
         for author in TRACKED_AUTHORS
     }
 
-    for issue in issues:
-        closed = issue.get("state") == "closed"
-        assignees = [a.get("login") for a in issue.get("assignees", []) if a.get("login")]
-        hours = extract_hours_from_issue(issue)
+    # Se não conseguirmos itens da API (offline), inicializa com o catálogo homologado
+    if not items:
+        for num, h in DEFAULT_HOURS_CATALOG.items():
+            assignees = FALLBACK_ASSIGNEES.get(num, [])
+            w = 1.0 / len(assignees) if assignees else 1.0
+            for handle in assignees:
+                if handle in counts:
+                    counts[handle]["total"] += 1
+                    counts[handle]["closed"] += 1
+                    counts[handle]["hours"] += h * w
+        return counts
 
-        # Se houver múltiplos responsáveis, o esforço é rateado igualmente
-        weight = 1.0 / len(assignees) if assignees else 1.0
+    for item in items:
+        closed = item.get("state") == "closed"
+        num = item.get("number")
 
-        for login in assignees:
+        assignees_raw = [a.get("login") for a in item.get("assignees", []) if a.get("login")]
+        if not assignees_raw and num in FALLBACK_ASSIGNEES:
+            assignees_raw = FALLBACK_ASSIGNEES[num]
+
+        hours = extract_hours_from_item(item)
+        weight = 1.0 / len(assignees_raw) if assignees_raw else 1.0
+
+        for login in assignees_raw:
             handle = normalize_author(login, "")
             if handle not in counts:
                 continue
@@ -313,7 +386,7 @@ def get_issue_and_effort_metrics():
 
 
 def calculate_upper_bound(values, min_bound=5):
-    """Calcula o teto arredondado e elegante do eixo Y para gráficos Mermaid."""
+    """Calcula o teto elegante do eixo Y para gráficos Mermaid."""
     max_val = max(values) if values else 0
     if max_val <= 0:
         return min_bound
@@ -374,8 +447,114 @@ def render_bar_chart(title: str, y_label: str, counts_by_author: dict, key: str 
     return chart
 
 
+def generate_tabela_contribuicao_matriz(issue_counts: dict) -> str:
+    """
+    Gera a Tabela 1 canônica de Matriz de Responsabilidades e Esforço para `tabela-contribuicao.md`,
+    atualizada diretamente a partir das horas extraídas pela automação.
+    """
+    tot_hours = sum(issue_counts.get(h, {}).get("hours", 0.0) for h in TRACKED_AUTHORS)
+    if tot_hours <= 0:
+        tot_hours = 72.0
+
+    lines = [
+        "| Integrante (Nome e Matrícula) | Usuário GitHub | Papel Principal na Equipe | Principais Responsabilidades e Tarefas Realizadas no Ponto de Controle 1 | Horas (h) | % Esforço (AG-C5) | Status |",
+        "| :--- | :---: | :--- | :--- | :---: | :---: | :---: |",
+    ]
+
+    for m in TEAM_MEMBERS:
+        handle = m["handle"]
+        name = m["name"]
+        matricula = m["matricula"]
+        papel = m["papel"]
+        resp = m["responsabilidades"]
+
+        st = issue_counts.get(handle, {})
+        hours = st.get("hours", 0.0)
+        pct = (hours / tot_hours * 100.0) if tot_hours > 0 else (100.0 / len(TEAM_MEMBERS))
+
+        lines.append(
+            f"| **{name}**<br>Matrícula: `{matricula}` | [@{handle}](https://github.com/{handle}) | "
+            f"{papel} | {resp} | **{fmt_br_number(hours, 1)}h** | **{fmt_br_number(pct, 2)}%** | Concluído |"
+        )
+
+    lines.append(
+        f"| **TOTAL CONSOLIDADO** | — | — | **Esforço Acumulado no Ponto de Controle 1 (Fases 1 e 2)** | "
+        f"**{fmt_br_number(tot_hours, 1)}h** | **100,00%** | **Homologado** |"
+    )
+
+    return "\n".join(lines)
+
+
+def generate_alocacao_recursos_custos(issue_counts: dict) -> str:
+    """
+    Gera a Tabela 3 de Alocação de Recursos, Esforço e Custos Individuais para `metricas-psm.md`,
+    calculando horas realizadas, custo total e % de esforço a partir da automação.
+    """
+    tot_hours = sum(issue_counts.get(h, {}).get("hours", 0.0) for h in TRACKED_AUTHORS)
+    if tot_hours <= 0:
+        tot_hours = 72.0
+
+    lines = [
+        "| Integrante (Nome e Matrícula) | Usuário GitHub | Papel Principal na Avaliação | Horas Realizadas (h) | Valor / Hora (R$) | Custo Total (R$) | % Esforço (AG-C5) | Status |",
+        "| :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: |",
+    ]
+
+    tot_custo = tot_hours * VALOR_HORA_BRL
+
+    for m in TEAM_MEMBERS:
+        handle = m["handle"]
+        name = m["name"]
+        matricula = m["matricula"]
+        papel = m["papel"]
+
+        st = issue_counts.get(handle, {})
+        hours = st.get("hours", 0.0)
+        custo = hours * VALOR_HORA_BRL
+        pct = (hours / tot_hours * 100.0) if tot_hours > 0 else (100.0 / len(TEAM_MEMBERS))
+
+        lines.append(
+            f"| **{name}**<br>Matrícula: `{matricula}` | [@{handle}](https://github.com/{handle}) | {papel} | "
+            f"**{fmt_br_number(hours, 1)}h** | R$ 50,00 | {fmt_br_currency(custo)} | **{fmt_br_number(pct, 2)}%** | Concluído |"
+        )
+
+    lines.append(
+        f"| **TOTAL ACUMULADO (PC1)** | — | **Entregáveis Fases 1 e 2 Consolidados** | "
+        f"**{fmt_br_number(tot_hours, 1)}h** | Média: R$ 50,00/h | **{fmt_br_currency(tot_custo)}** | **100,00%** | **100% Ativo** |"
+    )
+
+    return "\n".join(lines)
+
+
+def generate_distribuicao_custos_areas(issue_counts: dict) -> str:
+    """Gera o detalhamento dinâmico de custos por área técnica para a Seção 4.1 de `metricas-psm.md`."""
+    tot_hours = sum(issue_counts.get(h, {}).get("hours", 0.0) for h in TRACKED_AUTHORS)
+    if tot_hours <= 0:
+        tot_hours = 72.0
+
+    h_compat = issue_counts.get("ArturFGaldino", {}).get("hours", 0.0) + issue_counts.get("nicolejovita", {}).get("hours", 0.0)
+    h_conf = issue_counts.get("DaviUrsulino", {}).get("hours", 0.0) + issue_counts.get("JoaoEduardoP", {}).get("hours", 0.0)
+    h_usab = issue_counts.get("Natan8643", {}).get("hours", 0.0) + issue_counts.get("yanrdgs-dev", {}).get("hours", 0.0)
+
+    c_compat = h_compat * VALOR_HORA_BRL
+    c_conf = h_conf * VALOR_HORA_BRL
+    c_usab = h_usab * VALOR_HORA_BRL
+    tot_custo = tot_hours * VALOR_HORA_BRL
+
+    pct_compat = (h_compat / tot_hours * 100.0) if tot_hours > 0 else 33.33
+    pct_conf = (h_conf / tot_hours * 100.0) if tot_hours > 0 else 33.33
+    pct_usab = (h_usab / tot_hours * 100.0) if tot_hours > 0 else 33.33
+
+    lines = [
+        f"* **Compatibilidade e Arquitetura (Artur e Nicole):** {fmt_br_number(h_compat, 1)}h dedicadas | {fmt_br_currency(c_compat)} ({fmt_br_number(pct_compat, 2)}% do orçamento total)",
+        f"* **Usabilidade e Interação (Natan e Yan):** {fmt_br_number(h_usab, 1)}h dedicadas | {fmt_br_currency(c_usab)} ({fmt_br_number(pct_usab, 2)}% do orçamento total)",
+        f"* **Confiabilidade e Métricas de Processo (Davi e João Eduardo):** {fmt_br_number(h_conf, 1)}h dedicadas | {fmt_br_currency(c_conf)} ({fmt_br_number(pct_conf, 2)}% do orçamento total)",
+        f"* **Total Orçamentário Alocado para a Fase de Planejamento:** {fmt_br_currency(tot_custo)}",
+    ]
+    return "\n".join(lines)
+
+
 def generate_contributions_table(git_totals: dict, issue_counts: dict) -> str:
-    """Gera tabela Markdown consolidada de contribuição e esforço individual (Critério AG-C5)."""
+    """Gera tabela consolidada de atividade Git e esforço computado (AG-C5)."""
     lines = [
         "| Integrante (Nome e Matrícula) | Usuário GitHub | Dupla | Commits | Linhas (+/-) | Issues Fechadas | Horas (h) | Custo Total (R$) | % Esforço (AG-C5) |",
         "| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |",
@@ -387,7 +566,7 @@ def generate_contributions_table(git_totals: dict, issue_counts: dict) -> str:
     tot_closed = 0
     tot_hours = sum(issue_counts.get(h, {}).get("hours", 0.0) for h in TRACKED_AUTHORS)
     if tot_hours <= 0:
-        tot_hours = 72.0  # Referência do PC1
+        tot_hours = 72.0
 
     for m in TEAM_MEMBERS:
         handle = m["handle"]
@@ -403,9 +582,6 @@ def generate_contributions_table(git_totals: dict, issue_counts: dict) -> str:
         st = issue_counts.get(handle, {})
         closed_iss = st.get("closed", 0)
         hours = st.get("hours", 0.0)
-        if hours == 0.0 and closed_iss > 0:
-            hours = 12.0  # fallback proporcional
-
         custo = hours * VALOR_HORA_BRL
         pct_esforco = (hours / tot_hours * 100.0) if tot_hours > 0 else (100.0 / len(TEAM_MEMBERS))
 
@@ -417,7 +593,7 @@ def generate_contributions_table(git_totals: dict, issue_counts: dict) -> str:
         sign_net = f"+{net}" if net > 0 else str(net)
         lines.append(
             f"| **{name}**<br>Matrícula: `{matricula}` | [@{handle}](https://github.com/{handle}) | {dupla} | "
-            f"{c} | +{a} / -{d} ({sign_net}) | {closed_iss} | {hours:.1f}h | R$ {custo:,.2f} | **{pct_esforco:.2f}%** |"
+            f"{c} | +{a} / -{d} ({sign_net}) | {closed_iss} | {fmt_br_number(hours, 1)}h | {fmt_br_currency(custo)} | **{fmt_br_number(pct_esforco, 2)}%** |"
         )
 
     tot_net = tot_adds - tot_dels
@@ -426,14 +602,14 @@ def generate_contributions_table(git_totals: dict, issue_counts: dict) -> str:
 
     lines.append(
         f"| **TOTAL CONSOLIDADO** | — | — | **{tot_commits}** | **+{tot_adds} / -{tot_dels} ({tot_sign_net})** | "
-        f"**{tot_closed}** | **{tot_hours:.1f}h** | **R$ {tot_custo:,.2f}** | **100,00%** |"
+        f"**{tot_closed}** | **{fmt_br_number(tot_hours, 1)}h** | **{fmt_br_currency(tot_custo)}** | **100,00%** |"
     )
 
     return "\n".join(lines)
 
 
 def generate_issues_table(issue_counts: dict) -> str:
-    """Gera tabela Markdown com taxa de resolução de issues por membro."""
+    """Gera tabela Markdown com taxa de conclusão de demandas por membro."""
     lines = [
         "| Integrante | Usuário GitHub | Dupla | Issues Fechadas | Issues Abertas | Total de Issues | Taxa de Conclusão |",
         "| :--- | :---: | :---: | :---: | :---: | :---: | :---: |",
@@ -476,7 +652,7 @@ def main():
     weeks, commits, additions, deletions, git_totals = get_git_log_data()
     issue_counts = get_issue_and_effort_metrics()
 
-    # Gerar gráficos
+    # 1. Gráficos Mermaid
     velocity_chart = render_timeline_chart(
         "Velocidade de Commits por Integrante ao Longo do Tempo",
         "Commits",
@@ -508,22 +684,44 @@ def main():
         key="closed",
     )
 
-    # Gerar tabelas Markdown
+    # 2. Tabelas e Trechos Markdown Dinâmicos
+    tabela_contribuicao_matriz = generate_tabela_contribuicao_matriz(issue_counts)
+    alocacao_recursos_custos = generate_alocacao_recursos_custos(issue_counts)
+    distribuicao_custos_areas = generate_distribuicao_custos_areas(issue_counts)
     contributions_table = generate_contributions_table(git_totals, issue_counts)
     issues_table = generate_issues_table(issue_counts)
 
-    # Escrever arquivos de snippet
+    tot_hours = sum(issue_counts.get(h, {}).get("hours", 0.0) for h in TRACKED_AUTHORS)
+    tot_closed = sum(issue_counts.get(h, {}).get("closed", 0) for h in TRACKED_AUTHORS)
+    tot_all = sum(issue_counts.get(h, {}).get("total", 0) for h in TRACKED_AUTHORS)
+    media_horas = tot_hours / len(TRACKED_AUTHORS) if TRACKED_AUTHORS else 0.0
+    taxa_conc = (tot_closed / tot_all * 100.0) if tot_all > 0 else 100.0
+
+    resumo_processo = (
+        f"* **Total de Tarefas no Repositório (Issues/PRs):** {tot_all} itens mapeados\n"
+        f"* **Tarefas Concluídas e Homologadas:** {tot_closed} tarefas\n"
+        f"* **Taxa de Conclusão de Demandas:** **{fmt_br_number(taxa_conc, 1)}% de eficácia de processo**\n"
+        f"* **Média de Esforço por Integrante:** {fmt_br_number(media_horas, 1)} horas dedicadas\n"
+        f"* **Esforço Total Consolidado da Equipe:** {fmt_br_number(tot_hours, 1)} horas profissionais"
+    )
+
+    # 3. Escrita dos arquivos na pasta snippets/
     (SNIPPETS_DIR / "commit-velocity.mmd").write_text(velocity_chart + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "code-additions.mmd").write_text(additions_chart + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "code-deletions.mmd").write_text(deletions_chart + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "assigned-issues.mmd").write_text(issues_chart + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "resolved-issues.mmd").write_text(resolved_chart + "\n", encoding="utf-8")
+
+    (SNIPPETS_DIR / "resumo-processo.md").write_text(resumo_processo + "\n", encoding="utf-8")
+    (SNIPPETS_DIR / "tabela-contribuicao-matriz.md").write_text(tabela_contribuicao_matriz + "\n", encoding="utf-8")
+    (SNIPPETS_DIR / "alocacao-recursos-custos.md").write_text(alocacao_recursos_custos + "\n", encoding="utf-8")
+    (SNIPPETS_DIR / "distribuicao-custos-areas.md").write_text(distribuicao_custos_areas + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "contributions-summary.md").write_text(contributions_table + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "issues-summary.md").write_text(issues_table + "\n", encoding="utf-8")
 
+    resumo_horas = {k: f"{v['hours']:.1f}h" for k, v in issue_counts.items()}
     print(f"Snippets gerados com sucesso em: {SNIPPETS_DIR}")
-    print(f"Semanas mapeadas: {weeks}")
-    print(f"Autores monitorados: {TRACKED_AUTHORS}")
+    print(f"Horas computadas por membro: {resumo_horas}")
 
 
 if __name__ == "__main__":

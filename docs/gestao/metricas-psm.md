@@ -23,13 +23,9 @@ O modelo *Practical Software Measurement* (PSM) é uma abordagem orientada a pro
 
 ### 2.1 Eficácia do Fluxo de Trabalho e Conclusão de Demandas
 
-Para o Ponto de Controle 1 (Entrega 1), a equipe planejou e executou integralmente o levantamento dos requisitos da avaliação (Fase 1) e a especificação formal das medições (Fase 2).
+Para o Ponto de Controle 1 (Entrega 1), a equipe planejou e executou integralmente o levantamento dos requisitos da avaliação (Fase 1) e a especificação formal das medições (Fase 2). Os dados consolidados a seguir são extraídos diretamente do repositório:
 
-* **Total de Tarefas Planejadas (Issues):** 17 tarefas atômicas
-* **Tarefas Concluídas e Homologadas:** 17 tarefas
-* **Taxa de Conclusão da Entrega 1:** **100% de eficácia de processo**
-* **Média de Esforço por Integrante:** 12 horas dedicadas
-* **Esforço Total Consolidado da Equipe:** 72 horas profissionais
+--8<-- "resumo-processo.md"
 
 ### Tabela 2 — Métricas de Desempenho dos Processos no Ponto de Controle 1
 
@@ -140,24 +136,13 @@ Em observância ao **Critério AG-C5 (Transparência da Contribuição Individua
 
 ### Tabela 3 — Alocação de Recursos, Esforço e Custos Individuais (Ponto de Controle 1)
 
-| Integrante (Nome e Matrícula) | Usuário GitHub | Papel Principal na Avaliação | Horas Planejadas (h) | Horas Realizadas (h) | Valor / Hora (R$) | Custo Total (R$) | % Esforço (AG-C5) | Status |
-| :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Artur Fernandes Galdino**<br>Matrícula: `241010923` | `@ArturFGaldino` | Analista de Compatibilidade / Mapeamento de Arquitetura e Escopo | 12h | 12h | R$ 50,00 | R$ 600,00 | **16,67%** | Concluído |
-| **Nicole Jovita Fernandes**<br>Matrícula: `241012347` | `@nicolejovita` | Analista de Requisitos / Stakeholders, Modelo ISO 25010 e ODS | 12h | 12h | R$ 50,00 | R$ 600,00 | **16,67%** | Concluído |
-| **Davi Ursolino de Oliveira**<br>Matrícula: `241012202` | `@DaviUrsulino` | Analista de Confiabilidade / Especificação GQM e Métricas | 12h | 12h | R$ 50,00 | R$ 600,00 | **16,67%** | Concluído |
-| **João Eduardo Pereira Rabelo**<br>Matrícula: `180053299` | `@JoaoEduardoP` | Analista de Confiabilidade / Metodologia e Métricas PSM | 12h | 12h | R$ 50,00 | R$ 600,00 | **16,66%** | Concluído |
-| **Natan José França**<br>Matrícula: `241011537` | `@Natan8643` | Analista de Usabilidade / Diagrama GQM e Níveis de Julgamento | 12h | 12h | R$ 50,00 | R$ 600,00 | **16,66%** | Concluído |
-| **Yan Santos Rodrigues**<br>Matrícula: `241025480` | `@yanrdgs-dev` | Analista de Usabilidade / Especificação Operacional e Heurísticas | 12h | 12h | R$ 50,00 | R$ 600,00 | **16,67%** | Concluído |
-| **TOTAL ACUMULADO (PC1)** | — | **Entregáveis Fases 1 e 2 Consolidados** | **72h** | **72h** | Média: R$ 50,00/h | **R$ 3.600,00** | **100%** | **100% Ativo** |
+--8<-- "alocacao-recursos-custos.md"
 
-*Fonte: Elaborado pelos autores conforme modelo PSM/CID e rubrica AG-C5.*
+*Fonte: Elaborado pelos autores e atualizado dinamicamente via pipeline de automação conforme modelo PSM/CID e rubrica AG-C5.*
 
 ### 4.1 Distribuição de Custos por Área Técnica da Avaliação
 
-* **Compatibilidade e Arquitetura (Artur e Nicole):** 24h dedicadas | R$ 1.200,00 (33,33% do orçamento total)
-* **Usabilidade e Interação (Natan e Yan):** 24h dedicadas | R$ 1.200,00 (33,33% do orçamento total)
-* **Confiabilidade e Métricas de Processo (Davi e João Eduardo):** 24h dedicadas | R$ 1.200,00 (33,33% do orçamento total)
-* **Total Orçamentário Alocado para a Fase de Planejamento:** R$ 3.600,00
+--8<-- "distribuicao-custos-areas.md"
 
 ### 4.2 Painel Dinâmico de Contribuição e Esforço (Critério AG-C5)
 
