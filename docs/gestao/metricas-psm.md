@@ -42,6 +42,23 @@ Para o Ponto de Controle 1 (Entrega 1), a equipe planejou e executou integralmen
 
 *Fonte: Elaborado pelos autores a partir do histórico de issues do repositório da equipe.*
 
+### 2.2 Painel Automatizado de Tarefas e Resolução de Demanda
+
+Abaixo são apresentados os gráficos e a síntese analítica gerados de forma contínua pelo pipeline de automação da equipe, consolidando a distribuição de tarefas por integrante e respectivo status de homologação:
+
+=== "Tarefas Resolvidas"
+    ```mermaid
+    --8<-- "resolved-issues.mmd"
+    ```
+
+=== "Issues Atribuídas"
+    ```mermaid
+    --8<-- "assigned-issues.mmd"
+    ```
+
+=== "Quadro Resumo de Issues"
+    --8<-- "issues-summary.md"
+
 ---
 
 ## 3. Calendário e Progresso: Estrutura de Marcos (Milestones M0 a M5)
@@ -96,6 +113,25 @@ flowchart TD
     * **Entregáveis:** Relatório de medições com evidências visuais (capturas de tela, logs de rede) e Artigo v2 final com tag `v2.0.0-pc2`.
     * **Critério de Aceitação:** Parecer conclusivo homologado pela equipe avaliadora.
 
+### 3.2 Velocidade de Commits e Fluxo de Integração Contínua
+
+O histórico evolutivo de commits e alterações no repositório ao longo das semanas de desenvolvimento é monitorado dinamicamente:
+
+=== "Velocidade de Commits"
+    ```mermaid
+    --8<-- "commit-velocity.mmd"
+    ```
+
+=== "Linhas Adicionadas (+)"
+    ```mermaid
+    --8<-- "code-additions.mmd"
+    ```
+
+=== "Linhas Removidas (-)"
+    ```mermaid
+    --8<-- "code-deletions.mmd"
+    ```
+
 ---
 
 ## 4. Recursos e Custos: Alocação Individual e Orçamento (Critério AG-C5)
@@ -122,6 +158,12 @@ Em observância ao **Critério AG-C5 (Transparência da Contribuição Individua
 * **Usabilidade e Interação (Natan e Yan):** 24h dedicadas | R$ 1.200,00 (33,33% do orçamento total)
 * **Confiabilidade e Métricas de Processo (Davi e João Eduardo):** 24h dedicadas | R$ 1.200,00 (33,33% do orçamento total)
 * **Total Orçamentário Alocado para a Fase de Planejamento:** R$ 3.600,00
+
+### 4.2 Painel Dinâmico de Contribuição e Esforço (Critério AG-C5)
+
+A tabela abaixo reflete as métricas calculadas em tempo real a partir dos commits, linhas alteradas (+/-), issues fechadas e valoração do esforço individual:
+
+--8<-- "contributions-summary.md"
 
 ---
 

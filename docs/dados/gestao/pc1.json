@@ -1,0 +1,109 @@
+{
+  "equipe": "Kay McNulty",
+  "milestone": "Geral",
+  "periodo": {
+    "inicio": "2026-10-16",
+    "fim": "2026-10-26"
+  },
+  "gerado_em": "2026-11-04T11:01:47-03:00",
+  "indicadores": {
+    "N1_Comprometido_Concluido": {
+      "planejadas": 14,
+      "concluidas": 14,
+      "abertas": 0,
+      "taxa_conclusao_pct": 100.0,
+      "desvio_meta_pct": 0.0
+    },
+    "N2_Burndown": [
+      {
+        "data": "2026-10-16",
+        "planejados": 0,
+        "concluidos": 0,
+        "abertos": 0
+      },
+      {
+        "data": "2026-10-17",
+        "planejados": 0,
+        "concluidos": 0,
+        "abertos": 0
+      },
+      {
+        "data": "2026-10-18",
+        "planejados": 14,
+        "concluidos": 13,
+        "abertos": 1
+      },
+      {
+        "data": "2026-10-19",
+        "planejados": 14,
+        "concluidos": 13,
+        "abertos": 1
+      },
+      {
+        "data": "2026-10-20",
+        "planejados": 14,
+        "concluidos": 14,
+        "abertos": 0
+      },
+      {
+        "data": "2026-10-21",
+        "planejados": 14,
+        "concluidos": 14,
+        "abertos": 0
+      },
+      {
+        "data": "2026-10-22",
+        "planejados": 14,
+        "concluidos": 14,
+        "abertos": 0
+      },
+      {
+        "data": "2026-10-23",
+        "planejados": 14,
+        "concluidos": 14,
+        "abertos": 0
+      },
+      {
+        "data": "2026-10-24",
+        "planejados": 14,
+        "concluidos": 14,
+        "abertos": 0
+      },
+      {
+        "data": "2026-10-25",
+        "planejados": 14,
+        "concluidos": 14,
+        "abertos": 0
+      },
+      {
+        "data": "2026-10-26",
+        "planejados": 14,
+        "concluidos": 14,
+        "abertos": 0
+      }
+    ],
+    "N3_Esforco_Equilibrio": {
+      "horas_por_membro": {
+        "ArturFGaldino": 8.0,
+        "nicolejovita": 8.0,
+        "DaviUrsulino": 4.0,
+        "JoaoEduardoP": 2.0,
+        "Natan8643": 3.0,
+        "yanrdgs-dev": 3.0
+      },
+      "media_horas": 4.67,
+      "desvio_padrao_sigma": 2.43,
+      "status_equilibrio": "Requer balanceamento"
+    },
+    "N5_Cycle_Time": {
+      "total_medido": 14,
+      "tempo_medio_dias": 0.23,
+      "tempo_maximo_dias": 2.49
+    },
+    "N6_Rastreabilidade": {
+      "total_prs": 5,
+      "prs_fechados": 5,
+      "total_issues": 14
+    }
+  }
+}

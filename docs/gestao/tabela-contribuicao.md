@@ -27,6 +27,14 @@ Conforme preconizado nas diretrizes acadêmicas da disciplina e na rubrica do **
 
 ---
 
-## 2. Declaração de Compromisso e Transparência
+## 2. Painel Dinâmico de Contribuição e Esforço (Atualização Contínua)
+
+As métricas da tabela a seguir são mineradas e atualizadas automaticamente a cada novo *push* no repositório através do workflow `.github/workflows/metrics.yml`, refletindo em tempo real os commits, linhas adicionadas/removidas, issues finalizadas e a valoração do esforço individual:
+
+--8<-- "contributions-summary.md"
+
+---
+
+## 3. Declaração de Compromisso e Transparência
 
 Os membros da equipe Kay McNulty declaram que a divisão de trabalho apresentada reflete fielmente o esforço individual e coletivo desempenhado durante todo o ciclo do **Ponto de Controle 1**. As atividades foram desenvolvidas em regime de colaboração contínua por duplas de trabalho especializadas, com revisão cruzada por pares (*peer review*) de todos os artefatos técnicos, garantindo que o conjunto das 17 issues fechadas no repositório atenda aos mais altos padrões de qualidade acadêmica e profissional.
