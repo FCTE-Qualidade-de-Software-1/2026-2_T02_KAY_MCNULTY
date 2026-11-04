@@ -68,6 +68,7 @@ nav:
       - Tabela de Contribuição: gestao/tabela-contribuicao.md
   - Entregas:
       - Entrega 1: entregas/entrega1.md
+      - Artigo: entregas/artigo.md
 
 plugins:
   - search:
