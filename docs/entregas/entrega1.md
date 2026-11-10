@@ -55,7 +55,7 @@ Esta seção formaliza a evolução cronológica do projeto da equipe Kay McNult
 
 ## 3. Gestão de Recursos, Esforço e Custos (PSM/CID e Critério AG-C5)
 
-A Tabela 2 apresenta a alocação completa de responsabilidades, horas de trabalho dedicadas, valor por hora profissional e custos financeiros acumulados para a Entrega 1, totalizando rigorosamente 100,00% de esforço em conformidade com o **Critério AG-C5**.
+A Tabela 2 apresenta a alocação completa de responsabilidades, horas de trabalho dedicadas, valor por hora profissional e custos financeiros acumulados para a Entrega 1, consolidada pelo painel automatizado de issues e em conformidade com o **Critério AG-C5**.
 
 O valor de referência foi calculado a partir do custo médio anual de R$ 52.533,00 por estudante de universidade federal, conforme [Poder360](https://www.poder360.com.br/poder-economia/alunos-de-universidades-federais-tem-custo-medio-anual-de-r-52-533/). Considerando a média de 300 horas por semestre, ou 600 horas anuais, o cálculo resulta em R$ 87,555/h; foi aplicado truncamento para duas casas decimais, adotando-se **R$ 87,55/h** ($R\$\ 52.533,00 \div 600\text{h} = R\$\ 87,555/\text{h} \rightarrow R\$\ 87,55/\text{h}$).
 
@@ -63,13 +63,13 @@ O valor de referência foi calculado a partir do custo médio anual de R$ 52.533
 
 | Integrante | Papel Principal na Equipe | Responsabilidades e Tarefas no Ponto de Controle 1 | Horas (h) | Valor / Hora (R$) | Custo Total (R$) | % de Esforço (AG-C5) |
 | :--- | :--- | :--- | :---: | :---: | :---: | :---: |
-| **Artur Fernandes Galdino**<br>Matrícula: `241010923` | Analista de Compatibilidade / Mapeamento de Arquitetura e Escopo | Mapeamento dos módulos de Infração, Atendimento, Protocolo e Chatbot (Issue #01); especificação GQM e métricas de Compatibilidade ($TCBN$, $ICR$, $TSIS$) (Issues #03 e #04); escopo e propósito (Issues #05 e #07). | 12h | R$ 87,55 | R$ 1.050,60 | **16,67%** |
-| **Nicole Jovita Fernandes**<br>Matrícula: `241012347` | Analista de Requisitos / Stakeholders, Modelo ISO 25010 e ODS | Justificativa de Compatibilidade cross-browser/mobile (Issue #02); mapeamento de stakeholders (Issue #05); adaptação do modelo ISO 25010 (Issue #06); alinhamento aos ODS 9 (Meta 9.c) e 16 (Meta 16.6) (Issue #08). | 12h | R$ 87,55 | R$ 1.050,60 | **16,67%** |
-| **Davi Ursolino de Oliveira**<br>Matrícula: `241012202` | Analista de Confiabilidade / Especificação GQM e Métricas | Especificação GQM de Confiabilidade (Issue #10); métricas quantitativas ($TDO$, $TCFF$, $DFF$, $TTOA$, $TRTI$, $TMR$) e réguas de pontuação (Issue #11); diagramação Mermaid e fórmulas MathJax (Issues #12 e #13). | 12h | R$ 87,55 | R$ 1.050,60 | **16,67%** |
-| **João Eduardo Pereira Rabelo**<br>Matrícula: `180053299` | Analista de Confiabilidade / Metodologia e Métricas PSM | Fundamentação de Confiabilidade em serviços transacionais (Issue #09); metodologia ISO 25040; métricas PSM/CID de processos e calendário; auditoria de governança e atas. | 12h | R$ 87,55 | R$ 1.050,60 | **16,66%** |
-| **Natan José França**<br>Matrícula: `241011537` | Analista de Usabilidade / Diagrama GQM e Níveis de Julgamento | Justificativa de Usabilidade (Issue #14); modelo GQM e hipóteses nos 4 módulos (Issue #15); escalas de julgamento das métricas $TCAPA$, $IEFO$ e $TPRE$ (Issue #16); diagrama GQM e artigo (Issue #17). | 12h | R$ 87,55 | R$ 1.050,60 | **16,66%** |
-| **Yan Santos Rodrigues**<br>Matrícula: `241025480` | Analista de Usabilidade / Especificação Operacional e Heurísticas | Análise ergonômica e perfil de condutores do DF (Issue #14); procedimentos operacionais para Heurísticas de Nielsen e questionário $SUS$ (Issue #15); métricas quantitativas de usabilidade (Issue #16); documentação MkDocs (Issue #17). | 12h | R$ 87,55 | R$ 1.050,60 | **16,67%** |
-| **TOTAL CONSOLIDADO** | — | **Entregáveis Fases 1 e 2 Consolidados — Ponto de Controle 1** | **72h** | Média: R$ 87,55/h | **R$ 6.303,60** | **100%** |
+| **Artur Fernandes Galdino**<br>Matrícula: `241010923` | Analista de Compatibilidade / Mapeamento de Arquitetura e Escopo | Mapeamento dos módulos de Infração, Atendimento, Protocolo e Chatbot (Issue #01); especificação GQM e métricas de Compatibilidade ($TCBN$, $ICR$, $TSIS$) (Issues #03 e #04); escopo e propósito (Issues #05 e #07). | 10,5h | R$ 87,55 | R$ 919,28 | **26,92%** |
+| **Nicole Jovita Fernandes**<br>Matrícula: `241012347` | Analista de Requisitos / Stakeholders, Modelo ISO 25010 e ODS | Justificativa de Compatibilidade cross-browser/mobile (Issue #02); mapeamento de stakeholders (Issue #05); adaptação do modelo ISO 25010 (Issue #06); alinhamento aos ODS 9 (Meta 9.c) e 16 (Meta 16.6) (Issue #08). | 9,5h | R$ 87,55 | R$ 831,73 | **24,36%** |
+| **Davi Ursolino de Oliveira**<br>Matrícula: `241012202` | Analista de Confiabilidade / Especificação GQM e Métricas | Especificação GQM de Confiabilidade (Issue #10); métricas quantitativas ($TDO$, $TCFF$, $DFF$, $TTOA$, $TRTI$, $TMR$) e réguas de pontuação (Issue #11); diagramação Mermaid e fórmulas MathJax (Issues #12 e #13). | 6,0h | R$ 87,55 | R$ 525,30 | **15,38%** |
+| **João Eduardo Pereira Rabelo**<br>Matrícula: `180053299` | Analista de Confiabilidade / Metodologia e Métricas PSM | Fundamentação de Confiabilidade em serviços transacionais (Issue #09); metodologia ISO 25040; métricas PSM/CID de processos e calendário; auditoria de governança e atas. | 4,0h | R$ 87,55 | R$ 350,20 | **10,26%** |
+| **Natan José França**<br>Matrícula: `241011537` | Analista de Usabilidade / Diagrama GQM e Níveis de Julgamento | Justificativa de Usabilidade (Issue #14); modelo GQM e hipóteses nos 4 módulos (Issue #15); escalas de julgamento das métricas $TCAPA$, $IEFO$ e $TPRE$ (Issue #16); diagrama GQM e artigo (Issue #17). | 4,5h | R$ 87,55 | R$ 393,98 | **11,54%** |
+| **Yan Santos Rodrigues**<br>Matrícula: `241025480` | Analista de Usabilidade / Especificação Operacional e Heurísticas | Análise ergonômica e perfil de condutores do DF (Issue #14); procedimentos operacionais para Heurísticas de Nielsen e questionário $SUS$ (Issue #15); métricas quantitativas de usabilidade (Issue #16); documentação MkDocs (Issue #17). | 4,5h | R$ 87,55 | R$ 393,98 | **11,54%** |
+| **TOTAL CONSOLIDADO** | — | **Entregáveis Fases 1 e 2 Consolidados — Ponto de Controle 1** | **39,0h** | Média: R$ 87,55/h | **R$ 3.414,45** | **100%** |
 
 *Fonte: Elaborado pelos autores conforme diretrizes da disciplina FGA0315 e modelo PSM/CID.*
 
@@ -83,11 +83,11 @@ O painel automatizado registra 23 issues atribuídas, todas fechadas, resultando
 
 #### Distribuição de esforço individual
 
-Na alocação formal da E1, cada integrante aparece com 12 horas, totalizando 72 horas e distribuição uniforme de 16,66% a 16,67% por pessoa. Já o painel automatizado registra 39 horas, distribuídas entre 10,5h e 4,0h por integrante. Portanto, os dois valores representam bases diferentes: 72h corresponde à declaração de esforço da entrega, enquanto 39h corresponde às horas extraídas das issues e do catálogo homologado pelo pipeline.
+O painel automatizado é a fonte oficial da E1. Ele registra 39 horas, distribuídas entre 10,5h e 4,0h por integrante, conforme as horas extraídas das issues e do catálogo homologado pelo pipeline.
 
 #### Custos e percentual de contribuição
 
-Com o valor de referência de R$ 87,55 por hora, a alocação formal totaliza R$ 6.303,60. No painel automatizado, as 39 horas resultam em R$ 3.414,45. A diferença acompanha diretamente as bases de horas utilizadas e deve ser mantida explícita para preservar a transparência do Critério AG-C5.
+Com o valor de referência de R$ 87,55 por hora, as 39 horas do painel resultam em R$ 3.414,45. Esse é o custo oficial utilizado na E1 e no cálculo do percentual de contribuição de cada integrante.
 
 #### Rastreabilidade e revisão
 
