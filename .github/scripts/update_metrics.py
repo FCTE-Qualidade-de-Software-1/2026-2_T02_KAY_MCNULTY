@@ -25,7 +25,8 @@ SNIPPETS_DIR = REPO_ROOT / "snippets"
 
 REPO_OWNER = "FCTE-Qualidade-de-Software-1"
 REPO_NAME = "2026-2_T02_KAY_MCNULTY"
-VALOR_HORA_BRL = 50.0  # R$ 50,00/h conforme diretriz orçamentária da equipe
+VALOR_HORA_BRL = 87.55
+FONTE_VALOR_HORA = "https://www.poder360.com.br/poder-economia/alunos-de-universidades-federais-tem-custo-medio-anual-de-r-52-533/"
 
 # Definição canônica dos integrantes, duplas e responsabilidades
 TEAM_MEMBERS = [
@@ -514,12 +515,12 @@ def generate_alocacao_recursos_custos(issue_counts: dict) -> str:
 
         lines.append(
             f"| **{name}**<br>Matrícula: `{matricula}` | [@{handle}](https://github.com/{handle}) | {papel} | "
-            f"**{fmt_br_number(hours, 1)}h** | R$ 50,00 | {fmt_br_currency(custo)} | **{fmt_br_number(pct, 2)}%** | Concluído |"
+            f"**{fmt_br_number(hours, 1)}h** | {fmt_br_currency(VALOR_HORA_BRL)} | {fmt_br_currency(custo)} | **{fmt_br_number(pct, 2)}%** | Concluído |"
         )
 
     lines.append(
         f"| **TOTAL ACUMULADO (PC1)** | — | **Entregáveis Fases 1 e 2 Consolidados** | "
-        f"**{fmt_br_number(tot_hours, 1)}h** | Média: R$ 50,00/h | **{fmt_br_currency(tot_custo)}** | **100,00%** | **100% Ativo** |"
+        f"**{fmt_br_number(tot_hours, 1)}h** | Média: {fmt_br_currency(VALOR_HORA_BRL)}/h | **{fmt_br_currency(tot_custo)}** | **100,00%** | **100% Ativo** |"
     )
 
     return "\n".join(lines)

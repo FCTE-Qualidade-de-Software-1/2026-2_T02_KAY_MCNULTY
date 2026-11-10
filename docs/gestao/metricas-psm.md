@@ -129,6 +129,8 @@ O histórico evolutivo de commits e alterações no repositório ao longo das se
 
 Em observância ao **Critério AG-C5 (Transparência da Contribuição Individual)** e às diretrizes do modelo PSM/CID, a Tabela 3 consolida o esforço realizado por cada membro da equipe avaliadora no Ponto de Controle 1.
 
+O valor-hora de referência é **R$ 87,55/h**, calculado a partir do custo médio anual de R$ 52.533,00 por estudante de universidade federal, conforme [Poder360](https://www.poder360.com.br/poder-economia/alunos-de-universidades-federais-tem-custo-medio-anual-de-r-52-533/), dividido por 600 horas anuais (média de 300 horas por semestre). O resultado de R$ 87,555/h foi truncado para duas casas decimais: $R\$\ 52.533,00 \div 600\text{h} = R\$\ 87,555/\text{h} \rightarrow R\$\ 87,55/\text{h}$.
+
 ### Tabela 3 — Alocação de Recursos, Esforço e Custos Individuais (Ponto de Controle 1)
 
 --8<-- "alocacao-recursos-custos.md"

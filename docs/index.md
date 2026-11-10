@@ -20,13 +20,13 @@ A Tabela 1 consolida os membros da equipe avaliadora, suas matrículas acadêmic
 
 | Integrante | Matrícula UnB | Usuário GitHub | E-mail de Contato | Papel Principal na Avaliação | Horas (h) | Valor / Hora (R$) | Custo Total (R$) | % Esforço (AG-C5) |
 | :--- | :---: | :---: | :--- | :--- | :---: | :---: | :---: | :---: |
-| **Artur Fernandes Galdino** | `241010923` | `@ArturFGaldino` | `fernandesartur4@gmail.com` | Analista de Compatibilidade / Mapeamento de Arquitetura e Escopo | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
-| **Nicole Jovita Fernandes** | `241012347` | `@nicolejovita` | `nicolejovitafernandes@gmail.com` | Analista de Requisitos / Stakeholders, Modelo ISO 25010 e ODS | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
-| **Davi Ursolino de Oliveira** | `241012202` | `@DaviUrsulino` | `daviursulinodeoliveira@gmail.com` | Analista de Confiabilidade / Especificação GQM e Métricas | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
-| **João Eduardo Pereira Rabelo** | `180053299` | `@JoaoEduardoP` | `180053299@aluno.unb.br` | Analista de Confiabilidade / Metodologia e Métricas PSM | 12h | R$ 50,00 | R$ 600,00 | **16,66%** |
-| **Natan José França** | `241011537` | `@Natan8643` | `natan.j.franca@gmail.com` | Analista de Usabilidade / Diagrama GQM e Níveis de Julgamento | 12h | R$ 50,00 | R$ 600,00 | **16,66%** |
-| **Yan Santos Rodrigues** | `241025480` | `@yanrdgs-dev` | `yansantosrodrigues.dev@gmail.com` | Analista de Usabilidade / Especificação Operacional e Heurísticas | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
-| **TOTAL CONSOLIDADO** | — | — | — | **Esforço Acumulado — Ponto de Controle 1** | **72h** | Média: R$ 50,00/h | **R$ 3.600,00** | **100%** |
+| **Artur Fernandes Galdino** | `241010923` | `@ArturFGaldino` | `fernandesartur4@gmail.com` | Analista de Compatibilidade / Mapeamento de Arquitetura e Escopo | 12h | R$ 87,55 | R$ 1.050,60 | **16,67%** |
+| **Nicole Jovita Fernandes** | `241012347` | `@nicolejovita` | `nicolejovitafernandes@gmail.com` | Analista de Requisitos / Stakeholders, Modelo ISO 25010 e ODS | 12h | R$ 87,55 | R$ 1.050,60 | **16,67%** |
+| **Davi Ursolino de Oliveira** | `241012202` | `@DaviUrsulino` | `daviursulinodeoliveira@gmail.com` | Analista de Confiabilidade / Especificação GQM e Métricas | 12h | R$ 87,55 | R$ 1.050,60 | **16,67%** |
+| **João Eduardo Pereira Rabelo** | `180053299` | `@JoaoEduardoP` | `180053299@aluno.unb.br` | Analista de Confiabilidade / Metodologia e Métricas PSM | 12h | R$ 87,55 | R$ 1.050,60 | **16,66%** |
+| **Natan José França** | `241011537` | `@Natan8643` | `natan.j.franca@gmail.com` | Analista de Usabilidade / Diagrama GQM e Níveis de Julgamento | 12h | R$ 87,55 | R$ 1.050,60 | **16,66%** |
+| **Yan Santos Rodrigues** | `241025480` | `@yanrdgs-dev` | `yansantosrodrigues.dev@gmail.com` | Analista de Usabilidade / Especificação Operacional e Heurísticas | 12h | R$ 87,55 | R$ 1.050,60 | **16,67%** |
+| **TOTAL CONSOLIDADO** | — | — | — | **Esforço Acumulado — Ponto de Controle 1** | **72h** | Média: R$ 87,55/h | **R$ 6.303,60** | **100%** |
 
 *Fonte: Elaborado pelos autores conforme diretrizes da disciplina FGA0315 e modelo PSM/CID.*
 
