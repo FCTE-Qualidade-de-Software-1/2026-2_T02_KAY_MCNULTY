@@ -71,6 +71,38 @@ A Tabela 2 apresenta a alocação completa de responsabilidades, horas de trabal
 
 *Fonte: Elaborado pelos autores conforme diretrizes da disciplina FGA0315 e modelo PSM/CID.*
 
+### 3.1 Análise dos Indicadores de Contribuição e Desempenho
+
+Os indicadores abaixo complementam a leitura da contribuição da equipe na E1. A interpretação combina a tabela de alocação declarada, o painel automatizado de issues e os dados PSM/CID registrados para o PC1.
+
+#### Taxa de conclusão de issues
+
+O painel automatizado registra 23 issues atribuídas, todas fechadas, resultando em taxa de conclusão de 100%. O resultado indica que as demandas rastreadas no painel foram encerradas e homologadas. No recorte específico do arquivo PSM do PC1, foram registradas 14 issues planejadas e 14 concluídas, também com 100% de conclusão.
+
+#### Distribuição de esforço individual
+
+Na alocação formal da E1, cada integrante aparece com 12 horas, totalizando 72 horas e distribuição uniforme de 16,66% a 16,67% por pessoa. Já o painel automatizado registra 39 horas, distribuídas entre 10,5h e 4,0h por integrante. Portanto, os dois valores representam bases diferentes: 72h corresponde à declaração de esforço da entrega, enquanto 39h corresponde às horas extraídas das issues e do catálogo homologado pelo pipeline.
+
+#### Custos e percentual de contribuição
+
+Com o valor de referência de R$ 87,55 por hora, a alocação formal totaliza R$ 6.303,60. No painel automatizado, as 39 horas resultam em R$ 3.414,45. A diferença acompanha diretamente as bases de horas utilizadas e deve ser mantida explícita para preservar a transparência do Critério AG-C5.
+
+#### Rastreabilidade e revisão
+
+O painel de contribuição consolida 42 commits, 23 issues fechadas e a associação dos integrantes às suas atividades. No recorte PSM do PC1, foram registrados 5 pull requests fechados e 14 issues. Esses dados indicam rastreabilidade entre trabalho registrado, revisão por pares e fechamento das demandas, embora o total de issues varie conforme a fonte e o recorte utilizado.
+
+#### Tempo de ciclo
+
+O arquivo PSM do PC1 registra tempo médio de resolução de 0,23 dia e tempo máximo de 2,49 dias. O resultado indica ciclo curto para as demandas do período analisado, com concentração das conclusões dentro da janela da Entrega 1. Esse indicador mede tempo de resolução, não esforço em horas, e por isso não deve ser somado à tabela de custos.
+
+#### Aderência aos prazos
+
+O burndown do PC1 mostra uma issue aberta entre 18 e 19 de outubro e saldo zerado a partir de 20 de outubro. A demanda foi concluída dentro do período de 16 a 26 de outubro, indicando aderência à janela planejada da entrega. A avaliação de antecipação de um dia, contudo, não é calculada automaticamente pelo pipeline atual e deve ser confirmada pelo marco oficial da disciplina.
+
+#### Limitação de medição
+
+O indicador N4, destinado à comparação entre esforço estimado e esforço real, ainda não possui resultado persistido no JSON do PC1 nem coluna própria no painel. Portanto, não é possível concluir a precisão das estimativas da E1 sem registrar também a estimativa original de cada issue.
+
 ---
 
 ## 4. Estrutura e Roteiro Oficial dos Slides de Apresentação (Ponto de Controle 1)
