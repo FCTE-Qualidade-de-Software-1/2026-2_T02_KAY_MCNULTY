@@ -19,11 +19,6 @@ assignees: ""
 
 Horas Dedicadas: 2h
 
-## Milestone
-<!-- Informe o marco relacionado, por exemplo: M1, M2 ou PC1. -->
-
-- Milestone:
-
 ## Dependências
 <!-- Liste as issues que precisam ser concluídas antes desta. Use "Nenhuma" quando não houver. -->
 
