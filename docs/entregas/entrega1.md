@@ -6,7 +6,8 @@
 **Objeto de Avaliação:** Portal Detran Digital DF ([portal.detran.df.gov.br](https://portal.detran.df.gov.br/#/home))  
 **Normas Base:** ISO/IEC 25010 (Modelo de Qualidade) e ISO/IEC 25040 (Processo de Avaliação)  
 **Frameworks de Apoio:** GQM (*Goal-Question-Metric*) e PSM/CID (*Practical Software Measurement*)  
-**Material de Apresentação:** [Download dos Slides da Apresentação (PDF)](../assets/Qualidade_do_Detran_Digital_Slides.pdf)
+**Material de Apresentação:** [Download dos Slides da Apresentação (PDF)](../assets/Qualidade_do_Detran_Digital_Slides.pdf)  
+**Release Oficial:** [Acessar Release E1 no GitHub (v1.0.0-pc1)](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_KAY_MCNULTY/releases/tag/v1.0.0-pc1)
 
 ---
 
