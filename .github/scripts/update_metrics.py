@@ -16,7 +16,7 @@ import subprocess
 import sys
 import urllib.request
 from collections import defaultdict
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from pathlib import Path
 
 # Diretórios principais
@@ -113,6 +113,15 @@ DEFAULT_HOURS_CATALOG = {
     17: 3.0,  # Redação Usabilidade (Natan & Yan)
     18: 3.0,  # Estruturação PSM e Governança (Artur & João Eduardo)
 }
+
+# Fases acompanhadas pelas Necessidades de Informação 1 e 2 (datas em UTC, AAAA-MM-DD).
+# Uma issue/PR pertence à fase se foi criada entre `inicio` e `fim` (inclusive).
+FASES_NECESSIDADES = [
+    {"nome": "Entrega 1 (PC1)", "inicio": "2026-10-16", "fim": "2026-10-26"},
+    {"nome": "Entrega Final (parcial)", "inicio": "2026-10-27", "fim": "2026-11-22"},
+]
+LIMITE_FECHAMENTO_BLOCO = 50.0  # Necessidade 1: acima disso o fechamento é em bloco
+META_PRS_REVISADOS = 100.0      # Necessidade 2: meta de PRs mergeados com revisão de outra pessoa
 
 # Responsáveis canônicos para issues/PRs caso o GitHub retorne sem assignees
 FALLBACK_ASSIGNEES = {
@@ -695,6 +704,177 @@ def generate_process_performance_table(issue_counts: dict) -> str:
     return "\n".join(lines)
 
 
+def github_get_json(path: str):
+    """GET autenticado (se houver token) na API REST do GitHub; retorna None em caso de falha."""
+    token = resolve_token("GITHUB_TOKEN", "GH_TOKEN")
+    headers = {"User-Agent": "KayMcNulty-MetricsAutomation", "Accept": "application/vnd.github.v3+json"}
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    req = urllib.request.Request(f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/{path}", headers=headers)
+    try:
+        with urllib.request.urlopen(req, timeout=25) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+    except Exception as e:
+        print(f"Aviso ao consultar {path}: {e}", file=sys.stderr)
+        return None
+
+
+def github_get_all(path: str):
+    """Pagina um endpoint de lista; retorna None se qualquer página falhar."""
+    sep = "&" if "?" in path else "?"
+    items, page = [], 1
+    while True:
+        data = github_get_json(f"{path}{sep}per_page=100&page={page}")
+        if data is None:
+            return None
+        items.extend(data)
+        if len(data) < 100:
+            return items
+        page += 1
+
+
+def parse_gh_datetime(value):
+    """Converte timestamp ISO do GitHub (UTC, sufixo Z) em datetime."""
+    return datetime.fromisoformat(value.replace("Z", "+00:00")) if value else None
+
+
+def in_phase(created_at: str, fase: dict) -> bool:
+    """True se a data de criação (UTC) está dentro da janela da fase."""
+    d = parse_gh_datetime(created_at).date()
+    return date.fromisoformat(fase["inicio"]) <= d <= date.fromisoformat(fase["fim"])
+
+
+def compute_closing_distribution(items: list, fase: dict) -> dict:
+    """Necessidade 1: maior fração de issues da fase fechadas em um único dia (UTC)."""
+    issues = [i for i in items if "pull_request" not in i and in_phase(i["created_at"], fase)]
+    por_dia = defaultdict(int)
+    for i in issues:
+        if i.get("closed_at"):
+            por_dia[parse_gh_datetime(i["closed_at"]).date()] += 1
+    total = len(issues)
+    if por_dia:
+        dia_pico, n_pico = max(por_dia.items(), key=lambda kv: (kv[1], -kv[0].toordinal()))
+    else:
+        dia_pico, n_pico = None, 0
+    pct = (n_pico / total * 100.0) if total else 0.0
+    return {
+        "total": total,
+        "fechadas": sum(por_dia.values()),
+        "dia_pico": dia_pico,
+        "n_pico": n_pico,
+        "pct": pct,
+        "em_bloco": pct > LIMITE_FECHAMENTO_BLOCO,
+        "por_dia": sorted(por_dia.items()),
+    }
+
+
+def compute_pr_review_coverage(pulls: list, reviews_by_pr: dict, fase: dict) -> dict:
+    """Necessidade 2: PRs mergeados na fase com ao menos uma revisão de pessoa diferente do autor."""
+    mergeados = [p for p in pulls if p.get("merged_at") and in_phase(p["created_at"], fase)]
+    detalhes = []
+    for p in mergeados:
+        autor = (p.get("user") or {}).get("login")
+        revs = [
+            r for r in reviews_by_pr.get(p["number"], [])
+            if r.get("state") != "PENDING" and (r.get("user") or {}).get("login") not in (autor, None)
+            and not (r.get("user") or {}).get("login", "").endswith("[bot]")
+        ]
+        horas = None
+        if revs:
+            primeira = min(parse_gh_datetime(r["submitted_at"]) for r in revs if r.get("submitted_at"))
+            horas = (primeira - parse_gh_datetime(p["created_at"])).total_seconds() / 3600.0
+        detalhes.append({
+            "numero": p["number"],
+            "autor": autor,
+            "revisores": sorted({r["user"]["login"] for r in revs}),
+            "horas_ate_revisao": horas,
+        })
+    total = len(mergeados)
+    revisados = sum(1 for d in detalhes if d["revisores"])
+    pct = (revisados / total * 100.0) if total else 0.0
+    return {"total": total, "revisados": revisados, "pct": pct, "atende_meta": total > 0 and pct >= META_PRS_REVISADOS, "detalhes": detalhes}
+
+
+def render_necessidade_1(resultados: list) -> str:
+    lines = [
+        "| Fase | Issues na fase | Fechadas | Dia de pico | Fechadas no pico | % no pico | Interpretação |",
+        "| :--- | :---: | :---: | :---: | :---: | :---: | :--- |",
+    ]
+    for fase, r in resultados:
+        pico = r["dia_pico"].strftime("%d/%m") if r["dia_pico"] else "—"
+        if r["total"] == 0:
+            interp = "Sem issues na fase"
+        else:
+            interp = "Fechamento em bloco (> 50%)" if r["em_bloco"] else "Fechamento distribuído (≤ 50%)"
+        lines.append(
+            f"| {fase['nome']} | {r['total']} | {r['fechadas']} | {pico} | {r['n_pico']} | "
+            f"**{fmt_br_number(r['pct'], 0)}%** | {interp} |"
+        )
+    lines.append("")
+    lines.append(
+        "*Datas em UTC, como retornadas pela API do GitHub. Indicador: issues fechadas no dia de pico ÷ total de issues da fase "
+        "(pull requests não entram na contagem). Gerado por `.github/scripts/update_metrics.py`.*"
+    )
+    return "\n".join(lines)
+
+
+def render_necessidade_2(resultados: list) -> str:
+    lines = [
+        "| Fase | PRs mergeados | Com revisão de outra pessoa | % revisados | Meta (100%) | PRs sem revisão |",
+        "| :--- | :---: | :---: | :---: | :---: | :--- |",
+    ]
+    for fase, r in resultados:
+        sem = ", ".join(f"#{d['numero']}" for d in r["detalhes"] if not d["revisores"]) or "—"
+        meta = "—" if r["total"] == 0 else ("Atendida" if r["atende_meta"] else "Não atendida")
+        lines.append(
+            f"| {fase['nome']} | {r['total']} | {r['revisados']} | **{fmt_br_number(r['pct'], 0)}%** | {meta} | {sem} |"
+        )
+    lines.append("")
+    lines.append("**Detalhe por pull request mergeado:**")
+    lines.append("")
+    lines.append("| PR | Autor | Revisores (diferentes do autor) | Tempo até a 1ª revisão |")
+    lines.append("| :---: | :---: | :--- | :---: |")
+    algum = False
+    for fase, r in resultados:
+        for d in r["detalhes"]:
+            algum = True
+            revs = ", ".join(f"@{x}" for x in d["revisores"]) or "nenhum"
+            tempo = f"{fmt_br_number(d['horas_ate_revisao'], 1)} h" if d["horas_ate_revisao"] is not None else "—"
+            lines.append(f"| #{d['numero']} | @{d['autor']} | {revs} | {tempo} |")
+    if not algum:
+        lines.append("| — | — | — | — |")
+    lines.append("")
+    lines.append(
+        "*Indicador: PRs mergeados com ao menos uma revisão enviada por pessoa diferente do autor ÷ PRs mergeados. "
+        "Bots não contam como revisores. Gerado por `.github/scripts/update_metrics.py`.*"
+    )
+    return "\n".join(lines)
+
+
+def write_necessidades_snippets() -> bool:
+    """Gera os snippets das Necessidades 1 e 2. Sem acesso à API, preserva os arquivos existentes."""
+    items = fetch_all_github_items()
+    pulls = github_get_all("pulls?state=all")
+    if not items or pulls is None:
+        print("Aviso: API indisponível; snippets das Necessidades 1 e 2 mantidos.", file=sys.stderr)
+        return False
+
+    reviews_by_pr = {}
+    for p in pulls:
+        if p.get("merged_at"):
+            revs = github_get_all(f"pulls/{p['number']}/reviews")
+            if revs is None:
+                print("Aviso: falha ao ler revisões; snippets das Necessidades 1 e 2 mantidos.", file=sys.stderr)
+                return False
+            reviews_by_pr[p["number"]] = revs
+
+    n1 = [(f, compute_closing_distribution(items, f)) for f in FASES_NECESSIDADES]
+    n2 = [(f, compute_pr_review_coverage(pulls, reviews_by_pr, f)) for f in FASES_NECESSIDADES]
+    (SNIPPETS_DIR / "necessidade-1-fechamento.md").write_text(render_necessidade_1(n1) + "\n", encoding="utf-8")
+    (SNIPPETS_DIR / "necessidade-2-revisao-prs.md").write_text(render_necessidade_2(n2) + "\n", encoding="utf-8")
+    return True
+
+
 def main():
     SNIPPETS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -770,6 +950,8 @@ def main():
     (SNIPPETS_DIR / "contributions-summary.md").write_text(contributions_table + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "issues-summary.md").write_text(issues_table + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "process-performance-table.md").write_text(process_performance_table + "\n", encoding="utf-8")
+
+    write_necessidades_snippets()
 
     resumo_horas = {k: f"{v['hours']:.1f}h" for k, v in issue_counts.items()}
     print(f"Snippets gerados com sucesso em: {SNIPPETS_DIR}")
