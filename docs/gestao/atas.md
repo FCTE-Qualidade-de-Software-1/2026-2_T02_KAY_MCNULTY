@@ -13,7 +13,7 @@ Registro cronológico e formal das reuniões deliberativas e técnicas da equipe
 ## Reunião 1 — Concepção do Projeto, Escolha do Objeto e Formação das Duplas
 
 * **Data e Horário:** 07/10/2026 (Quarta-feira), 12h00 – 13h00
-* **Local:** Presencial — Campus UnB Gama (FCTE), Laboratório de Informática (logo após a aula de Qualidade de Software 1, 10h – 12h)
+* **Local:** Presencial — Campus UnB Gama (FCTE), Sala de aula (logo após a aula de Qualidade de Software 1, 10h – 12h)
 * **Participantes Presentes:**
     * Artur Fernandes Galdino
     * Nicole Jovita Fernandes
@@ -41,7 +41,7 @@ Registro cronológico e formal das reuniões deliberativas e técnicas da equipe
 ## Reunião 2 — Delimitação de Escopo (Fase 1) e Alinhamento aos ODS
 
 * **Data e Horário:** 14/10/2026 (Quarta-feira), 12h00 – 13h15
-* **Local:** Presencial — Campus UnB Gama (FCTE), Sala de Aula / Espaço Acadêmico (logo após a aula de Qualidade de Software 1, 10h – 12h)
+* **Local:** Presencial — Campus UnB Gama (FCTE), Sala de aula (logo após a aula de Qualidade de Software 1, 10h – 12h)
 * **Participantes Presentes:**
     * Artur Fernandes Galdino
     * Nicole Jovita Fernandes
@@ -67,7 +67,7 @@ Registro cronológico e formal das reuniões deliberativas e técnicas da equipe
 ## Reunião 3 — Especificação Formal GQM e Governança PSM/CID (Fase 2)
 
 * **Data e Horário:** 19/10/2026 (Segunda-feira), 12h00 – 13h20
-* **Local:** Presencial — Campus UnB Gama (FCTE), Laboratório de Informática (logo após a aula de Qualidade de Software 1, 10h – 12h)
+* **Local:** Presencial — Campus UnB Gama (FCTE), Sala de aula (logo após a aula de Qualidade de Software 1, 10h – 12h)
 * **Participantes Presentes:**
     * Artur Fernandes Galdino
     * Nicole Jovita Fernandes
@@ -95,7 +95,7 @@ Registro cronológico e formal das reuniões deliberativas e técnicas da equipe
 ## Reunião 4 — Consolidação da Entrega 1, Artigo v1 e Validação de Rubricas
 
 * **Data e Horário:** 26/10/2026 (Segunda-feira), 12h00 – 13h10
-* **Local:** Presencial — Campus UnB Gama (FCTE), Sala de Aula / Espaço Acadêmico (logo após a aula de Qualidade de Software 1, 10h – 12h)
+* **Local:** Presencial — Campus UnB Gama (FCTE), Sala de aula (logo após a aula de Qualidade de Software 1, 10h – 12h)
 * **Participantes Presentes:**
     * Artur Fernandes Galdino
     * Nicole Jovita Fernandes
