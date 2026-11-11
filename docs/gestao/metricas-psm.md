@@ -430,22 +430,25 @@ Cada issue do repositório da equipe Kay McNulty foi formulada de maneira atômi
 * **Task Realizada:** Tabelas de métricas, limiares de pontuação e matriz de decisão documentadas no artigo.
 * **Critério de Aceitação:** Fórmulas explícitas com unidades de medida e limiares numéricos inequívocos.
 
-#### Issue #12 — [Fase 2] Diagrama Mermaid da Árvore GQM de Confiabilidade
+> **Nota:** #12, #13 e #17 são *pull requests* de fechamento documental, não issues.
+> O esforço delas (7h) é informativo e não entra nas Tabelas 2 e 3, que contabilizam apenas issues.
+
+#### PR #12 — docs: especificacao formal GQM da caracteristica de confiabilidade
 * **Milestone:** M2: Especificação da Avaliação
 * **Responsável:** Davi Ursolino de Oliveira (`@DaviUrsulino`)
-* **Horas Dedicadas:** 2h | **Custo:** R$ 100,00
+* **Horas (informativo, fora das Tabelas 2 e 3):** 2h
 * **Goal:** Gerar o diagrama Mermaid da árvore GQM de Confiabilidade e integrá-lo à documentação MkDocs.
 * **Depends on:** Issue #11.
 * **Scope:** Arquivo `docs/fase2/confiabilidade.md` e imagens auxiliares em `docs/img/Confiabilidade.png`.
 * **Task Realizada:** Validação visual da renderização do diagrama GQM no tema Material for MkDocs.
 * **Critério de Aceitação:** Diagrama perfeitamente legível na GitPage sem erros de compilação.
 
-#### Issue #13 — [Fase 2] Revisão das Fórmulas e Padronização LaTeX de Confiabilidade
+#### PR #13 — docs: especificacao formal GQM da caracteristica de confiabilidade
 * **Milestone:** M2: Especificação da Avaliação
 * **Responsável:** Davi Ursolino de Oliveira (`@DaviUrsulino`)
-* **Horas Dedicadas:** 2h | **Custo:** R$ 100,00
+* **Horas (informativo, fora das Tabelas 2 e 3):** 2h
 * **Goal:** Revisar a rastreabilidade matemática das fórmulas de Confiabilidade e padronizar o LaTeX para visualização via MathJax.
-* **Depends on:** Issue #12.
+* **Depends on:** PR #12.
 * **Scope:** Ajuste sintático de fórmulas KaTeX/MathJax em `docs/fase2/confiabilidade.md`.
 * **Task Realizada:** Homologação da notação matemática e alinhamento com os padrões editoriais da disciplina.
 * **Critério de Aceitação:** Fórmulas matemáticas renderizadas com clareza na documentação estática.
@@ -470,10 +473,10 @@ Cada issue do repositório da equipe Kay McNulty foi formulada de maneira atômi
 * **Task Realizada:** Documentação completa das tabelas de métricas e renderização do fluxo em `docs/fase2/usabilidade.md`.
 * **Critério de Aceitação:** Escala de julgamento perfeitamente calibrada para a auditoria de caixa-preta.
 
-#### Issue #17 — [Fase 2] Fechamento Documental e Auditoria Editorial do GQM de Usabilidade
+#### PR #17 — docs: especificacao formal GQM da caracteristica de usabilidade
 * **Milestone:** M2: Especificação da Avaliação
 * **Responsáveis:** Natan José França (`@Natan8643`) e Yan Santos Rodrigues (`@yanrdgs-dev`)
-* **Horas Dedicadas:** 3h | **Custo:** R$ 150,00
+* **Horas (informativo, fora das Tabelas 2 e 3):** 3h
 * **Goal:** Fechamento documental da especificação formal de Usabilidade, garantindo a harmonia editorial, citações normativas e equações operacionais.
 * **Depends on:** Issue #16.
 * **Scope:** Revisão técnica final de `docs/fase2/usabilidade.md` e integração com a Seção 4 do Artigo v1.
