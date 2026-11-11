@@ -17,6 +17,57 @@ O modelo *Practical Software Measurement* (PSM) é uma abordagem orientada a pro
 2. **Calendário e Progresso:** Acompanhamento do ciclo de vida por marcos evolutivos (*Milestones* M0 a M5), alinhados às cinco fases do processo de avaliação da norma ISO/IEC 25040.
 3. **Recursos e Custos:** Rastreamento do esforço individual em horas, valoração profissional do tempo dedicado, apuração de custos totais e garantia de equilíbrio de esforço entre todos os membros (Critério AG-C5).
 
+### 1.1 Necessidades de Informação
+
+Cada medida desta página existe para responder a uma pergunta da equipe e para sustentar uma decisão. Esta subseção liga cada necessidade de informação à medida que a responde, ao critério usado para interpretá-la, ao resultado observado na Entrega 1 e à decisão que o resultado motiva. Os dados vêm das issues e dos pull requests do repositório, coletados em 10/11/2026.
+
+#### Necessidade 1: o trabalho é fechado aos poucos ou em bloco?
+
+| Campo | Especificação |
+| :--- | :--- |
+| **Categoria PSM** | Calendário e Progresso |
+| **Necessidade de informação** | Saber se as issues de uma fase fecham ao longo do prazo ou se o trabalho é integrado todo de uma vez, o que esconde atrasos e atrapalha a revisão. |
+| **Medida base** | Data de fechamento de cada issue (`closed_at`) e total de issues da fase. |
+| **Indicador** | Maior fração de issues fechadas em um único dia: `issues fechadas no dia de pico / total de issues da fase`. |
+| **Critério de interpretação** | Até 50%: fechamento distribuído. Acima de 50%: fechamento em bloco. |
+| **Resultado na Entrega 1** | 10 das 14 issues fecharam em 18/10, o que dá 71%. Outras 3 fecharam em 19/10 e 1 em 21/10. Fechamento em bloco, embora todas tenham fechado antes do prazo de 26/10. |
+| **Decisão** | Na Entrega 2, dividir as issues em tarefas menores e dar a cada uma um prazo intermediário, para que o fechamento acompanhe o andamento real. |
+| **Relação com a Tabela 2** | Usa as colunas de issues fechadas e taxa de conclusão. |
+| **Fonte e coleta** | API do GitHub (issues). Coleta manual nesta entrega, ainda sem automação. |
+| **Quando revisar** | Antes do Ponto de Controle 2 (16/11 ou 18/11) e antes da entrega final (22/11). |
+
+#### Necessidade 2: os pull requests são revisados por outra pessoa?
+
+| Campo | Especificação |
+| :--- | :--- |
+| **Categoria PSM** | Desempenho dos Processos |
+| **Necessidade de informação** | Saber se o que entra na `main` passa pelo olhar de outra pessoa da equipe antes do merge. |
+| **Medida base** | Pull requests mergeados e, para cada um, as revisões feitas por pessoas diferentes do autor. |
+| **Indicador** | `PRs mergeados com revisão de outra pessoa / PRs mergeados`. |
+| **Critério de interpretação** | Meta de 100%. Abaixo disso, o processo de revisão não está funcionando. |
+| **Resultado na Entrega 1** | 1 dos 4 PRs mergeados teve revisão de outra pessoa, o que dá 25%. O PR #18 foi revisado pelo Natan cerca de 9 horas depois de aberto. |
+| **Decisão** | Todo PR passa a ter um revisor definido na abertura e só é mergeado depois da revisão. Se um PR ficar 24 horas sem revisão, o autor avisa no grupo. |
+| **Relação com a Tabela 2** | Indicador novo, ainda sem coluna na tabela. |
+| **Fonte e coleta** | API do GitHub (pull requests e revisões). Coleta manual nesta entrega, ainda sem automação. |
+| **Quando revisar** | Antes do Ponto de Controle 2 (16/11 ou 18/11) e antes da entrega final (22/11). |
+
+#### Necessidade 3: quanto esforço cada integrante dedica?
+
+| Campo | Especificação |
+| :--- | :--- |
+| **Categoria PSM** | Recursos e Custos |
+| **Necessidade de informação** | Saber quantas horas cada pessoa dedica a cada issue, para equilibrar a carga e estimar melhor as próximas entregas. |
+| **Medida base** | Campo `Horas Dedicadas` preenchido no corpo de cada issue. |
+| **Indicador** | `issues fechadas com horas registradas / issues fechadas`. |
+| **Critério de interpretação** | Meta de 100%. Abaixo disso, a distribuição de esforço e o custo não são confiáveis. |
+| **Resultado na Entrega 1** | A equipe não registrou horas nas issues. Os valores de horas e custo da Entrega 1 são estimativas e não medições. |
+| **Decisão** | A partir da Entrega 2, usar o template padrão de issue e só fechar a issue com `Horas Dedicadas` preenchido. |
+| **Relação com a Tabela 2** | Alimenta a coluna de horas. |
+| **Fonte e coleta** | Corpo das issues, lido pelo script `.github/scripts/update_metrics.py`. |
+| **Quando revisar** | Antes do Ponto de Controle 2 (16/11 ou 18/11) e antes da entrega final (22/11). |
+
+*Fonte: elaborado pela equipe a partir das issues e dos pull requests do repositório, 10/11/2026.*
+
 ---
 
 ## 2. Desempenho dos Processos
