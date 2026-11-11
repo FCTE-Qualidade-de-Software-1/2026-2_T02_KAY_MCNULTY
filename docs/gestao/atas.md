@@ -6,14 +6,14 @@
 **Objeto de Avaliação:** Portal Detran Digital DF  
 **Referência Normativa:** ISO/IEC 25040 e ISO/IEC 25010  
 
-Registro cronológico e formal das reuniões deliberativas e técnicas da equipe Kay McNulty, documentando decisões de arquitetura, governança, divisão de esforço e marcos do processo de avaliação em observância à Premissa 4 das diretrizes institucionais.
+Registro cronológico e formal das reuniões deliberativas e técnicas da equipe Kay McNulty, documentando decisões de arquitetura, governança, divisão de esforço e marcos do processo de avaliação em estrita observância à Premissa 4 das diretrizes institucionais. Todas as reuniões da equipe são realizadas presencialmente no Campus UnB Gama (FCTE), imediatamente após o término da aula presencial da disciplina (segundas e quartas-feiras, das 10h às 12h).
 
 ---
 
 ## Reunião 1 — Concepção do Projeto, Escolha do Objeto e Formação das Duplas
 
-* **Data e Horário:** 08/10/2026, 18h00 – 19h30
-* **Local / Meio:** Plataforma Teams / Discord
+* **Data e Horário:** 07/10/2026 (Quarta-feira), 12h00 – 13h00
+* **Local:** Presencial — Campus UnB Gama (FCTE), Laboratório de Informática (logo após a aula de Qualidade de Software 1, 10h – 12h)
 * **Participantes Presentes:**
     * Artur Fernandes Galdino
     * Nicole Jovita Fernandes
@@ -40,8 +40,8 @@ Registro cronológico e formal das reuniões deliberativas e técnicas da equipe
 
 ## Reunião 2 — Delimitação de Escopo (Fase 1) e Alinhamento aos ODS
 
-* **Data e Horário:** 14/10/2026, 19h00 – 20h45
-* **Local / Meio:** Teams / Reunião Híbrida FCTE
+* **Data e Horário:** 14/10/2026 (Quarta-feira), 12h00 – 13h15
+* **Local:** Presencial — Campus UnB Gama (FCTE), Sala de Aula / Espaço Acadêmico (logo após a aula de Qualidade de Software 1, 10h – 12h)
 * **Participantes Presentes:**
     * Artur Fernandes Galdino
     * Nicole Jovita Fernandes
@@ -66,8 +66,8 @@ Registro cronológico e formal das reuniões deliberativas e técnicas da equipe
 
 ## Reunião 3 — Especificação Formal GQM e Governança PSM/CID (Fase 2)
 
-* **Data e Horário:** 19/10/2026, 18h30 – 21h00
-* **Local / Meio:** Plataforma Teams
+* **Data e Horário:** 19/10/2026 (Segunda-feira), 12h00 – 13h20
+* **Local:** Presencial — Campus UnB Gama (FCTE), Laboratório de Informática (logo após a aula de Qualidade de Software 1, 10h – 12h)
 * **Participantes Presentes:**
     * Artur Fernandes Galdino
     * Nicole Jovita Fernandes
@@ -94,8 +94,8 @@ Registro cronológico e formal das reuniões deliberativas e técnicas da equipe
 
 ## Reunião 4 — Consolidação da Entrega 1, Artigo v1 e Validação de Rubricas
 
-* **Data e Horário:** 25/10/2026, 16h00 – 19h30
-* **Local / Meio:** Plataforma Discord / Teams
+* **Data e Horário:** 26/10/2026 (Segunda-feira), 12h00 – 13h10
+* **Local:** Presencial — Campus UnB Gama (FCTE), Sala de Aula / Espaço Acadêmico (logo após a aula de Qualidade de Software 1, 10h – 12h)
 * **Participantes Presentes:**
     * Artur Fernandes Galdino
     * Nicole Jovita Fernandes
@@ -120,8 +120,8 @@ Registro cronológico e formal das reuniões deliberativas e técnicas da equipe
 
 ## Reunião 5 — Retrospectiva do PC1 e Planejamento da Entrega 2 (Fases 3 e 4)
 
-* **Data e Horário:** 04/11/2026, 18h00 – 19h45
-* **Local / Meio:** Plataforma Teams
+* **Data e Horário:** 04/11/2026 (Quarta-feira), 12h00 – 13h15
+* **Local:** Presencial — Campus UnB Gama (FCTE), Sala de Aula (logo após a aula de Qualidade de Software 1, 10h – 12h)
 * **Participantes Presentes:**
     * Artur Fernandes Galdino
     * Nicole Jovita Fernandes
