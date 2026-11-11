@@ -35,8 +35,16 @@ Cada medida desta página existe para responder a uma pergunta da equipe e para 
 | **Resultado na Entrega 1** | 10 das 14 issues fecharam em 18/10, o que dá 71%. Outras 3 fecharam em 19/10 e 1 em 21/10. Fechamento em bloco, embora todas tenham fechado antes do prazo de 26/10. |
 | **Decisão** | Na Entrega 2, dividir as issues em tarefas menores e dar a cada uma um prazo intermediário, para que o fechamento acompanhe o andamento real. |
 | **Relação com a Tabela 2** | Usa as colunas de issues fechadas e taxa de conclusão. |
-| **Fonte e coleta** | API do GitHub (issues). Coleta manual nesta entrega, ainda sem automação. |
+| **Fonte e coleta** | API do GitHub (issues). Automatizada: o script `.github/scripts/update_metrics.py` recalcula o indicador a cada push na `main` (workflow `Métricas PSM`). |
 | **Quando revisar** | Antes do Ponto de Controle 2 (16/11 ou 18/11) e antes da entrega final (22/11). |
+
+**Medição automatizada (atualizada pelo pipeline):**
+
+--8<-- "necessidade-1-fechamento.md"
+
+```mermaid
+--8<-- "necessidade-1-grafico.mmd"
+```
 
 #### Necessidade 2: os pull requests são revisados por outra pessoa?
 
@@ -50,8 +58,12 @@ Cada medida desta página existe para responder a uma pergunta da equipe e para 
 | **Resultado na Entrega 1** | 1 dos 4 PRs mergeados teve revisão de outra pessoa, o que dá 25%. O PR #18 foi revisado pelo Natan cerca de 9 horas depois de aberto. |
 | **Decisão** | Todo PR passa a ter um revisor definido na abertura e só é mergeado depois da revisão. Se um PR ficar 24 horas sem revisão, o autor avisa no grupo. |
 | **Relação com a Tabela 2** | Indicador novo, ainda sem coluna na tabela. |
-| **Fonte e coleta** | API do GitHub (pull requests e revisões). Coleta manual nesta entrega, ainda sem automação. |
+| **Fonte e coleta** | API do GitHub (pull requests e revisões). Automatizada: o script `.github/scripts/update_metrics.py` recalcula o indicador a cada push na `main` (workflow `Métricas PSM`). |
 | **Quando revisar** | Antes do Ponto de Controle 2 (16/11 ou 18/11) e antes da entrega final (22/11). |
+
+**Medição automatizada (atualizada pelo pipeline):**
+
+--8<-- "necessidade-2-revisao-prs.md"
 
 #### Necessidade 3: quanto esforço cada integrante dedica?
 
