@@ -29,14 +29,9 @@ Para o Ponto de Controle 1 (Entrega 1), a equipe planejou e executou integralmen
 
 ### Tabela 2 — Métricas de Desempenho dos Processos no Ponto de Controle 1
 
-| Indicador de Processo | Fórmula / Método de Coleta | Meta Estabelecida | Resultado Obtido | Avaliação de Desempenho |
-| :--- | :--- | :---: | :---: | :---: |
-| **Taxa de Conclusão de Issues ($TCI$)** | $\frac{N_{\text{issues fechadas}}}{N_{\text{issues abertas}}} \times 100\%$ | $100\%$ | $\frac{17}{17} \times 100\% = 100\%$ | **Meta Plenamente Atingida** |
-| **Equilíbrio de Alocação ($EA$)** | Desvio-padrão das horas dedicadas entre membros | $\sigma \le 1{,}0\text{h}$ | $\sigma = 0{,}0\text{h}$ (12h por membro) | **Distribuição Perfeita** |
-| **Rastreabilidade Git ($RG$)** | % de issues associadas a commits e PRs | $100\%$ | $100\%$ | **Conforme Diretrizes** |
-| **Aderência aos Prazos ($AP$)** | Conclusão antes do marco de entrega do PC1 | $\ge 1\text{ dia antes}$ | Concluído dentro da janela de entrega | **Pontual** |
+--8<-- "process-performance-table.md"
 
-*Fonte: Elaborado pelos autores a partir do histórico de issues do repositório da equipe.*
+*Fonte: Gerada pelo pipeline a partir do histórico de issues do repositório e do catálogo homologado de esforço.*
 
 ### 2.2 Painel Automatizado de Tarefas e Resolução de Demanda
 
