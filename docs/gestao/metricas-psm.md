@@ -128,6 +128,81 @@ O histórico evolutivo de commits e alterações no repositório ao longo das se
     --8<-- "code-deletions.mmd"
     ```
 
+### 3.3 Cronograma e Progresso das Próximas Entregas
+
+#### Progresso medido da Entrega 1
+
+Os valores abaixo vêm das issues do repositório em 10/11/2026. O progresso é a razão entre issues fechadas e issues existentes, e não pondera esforço, porque a equipe não registrou horas na Entrega 1.
+
+| Recorte | Issues | Fechadas | Progresso |
+| :--- | :---: | :---: | :---: |
+| Milestone "Entrega 1" (prazo 26/10/2026) | 13 | 13 | 100% |
+| Issues sem milestone | 1 | 1 | 100% |
+| **Total da Entrega 1** | **14** | **14** | **100%** |
+
+As 14 issues foram fechadas entre 18/10 e 21/10, com 13 delas em 18/10 e 19/10. A Release E1 (tag `v1.0.0-pc1`) ainda não foi criada no GitHub.
+
+#### Linha do tempo até a entrega final
+
+Datas do calendário oficial da disciplina, versão 2 (02/11/2026). A linha laranja marca 10/11/2026.
+
+<div class="cron">
+  <div class="cron-proximos">
+    <div class="cron-proximo urgente"><strong>1 dia</strong><span>Apresentação das métricas PSM (11/11)</span></div>
+    <div class="cron-proximo"><strong>6 a 8 dias</strong><span>Ponto de Controle 2 (16/11 ou 18/11)</span></div>
+    <div class="cron-proximo"><strong>12 dias</strong><span>Entrega final do trabalho (22/11)</span></div>
+  </div>
+  <div class="cron-eixo"><span></span><div class="cron-escala"><span style="left:0.98%">12/10</span><span style="left:28.43%">26/10</span><span style="left:55.88%">09/11</span><span style="left:83.33%">23/11</span><span style="left:100.98%">02/12</span></div><span></span></div>
+  <div class="cron-linha">
+    <div class="cron-rotulo">Entrega 1<small>Fases 1 e 2</small></div>
+    <div class="cron-trilho"><div class="cron-barra feito" style="left:0.00%;width:29.41%"></div><div class="cron-marco feito" style="left:14.71%"></div><div class="cron-hoje" style="left:57.84%"></div></div>
+    <div class="cron-data">até 26/10</div>
+  </div>
+  <div class="cron-linha">
+    <div class="cron-rotulo">Fases 3 e 4<small>Projeto e execução da avaliação</small></div>
+    <div class="cron-trilho"><div class="cron-barra andamento" style="left:29.41%;width:52.94%"></div><div class="cron-hoje" style="left:57.84%"></div></div>
+    <div class="cron-data">27/10 a 22/11</div>
+  </div>
+  <div class="cron-linha">
+    <div class="cron-rotulo">Apresentação PSM<small>Métricas de gestão</small></div>
+    <div class="cron-trilho"><div class="cron-marco andamento" style="left:59.80%"></div><div class="cron-hoje" style="left:57.84%"></div></div>
+    <div class="cron-data">11/11</div>
+  </div>
+  <div class="cron-linha">
+    <div class="cron-rotulo">Ponto de Controle 2<small>Dia da equipe não divulgado</small></div>
+    <div class="cron-trilho"><div class="cron-barra confirmar" style="left:68.63%;width:5.88%"></div><div class="cron-hoje" style="left:57.84%"></div></div>
+    <div class="cron-data">16/11 ou 18/11</div>
+  </div>
+  <div class="cron-linha">
+    <div class="cron-rotulo">Entrega final<small>Artigo, GitPage e release</small></div>
+    <div class="cron-trilho"><div class="cron-marco critico" style="left:81.37%"></div><div class="cron-hoje" style="left:57.84%"></div></div>
+    <div class="cron-data">22/11</div>
+  </div>
+  <div class="cron-linha">
+    <div class="cron-rotulo">Avaliação cruzada 2<small>Com autoavaliação 2</small></div>
+    <div class="cron-trilho"><div class="cron-barra " style="left:82.35%;width:19.61%"></div><div class="cron-hoje" style="left:57.84%"></div></div>
+    <div class="cron-data">23/11 a 02/12</div>
+  </div>
+  <div class="cron-linha">
+    <div class="cron-rotulo">Apresentações finais<small>3 a 4 equipes por dia</small></div>
+    <div class="cron-trilho"><div class="cron-barra " style="left:82.35%;width:15.69%"></div><div class="cron-hoje" style="left:57.84%"></div></div>
+    <div class="cron-data">23, 25 e 30/11</div>
+  </div>
+  <div class="cron-linha">
+    <div class="cron-rotulo">TAF<small>Teste de Avaliação Final</small></div>
+    <div class="cron-trilho"><div class="cron-marco " style="left:100.98%"></div><div class="cron-hoje" style="left:57.84%"></div></div>
+    <div class="cron-data">02/12</div>
+  </div>
+  <div class="cron-legenda">
+    <span><i style="background:var(--cron-feito)"></i>Concluído</span>
+    <span><i style="background:var(--cron-andamento)"></i>Em andamento ou próximo</span>
+    <span><i style="background:var(--cron-futuro)"></i>Futuro</span>
+    <span><i style="background:var(--cron-hoje)"></i>Entrega final e data de hoje</span>
+  </div>
+</div>
+
+O Ponto de Controle 2 aparece nas duas datas porque o calendário não informa o dia de cada equipe. A Release E1 (tag `v1.0.0-pc1`) ainda não foi criada no GitHub. O percentual de conclusão das Fases 3 e 4 só pode ser medido quando existir um milestone da Entrega 2 com as issues dessas fases.
+
 ---
 
 ## 4. Recursos e Custos: Alocação Individual e Orçamento (Critério AG-C5)
