@@ -4,18 +4,20 @@
 **Semestre Letivo:** 2026.2  
 **Equipe:** Kay McNulty (Turma 01)  
 **Objeto de Avaliação:** Portal Detran Digital DF ([portal.detran.df.gov.br](https://portal.detran.df.gov.br/#/home))  
-**Normas de Referência:** ISO/IEC 25010 (Modelo de Qualidade) e ISO/IEC 25040 (Processo de Avaliação)  
-**Framework de Medição e Governança:** PSM/CID (*Practical Software Measurement / Cost, Income, Duration*)  
+**Normas de Referência:** ISO/IEC 25010:2023 (Modelo de Qualidade do Produto, família SQuaRE — *Systems and software Quality Requirements and Evaluation*) e ISO/IEC 25040 (Processo de Avaliação)  
+**Framework de Medição e Governança:** PSM/CID (*Practical Software and Systems Measurement / Cost, Income, Duration*)  
 
 ---
 
 ## 1. Fundamentação da Gestão de Projeto com PSM/CID
 
-O modelo *Practical Software Measurement* (PSM) é uma abordagem orientada a problemas e voltada à tomada de decisão técnica e gerencial. Na avaliação de um software já implantado em produção governamental — onde a equipe atua como avaliadora externa independente sob a perspectiva de caixa-preta —, a aplicação do PSM organiza-se em três categorias essenciais de gestão:
+O modelo *Practical Software and Systems Measurement* (PSM) é uma abordagem orientada a problemas e voltada à tomada de decisão técnica e gerencial. Na avaliação de um software já implantado em produção governamental — onde a equipe atua como avaliadora externa independente sob a perspectiva de caixa-preta —, a aplicação do PSM/CID organiza-se em três das sete categorias de informação do PSM, selecionadas pela equipe para este projeto:
 
-1. **Desempenho dos Processos:** Monitoramento da produtividade, ritmo de entregas, fechamento de issues e taxa de conformidade com o cronograma.
-2. **Calendário e Progresso:** Acompanhamento do ciclo de vida por marcos evolutivos (*Milestones* M0 a M5), alinhados às cinco fases do processo de avaliação da norma ISO/IEC 25040.
-3. **Recursos e Custos:** Rastreamento do esforço individual em horas, valoração profissional do tempo dedicado, apuração de custos totais e garantia de equilíbrio de esforço entre todos os membros (Critério AG-C5).
+1. **Desempenho dos Processos (*Process Performance*):** Monitoramento da produtividade, ritmo de entregas, fechamento de issues e taxa de conformidade com o cronograma.
+2. **Calendário e Progresso (*Schedule and Progress*):** Acompanhamento do ciclo de vida por marcos evolutivos (*Milestones* M0 a M5), alinhados às cinco fases do processo de avaliação da norma ISO/IEC 25040.
+3. **Recursos e Custos (*Resources and Cost*):** Rastreamento do esforço individual em horas, valoração profissional do tempo dedicado (valor/hora de referência de R$ 50,00 adotado pela equipe), apuração de custos totais e garantia de equilíbrio de esforço entre todos os membros (Critério AG-C5).
+
+De forma complementar, as métricas de commits e de linhas adicionadas/removidas (Seção 3.2) correspondem à categoria *Product Size and Stability* (Tamanho e Estabilidade do Produto) e são usadas como evidência auxiliar do ritmo de integração.
 
 ---
 
@@ -23,7 +25,9 @@ O modelo *Practical Software Measurement* (PSM) é uma abordagem orientada a pro
 
 ### 2.1 Eficácia do Fluxo de Trabalho e Conclusão de Demandas
 
-Para o Ponto de Controle 1 (Entrega 1), a equipe planejou e executou integralmente o levantamento dos requisitos da avaliação (Fase 1) e a especificação formal das medições (Fase 2). Os dados consolidados a seguir são extraídos diretamente do repositório:
+Para o Ponto de Controle 1 (Entrega 1), a equipe planejou e executou integralmente o levantamento dos requisitos da avaliação (Fase 1) e a especificação formal das medições (Fase 2), além de iniciar o planejamento do projeto da avaliação (Fase 3, Milestone M3). Os dados consolidados a seguir são extraídos diretamente do repositório:
+
+### Tabela 1 — Resumo Consolidado do Processo no Ponto de Controle 1
 
 --8<-- "resumo-processo.md"
 
@@ -32,6 +36,13 @@ Para o Ponto de Controle 1 (Entrega 1), a equipe planejou e executou integralmen
 --8<-- "process-performance-table.md"
 
 *Fonte: Gerada pelo pipeline a partir do histórico de issues do repositório e do catálogo homologado de esforço.*
+
+**Fórmulas e metas dos indicadores:**
+
+* **Taxa de Conclusão (%)** = (Issues Fechadas ÷ Issues Atribuídas) × 100 — meta do PC1: 100%.
+* **Horas por integrante (h)** = Σ (horas da issue ÷ número de responsáveis da issue).
+* **Média de esforço por integrante (h)** = Esforço Total da Equipe ÷ 6 integrantes.
+* O total de issues da Tabela 2 corresponde a **atribuições** (issue × responsável): uma issue com dois responsáveis é contada uma vez para cada um.
 
 ### 2.2 Painel Automatizado de Tarefas e Resolução de Demanda
 
@@ -60,7 +71,7 @@ O projeto de avaliação está estruturado em 6 marcos principais, integrando as
 flowchart TD
     subgraph PC1["Ponto de Controle 1 — Entrega 1 (v1.0.0-pc1)"]
         M0["M0: Setup Inicial e Governança<br/>Configuração do Repositório Git · Estrutura MkDocs · Regras de Contribuição"]
-        M1["M1: Requisitos da Avaliação (Fase 1 ISO/IEC 25040)<br/>Contexto Detran DF · 4 Módulos · Stakeholders · ODS 9/16 · Modelo ISO 25010"]
+        M1["M1: Requisitos da Avaliação (Fase 1 ISO/IEC 25040)<br/>Contexto Detran DF · 4 Módulos · Stakeholders · ODS 9/16 · Modelo ISO/IEC 25010:2023"]
         M2["M2: Especificação da Avaliação (Fase 2 GQM)<br/>Árvores GQM · Compatibilidade, Usabilidade e Confiabilidade · Limiares"]
         M3["M3: Projeto da Avaliação (Fase 3 ISO/IEC 25040)<br/>Planejamento dos Métodos de Teste · Roteiros Heurísticos · Ferramentas"]
         M4["M4: Consolidação PC1 e Release E1<br/>Artigo v1 · Slides da Apresentação · Auditoria de Rubricas · Tag v1.0.0-pc1"]
@@ -80,12 +91,12 @@ flowchart TD
     * **Critério de Aceitação:** GitPage operante e acessível com navegação funcional.
 
 * **Milestone M1 — Requisitos da Avaliação / Fase 1 ISO/IEC 25040 (Concluído):**
-    * **Objetivo:** Delimitar o propósito da avaliação, mapear as partes interessadas, recortar os 4 módulos funcionais do Detran Digital DF (Infração, Atendimento, Protocolo e Chatbot) e fundamentar o modelo de qualidade ISO/IEC 25010 e o alinhamento com os ODS 9 (Meta 9.c) e 16 (Meta 16.6) da ONU.
+    * **Objetivo:** Delimitar o propósito da avaliação, mapear as partes interessadas, recortar os 4 módulos funcionais do Detran Digital DF (Infração, Atendimento, Protocolo e Chatbot) e fundamentar o modelo de qualidade ISO/IEC 25010:2023 e o alinhamento com os ODS 9 (Meta 9.c) e 16 (Meta 16.6) da ONU.
     * **Entregáveis:** Documentação da Fase 1 (`fase1/`), matriz de priorização de características e cortes de escopo.
     * **Critério de Aceitação:** 100% dos requisitos de contextualização e escopo formalizados.
 
-* **Milestone M2 — Especificação da Avaliação / Fase 2 GQM (Concluído):**
-    * **Objetivo:** Construir as árvores formais GQM para Compatibilidade, Usabilidade e Confiabilidade, definindo perguntas, hipóteses, métricas quantitativas e níveis de julgamento.
+* **Milestone M2 — Especificação da Avaliação / Fase 2 GQM (*Goal-Question-Metric*) (Concluído):**
+    * **Objetivo:** Construir as árvores formais GQM para Compatibilidade, Usabilidade (Capacidade de Interação) e Confiabilidade, definindo perguntas, hipóteses, métricas quantitativas e níveis de julgamento.
     * **Entregáveis:** Documentação da Fase 2 (`fase2/`) com diagramas conceituais, fórmulas operacionais e critérios de aceitação.
     * **Critério de Aceitação:** Rastreabilidade estrita $G \rightarrow Q \rightarrow M$ em todas as três características.
 
@@ -106,7 +117,7 @@ flowchart TD
 
 ### 3.2 Velocidade de Commits e Fluxo de Integração Contínua
 
-O histórico evolutivo de commits e alterações no repositório ao longo das semanas de desenvolvimento é monitorado dinamicamente:
+O histórico evolutivo de commits e alterações no repositório ao longo das semanas de desenvolvimento é monitorado dinamicamente.
 
 === "Velocidade de Commits"
     ```mermaid
@@ -135,6 +146,8 @@ Em observância ao **Critério AG-C5 (Transparência da Contribuição Individua
 
 *Fonte: Elaborado pelos autores e atualizado dinamicamente via pipeline de automação conforme modelo PSM/CID e rubrica AG-C5.*
 
+**Fórmulas:** Custo Total (R$) = Horas Realizadas × Valor/Hora (R$ 50,00); % Esforço = Horas do integrante ÷ Horas totais da equipe × 100. Em issues com mais de um responsável, as horas são divididas igualmente entre eles.
+
 ### 4.1 Distribuição de Custos por Área Técnica da Avaliação
 
 --8<-- "distribuicao-custos-areas.md"
@@ -149,7 +162,7 @@ A tabela abaixo reflete as métricas calculadas em tempo real a partir dos commi
 
 ## 5. Catálogo Detalhado de Issues (Padrão Task-Builder / FGA0315)
 
-Cada issue do repositório da equipe Kay McNulty foi formulada de maneira atômica, contendo a rastreabilidade direta do responsável, esforço dedicado, escopo, tarefas executadas e critérios de aceitação.
+Cada issue do repositório da equipe Kay McNulty foi formulada de maneira atômica, contendo a rastreabilidade direta do responsável, esforço dedicado, escopo, tarefas executadas e critérios de aceitação. O catálogo abaixo cobre os marcos M1 e M2 (Fases 1 e 2); o esforço dos marcos M0, M3 e M4 não está discriminado por issue. Valor/hora de referência: R$ 50,00.
 
 ---
 
@@ -170,7 +183,7 @@ Cada issue do repositório da equipe Kay McNulty foi formulada de maneira atômi
 * **Responsável:** Nicole Jovita Fernandes (`@nicolejovita`)
 * **Horas Dedicadas:** 2h | **Custo:** R$ 100,00
 * **Goal:** Justificar a seleção da característica de Compatibilidade sob a ótica de cidadãos de diferentes perfis sociotécnicos e fixar os limites de profundidade técnica.
-* **Depends on:** Issue #01.
+* **Depends on:** Issues #01 e #06.
 * **Scope:** Delimitação de testes de coexistência em navegadores (Chrome, Firefox, Edge, Safari) e plataformas (Desktop e Mobile), além de interoperabilidade com barramentos governamentais.
 * **Task Realizada:** Redação do capítulo de justificativa e profundidade de compatibilidade no artigo e GitPage.
 * **Critério de Aceitação:** Fronteiras de teste claramente delimitadas entre o que será testado e o que foge ao escopo (sem acesso ao backend interno).
@@ -185,11 +198,11 @@ Cada issue do repositório da equipe Kay McNulty foi formulada de maneira atômi
 * **Task Realizada:** Elaboração de tabela de decisões apoiadas pelos resultados da avaliação e matriz de interesses.
 * **Critério de Aceitação:** Tabela de partes interessadas completa, correlacionada às características avaliadas.
 
-#### Issue #06 — [Fase 1] Modelo de Qualidade ISO/IEC 25010 e Seleção das Características
+#### Issue #06 — [Fase 1] Modelo de Qualidade ISO/IEC 25010:2023 e Seleção das Características
 * **Milestone:** M1: Requisitos da Avaliação
 * **Responsáveis:** Artur Fernandes Galdino (`@ArturFGaldino`) e Nicole Jovita Fernandes (`@nicolejovita`)
 * **Horas Dedicadas:** 2h | **Custo:** R$ 100,00
-* **Goal:** Apresentar a adaptação gráfica do modelo de qualidade da norma ISO/IEC 25010 e justificar a seleção de Usabilidade, Confiabilidade e Compatibilidade.
+* **Goal:** Apresentar a adaptação gráfica do modelo de qualidade da norma ISO/IEC 25010:2023 e justificar a seleção de Usabilidade (Capacidade de Interação, *Interaction Capability*), Confiabilidade (*Reliability*) e Compatibilidade (*Compatibility*).
 * **Depends on:** Issue #05.
 * **Scope:** Matriz de criticidade e diagrama conceitual destacando as subcaracterísticas avaliadas no arquivo `docs/fase1/modelo-qualidade.md`.
 * **Task Realizada:** Elaboração das justificativas técnicas para o descarte justificado das demais características (ex.: Segurança avançada e Desempenho sob estresse).
@@ -209,19 +222,19 @@ Cada issue do repositório da equipe Kay McNulty foi formulada de maneira atômi
 * **Milestone:** M1: Requisitos da Avaliação
 * **Responsáveis:** Artur Fernandes Galdino (`@ArturFGaldino`) e Nicole Jovita Fernandes (`@nicolejovita`)
 * **Horas Dedicadas:** 2h | **Custo:** R$ 100,00
-* **Goal:** Conectar a avaliação de qualidade do Detran Digital DF às metas dos ODS da ONU, especialmente ODS 9 (Meta 9.c — Infraestrutura digital pública inclusiva, inovadora e acessível) e ODS 16 (Meta 16.6 — Instituições eficazes, transparentes e responsáveis).
+* **Goal:** Conectar a avaliação de qualidade do Detran Digital DF às metas dos ODS da ONU, especialmente ODS 9 (Meta 9.c — Ampliação do acesso às tecnologias de informação e comunicação) e ODS 16 (Meta 16.6 — Instituições eficazes, responsáveis e transparentes).
 * **Depends on:** Issue #05.
 * **Scope:** Documentação no arquivo `docs/fase1/ods.md` com metas oficiais da ONU, indicadores e justificativa do impacto de serviços públicos digitais eficientes na cidadania.
 * **Task Realizada:** Elaboração de tabela relacionando metas 9.c (acesso e infraestrutura TIC) e 16.6 (instituições eficazes e transparentes) ao portal.
 * **Critério de Aceitação:** Rastreabilidade formal entre as metas da ONU e as características do produto avaliado.
 
-#### Issue #09 — [Fase 1 e 2] Característica Confiabilidade — Fases 1 e 2
-* **Milestone:** M1: Requisitos e M2: Especificação
+#### Issue #09 — [Fase 1] Característica Confiabilidade — Justificativa, Escopo e Limites
+* **Milestone:** M1: Requisitos da Avaliação
 * **Responsável:** João Eduardo Pereira Rabelo (`@JoaoEduardoP`)
 * **Horas Dedicadas:** 4h | **Custo:** R$ 200,00
-* **Goal:** Estruturar a justificativa teórica, escopo e limites da característica de Confiabilidade no Detran Digital DF.
+* **Goal:** Estruturar a justificativa teórica, escopo e limites da característica de Confiabilidade (*Reliability*) no Detran Digital DF, preparando os insumos para a árvore GQM da Fase 2.
 * **Depends on:** Issue #06.
-* **Scope:** Análise de maturidade, tolerância a falhas e recuperação diante de transações financeiras e emissão de documentos oficiais.
+* **Scope:** Análise de ausência de falhas (*Faultlessness*), disponibilidade (*Availability*), tolerância a falhas (*Fault tolerance*) e recuperabilidade (*Recoverability*) diante de transações financeiras e emissão de documentos oficiais.
 * **Task Realizada:** Redação da fundamentação de Confiabilidade no artigo e preparação dos insumos para a árvore GQM.
 * **Critério de Aceitação:** Justificativa técnica sólida para a relevância de Confiabilidade em serviços estaduais de trânsito.
 
@@ -229,11 +242,11 @@ Cada issue do repositório da equipe Kay McNulty foi formulada de maneira atômi
 * **Milestone:** M1: Requisitos da Avaliação
 * **Responsáveis:** Natan José França (`@Natan8643`) e Yan Santos Rodrigues (`@yanrdgs-dev`)
 * **Horas Dedicadas:** 3h | **Custo:** R$ 150,00
-* **Goal:** Justificar a seleção da característica de Usabilidade e detalhar a profundidade das inspeções ergonômicas nos 4 módulos.
+* **Goal:** Justificar a seleção da característica de Usabilidade (Capacidade de Interação, *Interaction Capability*) e detalhar a profundidade das inspeções ergonômicas nos 4 módulos.
 * **Depends on:** Issue #06.
-* **Scope:** Enfoque no letramento digital diversificado da população do DF, autodescritividade dos formulários e acessibilidade.
+* **Scope:** Enfoque no letramento digital diversificado da população do DF, autodescritividade (*Self-descriptiveness*) dos formulários e inclusividade (acessibilidade).
 * **Task Realizada:** Documentação da justificativa de Usabilidade no artigo e no arquivo de escopo.
-* **Critério de Aceitação:** Delimitação de limites operacionais (inspeção heurística e conformidade técnica e-MAG sem testes presenciais invasivos).
+* **Critério de Aceitação:** Delimitação de limites operacionais (inspeção heurística e conformidade técnica ao e-MAG — Modelo de Acessibilidade em Governo Eletrônico — sem testes presenciais invasivos).
 
 ---
 
@@ -267,7 +280,7 @@ Cada issue do repositório da equipe Kay McNulty foi formulada de maneira atômi
 * **Depends on:** Issue #09.
 * **Scope:** Formulação do Objetivo de Confiabilidade sob a perspectiva da estabilidade de serviço para condutores e cidadãos.
 * **Task Realizada:** Estruturação das questões Q1, Q2 e hipóteses analíticas correspondentes no arquivo `docs/fase2/confiabilidade.md`.
-* **Critério de Aceitação:** Questões cobrindo diretamente as subcaracterísticas de Maturidade e Tolerância a Falhas.
+* **Critério de Aceitação:** Questões cobrindo diretamente as subcaracterísticas de Ausência de Falhas, Disponibilidade e Tolerância a Falhas.
 
 #### Issue #11 — [Fase 2] Definição de Métricas PSM e Níveis de Julgamento de Confiabilidade
 * **Milestone:** M2: Especificação da Avaliação
@@ -275,11 +288,13 @@ Cada issue do repositório da equipe Kay McNulty foi formulada de maneira atômi
 * **Horas Dedicadas:** 3h | **Custo:** R$ 150,00
 * **Goal:** Estabelecer as métricas operacionais de Confiabilidade, procedimentos de apuração, critérios de decisão e Gate Binário de disponibilidade transacional.
 * **Depends on:** Issue #10.
-* **Scope:** Definição das métricas de Taxa de Resposta sem Erros de Servidor HTTP 5xx ($TRES$) e Taxa de Recuperação Amigável de Sessão ($TRAS$).
+* **Scope:** Definição das métricas de Taxa de Resposta sem Erros de Servidor HTTP 5xx ($TRES$, Ausência de Falhas/Disponibilidade) e Taxa de Recuperação Amigável de Sessão ($TRAS$, Recuperabilidade).
 * **Task Realizada:** Tabelas de métricas, limiares de pontuação e matriz de decisão documentadas no artigo.
 * **Critério de Aceitação:** Fórmulas explícitas com unidades de medida e limiares numéricos inequívocos.
 
-#### Issue #12 — docs: especificacao formal GQM da caracteristica de confiabilidade
+<!-- REVISAR: #12, #13 e #17 somam 7h (R$ 350,00) e NÃO entram nas Tabelas 2 e 3 (39h). Se forem PRs, indicar no título/escopo; se forem issues, o pipeline deve contabilizá-las. -->
+
+#### Issue #12 — [Fase 2] Diagrama Mermaid da Árvore GQM de Confiabilidade
 * **Milestone:** M2: Especificação da Avaliação
 * **Responsável:** Davi Ursolino de Oliveira (`@DaviUrsulino`)
 * **Horas Dedicadas:** 2h | **Custo:** R$ 100,00
@@ -289,7 +304,7 @@ Cada issue do repositório da equipe Kay McNulty foi formulada de maneira atômi
 * **Task Realizada:** Validação visual da renderização do diagrama GQM no tema Material for MkDocs.
 * **Critério de Aceitação:** Diagrama perfeitamente legível na GitPage sem erros de compilação.
 
-#### Issue #13 — docs: especificacao formal GQM da caracteristica de confiabilidade
+#### Issue #13 — [Fase 2] Revisão das Fórmulas e Padronização LaTeX de Confiabilidade
 * **Milestone:** M2: Especificação da Avaliação
 * **Responsável:** Davi Ursolino de Oliveira (`@DaviUrsulino`)
 * **Horas Dedicadas:** 2h | **Custo:** R$ 100,00
@@ -303,9 +318,9 @@ Cada issue do repositório da equipe Kay McNulty foi formulada de maneira atômi
 * **Milestone:** M2: Especificação da Avaliação
 * **Responsáveis:** Natan José França (`@Natan8643`) e Yan Santos Rodrigues (`@yanrdgs-dev`)
 * **Horas Dedicadas:** 3h | **Custo:** R$ 150,00
-* **Goal:** Estruturar o objetivo formal de Usabilidade, mapeando questões para Proteção contra Erros do Usuário, Autodescritividade e Acessibilidade.
+* **Goal:** Estruturar o objetivo formal de Usabilidade (Capacidade de Interação), mapeando questões para Proteção contra Erros do Usuário (*User error protection*), Autodescritividade (*Self-descriptiveness*) e Inclusividade (acessibilidade).
 * **Depends on:** Issue #14.
-* **Scope:** Q1 (Mensagens e validações defensivas), Q2 (Navegação intuitiva) e Q3 (Conformidade com diretrizes e-MAG/WCAG 2.1).
+* **Scope:** Q1 (Mensagens e validações defensivas), Q2 (Navegação intuitiva) e Q3 (Conformidade com as diretrizes e-MAG 3.1 e WCAG 2.1 como referência complementar).
 * **Task Realizada:** Elaboração das perguntas e hipóteses conceituais em `docs/fase2/usabilidade.md`.
 * **Critério de Aceitação:** Rastreabilidade formal com os 4 módulos operacionais do portal.
 
@@ -319,7 +334,7 @@ Cada issue do repositório da equipe Kay McNulty foi formulada de maneira atômi
 * **Task Realizada:** Documentação completa das tabelas de métricas e renderização do fluxo em `docs/fase2/usabilidade.md`.
 * **Critério de Aceitação:** Escala de julgamento perfeitamente calibrada para a auditoria de caixa-preta.
 
-#### Issue #17 — docs: especificacao formal GQM da caracteristica de usabilidade
+#### Issue #17 — [Fase 2] Fechamento Documental e Auditoria Editorial do GQM de Usabilidade
 * **Milestone:** M2: Especificação da Avaliação
 * **Responsáveis:** Natan José França (`@Natan8643`) e Yan Santos Rodrigues (`@yanrdgs-dev`)
 * **Horas Dedicadas:** 3h | **Custo:** R$ 150,00
