@@ -851,6 +851,27 @@ def render_necessidade_2(resultados: list) -> str:
     return "\n".join(lines)
 
 
+def render_chart_necessidade_1(resultados: list) -> str:
+    """Gráfico Mermaid: issues fechadas por dia (UTC), para ver picos de fechamento em bloco."""
+    por_dia = defaultdict(int)
+    for _, r in resultados:
+        for dia, n in r["por_dia"]:
+            por_dia[dia] += n
+    dias = sorted(por_dia)
+    if not dias:
+        return MERMAID_INIT + 'xychart-beta\n    title "Issues Fechadas por Dia"\n    x-axis ["sem dados"]\n    y-axis "Issues" 0 --> 10\n    bar [0]'
+    vals = [por_dia[d] for d in dias]
+    labels = ", ".join(f'"{d.strftime("%d/%m")}"' for d in dias)
+    return (
+        MERMAID_INIT
+        + "xychart-beta\n"
+        + '    title "Issues Fechadas por Dia (Necessidade 1)"\n'
+        + f"    x-axis [{labels}]\n"
+        + f'    y-axis "Issues fechadas" 0 --> {calculate_upper_bound(vals, min_bound=5)}\n'
+        + f"    bar [{', '.join(str(v) for v in vals)}]"
+    )
+
+
 def write_necessidades_snippets() -> bool:
     """Gera os snippets das Necessidades 1 e 2. Sem acesso à API, preserva os arquivos existentes."""
     items = fetch_all_github_items()
@@ -872,6 +893,7 @@ def write_necessidades_snippets() -> bool:
     n2 = [(f, compute_pr_review_coverage(pulls, reviews_by_pr, f)) for f in FASES_NECESSIDADES]
     (SNIPPETS_DIR / "necessidade-1-fechamento.md").write_text(render_necessidade_1(n1) + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "necessidade-2-revisao-prs.md").write_text(render_necessidade_2(n2) + "\n", encoding="utf-8")
+    (SNIPPETS_DIR / "necessidade-1-grafico.mmd").write_text(render_chart_necessidade_1(n1) + "\n", encoding="utf-8")
     return True
 
 

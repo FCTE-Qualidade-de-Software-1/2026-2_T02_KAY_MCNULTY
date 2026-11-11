@@ -42,6 +42,10 @@ Cada medida desta página existe para responder a uma pergunta da equipe e para 
 
 --8<-- "necessidade-1-fechamento.md"
 
+```mermaid
+--8<-- "necessidade-1-grafico.mmd"
+```
+
 #### Necessidade 2: os pull requests são revisados por outra pessoa?
 
 | Campo | Especificação |
