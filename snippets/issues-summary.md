@@ -1,4 +1,4 @@
-| Integrante | Usuário GitHub | Dupla | Issues Fechadas | Issues Abertas | Total de Issues | Taxa de Conclusão |
+| Integrante | Usuário GitHub | Dupla | Issues Fechadas | Issues Abertas | Atribuições de Issues | Taxa de Conclusão |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
 | **Artur Fernandes Galdino** | [@ArturFGaldino](https://github.com/ArturFGaldino) | Dupla 1 (Compatibilidade) | 7 | 0 | 7 | 100,0% |
 | **Nicole Jovita Fernandes** | [@nicolejovita](https://github.com/nicolejovita) | Dupla 1 (Compatibilidade) | 7 | 0 | 7 | 100,0% |

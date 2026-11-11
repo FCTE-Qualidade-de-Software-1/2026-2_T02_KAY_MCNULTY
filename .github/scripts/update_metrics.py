@@ -330,7 +330,7 @@ def extract_hours_from_item(item: dict) -> float:
     if num in DEFAULT_HOURS_CATALOG:
         return DEFAULT_HOURS_CATALOG[num]
 
-    return 2.0
+    return 0.0
 
 
 def get_issue_and_effort_metrics():
@@ -611,7 +611,7 @@ def generate_contributions_table(git_totals: dict, issue_counts: dict) -> str:
 def generate_issues_table(issue_counts: dict) -> str:
     """Gera tabela Markdown com taxa de conclusão de demandas por membro."""
     lines = [
-        "| Integrante | Usuário GitHub | Dupla | Issues Fechadas | Issues Abertas | Total de Issues | Taxa de Conclusão |",
+        "| Integrante | Usuário GitHub | Dupla | Issues Fechadas | Issues Abertas | Atribuições de Issues | Taxa de Conclusão |",
         "| :--- | :---: | :---: | :---: | :---: | :---: | :---: |",
     ]
 
@@ -649,7 +649,7 @@ def generate_issues_table(issue_counts: dict) -> str:
 def generate_process_performance_table(issue_counts: dict) -> str:
     """Gera a Tabela 2 do PSM com issues, horas e issues fechadas."""
     lines = [
-        "| Integrante | Usuário GitHub | Issues | Horas (h) | Issues Fechadas | Taxa de Conclusão |",
+        "| Integrante | Usuário GitHub | Atribuições de Issues | Horas (h) | Issues Fechadas | Taxa de Conclusão |",
         "| :--- | :---: | :---: | :---: | :---: | :---: |",
     ]
 
@@ -682,7 +682,7 @@ def generate_process_performance_table(issue_counts: dict) -> str:
     )
     lines.append("")
     lines.append(
-        "*As horas são extraídas do corpo das issues ou do catálogo homologado; quando uma issue possui mais de um responsável, o esforço é dividido igualmente.*"
+        "*As horas são extraídas do corpo das issues ou do catálogo homologado. O total representa relações issue-responsável, não a quantidade de issues únicas; quando uma issue possui mais de um responsável, ela aparece uma vez para cada responsável e o esforço é dividido igualmente.*"
     )
     return "\n".join(lines)
 
@@ -740,7 +740,7 @@ def main():
     taxa_conc = (tot_closed / tot_all * 100.0) if tot_all > 0 else 100.0
 
     resumo_processo = (
-        f"* **Total de Tarefas no Repositório (Issues/PRs):** {tot_all} itens mapeados\n"
+        f"* **Total de Atribuições de Issues no Painel:** {tot_all} relações issue-responsável mapeadas\n"
         f"* **Tarefas Concluídas e Homologadas:** {tot_closed} tarefas\n"
         f"* **Taxa de Conclusão de Demandas:** **{fmt_br_number(taxa_conc, 1)}% de eficácia de processo**\n"
         f"* **Média de Esforço por Integrante:** {fmt_br_number(media_horas, 1)} horas dedicadas\n"

@@ -17,7 +17,7 @@ assignees: ""
 ## Horas Dedicadas
 <!-- Informe o esforço estimado ou homologado. Use o formato abaixo para o pipeline. -->
 
-Horas Dedicadas: 2h
+Horas Dedicadas:
 
 ## Dependências
 <!-- Liste as issues que precisam ser concluídas antes desta. Use "Nenhuma" quando não houver. -->
