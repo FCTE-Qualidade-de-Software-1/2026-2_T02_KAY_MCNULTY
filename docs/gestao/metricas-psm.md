@@ -123,6 +123,17 @@ O histórico evolutivo de commits e alterações no repositório ao longo das se
     --8<-- "code-deletions.mmd"
     ```
 
+**Legenda das linhas:**
+
+| Cor | Integrante | Usuário GitHub |
+| :---: | :--- | :---: |
+| <span style="display:inline-block;width:16px;height:16px;border-radius:3px;background:#e6194B;"></span> | Artur Fernandes Galdino | `@ArturFGaldino` |
+| <span style="display:inline-block;width:16px;height:16px;border-radius:3px;background:#3cb44b;"></span> | Nicole Jovita Fernandes | `@nicolejovita` |
+| <span style="display:inline-block;width:16px;height:16px;border-radius:3px;background:#4363d8;"></span> | Davi Ursolino de Oliveira | `@DaviUrsulino` |
+| <span style="display:inline-block;width:16px;height:16px;border-radius:3px;background:#f58231;"></span> | João Eduardo Pereira Rabelo | `@JoaoEduardoP` |
+| <span style="display:inline-block;width:16px;height:16px;border-radius:3px;background:#911eb4;"></span> | Natan José França | `@Natan8643` |
+| <span style="display:inline-block;width:16px;height:16px;border-radius:3px;background:#9a6324;"></span> | Yan Santos Rodrigues | `@yanrdgs-dev` |
+
 ---
 
 ## 4. Recursos e Custos: Alocação Individual e Orçamento (Critério AG-C5)
