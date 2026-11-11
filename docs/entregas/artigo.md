@@ -25,7 +25,7 @@ O artigo apresenta a avaliação de qualidade do **Portal Detran Digital DF** em
 
 * **Escopo:** teste caixa-preta, sem testes de carga, sem inspeção de código e sem navegadores obsoletos.
 * **Julgamento:** régua de 4 níveis (Excelente, Bom, Satisfatório e Insuficiente) para cada métrica.
-* **Próximos passos:** projeto da avaliação (Fase 3) e execução e conclusão (Fases 4 e 5) na Entrega 2.
+* **Próximos passos:** projeto da avaliação (Fase 3) e execução, julgamento e melhorias (Fase 4) na Entrega 2.
 
 ---
 
