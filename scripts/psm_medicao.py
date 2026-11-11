@@ -111,7 +111,7 @@ def parse_issue_hours(issue):
             return float(m.group(1).replace(",", "."))
         except ValueError:
             pass
-    return 2.0
+    return 0.0
 
 
 def pct(parte, total):

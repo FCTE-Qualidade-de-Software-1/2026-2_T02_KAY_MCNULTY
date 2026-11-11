@@ -17,12 +17,7 @@ assignees: ""
 ## Horas Dedicadas
 <!-- Informe o esforço estimado ou homologado. Use o formato abaixo para o pipeline. -->
 
-Horas Dedicadas: 2h
-
-## Milestone
-<!-- Informe o marco relacionado, por exemplo: M1, M2 ou PC1. -->
-
-- Milestone:
+Horas Dedicadas:
 
 ## Dependências
 <!-- Liste as issues que precisam ser concluídas antes desta. Use "Nenhuma" quando não houver. -->

@@ -19,13 +19,64 @@ O modelo *Practical Software and Systems Measurement* (PSM) é uma abordagem ori
 
 De forma complementar, as métricas de commits e de linhas adicionadas/removidas (Seção 3.2) correspondem à categoria *Product Size and Stability* (Tamanho e Estabilidade do Produto) e são usadas como evidência auxiliar do ritmo de integração.
 
+### 1.1 Necessidades de Informação
+
+Cada medida desta página existe para responder a uma pergunta da equipe e para sustentar uma decisão. Esta subseção liga cada necessidade de informação à medida que a responde, ao critério usado para interpretá-la, ao resultado observado na Entrega 1 e à decisão que o resultado motiva. Os dados vêm das issues e dos pull requests do repositório, coletados em 10/11/2026.
+
+#### Necessidade 1: o trabalho é fechado aos poucos ou em bloco?
+
+| Campo | Especificação |
+| :--- | :--- |
+| **Categoria PSM** | Calendário e Progresso |
+| **Necessidade de informação** | Saber se as issues de uma fase fecham ao longo do prazo ou se o trabalho é integrado todo de uma vez, o que esconde atrasos e atrapalha a revisão. |
+| **Medida base** | Data de fechamento de cada issue (`closed_at`) e total de issues da fase. |
+| **Indicador** | Maior fração de issues fechadas em um único dia: `issues fechadas no dia de pico / total de issues da fase`. |
+| **Critério de interpretação** | Até 50%: fechamento distribuído. Acima de 50%: fechamento em bloco. |
+| **Resultado na Entrega 1** | 10 das 14 issues fecharam em 18/10, o que dá 71%. Outras 3 fecharam em 19/10 e 1 em 21/10. Fechamento em bloco, embora todas tenham fechado antes do prazo de 26/10. |
+| **Decisão** | Na Entrega 2, dividir as issues em tarefas menores e dar a cada uma um prazo intermediário, para que o fechamento acompanhe o andamento real. |
+| **Relação com a Tabela 2** | Usa as colunas de issues fechadas e taxa de conclusão. |
+| **Fonte e coleta** | API do GitHub (issues). Coleta manual nesta entrega, ainda sem automação. |
+| **Quando revisar** | Antes do Ponto de Controle 2 (16/11 ou 18/11) e antes da entrega final (22/11). |
+
+#### Necessidade 2: os pull requests são revisados por outra pessoa?
+
+| Campo | Especificação |
+| :--- | :--- |
+| **Categoria PSM** | Desempenho dos Processos |
+| **Necessidade de informação** | Saber se o que entra na `main` passa pelo olhar de outra pessoa da equipe antes do merge. |
+| **Medida base** | Pull requests mergeados e, para cada um, as revisões feitas por pessoas diferentes do autor. |
+| **Indicador** | `PRs mergeados com revisão de outra pessoa / PRs mergeados`. |
+| **Critério de interpretação** | Meta de 100%. Abaixo disso, o processo de revisão não está funcionando. |
+| **Resultado na Entrega 1** | 1 dos 4 PRs mergeados teve revisão de outra pessoa, o que dá 25%. O PR #18 foi revisado pelo Natan cerca de 9 horas depois de aberto. |
+| **Decisão** | Todo PR passa a ter um revisor definido na abertura e só é mergeado depois da revisão. Se um PR ficar 24 horas sem revisão, o autor avisa no grupo. |
+| **Relação com a Tabela 2** | Indicador novo, ainda sem coluna na tabela. |
+| **Fonte e coleta** | API do GitHub (pull requests e revisões). Coleta manual nesta entrega, ainda sem automação. |
+| **Quando revisar** | Antes do Ponto de Controle 2 (16/11 ou 18/11) e antes da entrega final (22/11). |
+
+#### Necessidade 3: quanto esforço cada integrante dedica?
+
+| Campo | Especificação |
+| :--- | :--- |
+| **Categoria PSM** | Recursos e Custos |
+| **Necessidade de informação** | Saber quantas horas cada pessoa dedica a cada issue, para equilibrar a carga e estimar melhor as próximas entregas. |
+| **Medida base** | Campo `Horas Dedicadas` preenchido no corpo de cada issue. |
+| **Indicador** | `issues fechadas com horas registradas / issues fechadas`. |
+| **Critério de interpretação** | Meta de 100%. Abaixo disso, a distribuição de esforço e o custo não são confiáveis. |
+| **Resultado na Entrega 1** | A equipe não registrou horas nas issues. Os valores de horas e custo da Entrega 1 são estimativas e não medições. |
+| **Decisão** | A partir da Entrega 2, usar o template padrão de issue e só fechar a issue com `Horas Dedicadas` preenchido. |
+| **Relação com a Tabela 2** | Alimenta a coluna de horas. |
+| **Fonte e coleta** | Corpo das issues, lido pelo script `.github/scripts/update_metrics.py`. |
+| **Quando revisar** | Antes do Ponto de Controle 2 (16/11 ou 18/11) e antes da entrega final (22/11). |
+
+*Fonte: elaborado pela equipe a partir das issues e dos pull requests do repositório, 10/11/2026.*
+
 ---
 
 ## 2. Desempenho dos Processos
 
 ### 2.1 Eficácia do Fluxo de Trabalho e Conclusão de Demandas
 
-Para o Ponto de Controle 1 (Entrega 1), a equipe planejou e executou integralmente o levantamento dos requisitos da avaliação (Fase 1) e a especificação formal das medições (Fase 2), além de iniciar o planejamento do projeto da avaliação (Fase 3, Milestone M3). Os dados consolidados a seguir são extraídos diretamente do repositório:
+Para o Ponto de Controle 1 (Entrega 1), a equipe planejou e executou integralmente o levantamento dos requisitos da avaliação (Fase 1) e a especificação formal das medições (Fase 2), além de iniciar o planejamento do projeto da avaliação (Fase 3, Milestone M4). Os dados consolidados a seguir são extraídos diretamente do repositório:
 
 ### Tabela 1 — Resumo Consolidado do Processo no Ponto de Controle 1
 
@@ -65,55 +116,56 @@ Abaixo são apresentados os gráficos e a síntese analítica gerados de forma c
 
 ## 3. Calendário e Progresso: Estrutura de Marcos (Milestones M0 a M5)
 
-O projeto de avaliação está estruturado em 6 marcos principais, integrando as etapas da disciplina às fases normativas da ISO/IEC 25040:
+O projeto de avaliação está estruturado em 6 marcos principais integrando as etapas e datas do calendário acadêmico às fases normativas da ISO/IEC 25040:
 
 ```mermaid
 flowchart TD
-    subgraph PC1["Ponto de Controle 1 — Entrega 1 (v1.0.0-pc1)"]
-        M0["M0: Setup Inicial e Governança<br/>Configuração do Repositório Git · Estrutura MkDocs · Regras de Contribuição"]
-        M1["M1: Requisitos da Avaliação (Fase 1 ISO/IEC 25040)<br/>Contexto Detran DF · 4 Módulos · Stakeholders · ODS 9/16 · Modelo ISO/IEC 25010:2023"]
-        M2["M2: Especificação da Avaliação (Fase 2 GQM)<br/>Árvores GQM · Compatibilidade, Usabilidade e Confiabilidade · Limiares"]
-        M3["M3: Projeto da Avaliação (Fase 3 ISO/IEC 25040)<br/>Planejamento dos Métodos de Teste · Roteiros Heurísticos · Ferramentas"]
-        M4["M4: Consolidação PC1 e Release E1<br/>Artigo v1 · Slides da Apresentação · Auditoria de Rubricas · Tag v1.0.0-pc1"]
-        M0 --> M1 --> M2 --> M3 --> M4
+    subgraph PC1["Ponto de Controle 1 — Entrega 1 (26/10/2026 · v1.0.0-pc1)"]
+        M0["M0: Setup Inicial e Governança (12/10)<br/>Configuração do Repositório Git · Estrutura MkDocs · Regras de Contribuição"]
+        M1["M1: Requisitos da Avaliação (Fase 1 ISO/IEC 25040 · 18/10)<br/>Contexto Detran DF · 4 Módulos · Stakeholders · ODS 9/16 · Modelo ISO/IEC 25010:2023"]
+        M2["M2: Especificação da Avaliação (Fase 2 GQM · 21/10)<br/>Árvores GQM · Compatibilidade, Usabilidade e Confiabilidade · Limiares"]
+        M3["M3: Consolidação PC1 e Release E1 (26/10)<br/>Artigo v1 · Slides da Apresentação · Auditoria de Rubricas · Tag v1.0.0-pc1"]
+        M0 --> M1 --> M2 --> M3
     end
-    subgraph PC2["Ponto de Controle 2 — Entrega 2 (v2.0.0-pc2)"]
-        M5["M5: Execução e Conclusão (Fases 4 e 5 ISO/IEC 25040)<br/>Coleta de Evidências em Produção · Análise dos Resultados · Artigo v2 Final"]
+    subgraph PC2["Ponto de Controle 2 e Entrega Final — Entrega 2 (v2.0.0-pc2)"]
+        M4["M4: Projeto da Avaliação (Fase 3 ISO/IEC 25040 · 27/10 a 16/11)<br/>Planejamento dos Métodos de Teste · Roteiros Heurísticos · Ferramentas e Ambientes"]
+        M5["M5: Execução, Julgamento e Melhorias (Fase 4 ISO/IEC 25040 · até 22/11)<br/>Coleta de Evidências em Produção · Análise dos Resultados · Ação de Melhoria · Artigo v2 Final"]
+        M4 --> M5
     end
-    M4 --> M5
+    M3 --> M4
 ```
 
 ### 3.1 Detalhamento dos Marcos Evolutivos
 
-* **Milestone M0 — Setup Inicial e Governança (Concluído):**
+* **Milestone M0 — Setup Inicial e Governança (Concluído em 12/10/2026):**
     * **Objetivo:** Estabelecer a infraestrutura de controle de versão, governança de branches e a base da GitPage.
     * **Entregáveis:** Repositório configurado, `mkdocs.yml`, templates de documentação e automação via GitHub Actions.
     * **Critério de Aceitação:** GitPage operante e acessível com navegação funcional.
 
-* **Milestone M1 — Requisitos da Avaliação / Fase 1 ISO/IEC 25040 (Concluído):**
+* **Milestone M1 — Requisitos da Avaliação / Fase 1 ISO/IEC 25040 (Concluído em 18/10/2026):**
     * **Objetivo:** Delimitar o propósito da avaliação, mapear as partes interessadas, recortar os 4 módulos funcionais do Detran Digital DF (Infração, Atendimento, Protocolo e Chatbot) e fundamentar o modelo de qualidade ISO/IEC 25010:2023 e o alinhamento com os ODS 9 (Meta 9.c) e 16 (Meta 16.6) da ONU.
     * **Entregáveis:** Documentação da Fase 1 (`fase1/`), matriz de priorização de características e cortes de escopo.
     * **Critério de Aceitação:** 100% dos requisitos de contextualização e escopo formalizados.
 
-* **Milestone M2 — Especificação da Avaliação / Fase 2 GQM (*Goal-Question-Metric*) (Concluído):**
+* **Milestone M2 — Especificação da Avaliação / Fase 2 GQM (*Goal-Question-Metric*) (Concluído em 21/10/2026):**
     * **Objetivo:** Construir as árvores formais GQM para Compatibilidade, Usabilidade (Capacidade de Interação) e Confiabilidade, definindo perguntas, hipóteses, métricas quantitativas e níveis de julgamento.
     * **Entregáveis:** Documentação da Fase 2 (`fase2/`) com diagramas conceituais, fórmulas operacionais e critérios de aceitação.
     * **Critério de Aceitação:** Rastreabilidade estrita $G \rightarrow Q \rightarrow M$ em todas as três características.
 
-* **Milestone M3 — Projeto da Avaliação / Fase 3 ISO/IEC 25040 (Planejado):**
-    * **Objetivo:** Estruturar o plano de coleta em produção para ambiente governamental (caixa-preta), definindo os roteiros de inspeção ergonômica, ferramentas de auditoria (Lighthouse, Postman, validadores W3C) e protocolos de registro de evidências.
-    * **Entregáveis:** Roteiros operacionais de teste e plano de coleta de evidências.
-    * **Critério de Aceitação:** Ferramental e procedimentos validados tecnicamente.
-
-* **Milestone M4 — Consolidação, Slides e Release E1 (Em Andamento):**
-    * **Objetivo:** Integrar as Fases 1 e 2 no Artigo v1 da disciplina, elaborar a apresentação de slides do Ponto de Controle 1, auditar rubricas editoriais (AG-C1 a AG-C5) e publicar a Release oficial E1.
+* **Milestone M3 — Consolidação PC1 e Release E1 (Concluído em 26/10/2026):**
+    * **Objetivo:** Integrar as Fases 1 e 2 no Artigo v1 da disciplina, elaborar a apresentação de slides do Ponto de Controle 1, auditar rubricas editoriais (AG-C1 a AG-C5) e publicar a Release oficial E1 (`v1.0.0-pc1`).
     * **Entregáveis:** Artigo v1 em PDF, slides da apresentação, GitPage atualizada e tag Git `v1.0.0-pc1`.
-    * **Critério de Aceitação:** Homologação completa dos artefatos para apresentação à banca docente.
+    * **Critério de Aceitação:** Homologação completa dos artefatos para apresentação à banca docente e submissão no Moodle.
 
-* **Milestone M5 — Execução, Análise e Conclusão / Fases 4 e 5 ISO/IEC 25040 (Futuro — PC2):**
-    * **Objetivo:** Coletar dados empíricos no Portal Detran Digital DF, processar as medições, interpretar desvios frente aos limiares estipulados e emitir o parecer técnico conclusivo na 2ª versão do artigo.
-    * **Entregáveis:** Relatório de medições com evidências visuais (capturas de tela, logs de rede) e Artigo v2 final com tag `v2.0.0-pc2`.
-    * **Critério de Aceitação:** Parecer conclusivo homologado pela equipe avaliadora.
+* **Milestone M4 — Projeto da Avaliação / Fase 3 ISO/IEC 25040 (Em Andamento — 27/10 a 16/11/2026):**
+    * **Objetivo:** Estruturar o plano de coleta em produção para ambiente governamental (caixa-preta), definindo os roteiros de inspeção ergonômica, ferramentas de auditoria (Lighthouse, Postman, validadores W3C) e protocolos de registro de evidências.
+    * **Entregáveis:** Roteiros operacionais de teste, especificação de ambientes e plano de coleta de evidências.
+    * **Critério de Aceitação:** Ferramental e procedimentos validados tecnicamente pela equipe.
+
+* **Milestone M5 — Execução, Julgamento e Melhorias / Fase 4 ISO/IEC 25040 (Futuro — até 22/11/2026):**
+    * **Objetivo:** Coletar dados empíricos no Portal Detran Digital DF, processar as medições, interpretar desvios frente aos limiares, implementar ação de melhoria técnica obrigatória e emitir o parecer conclusivo na 2ª versão do artigo.
+    * **Entregáveis:** Relatório de medições com evidências visuais (capturas de tela, logs de rede), ação de melhoria técnica documentada e Artigo v2 final com tag `v2.0.0-pc2`.
+    * **Critério de Aceitação:** Parecer conclusivo e ação de melhoria homologados pela equipe avaliadora.
 
 ### 3.2 Velocidade de Commits e Fluxo de Integração Contínua
 
@@ -144,6 +196,81 @@ O histórico evolutivo de commits e alterações no repositório ao longo das se
 | <span style="display:inline-block;width:16px;height:16px;border-radius:3px;background:#f58231;"></span> | João Eduardo Pereira Rabelo | `@JoaoEduardoP` |
 | <span style="display:inline-block;width:16px;height:16px;border-radius:3px;background:#911eb4;"></span> | Natan José França | `@Natan8643` |
 | <span style="display:inline-block;width:16px;height:16px;border-radius:3px;background:#9a6324;"></span> | Yan Santos Rodrigues | `@yanrdgs-dev` |
+
+### 3.3 Cronograma e Progresso das Próximas Entregas
+
+#### Progresso medido da Entrega 1
+
+Os valores abaixo vêm das issues do repositório em 10/11/2026. O progresso é a razão entre issues fechadas e issues existentes, e não pondera esforço, porque a equipe não registrou horas na Entrega 1.
+
+| Recorte | Issues | Fechadas | Progresso |
+| :--- | :---: | :---: | :---: |
+| Milestone "Entrega 1" (prazo 26/10/2026) | 13 | 13 | 100% |
+| Issues sem milestone | 1 | 1 | 100% |
+| **Total da Entrega 1** | **14** | **14** | **100%** |
+
+As 14 issues foram fechadas entre 18/10 e 21/10, com 13 delas em 18/10 e 19/10. A Release E1 (tag `v1.0.0-pc1`) ainda não foi criada no GitHub.
+
+#### Linha do tempo até a entrega final
+
+Datas do calendário oficial da disciplina, versão 2 (02/11/2026). A linha laranja marca 10/11/2026.
+
+<div class="cron">
+  <div class="cron-proximos">
+    <div class="cron-proximo urgente"><strong>1 dia</strong><span>Apresentação das métricas PSM (11/11)</span></div>
+    <div class="cron-proximo"><strong>6 a 8 dias</strong><span>Ponto de Controle 2 (16/11 ou 18/11)</span></div>
+    <div class="cron-proximo"><strong>12 dias</strong><span>Entrega final do trabalho (22/11)</span></div>
+  </div>
+  <div class="cron-eixo"><span></span><div class="cron-escala"><span style="left:0.98%">12/10</span><span style="left:28.43%">26/10</span><span style="left:55.88%">09/11</span><span style="left:83.33%">23/11</span><span style="left:100.98%">02/12</span></div><span></span></div>
+  <div class="cron-linha">
+    <div class="cron-rotulo">Entrega 1<small>Fases 1 e 2</small></div>
+    <div class="cron-trilho"><div class="cron-barra feito" style="left:0.00%;width:29.41%"></div><div class="cron-marco feito" style="left:14.71%"></div><div class="cron-hoje" style="left:57.84%"></div></div>
+    <div class="cron-data">até 26/10</div>
+  </div>
+  <div class="cron-linha">
+    <div class="cron-rotulo">Fases 3 e 4<small>Projeto e execução da avaliação</small></div>
+    <div class="cron-trilho"><div class="cron-barra andamento" style="left:29.41%;width:52.94%"></div><div class="cron-hoje" style="left:57.84%"></div></div>
+    <div class="cron-data">27/10 a 22/11</div>
+  </div>
+  <div class="cron-linha">
+    <div class="cron-rotulo">Apresentação PSM<small>Métricas de gestão</small></div>
+    <div class="cron-trilho"><div class="cron-marco andamento" style="left:59.80%"></div><div class="cron-hoje" style="left:57.84%"></div></div>
+    <div class="cron-data">11/11</div>
+  </div>
+  <div class="cron-linha">
+    <div class="cron-rotulo">Ponto de Controle 2<small>Dia da equipe não divulgado</small></div>
+    <div class="cron-trilho"><div class="cron-barra confirmar" style="left:68.63%;width:5.88%"></div><div class="cron-hoje" style="left:57.84%"></div></div>
+    <div class="cron-data">16/11 ou 18/11</div>
+  </div>
+  <div class="cron-linha">
+    <div class="cron-rotulo">Entrega final<small>Artigo, GitPage e release</small></div>
+    <div class="cron-trilho"><div class="cron-marco critico" style="left:81.37%"></div><div class="cron-hoje" style="left:57.84%"></div></div>
+    <div class="cron-data">22/11</div>
+  </div>
+  <div class="cron-linha">
+    <div class="cron-rotulo">Avaliação cruzada 2<small>Com autoavaliação 2</small></div>
+    <div class="cron-trilho"><div class="cron-barra " style="left:82.35%;width:19.61%"></div><div class="cron-hoje" style="left:57.84%"></div></div>
+    <div class="cron-data">23/11 a 02/12</div>
+  </div>
+  <div class="cron-linha">
+    <div class="cron-rotulo">Apresentações finais<small>3 a 4 equipes por dia</small></div>
+    <div class="cron-trilho"><div class="cron-barra " style="left:82.35%;width:15.69%"></div><div class="cron-hoje" style="left:57.84%"></div></div>
+    <div class="cron-data">23, 25 e 30/11</div>
+  </div>
+  <div class="cron-linha">
+    <div class="cron-rotulo">TAF<small>Teste de Avaliação Final</small></div>
+    <div class="cron-trilho"><div class="cron-marco " style="left:100.98%"></div><div class="cron-hoje" style="left:57.84%"></div></div>
+    <div class="cron-data">02/12</div>
+  </div>
+  <div class="cron-legenda">
+    <span><i style="background:var(--cron-feito)"></i>Concluído</span>
+    <span><i style="background:var(--cron-andamento)"></i>Em andamento ou próximo</span>
+    <span><i style="background:var(--cron-futuro)"></i>Futuro</span>
+    <span><i style="background:var(--cron-hoje)"></i>Entrega final e data de hoje</span>
+  </div>
+</div>
+
+O Ponto de Controle 2 aparece nas duas datas porque o calendário não informa o dia de cada equipe. A Release E1 (tag `v1.0.0-pc1`) ainda não foi criada no GitHub. O percentual de conclusão das Fases 3 e 4 só pode ser medido quando existir um milestone da Entrega 2 com as issues dessas fases.
 
 ---
 
@@ -302,8 +429,6 @@ Cada issue do repositório da equipe Kay McNulty foi formulada de maneira atômi
 * **Scope:** Definição das métricas de Taxa de Resposta sem Erros de Servidor HTTP 5xx ($TRES$, Ausência de Falhas/Disponibilidade) e Taxa de Recuperação Amigável de Sessão ($TRAS$, Recuperabilidade).
 * **Task Realizada:** Tabelas de métricas, limiares de pontuação e matriz de decisão documentadas no artigo.
 * **Critério de Aceitação:** Fórmulas explícitas com unidades de medida e limiares numéricos inequívocos.
-
-<!-- REVISAR: #12, #13 e #17 somam 7h (R$ 350,00) e NÃO entram nas Tabelas 2 e 3 (39h). Se forem PRs, indicar no título/escopo; se forem issues, o pipeline deve contabilizá-las. -->
 
 #### Issue #12 — [Fase 2] Diagrama Mermaid da Árvore GQM de Confiabilidade
 * **Milestone:** M2: Especificação da Avaliação

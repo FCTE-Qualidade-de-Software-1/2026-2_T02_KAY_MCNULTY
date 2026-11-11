@@ -5,7 +5,7 @@
 **Semestre:** 2026.2  
 **Equipe:** Kay McNulty (Turma 01)  
 **Normas e Métodos:** ISO/IEC 25040, ISO/IEC 25010:2023, GQM e PSM/CID  
-**Artigo Completo:** [Download do Artigo (PDF)](/2026-2_T02_KAY_MCNULTY/assets/artigo.pdf)
+**Artigo Completo:** [Download do Artigo (PDF)](../assets/artigo.pdf) · [Código-Fonte em LaTeX (TEX)](../assets/artigo_entrega1.tex)
 
 ---
 
@@ -25,7 +25,7 @@ O artigo apresenta a avaliação de qualidade do **Portal Detran Digital DF** em
 
 * **Escopo:** teste caixa-preta, sem testes de carga, sem inspeção de código e sem navegadores obsoletos.
 * **Julgamento:** régua de 4 níveis (Excelente, Bom, Satisfatório e Insuficiente) para cada métrica.
-* **Próximos passos:** projeto da avaliação (Fase 3) e execução e conclusão (Fases 4 e 5) na Entrega 2.
+* **Próximos passos:** projeto da avaliação (Fase 3) e execução, julgamento e melhorias (Fase 4) na Entrega 2.
 
 ---
 
