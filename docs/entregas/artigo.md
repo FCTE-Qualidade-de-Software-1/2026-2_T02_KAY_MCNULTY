@@ -5,7 +5,7 @@
 **Semestre:** 2026.2  
 **Equipe:** Kay McNulty (Turma 01)  
 **Normas e Métodos:** ISO/IEC 25040, ISO/IEC 25010:2023, GQM e PSM/CID  
-**Artigo Completo:** [Download do Artigo (PDF)](/2026-2_T02_KAY_MCNULTY/assets/artigo.pdf)
+**Artigo Completo:** [Download do Artigo (PDF)](../assets/artigo.pdf) · [Código-Fonte em LaTeX (TEX)](../assets/artigo_entrega1.tex)
 
 ---
 

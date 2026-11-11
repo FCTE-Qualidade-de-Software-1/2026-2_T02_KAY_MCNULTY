@@ -1,0 +1,226 @@
+\documentclass[12pt]{article}
+\usepackage{sbc-template}
+\usepackage{graphicx,url}
+\usepackage[utf8]{inputenc}
+\usepackage[brazil]{babel}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{amsmath}
+
+\sloppy
+
+\title{Avaliação da Qualidade do Portal Detran Digital DF Baseada no Modelo SQuaRE e GQM: Foco nos Módulos de Infração, Atendimento, Protocolo e Chatbot}
+
+\author{Artur [Sobrenome]\inst{1}, Nicole [Sobrenome]\inst{1}, Davi [Sobrenome]\inst{1},\\
+João [Sobrenome]\inst{1}, Natan [Sobrenome]\inst{1}, Yan [Sobrenome]\inst{1}}
+
+\address{Faculdade UnB Gama (FGA) -- Universidade de Brasília (UnB)\\
+Área Especial 2, Projeção A, Setor Leste -- Gama -- DF -- Brasil\\
+\email{\{artur, nicole, davi, joao, natan, yan\}@aluno.unb.br}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Digital public services play an indispensable role in citizens' daily lives, requiring technical rigor to ensure resilient, accessible, and high-quality software interfaces. This paper presents the first version of the software quality evaluation planning for the Detran Digital portal of the Federal District of Brazil (Detran Digital DF), following the ISO/IEC 25040 standard (SQuaRE) and the Goal-Question-Metric (GQM) methodology. The evaluation scope focuses on four critical modules: Infractions, Attendance/Scheduling, Protocol/Process Filing, and Chatbot. The assessment covers Usability, Reliability, and Compatibility (Coexistence and Interoperability) according to ISO/IEC 25010. The paper details evaluation requirements (Phase 1) mapped to stakeholders and UN Sustainable Development Goals (SDGs 9 and 16), as well as measurement goals, questions, hypotheses, formal metrics, and judgment levels (Phase 2), governed by Practical Software Measurement (PSM/CID).
+\end{abstract}
+
+\begin{resumo}
+Os serviços públicos digitais exercem papel indispensável no exercício da cidadania, demandando rigor técnico na entrega de interfaces resilientes e acessíveis. Este artigo apresenta a primeira versão do planejamento e especificação formal da avaliação de qualidade de produto do portal Detran Digital do Distrito Federal (Detran Digital DF), adotando as diretrizes da norma ISO/IEC 25040 (SQuaRE) e a modelagem orientada a objetivos GQM (Goal-Question-Metric). O escopo delimitado compreende quatro módulos operacionais críticos: Módulo de Infrações, Atendimento, Protocolo e Chatbot de atendimento automatizado. A avaliação contempla a análise sistemática sob as dimensões de Usabilidade (ISO/IEC 25010:2023), Confiabilidade e Compatibilidade (Coexistência e Interoperabilidade). São estabelecidos os requisitos de avaliação (Fase 1) alinhados às partes interessadas e aos Objetivos de Desenvolvimento Sustentável (ODS 9 e 16 da ONU), seguidos pela definição das metas conceituais, questões operacionais, hipóteses empíricas, métricas quantitativas e réguas de decisão (Fase 2). A governança do projeto é suportada por métricas do framework Practical Software Measurement (PSM/CID).
+\end{resumo}
+
+\section{Introdução}
+A transformação digital dos serviços públicos no Brasil tem exigido das instituições governamentais soluções de software robustas, inclusivas e de alta disponibilidade. O Departamento de Trânsito do Distrito Federal (Detran-DF) disponibiliza à população o portal Detran Digital DF (\url{https://portal.detran.df.gov.br/#/home}), canal por meio do qual cidadãos acessam consultas de veículos, habilitação, abertura de requerimentos, agendamento de serviços presenciais e suporte interativo.
+
+Nesse cenário, a disciplina de Qualidade de Software 1 (FGA/UnB) tem como objetivo conduzir uma auditoria rigorosa de qualidade sobre o portal Detran Digital DF, aplicando as normas da família ISO/IEC 25000 (SQuaRE), especialmente a ISO/IEC 25040 (Processo de Avaliação) e o modelo de qualidade de produto da ISO/IEC 25010:2023. Para garantir profundidade empírica, a avaliação foi delimitada em quatro módulos estratégicos: (i) Infração, (ii) Atendimento, (iii) Protocolo e (iv) Chatbot. Cada um desses módulos é avaliado pela equipe sob três características centrais: Usabilidade, Confiabilidade e Compatibilidade.
+
+Este trabalho abrange os produtos das Fases 1 (Estabelecimento dos Requisitos de Avaliação) e 2 (Especificação da Avaliação via GQM). O repositório oficial da equipe contendo os artefatos, atas de reunião e evidências de governança por PSM/CID está disponível em: \url{https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_KAY_MCNULTY}.
+
+\section{Referencial Teórico}
+A engenharia de qualidade de software apoia-se em normas e frameworks consolidados para assegurar objetividade e reprodutibilidade nas medições. A série ISO/IEC 25000 (SQuaRE) estabelece um arcabouço estruturado para especificação e avaliação de software. A norma ISO/IEC 25040 define o processo de avaliação em cinco fases iterativas: (1) Estabelecer os requisitos da avaliação, (2) Especificar a avaliação, (3) Projetar a avaliação, (4) Executar a avaliação e (5) Concluir a avaliação. A presente entrega contempla as Fases 1 e 2 do processo.
+
+Para a formalização das métricas, emprega-se a abordagem Goal-Question-Metric (GQM), formulada por Victor Basili. O GQM opera em três níveis: Conceitual (Objetivo de Medição estruturado), Operacional (Questões e Hipóteses) e Quantitativo (Métricas objetivas associadas). A governança é complementada pelas práticas do Practical Software Measurement (PSM/CID).
+
+\section{Metodologia e Requisitos da Avaliação (Fase 1 da SQuaRE)}
+
+\subsection{Propósito da Avaliação e Uso Pretendido}
+O propósito da avaliação é auditar externamente a qualidade do portal Detran Digital DF em ambiente de produção, uma vez que a equipe não possui acesso ao código-fonte da aplicação. Os resultados têm como uso pretendido fundamentar um diagnóstico técnico independente dos gargalos de interface, resiliência e integração, subsidiando a proposição de ações corretivas concretas (como prototipação de alta fidelidade e refatoração de fluxos).
+
+\subsection{Partes Interessadas (Stakeholders)}
+Foram mapeadas as seguintes partes interessadas:
+\begin{itemize}
+    \item \textbf{Cidadãos Usuários do DF:} Usuários finais demandando interfaces acessíveis em qualquer dispositivo/navegador, sem erros de sessão ou bloqueios.
+    \item \textbf{Detran-DF (Administração Pública):} Órgão gestor com foco na eficácia dos serviços digitais, redução de filas presenciais e conformidade legal.
+    \item \textbf{Equipe de TI / Sustentação:} Responsáveis técnicos pela infraestrutura, com interesse em interoperabilidade padronizada (Gov.br, SEI) e diagnósticos claros de falhas.
+    \item \textbf{Equipe de Avaliação (UnB):} Auditores acadêmicos executando auditoria empírica reprodutível baseada em normas SQuaRE e GQM.
+\end{itemize}
+
+\subsection{Arquitetura e Módulos do Detran Digital DF}
+A avaliação concentra-se em quatro módulos fundamentais:
+\begin{enumerate}
+    \item \textbf{Módulo de Infração:} Consulta de débitos, detalhamento de autos e emissão de guias de recolhimento (DUD/PIX), dependente de bases da SENATRAN/RENAINFC e rede bancária.
+    \item \textbf{Módulo de Atendimento:} Agendamento de serviços presenciais nos postos de atendimento, seleção de unidades, datas e gerenciamento de senhas.
+    \item \textbf{Módulo de Protocolo:} Abertura de requerimentos administrativos, recursos de multas e upload de documentos comprobatórios, integrado ao SEI-GDF.
+    \item \textbf{Módulo Chatbot:} Assistente virtual para esclarecimento de dúvidas e direcionamento rápido aos serviços do portal.
+\end{enumerate}
+
+\subsection{Modelo de Qualidade, Seleção e Priorização das Características}
+A equipe adotou a norma ISO/IEC 25010:2023 como base referencial, selecionando três características centrais para auditoria nos 4 módulos. A seguir, apresenta-se a justificativa técnica para cada uma das características escolhidas:
+
+\subsubsection{Justificativa da Característica Usabilidade (Natan e Yan)}
+\textit{[ESPAÇO RESERVADO PARA A DUPLA NATAN E YAN: Inserir a justificativa detalhada da escolha de Usabilidade no Detran Digital DF (relevância para cidadãos com diferentes níveis de letramento digital, ergonomia e clareza de fluxos).]}
+
+\subsubsection{Justificativa da Característica Confiabilidade (João e Davi)}
+\textit{[ESPAÇO RESERVADO PARA A DUPLA JOÃO E DAVI: Inserir a justificativa detalhada da escolha de Confiabilidade no Detran Digital DF (tolerância a falhas, disponibilidade contínua de serviços transacionais e integridade contra perdas de dados).]}
+
+\subsubsection{Justificativa da Característica Compatibilidade (Artur e Nicole)}
+A seleção da característica de Compatibilidade (composta pelas subcaracterísticas de Coexistência e Interoperabilidade) é indispensável para um portal público estadual com milhões de potenciais acessos anuais. Em primeiro lugar, a Coexistência é prioritária devido à alta heterogeneidade dos dispositivos utilizados pela população do Distrito Federal: cidadãos acessam o sistema a partir de computadores de baixa capacidade de processamento, monitores de diferentes resoluções e, sobretudo, smartphones de diversas marcas e sistemas operacionais (Android e iOS) utilizando navegadores variados (Google Chrome, Mozilla Firefox, Microsoft Edge e Safari). Em segundo lugar, a Interoperabilidade é basilar para o ecossistema do Detran Digital DF, uma vez que a execução dos serviços públicos depende da troca contínua e sem falhas de informações com plataformas governamentais externas (autenticação segura via Gov.br, integração com a base nacional da SENATRAN/RENAINFC, barramento bancário para emissão e confirmação de boletos/PIX e sistema de processos administrativos SEI-GDF). Qualquer falha de compatibilidade impossibilita o cidadão de usufruir de serviços essenciais, justificando sua alta prioridade na avaliação.
+
+\subsection{Escopo, Profundidade e Limites da Avaliação}
+Para garantir viabilidade técnica e rigor empírico, a equipe definiu a profundidade da análise de cada característica sobre os 4 módulos operacionais, bem como os cortes metodológicos explícitos (o que fica de fora e por quê):
+
+\subsubsection{Profundidade e Limites de Usabilidade (Natan e Yan)}
+\textit{[ESPAÇO RESERVADO PARA A DUPLA NATAN E YAN: Inserir a profundidade de inspeção de Usabilidade nos 4 módulos e os limites do escopo (ex.: métodos aplicados vs o que não será feito, como testes laboratoriais presenciais com centenas de usuários).]}
+
+\subsubsection{Profundidade e Limites de Confiabilidade (João e Davi)}
+\textit{[ESPAÇO RESERVADO PARA A DUPLA JOÃO E DAVI: Inserir a profundidade de inspeção de Confiabilidade nos 4 módulos e os limites do escopo (ex.: métricas de falha observáveis vs o que fica fora, como engenharia do caos/derrubada forçada de servidores).]}
+
+\subsubsection{Profundidade e Limites de Compatibilidade (Artur e Nicole)}
+A avaliação da característica de Compatibilidade abrange transversalmente os quatro módulos operacionais do Detran Digital DF, delimitando com rigor técnico a profundidade investigada e os cortes metodológicos necessários:
+\begin{enumerate}
+    \item \textbf{Profundidade da Avaliação nos 4 Módulos:}
+    \begin{itemize}
+        \item \textbf{Módulo de Infração:} Análise de coexistência cross-browser (Chrome, Firefox, Edge, Safari) e responsividade na renderização das tabelas de autos de infração e na visualização/emissão de guias em PDF e código PIX em ambientes desktop e mobile; e verificação da interoperabilidade através da inspeção das chamadas de rede (status HTTP de resposta dos serviços de consulta de débitos e geração de guias bancárias).
+        \item \textbf{Módulo de Atendimento:} Análise de coexistência durante a renderização interativa do componente de calendário e seleção de vagas em diferentes larguras de viewport (mobile de 360px a desktop de 1920px); e verificação da interoperabilidade quanto ao carregamento dinâmico assíncrono dos postos de atendimento disponíveis.
+        \item \textbf{Módulo de Protocolo:} Análise de coexistência dos formulários de preenchimento e no comportamento responsivo da área de upload de arquivos e documentos comprobatórios em telas menores; e verificação da interoperabilidade quanto ao disparo de requisições de envio de processo e persistência de anexos sem quebra de sessão.
+        \item \textbf{Módulo Chatbot:} Análise de coexistência da janela/widget flutuante do assistente virtual (verificando se o botão não sobrepõe campos essenciais e se o teclado mobile não quebra o layout); e verificação da interoperabilidade quanto à troca íntegra de mensagens via requisições de API de NLP.
+    \end{itemize}
+    \item \textbf{O que fica de fora e justificativas técnicas (racional dos cortes):}
+    \begin{itemize}
+        \item \textbf{Navegadores obsoletos e descontinuados (ex.: Internet Explorer):} O suporte oficial ao Internet Explorer foi descontinuado e os padrões modernos de interface (CSS Flexbox/Grid e ES6+) requerem navegadores com ciclo de atualização contínua (evergreen browsers). A avaliação restringe-se aos líderes contemporâneos de mercado (Chrome, Firefox, Edge e Safari).
+        \item \textbf{Testes de carga massiva ou estresse nas APIs de integração:} Como a auditoria ocorre externamente em ambiente real de produção do Detran-DF (sem ambiente de homologação dedicado), testes de carga com milhares de requisições simultâneas poderiam degradar a infraestrutura pública ou caracterizar ataque de negação de serviço (DoS). Portanto, a interoperabilidade é avaliada por amostragem funcional pontual de requisições.
+        \item \textbf{Inspeção interna de código-fonte, bancos de dados ou barramentos do GDF:} A equipe não possui credenciais de acesso aos repositórios internos do governo nem aos servidores do SEI/SENATRAN. A avaliação adota rigorosamente a abordagem de teste caixa-preta (Black-Box Testing), limitando-se ao comportamento observável a partir da camada do cliente (browser e tráfego HTTP exposto).
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Alinhamento aos Objetivos de Desenvolvimento Sustentável (ODS)}
+O projeto alinha-se ao ODS 9 (Indústria, Inovação e Infraestrutura - Meta 9.c) e ao ODS 16 (Paz, Justiça e Instituições Eficazes - Meta 16.6).
+
+\section{Especificação da Avaliação (Fase 2 da SQuaRE - GQM)}
+
+\subsection{GQM -- Característica: Compatibilidade (Artur e Nicole)}
+A avaliação contempla as subcaracterísticas de Coexistência e Interoperabilidade.
+
+\subsubsection{Objetivo de Medição no Template Estruturado}
+\begin{table}[h]
+\centering
+\caption{Objetivo de Medição para Compatibilidade (Template GQM)}
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Analisar} & Os módulos de Infração, Atendimento, Protocolo e Chatbot do Detran Digital DF \\ \hline
+\textbf{Para o propósito de} & Avaliar \\ \hline
+\textbf{Com respeito a} & Compatibilidade (Coexistência e Interoperabilidade - ISO/IEC 25010:2023) \\ \hline
+\textbf{Do ponto de vista do} & Cidadão usuário e dos Engenheiros de Software avaliadores \\ \hline
+\textbf{No contexto de} & Acessos multiplataforma em ambiente web e mobile no Distrito Federal \\ \hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Questões Operacionais e Hipóteses}
+\begin{itemize}
+    \item \textbf{Questão Q1 (Coexistência / Cross-Browser):} O sistema preserva a funcionalidade e integridade de layout nos navegadores modernos mais difundidos (Chrome, Firefox, Edge e Safari)?
+    \begin{itemize}
+        \item \textit{Hipótese H1:} Espera-se conformidade superior a 90\% no Chrome e Edge, mas degradação visual e falhas de componentes interativos no Firefox e Safari (especialmente no calendário de Atendimento e no Chatbot).
+    \end{itemize}
+    \item \textbf{Questão Q2 (Coexistência / Responsividade Multi-resolução):} As páginas e componentes adaptam-se de forma consistente às dimensões de tela mobile (360px a 414px), tablet (768px) e desktop (1366px e 1920px)?
+    \begin{itemize}
+        \item \textit{Hipótese H2:} O portal apresenta boa adaptação em desktop, porém exibe falhas de coexistência mobile (scroll horizontal, truncamento no Protocolo e sobreposição do botão do Chatbot sobre formulários).
+    \end{itemize}
+    \item \textbf{Questão Q3 (Interoperabilidade / Serviços Externos):} Os fluxos de troca de dados com serviços externos (Gov.br, boletos bancários, SEI-GDF) ocorrem de maneira íntegra e com status HTTP adequados?
+    \begin{itemize}
+        \item \textit{Hipótese H3:} As integrações apresentam taxa de sucesso superior a 95\% em cenários nominais, com eventuais falhas concentradas no redirecionamento do Gov.br e guias em lote.
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Definição Formal das Métricas}
+\textbf{M1: Taxa de Compatibilidade Entre Navegadores (TCBN) -- Associada a Q1}
+\begin{itemize}
+    \item \textit{Medidas Básicas:} $N_{ap}$ = número de cenários aprovados em todos os 4 navegadores testados; $N_{tot}$ = total de cenários planejados nos 4 módulos.
+    \item \textit{Medida Derivada:} $\text{TCBN} = \left( \frac{N_{ap}}{N_{tot}} \right) \times 100\%$.
+    \item \textit{Procedimento de Coleta:} Execução manual assistida dos casos de teste nos navegadores Chrome, Firefox, Edge e Safari.
+    \item \textit{Interpretação:} Quanto maior o percentual, maior a compatibilidade cross-browser.
+\end{itemize}
+
+\textbf{M2: Índice de Conformidade Responsiva (ICR) -- Associada a Q2}
+\begin{itemize}
+    \item \textit{Medidas Básicas:} $T_{conf}$ = pontos de inspeção de layout sem erros de viewport (mobile, tablet, desktop); $T_{tot}$ = total de pontos de inspeção nos 4 módulos.
+    \item \textit{Medida Derivada:} $\text{ICR} = \left( \frac{T_{conf}}{T_{tot}} \right) \times 100\%$.
+    \item \textit{Procedimento de Coleta:} Inspeção via DevTools Device Emulation e dispositivos reais.
+    \item \textit{Interpretação:} Valores abaixo de 80\% evidenciam fragilidade severa em mobile.
+\end{itemize}
+
+\textbf{M3: Taxa de Sucesso de Interoperabilidade de Serviços (TSIS) -- Associada a Q3}
+\begin{itemize}
+    \item \textit{Medidas Básicas:} $Req_{ok}$ = requisições de integração com retorno HTTP 2xx/3xx íntegras; $Req_{tot}$ = total de requisições de integração disparadas.
+    \item \textit{Medida Derivada:} $\text{TSIS} = \left( \frac{Req_{ok}}{Req_{tot}} \right) \times 100\%$.
+    \item \textit{Procedimento de Coleta:} Monitoramento na aba Network do DevTools durante execução dos fluxos.
+    \item \textit{Interpretação:} Valores abaixo de 90\% representam risco crítico de bloqueio de serviços.
+\end{itemize}
+
+\subsubsection{Níveis de Pontuação e Critérios de Julgamento}
+\begin{table}[h]
+\centering
+\caption{Matriz de Níveis de Julgamento para Compatibilidade}
+\begin{tabular}{|l|c|c|c|p{4.5cm}|}
+\hline
+\textbf{Nível} & \textbf{TCBN (M1)} & \textbf{ICR (M2)} & \textbf{TSIS (M3)} & \textbf{Interpretação} \\ \hline
+Excelente & $\ge 95\%$ & $\ge 95\%$ & $\ge 98\%$ & Compatibilidade exemplar em todos os ambientes e integrações. \\ \hline
+Bom & 85\% a 94\% & 80\% a 94\% & 90\% a 97\% & Compatibilidade adequada, pequenas falhas sem bloqueio de tarefas. \\ \hline
+Satisfatório & 70\% a 84\% & 70\% a 79\% & 80\% a 89\% & Compatibilidade limítrofe, necessita contorno pelo usuário. \\ \hline
+Insuficiente & $< 70\%$ & $< 70\%$ & $< 80\%$ & Reprovado. Quebras graves em mobile ou falhas de integração. \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{GQM -- Característica: Usabilidade (Natan e Yan)}
+\textit{[ESPAÇO RESERVADO PARA A DUPLA NATAN E YAN: Inserir objetivo estruturado no template, questões, hipóteses, métricas com procedimentos de cálculo, critérios de julgamento e diagrama GQM para Usabilidade nos 4 módulos.]}
+
+\subsection{GQM -- Característica: Confiabilidade (João e Davi)}
+\textit{[ESPAÇO RESERVADO PARA A DUPLA JOÃO E DAVI: Inserir objetivo estruturado no template, questões, hipóteses, métricas com procedimentos de cálculo, critérios de julgamento e diagrama GQM para Confiabilidade nos 4 módulos.]}
+
+\section{Considerações Iniciais e Planejamento da Próxima Fase}
+A formalização dos requisitos (Fase 1) e a especificação da medição via GQM (Fase 2) fundamentam a futura execução das Fases 3 e 4. A abrangência conjunta sobre os quatro módulos operacionais garante consistência e correlação entre os resultados finais.
+
+\section*{Referências}
+\begin{description}
+    \item Basili, V. R., Caldiera, G., \& Rombach, H. D. (1994). The Goal Question Metric Approach. Encyclopedia of Software Engineering, 2, 528-532.
+    \item ISO/IEC 25010 (2023). Systems and software engineering -- Systems and software Quality Requirements and Evaluation (SQuaRE) -- Product quality model.
+    \item ISO/IEC 25040 (2011). Systems and software engineering -- Systems and software Quality Requirements and Evaluation (SQuaRE) -- Evaluation process.
+    \item McGarry, J. et al. (2002). Practical Software Measurement: Objective Information for Decision Makers. Addison-Wesley.
+    \item Portal Detran Digital DF (2026). Detran-DF. Disponível em: \url{https://portal.detran.df.gov.br/#/home}.
+\end{description}
+
+\appendix
+\section*{Apêndice A -- Tabela de Contribuição dos Membros da Equipe}
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|p{8.5cm}|c|}
+\hline
+\textbf{Membro} & \textbf{Principais Responsabilidades} & \textbf{\% Esforço} \\ \hline
+Artur & Fase 1 (Arquitetura e módulos); Fase 2 (GQM Compatibilidade, métricas, fórmulas). & 16,66\% \\ \hline
+Nicole & Fase 1 (Stakeholders e escopo); Fase 2 (GQM Compatibilidade, hipóteses). & 16,66\% \\ \hline
+Natan & Fase 1 (Contextualização e ODS); Fase 2 (GQM Usabilidade nos 4 módulos). & 16,67\% \\ \hline
+Yan & Fase 1 (Referencial teórico); Fase 2 (GQM Usabilidade e critérios). & 16,67\% \\ \hline
+João & Fase 1 (Metodologia e PSM); Fase 2 (GQM Confiabilidade nos 4 módulos). & 16,67\% \\ \hline
+Davi & Fase 1 (Descrição do sistema); Fase 2 (GQM Confiabilidade e hipóteses). & 16,67\% \\ \hline
+\end{tabular}
+\end{table}
+
+\section*{Apêndice B -- Declaração de Uso de Ferramentas de Inteligência Artificial}
+\begin{itemize}
+    \item \textbf{Ferramenta:} Antigravity AI Assistant (Google DeepMind).
+    \item \textbf{Tarefas Realizadas:} Estruturação inicial do GQM no template padrão da disciplina, conferência de fórmulas das métricas e organização do esqueleto no modelo SBC.
+    \item \textbf{Revisão Humana:} O conteúdo foi conferido criticamente pela equipe, validado com base nas normas ISO/IEC 25010:2023 e 25040, e adaptado ao portal Detran Digital DF. Não foram utilizados ícones ou emojis gerados por IA.
+\end{itemize}
+
+\end{document}
