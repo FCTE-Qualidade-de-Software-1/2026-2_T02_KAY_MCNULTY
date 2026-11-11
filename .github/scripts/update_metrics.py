@@ -330,7 +330,7 @@ def extract_hours_from_item(item: dict) -> float:
     if num in DEFAULT_HOURS_CATALOG:
         return DEFAULT_HOURS_CATALOG[num]
 
-    return 2.0
+    return 0.0
 
 
 def get_issue_and_effort_metrics():
@@ -654,6 +654,47 @@ def generate_issues_table(issue_counts: dict) -> str:
     return "\n".join(lines)
 
 
+def generate_process_performance_table(issue_counts: dict) -> str:
+    """Gera a Tabela 2 do PSM com issues, horas e issues fechadas."""
+    lines = [
+        "| Integrante | Usuário GitHub | Atribuições de Issues | Horas (h) | Issues Fechadas | Taxa de Conclusão |",
+        "| :--- | :---: | :---: | :---: | :---: | :---: |",
+    ]
+
+    total_issues = 0
+    total_hours = 0.0
+    total_closed = 0
+
+    for member in TEAM_MEMBERS:
+        handle = member["handle"]
+        stats = issue_counts.get(handle, {})
+        issues = stats.get("total", 0)
+        hours = stats.get("hours", 0.0)
+        closed = stats.get("closed", 0)
+        rate = (closed / issues * 100.0) if issues else 0.0
+
+        total_issues += issues
+        total_hours += hours
+        total_closed += closed
+
+        lines.append(
+            f"| **{member['name']}** | [@{handle}](https://github.com/{handle}) | "
+            f"{issues} | {fmt_br_number(hours, 1)}h | {closed} | "
+            f"{fmt_br_number(rate, 1)}% |"
+        )
+
+    total_rate = (total_closed / total_issues * 100.0) if total_issues else 0.0
+    lines.append(
+        f"| **TOTAL CONSOLIDADO** | — | **{total_issues}** | **{fmt_br_number(total_hours, 1)}h** | "
+        f"**{total_closed}** | **{fmt_br_number(total_rate, 1)}%** |"
+    )
+    lines.append("")
+    lines.append(
+        "*As horas são extraídas do corpo das issues ou do catálogo homologado. O total representa relações issue-responsável, não a quantidade de issues únicas; quando uma issue possui mais de um responsável, ela aparece uma vez para cada responsável e o esforço é dividido igualmente.*"
+    )
+    return "\n".join(lines)
+
+
 def main():
     SNIPPETS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -698,6 +739,7 @@ def main():
     distribuicao_custos_areas = generate_distribuicao_custos_areas(issue_counts)
     contributions_table = generate_contributions_table(git_totals, issue_counts)
     issues_table = generate_issues_table(issue_counts)
+    process_performance_table = generate_process_performance_table(issue_counts)
 
     tot_hours = sum(issue_counts.get(h, {}).get("hours", 0.0) for h in TRACKED_AUTHORS)
     tot_closed = sum(issue_counts.get(h, {}).get("closed", 0) for h in TRACKED_AUTHORS)
@@ -727,6 +769,7 @@ def main():
     (SNIPPETS_DIR / "distribuicao-custos-areas.md").write_text(distribuicao_custos_areas + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "contributions-summary.md").write_text(contributions_table + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "issues-summary.md").write_text(issues_table + "\n", encoding="utf-8")
+    (SNIPPETS_DIR / "process-performance-table.md").write_text(process_performance_table + "\n", encoding="utf-8")
 
     resumo_horas = {k: f"{v['hours']:.1f}h" for k, v in issue_counts.items()}
     print(f"Snippets gerados com sucesso em: {SNIPPETS_DIR}")
