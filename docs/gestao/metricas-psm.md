@@ -105,55 +105,56 @@ Abaixo são apresentados os gráficos e a síntese analítica gerados de forma c
 
 ## 3. Calendário e Progresso: Estrutura de Marcos (Milestones M0 a M5)
 
-O projeto de avaliação está estruturado em 6 marcos principais, integrando as etapas da disciplina às fases normativas da ISO/IEC 25040:
+O projeto de avaliação está estruturado em 6 marcos principais integrando as etapas e datas do calendário acadêmico às fases normativas da ISO/IEC 25040:
 
 ```mermaid
 flowchart TD
-    subgraph PC1["Ponto de Controle 1 — Entrega 1 (v1.0.0-pc1)"]
-        M0["M0: Setup Inicial e Governança<br/>Configuração do Repositório Git · Estrutura MkDocs · Regras de Contribuição"]
-        M1["M1: Requisitos da Avaliação (Fase 1 ISO/IEC 25040)<br/>Contexto Detran DF · 4 Módulos · Stakeholders · ODS 9/16 · Modelo ISO 25010"]
-        M2["M2: Especificação da Avaliação (Fase 2 GQM)<br/>Árvores GQM · Compatibilidade, Usabilidade e Confiabilidade · Limiares"]
-        M3["M3: Projeto da Avaliação (Fase 3 ISO/IEC 25040)<br/>Planejamento dos Métodos de Teste · Roteiros Heurísticos · Ferramentas"]
-        M4["M4: Consolidação PC1 e Release E1<br/>Artigo v1 · Slides da Apresentação · Auditoria de Rubricas · Tag v1.0.0-pc1"]
-        M0 --> M1 --> M2 --> M3 --> M4
+    subgraph PC1["Ponto de Controle 1 — Entrega 1 (26/10/2026 · v1.0.0-pc1)"]
+        M0["M0: Setup Inicial e Governança (12/10)<br/>Configuração do Repositório Git · Estrutura MkDocs · Regras de Contribuição"]
+        M1["M1: Requisitos da Avaliação (Fase 1 ISO/IEC 25040 · 18/10)<br/>Contexto Detran DF · 4 Módulos · Stakeholders · ODS 9/16 · Modelo ISO 25010"]
+        M2["M2: Especificação da Avaliação (Fase 2 GQM · 21/10)<br/>Árvores GQM · Compatibilidade, Usabilidade e Confiabilidade · Limiares"]
+        M3["M3: Consolidação PC1 e Release E1 (26/10)<br/>Artigo v1 · Slides da Apresentação · Auditoria de Rubricas · Tag v1.0.0-pc1"]
+        M0 --> M1 --> M2 --> M3
     end
-    subgraph PC2["Ponto de Controle 2 — Entrega 2 (v2.0.0-pc2)"]
-        M5["M5: Execução e Conclusão (Fases 4 e 5 ISO/IEC 25040)<br/>Coleta de Evidências em Produção · Análise dos Resultados · Artigo v2 Final"]
+    subgraph PC2["Ponto de Controle 2 e Entrega Final — Entrega 2 (v2.0.0-pc2)"]
+        M4["M4: Projeto da Avaliação (Fase 3 ISO/IEC 25040 · 27/10 a 16/11)<br/>Planejamento dos Métodos de Teste · Roteiros Heurísticos · Ferramentas e Ambientes"]
+        M5["M5: Execução, Julgamento e Melhorias (Fase 4 ISO/IEC 25040 · até 22/11)<br/>Coleta de Evidências em Produção · Análise dos Resultados · Ação de Melhoria · Artigo v2 Final"]
+        M4 --> M5
     end
-    M4 --> M5
+    M3 --> M4
 ```
 
 ### 3.1 Detalhamento dos Marcos Evolutivos
 
-* **Milestone M0 — Setup Inicial e Governança (Concluído):**
+* **Milestone M0 — Setup Inicial e Governança (Concluído em 12/10/2026):**
     * **Objetivo:** Estabelecer a infraestrutura de controle de versão, governança de branches e a base da GitPage.
     * **Entregáveis:** Repositório configurado, `mkdocs.yml`, templates de documentação e automação via GitHub Actions.
     * **Critério de Aceitação:** GitPage operante e acessível com navegação funcional.
 
-* **Milestone M1 — Requisitos da Avaliação / Fase 1 ISO/IEC 25040 (Concluído):**
+* **Milestone M1 — Requisitos da Avaliação / Fase 1 ISO/IEC 25040 (Concluído em 18/10/2026):**
     * **Objetivo:** Delimitar o propósito da avaliação, mapear as partes interessadas, recortar os 4 módulos funcionais do Detran Digital DF (Infração, Atendimento, Protocolo e Chatbot) e fundamentar o modelo de qualidade ISO/IEC 25010 e o alinhamento com os ODS 9 (Meta 9.c) e 16 (Meta 16.6) da ONU.
     * **Entregáveis:** Documentação da Fase 1 (`fase1/`), matriz de priorização de características e cortes de escopo.
     * **Critério de Aceitação:** 100% dos requisitos de contextualização e escopo formalizados.
 
-* **Milestone M2 — Especificação da Avaliação / Fase 2 GQM (Concluído):**
+* **Milestone M2 — Especificação da Avaliação / Fase 2 GQM (Concluído em 21/10/2026):**
     * **Objetivo:** Construir as árvores formais GQM para Compatibilidade, Usabilidade e Confiabilidade, definindo perguntas, hipóteses, métricas quantitativas e níveis de julgamento.
     * **Entregáveis:** Documentação da Fase 2 (`fase2/`) com diagramas conceituais, fórmulas operacionais e critérios de aceitação.
     * **Critério de Aceitação:** Rastreabilidade estrita $G \rightarrow Q \rightarrow M$ em todas as três características.
 
-* **Milestone M3 — Projeto da Avaliação / Fase 3 ISO/IEC 25040 (Planejado):**
-    * **Objetivo:** Estruturar o plano de coleta em produção para ambiente governamental (caixa-preta), definindo os roteiros de inspeção ergonômica, ferramentas de auditoria (Lighthouse, Postman, validadores W3C) e protocolos de registro de evidências.
-    * **Entregáveis:** Roteiros operacionais de teste e plano de coleta de evidências.
-    * **Critério de Aceitação:** Ferramental e procedimentos validados tecnicamente.
-
-* **Milestone M4 — Consolidação, Slides e Release E1 (Em Andamento):**
-    * **Objetivo:** Integrar as Fases 1 e 2 no Artigo v1 da disciplina, elaborar a apresentação de slides do Ponto de Controle 1, auditar rubricas editoriais (AG-C1 a AG-C5) e publicar a Release oficial E1.
+* **Milestone M3 — Consolidação PC1 e Release E1 (Concluído em 26/10/2026):**
+    * **Objetivo:** Integrar as Fases 1 e 2 no Artigo v1 da disciplina, elaborar a apresentação de slides do Ponto de Controle 1, auditar rubricas editoriais (AG-C1 a AG-C5) e publicar a Release oficial E1 (`v1.0.0-pc1`).
     * **Entregáveis:** Artigo v1 em PDF, slides da apresentação, GitPage atualizada e tag Git `v1.0.0-pc1`.
-    * **Critério de Aceitação:** Homologação completa dos artefatos para apresentação à banca docente.
+    * **Critério de Aceitação:** Homologação completa dos artefatos para apresentação à banca docente e submissão no Moodle.
 
-* **Milestone M5 — Execução, Análise e Conclusão / Fases 4 e 5 ISO/IEC 25040 (Futuro — PC2):**
-    * **Objetivo:** Coletar dados empíricos no Portal Detran Digital DF, processar as medições, interpretar desvios frente aos limiares estipulados e emitir o parecer técnico conclusivo na 2ª versão do artigo.
-    * **Entregáveis:** Relatório de medições com evidências visuais (capturas de tela, logs de rede) e Artigo v2 final com tag `v2.0.0-pc2`.
-    * **Critério de Aceitação:** Parecer conclusivo homologado pela equipe avaliadora.
+* **Milestone M4 — Projeto da Avaliação / Fase 3 ISO/IEC 25040 (Em Andamento — 27/10 a 16/11/2026):**
+    * **Objetivo:** Estruturar o plano de coleta em produção para ambiente governamental (caixa-preta), definindo os roteiros de inspeção ergonômica, ferramentas de auditoria (Lighthouse, Postman, validadores W3C) e protocolos de registro de evidências.
+    * **Entregáveis:** Roteiros operacionais de teste, especificação de ambientes e plano de coleta de evidências.
+    * **Critério de Aceitação:** Ferramental e procedimentos validados tecnicamente pela equipe.
+
+* **Milestone M5 — Execução, Julgamento e Melhorias / Fase 4 ISO/IEC 25040 (Futuro — até 22/11/2026):**
+    * **Objetivo:** Coletar dados empíricos no Portal Detran Digital DF, processar as medições, interpretar desvios frente aos limiares, implementar ação de melhoria técnica obrigatória e emitir o parecer conclusivo na 2ª versão do artigo.
+    * **Entregáveis:** Relatório de medições com evidências visuais (capturas de tela, logs de rede), ação de melhoria técnica documentada e Artigo v2 final com tag `v2.0.0-pc2`.
+    * **Critério de Aceitação:** Parecer conclusivo e ação de melhoria homologados pela equipe avaliadora.
 
 ### 3.2 Velocidade de Commits e Fluxo de Integração Contínua
 

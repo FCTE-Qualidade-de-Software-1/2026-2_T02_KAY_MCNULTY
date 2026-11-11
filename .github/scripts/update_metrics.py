@@ -357,7 +357,7 @@ def get_issue_and_effort_metrics():
                     counts[handle]["total"] += 1
                     counts[handle]["closed"] += 1
                     counts[handle]["hours"] += h * w
-        return counts
+        return counts, len(DEFAULT_HOURS_CATALOG)
 
     for item in items:
         closed = item.get("state") == "closed"
@@ -382,7 +382,7 @@ def get_issue_and_effort_metrics():
             else:
                 c["open"] += 1
 
-    return counts
+    return counts, len(items)
 
 
 def calculate_upper_bound(values, min_bound=5):
@@ -480,6 +480,10 @@ def generate_tabela_contribuicao_matriz(issue_counts: dict) -> str:
     lines.append(
         f"| **TOTAL CONSOLIDADO** | — | — | **Esforço Acumulado no Ponto de Controle 1 (Fases 1 e 2)** | "
         f"**{fmt_br_number(tot_hours, 1)}h** | **100,00%** | **Homologado** |"
+    )
+    lines.append("")
+    lines.append(
+        "*Nota: As horas e percentuais do Ponto de Controle 1 representam esforço estimado e homologado a partir do catálogo de tarefas do projeto; demandas compartilhadas têm esforço rateado igualmente.*"
     )
 
     return "\n".join(lines)
@@ -611,7 +615,7 @@ def generate_contributions_table(git_totals: dict, issue_counts: dict) -> str:
 def generate_issues_table(issue_counts: dict) -> str:
     """Gera tabela Markdown com taxa de conclusão de demandas por membro."""
     lines = [
-        "| Integrante | Usuário GitHub | Dupla | Issues Fechadas | Issues Abertas | Atribuições de Issues | Taxa de Conclusão |",
+        "| Integrante | Usuário GitHub | Dupla | Tarefas Atribuídas | Concluídas | Em Aberto | Taxa de Conclusão |",
         "| :--- | :---: | :---: | :---: | :---: | :---: | :---: |",
     ]
 
@@ -635,12 +639,16 @@ def generate_issues_table(issue_counts: dict) -> str:
         tot_all += total
 
         lines.append(
-            f"| **{name}** | [@{handle}](https://github.com/{handle}) | {dupla} | {closed} | {opened} | {total} | {rate} |"
+            f"| **{name}** | [@{handle}](https://github.com/{handle}) | {dupla} | {total} | {closed} | {opened} | {rate} |"
         )
 
     overall_rate = f"{(tot_closed / tot_all * 100):.1f}%".replace(".", ",") if tot_all > 0 else "0,0%"
     lines.append(
-        f"| **TOTAL CONSOLIDADO** | — | — | **{tot_closed}** | **{tot_open}** | **{tot_all}** | **{overall_rate}** |"
+        f"| **TOTAL DE ATRIBUIÇÕES** | — | — | **{tot_all}** | **{tot_closed}** | **{tot_open}** | **{overall_rate}** |"
+    )
+    lines.append("")
+    lines.append(
+        "*Nota explicativa: Quando uma demanda possui dois responsáveis (trabalho em dupla), ela é contabilizada na carga de atribuições de cada um dos integrantes.*"
     )
 
     return "\n".join(lines)
@@ -691,7 +699,7 @@ def main():
     SNIPPETS_DIR.mkdir(parents=True, exist_ok=True)
 
     weeks, commits, additions, deletions, git_totals = get_git_log_data()
-    issue_counts = get_issue_and_effort_metrics()
+    issue_counts, total_unique_items = get_issue_and_effort_metrics()
 
     # 1. Gráficos Mermaid
     velocity_chart = render_timeline_chart(
@@ -740,11 +748,12 @@ def main():
     taxa_conc = (tot_closed / tot_all * 100.0) if tot_all > 0 else 100.0
 
     resumo_processo = (
-        f"* **Total de Atribuições de Issues no Painel:** {tot_all} relações issue-responsável mapeadas\n"
-        f"* **Tarefas Concluídas e Homologadas:** {tot_closed} tarefas\n"
+        f"* **Total de Demandas Únicas no Repositório (Issues/PRs):** {total_unique_items} itens cadastrados\n"
+        f"* **Total de Tarefas Atribuídas aos Integrantes:** {tot_all} alocações individuais\n"
+        f"* **Tarefas Concluídas e Homologadas:** {tot_closed} atribuições finalizadas\n"
         f"* **Taxa de Conclusão de Demandas:** **{fmt_br_number(taxa_conc, 1)}% de eficácia de processo**\n"
-        f"* **Média de Esforço por Integrante:** {fmt_br_number(media_horas, 1)} horas dedicadas\n"
-        f"* **Esforço Total Consolidado da Equipe:** {fmt_br_number(tot_hours, 1)} horas profissionais"
+        f"* **Média de Esforço por Integrante:** {fmt_br_number(media_horas, 1)} horas dedicadas (estimadas no PC1)\n"
+        f"* **Esforço Total Consolidado da Equipe:** {fmt_br_number(tot_hours, 1)} horas profissionais (estimadas no PC1)"
     )
 
     # 3. Escrita dos arquivos na pasta snippets/
