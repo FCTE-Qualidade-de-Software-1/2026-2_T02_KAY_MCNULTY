@@ -1,6 +1,6 @@
 ---
 name: Issue padrão
-description: Criar uma demanda rastreável com escopo, esforço e critérios de aceitação
+about: Criar uma demanda rastreável com escopo, esforço e critérios de aceitação
 title: "[Fase/Módulo] Título objetivo da demanda"
 labels: ""
 assignees: ""
