@@ -29,4 +29,4 @@ As métricas da tabela a seguir são mineradas e atualizadas automaticamente a c
 
 ## 3. Declaração de Compromisso e Transparência
 
-Os membros da equipe Kay McNulty declaram que a divisão de trabalho apresentada reflete fielmente o esforço individual e coletivo desempenhado durante todo o ciclo do **Ponto de Controle 1**. As atividades foram desenvolvidas em regime de colaboração contínua por duplas de trabalho especializadas, com revisão cruzada por pares (*peer review*) de todos os artefatos técnicos, garantindo que o conjunto das 17 issues fechadas no repositório atenda aos mais altos padrões de qualidade acadêmica e profissional.
+Os membros da equipe Kay McNulty declaram que a divisão de trabalho apresentada reflete a estimativa de esforço individual e coletivo para o **Ponto de Controle 1**. As atividades foram desenvolvidas em regime de colaboração contínua por duplas de trabalho especializadas, com revisão cruzada por pares (*peer review*) de todos os artefatos técnicos. O painel conta 14 issues únicas fechadas; issues compartilhadas aparecem nas linhas de cada responsável, sem duplicação no total consolidado.

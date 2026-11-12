@@ -68,7 +68,7 @@ A avaliação adota o rigor de normas e modelos consolidados da Engenharia de So
 | :--- | :--- | :--- |
 | **Requisitos da Avaliação (Fase 1)** | [`fase1/`](fase1/proposito-stakeholders.md) | Propósito, partes interessadas, mapeamento dos 4 módulos (Infração, Atendimento, Protocolo e Chatbot), modelo ISO 25010, limites de escopo e ODS 9 e 16. |
 | **Especificação GQM (Fase 2)** | [`fase2/`](fase2/index.md) | Árvores GQM completas, fórmulas, procedimentos de coleta e limiares de decisão para Compatibilidade, Usabilidade e Confiabilidade. |
-| **Gestão do Projeto (PSM/CID)** | [`gestao/`](gestao/metricas-psm.md) | Indicadores de processo, estrutura de Marcos M0 a M5, alocação de custos, atas e catálogo atômico das 17 issues fechadas. |
+| **Gestão do Projeto (PSM/CID)** | [`gestao/`](gestao/metricas-psm.md) | Indicadores de processo, estrutura de Marcos M0 a M5, alocação de custos, atas e catálogo de horas estimadas das 14 issues fechadas. |
 | **Ponto de Controle 1 (Entrega 1)** | [`entregas/entrega1.md`](entregas/entrega1.md) | Linha do tempo "Onde Estamos", matriz de entregáveis, consolidação de esforço e roteiro detalhado dos 10 slides da apresentação. |
 
 ---

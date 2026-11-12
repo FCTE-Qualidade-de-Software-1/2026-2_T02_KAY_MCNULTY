@@ -23,7 +23,7 @@ O modelo *Practical Software Measurement* (PSM) é uma abordagem orientada a pro
 
 ### 2.1 Eficácia do Fluxo de Trabalho e Conclusão de Demandas
 
-Para o Ponto de Controle 1 (Entrega 1), a equipe planejou e executou integralmente o levantamento dos requisitos da avaliação (Fase 1) e a especificação formal das medições (Fase 2). Os dados consolidados a seguir são extraídos diretamente do repositório:
+Para o Ponto de Controle 1 (Entrega 1), a equipe planejou integralmente o levantamento dos requisitos da avaliação (Fase 1) e a especificação formal das medições (Fase 2). Os dados de issues são extraídos do repositório; as horas e os custos são estimativas homologadas pela equipe:
 
 --8<-- "resumo-processo.md"
 
@@ -31,7 +31,7 @@ Para o Ponto de Controle 1 (Entrega 1), a equipe planejou e executou integralmen
 
 --8<-- "process-performance-table.md"
 
-*Fonte: Gerada pelo pipeline a partir do histórico de issues do repositório e do catálogo homologado de esforço.*
+*Fonte: Gerada pelo pipeline a partir do histórico de issues do repositório e do catálogo de horas estimadas homologado pela equipe. Issues compartilhadas são contadas uma única vez no total consolidado.*
 
 ### 2.2 Painel Automatizado de Tarefas e Resolução de Demanda
 
@@ -127,7 +127,7 @@ O histórico evolutivo de commits e alterações no repositório ao longo das se
 
 ## 4. Recursos e Custos: Alocação Individual e Orçamento (Critério AG-C5)
 
-Em observância ao **Critério AG-C5 (Transparência da Contribuição Individual)** e às diretrizes do modelo PSM/CID, a Tabela 3 consolida o esforço realizado por cada membro da equipe avaliadora no Ponto de Controle 1.
+Em observância ao **Critério AG-C5 (Transparência da Contribuição Individual)** e às diretrizes do modelo PSM/CID, a Tabela 3 consolida o esforço estimado para cada membro da equipe avaliadora no Ponto de Controle 1.
 
 O valor-hora de referência é **R$ 87,55/h**, calculado a partir do custo médio anual de R$ 52.533,00 por estudante de universidade federal, conforme [Poder360](https://www.poder360.com.br/poder-economia/alunos-de-universidades-federais-tem-custo-medio-anual-de-r-52-533/), dividido por 600 horas anuais (média de 300 horas por semestre). O resultado de R$ 87,555/h foi truncado para duas casas decimais: $R\$\ 52.533,00 \div 600\text{h} = R\$\ 87,555/\text{h} \rightarrow R\$\ 87,55/\text{h}$.
 

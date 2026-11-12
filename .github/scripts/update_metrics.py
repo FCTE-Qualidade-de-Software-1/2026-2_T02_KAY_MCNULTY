@@ -27,6 +27,9 @@ REPO_OWNER = "FCTE-Qualidade-de-Software-1"
 REPO_NAME = "2026-2_T02_KAY_MCNULTY"
 VALOR_HORA_BRL = 87.55
 FONTE_VALOR_HORA = "https://www.poder360.com.br/poder-economia/alunos-de-universidades-federais-tem-custo-medio-anual-de-r-52-533/"
+IGNORED_LINE_STAT_PATHS = {
+    "docs/assets/Qualidade_do_Detran_Digital_Slides.pdf",
+}
 
 # Definição canônica dos integrantes, duplas e responsabilidades
 TEAM_MEMBERS = [
@@ -161,6 +164,7 @@ def get_git_log_data():
     cmd = [
         "git",
         "log",
+        "--no-merges",
         "--numstat",
         "--date=iso-strict",
         "--format=@@@COMMIT|%ad|%an|%ae%n%B%n@@@END_COMMIT",
@@ -231,6 +235,8 @@ def get_git_log_data():
         tot_deleted = 0
         for numline in numstat_part.strip().splitlines():
             parts = numline.split("\t")
+            if len(parts) >= 3 and parts[2] in IGNORED_LINE_STAT_PATHS:
+                continue
             if len(parts) >= 2:
                 tot_added += int(parts[0]) if parts[0].isdigit() else 0
                 tot_deleted += int(parts[1]) if parts[1].isdigit() else 0
@@ -317,7 +323,7 @@ def fetch_all_github_items():
 
 
 def extract_hours_from_item(item: dict) -> float:
-    """Extrai horas do corpo da issue ou do catálogo homologado."""
+    """Obtém a estimativa de horas do corpo da issue ou do catálogo da equipe."""
     num = item.get("number")
     body = item.get("body") or ""
 
@@ -335,8 +341,11 @@ def extract_hours_from_item(item: dict) -> float:
 
 
 def get_issue_and_effort_metrics():
-    """Calcula estatísticas de issues/PRs abertas, fechadas e esforço real em horas por membro."""
-    items = fetch_all_github_items()
+    """Calcula estatísticas de issues e esforço estimado por membro."""
+    items = [
+        item for item in fetch_all_github_items()
+        if "pull_request" not in item
+    ]
 
     counts = {
         author: {
@@ -347,6 +356,7 @@ def get_issue_and_effort_metrics():
         }
         for author in TRACKED_AUTHORS
     }
+    counts["_meta"] = {"total": 0, "closed": 0}
 
     # Se não conseguirmos itens da API (offline), inicializa com o catálogo homologado
     if not items:
@@ -358,11 +368,19 @@ def get_issue_and_effort_metrics():
                     counts[handle]["total"] += 1
                     counts[handle]["closed"] += 1
                     counts[handle]["hours"] += h * w
+            counts["_meta"]["total"] += 1
+            counts["_meta"]["closed"] += 1
         return counts
 
+    unique_numbers = set()
+    closed_numbers = set()
     for item in items:
         closed = item.get("state") == "closed"
         num = item.get("number")
+        if num is not None:
+            unique_numbers.add(num)
+            if closed:
+                closed_numbers.add(num)
 
         assignees_raw = [a.get("login") for a in item.get("assignees", []) if a.get("login")]
         if not assignees_raw and num in FALLBACK_ASSIGNEES:
@@ -383,6 +401,10 @@ def get_issue_and_effort_metrics():
             else:
                 c["open"] += 1
 
+    counts["_meta"] = {
+        "total": len(unique_numbers),
+        "closed": len(closed_numbers),
+    }
     return counts
 
 
@@ -451,7 +473,7 @@ def render_bar_chart(title: str, y_label: str, counts_by_author: dict, key: str 
 def generate_tabela_contribuicao_matriz(issue_counts: dict) -> str:
     """
     Gera a Tabela 1 canônica de Matriz de Responsabilidades e Esforço para `tabela-contribuicao.md`,
-    atualizada diretamente a partir das horas extraídas pela automação.
+    atualizada diretamente a partir das horas estimadas pela equipe e processadas pela automação.
     """
     tot_hours = sum(issue_counts.get(h, {}).get("hours", 0.0) for h in TRACKED_AUTHORS)
     if tot_hours <= 0:
@@ -489,7 +511,7 @@ def generate_tabela_contribuicao_matriz(issue_counts: dict) -> str:
 def generate_alocacao_recursos_custos(issue_counts: dict) -> str:
     """
     Gera a Tabela 3 de Alocação de Recursos, Esforço e Custos Individuais para `metricas-psm.md`,
-    calculando horas realizadas, custo total e % de esforço a partir da automação.
+    calculando horas estimadas, custo total e % de esforço a partir da automação.
     """
     tot_hours = sum(issue_counts.get(h, {}).get("hours", 0.0) for h in TRACKED_AUTHORS)
     if tot_hours <= 0:
@@ -564,7 +586,7 @@ def generate_contributions_table(git_totals: dict, issue_counts: dict) -> str:
     tot_commits = 0
     tot_adds = 0
     tot_dels = 0
-    tot_closed = 0
+    tot_closed = issue_counts.get("_meta", {}).get("closed", 0)
     tot_hours = sum(issue_counts.get(h, {}).get("hours", 0.0) for h in TRACKED_AUTHORS)
     if tot_hours <= 0:
         tot_hours = 72.0
@@ -589,8 +611,6 @@ def generate_contributions_table(git_totals: dict, issue_counts: dict) -> str:
         tot_commits += c
         tot_adds += a
         tot_dels += d
-        tot_closed += closed_iss
-
         sign_net = f"+{net}" if net > 0 else str(net)
         lines.append(
             f"| **{name}**<br>Matrícula: `{matricula}` | [@{handle}](https://github.com/{handle}) | {dupla} | "
@@ -616,9 +636,8 @@ def generate_issues_table(issue_counts: dict) -> str:
         "| :--- | :---: | :---: | :---: | :---: | :---: | :---: |",
     ]
 
-    tot_closed = 0
-    tot_open = 0
-    tot_all = 0
+    tot_closed = issue_counts.get("_meta", {}).get("closed", 0)
+    tot_all = issue_counts.get("_meta", {}).get("total", 0)
 
     for m in TEAM_MEMBERS:
         handle = m["handle"]
@@ -630,10 +649,6 @@ def generate_issues_table(issue_counts: dict) -> str:
         opened = st.get("open", 0)
         total = st.get("total", 0)
         rate = f"{(closed / total * 100):.1f}%".replace(".", ",") if total > 0 else "0,0%"
-
-        tot_closed += closed
-        tot_open += opened
-        tot_all += total
 
         lines.append(
             f"| **{name}** | [@{handle}](https://github.com/{handle}) | {dupla} | {closed} | {opened} | {total} | {rate} |"
@@ -654,9 +669,9 @@ def generate_process_performance_table(issue_counts: dict) -> str:
         "| :--- | :---: | :---: | :---: | :---: | :---: |",
     ]
 
-    total_issues = 0
+    total_issues = issue_counts.get("_meta", {}).get("total", 0)
     total_hours = 0.0
-    total_closed = 0
+    total_closed = issue_counts.get("_meta", {}).get("closed", 0)
 
     for member in TEAM_MEMBERS:
         handle = member["handle"]
@@ -666,9 +681,7 @@ def generate_process_performance_table(issue_counts: dict) -> str:
         closed = stats.get("closed", 0)
         rate = (closed / issues * 100.0) if issues else 0.0
 
-        total_issues += issues
         total_hours += hours
-        total_closed += closed
 
         lines.append(
             f"| **{member['name']}** | [@{handle}](https://github.com/{handle}) | "
@@ -683,7 +696,7 @@ def generate_process_performance_table(issue_counts: dict) -> str:
     )
     lines.append("")
     lines.append(
-        "*As horas são extraídas do corpo das issues ou do catálogo homologado; quando uma issue possui mais de um responsável, o esforço é dividido igualmente.*"
+        "*As horas são estimativas da equipe, obtidas do corpo das issues ou do catálogo homologado; quando uma issue possui mais de um responsável, o esforço é dividido igualmente.*"
     )
     return "\n".join(lines)
 
@@ -735,13 +748,13 @@ def main():
     process_performance_table = generate_process_performance_table(issue_counts)
 
     tot_hours = sum(issue_counts.get(h, {}).get("hours", 0.0) for h in TRACKED_AUTHORS)
-    tot_closed = sum(issue_counts.get(h, {}).get("closed", 0) for h in TRACKED_AUTHORS)
-    tot_all = sum(issue_counts.get(h, {}).get("total", 0) for h in TRACKED_AUTHORS)
+    tot_closed = issue_counts.get("_meta", {}).get("closed", 0)
+    tot_all = issue_counts.get("_meta", {}).get("total", 0)
     media_horas = tot_hours / len(TRACKED_AUTHORS) if TRACKED_AUTHORS else 0.0
     taxa_conc = (tot_closed / tot_all * 100.0) if tot_all > 0 else 100.0
 
     resumo_processo = (
-        f"* **Total de Tarefas no Repositório (Issues/PRs):** {tot_all} itens mapeados\n"
+        f"* **Total de Issues únicas no Repositório:** {tot_all} itens mapeados\n"
         f"* **Tarefas Concluídas e Homologadas:** {tot_closed} tarefas\n"
         f"* **Taxa de Conclusão de Demandas:** **{fmt_br_number(taxa_conc, 1)}% de eficácia de processo**\n"
         f"* **Média de Esforço por Integrante:** {fmt_br_number(media_horas, 1)} horas dedicadas\n"

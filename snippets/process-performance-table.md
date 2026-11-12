@@ -6,6 +6,6 @@
 | **João Eduardo Pereira Rabelo** | [@JoaoEduardoP](https://github.com/JoaoEduardoP) | 1 | 4,0h | 1 | 100,0% |
 | **Natan José França** | [@Natan8643](https://github.com/Natan8643) | 3 | 4,5h | 3 | 100,0% |
 | **Yan Santos Rodrigues** | [@yanrdgs-dev](https://github.com/yanrdgs-dev) | 3 | 4,5h | 3 | 100,0% |
-| **TOTAL CONSOLIDADO** | — | **23** | **39,0h** | **23** | **100,0%** |
+| **TOTAL CONSOLIDADO** | — | **14** | **39,0h** | **14** | **100,0%** |
 
-*As horas são extraídas do corpo das issues ou do catálogo homologado; quando uma issue possui mais de um responsável, o esforço é dividido igualmente.*
+*As horas são estimativas da equipe, obtidas do corpo das issues ou do catálogo homologado; quando uma issue possui mais de um responsável, o esforço é dividido igualmente.*

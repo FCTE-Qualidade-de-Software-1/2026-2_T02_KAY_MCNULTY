@@ -55,9 +55,9 @@ Esta seção formaliza a evolução cronológica do projeto da equipe Kay McNult
 
 ## 3. Gestão de Recursos, Esforço e Custos (PSM/CID e Critério AG-C5)
 
-A Tabela 2 apresenta a alocação completa de responsabilidades, horas de trabalho dedicadas, valor por hora profissional e custos financeiros acumulados para a Entrega 1, consolidada pelo painel automatizado de issues e em conformidade com o **Critério AG-C5**.
+A Tabela 2 apresenta a estimativa consolidada de responsabilidades, esforço, valor por hora profissional e custos financeiros para a Entrega 1, em conformidade com o **Critério AG-C5**. Como a equipe não registrou horas realizadas na E1, os valores abaixo são estimativas homologadas pela equipe, e não medições de tempo efetivamente apontadas.
 
-O valor de referência foi calculado a partir do custo médio anual de R$ 52.533,00 por estudante de universidade federal, conforme [Poder360](https://www.poder360.com.br/poder-economia/alunos-de-universidades-federais-tem-custo-medio-anual-de-r-52-533/). Considerando a média de 300 horas por semestre, ou 600 horas anuais, o cálculo resulta em R$ 87,555/h; foi aplicado truncamento para duas casas decimais, adotando-se **R$ 87,55/h** ($R\$\ 52.533,00 \div 600\text{h} = R\$\ 87,555/\text{h} \rightarrow R\$\ 87,55/\text{h}$).
+O valor de referência foi calculado a partir do custo médio anual de R$ 52.533,00 por estudante de universidade federal, conforme [Poder360](https://www.poder360.com.br/poder-economia/alunos-de-universidades-federais-tem-custo-medio-anual-de-r-52-533/). Considerando a média de 300 horas por semestre, ou 600 horas anuais, o cálculo resulta em R$ 87,555/h; foi aplicado truncamento para duas casas decimais, adotando-se **R$ 87,55/h** ($R\$\ 52.533,00 \div 600\text{h} = R\$\ 87,555/\text{h} \rightarrow R\$\ 87,55/\text{h}$). Esta é a única taxa usada nas tabelas da E1.
 
 ### Tabela 2 — Alocação de Recursos, Esforço e Custos Consolidados (PC1)
 
@@ -79,11 +79,11 @@ Os indicadores abaixo complementam a leitura da contribuição da equipe na E1. 
 
 #### Taxa de conclusão de issues
 
-O painel automatizado registra 23 issues atribuídas, todas fechadas, resultando em taxa de conclusão de 100%. O resultado indica que as demandas rastreadas no painel foram encerradas e homologadas. No recorte específico do arquivo PSM do PC1, foram registradas 14 issues planejadas e 14 concluídas, também com 100% de conclusão.
+O painel automatizado registra 14 issues únicas, todas fechadas, resultando em taxa de conclusão de 100%. As contagens por responsável somam 23 atribuições porque uma issue compartilhada aparece para cada responsável; esse subtotal não deve ser interpretado como quantidade de issues do repositório.
 
 #### Distribuição de esforço individual
 
-O painel automatizado é a fonte oficial da E1. Ele registra 39 horas, distribuídas entre 10,5h e 4,0h por integrante, conforme as horas extraídas das issues e do catálogo homologado pelo pipeline.
+O painel automatizado é a fonte oficial da E1. Ele registra 39 horas estimadas, distribuídas entre 10,5h e 4,0h por integrante, conforme a estimativa da equipe e o catálogo homologado pelo pipeline.
 
 #### Custos e percentual de contribuição
 
@@ -91,7 +91,7 @@ Com o valor de referência de R$ 87,55 por hora, as 39 horas do painel resultam 
 
 #### Rastreabilidade e revisão
 
-O painel de contribuição consolida 42 commits, 23 issues fechadas e a associação dos integrantes às suas atividades. No recorte PSM do PC1, foram registrados 5 pull requests fechados e 14 issues. Esses dados indicam rastreabilidade entre trabalho registrado, revisão por pares e fechamento das demandas, embora o total de issues varie conforme a fonte e o recorte utilizado.
+O painel de contribuição consolida os commits sem merges, 14 issues fechadas e a associação dos integrantes às suas atividades. As issues compartilhadas podem aparecer nas linhas individuais de mais de um responsável, mas o total consolidado conta cada issue uma única vez. Esses dados indicam rastreabilidade entre trabalho registrado, revisão por pares e fechamento das demandas.
 
 #### Tempo de ciclo
 
