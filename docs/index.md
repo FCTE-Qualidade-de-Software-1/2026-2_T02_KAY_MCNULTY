@@ -4,7 +4,7 @@
 [![Norma ISO/IEC 25040](https://img.shields.io/badge/Processo-ISO%2FIEC%2025040-green.svg)](https://www.iso.org/standard/83642.html)
 [![Metodologia GQM](https://img.shields.io/badge/Metodologia-GQM%20v2.0-orange.svg)](fase2/index.md)
 [![Gestão PSM/CID](https://img.shields.io/badge/Gestão-PSM%2FCID-purple.svg)](gestao/metricas-psm.md)
-[![Status da Release](https://img.shields.io/badge/Release-E1%20(v1.0.0--pc1)-brightgreen.svg)](entregas/entrega1.md)
+[![Status da Release](https://img.shields.io/badge/Release-E1%20(v1.0.0--pc1)-brightgreen.svg)](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_KAY_MCNULTY/releases/tag/v1.0.0-pc1)
 
 Documentação oficial da avaliação de qualidade de produto de software desenvolvida na disciplina **Qualidade de Software 1 (FGA0315)** da Universidade de Brasília (UnB / FCTE), ministrada pela Profa. Dra. Cristiane Soares Ramos.
 

@@ -29,3 +29,173 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
+
+.cron {
+  --cron-feito: #2e8b57;
+  --cron-andamento: #3b6fd4;
+  --cron-futuro: #8a93a3;
+  --cron-hoje: #d9480f;
+  --cron-linha: var(--md-default-fg-color--lightest);
+  margin: 1.5rem 0;
+}
+
+[data-md-color-scheme="slate"] .cron {
+  --cron-feito: #4cbf86;
+  --cron-andamento: #7fa6f5;
+  --cron-futuro: #7c8596;
+  --cron-hoje: #ff8a4c;
+}
+
+.cron-proximos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.cron-proximo {
+  border: 1px solid var(--cron-linha);
+  border-left: 4px solid var(--cron-andamento);
+  border-radius: 0.5rem;
+  padding: 0.7rem 0.9rem;
+}
+
+.cron-proximo strong {
+  display: block;
+  font-size: 1.5rem;
+  line-height: 1.1;
+}
+
+.cron-proximo span {
+  font-size: 0.78rem;
+  color: var(--md-default-fg-color--light);
+}
+
+.cron-proximo.urgente {
+  border-left-color: var(--cron-hoje);
+}
+
+.cron-eixo,
+.cron-linha {
+  display: grid;
+  grid-template-columns: 11rem 1fr 7.5rem;
+  align-items: center;
+  column-gap: 0.75rem;
+}
+
+.cron-eixo {
+  font-size: 0.72rem;
+  color: var(--md-default-fg-color--light);
+  margin-bottom: 0.3rem;
+}
+
+.cron-eixo .cron-escala {
+  position: relative;
+  height: 1.1rem;
+}
+
+.cron-eixo .cron-escala span {
+  position: absolute;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.cron-linha {
+  min-height: 2.3rem;
+  border-top: 1px solid var(--cron-linha);
+}
+
+.cron-rotulo {
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.cron-rotulo small {
+  display: block;
+  font-weight: 400;
+  color: var(--md-default-fg-color--light);
+}
+
+.cron-data {
+  font-size: 0.78rem;
+  text-align: right;
+  color: var(--md-default-fg-color--light);
+  font-variant-numeric: tabular-nums;
+}
+
+.cron-trilho {
+  position: relative;
+  height: 2.3rem;
+}
+
+.cron-barra {
+  position: absolute;
+  top: 0.5rem;
+  height: 1.3rem;
+  border-radius: 0.3rem;
+  background: var(--cron-futuro);
+}
+
+.cron-barra.feito { background: var(--cron-feito); }
+.cron-barra.andamento { background: var(--cron-andamento); }
+
+.cron-barra.confirmar {
+  background: repeating-linear-gradient(
+    135deg,
+    var(--cron-andamento) 0 5px,
+    transparent 5px 10px
+  );
+  border: 1px solid var(--cron-andamento);
+}
+
+.cron-marco {
+  position: absolute;
+  top: 0.55rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-left: -0.55rem;
+  transform: rotate(45deg);
+  background: var(--cron-futuro);
+  border-radius: 0.15rem;
+}
+
+.cron-marco.feito { background: var(--cron-feito); }
+.cron-marco.andamento { background: var(--cron-andamento); }
+.cron-marco.critico { background: var(--cron-hoje); }
+
+.cron-hoje {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--cron-hoje);
+}
+
+.cron-legenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.8rem;
+  font-size: 0.76rem;
+  color: var(--md-default-fg-color--light);
+}
+
+.cron-legenda i {
+  display: inline-block;
+  width: 0.8rem;
+  height: 0.8rem;
+  margin-right: 0.35rem;
+  border-radius: 0.15rem;
+  vertical-align: -0.1rem;
+}
+
+@media (max-width: 44.9375em) {
+  .cron-eixo { display: none; }
+  .cron-linha {
+    grid-template-columns: 1fr auto;
+    row-gap: 0.1rem;
+    padding: 0.4rem 0;
+  }
+  .cron-trilho { grid-column: 1 / -1; grid-row: 2; }
+}

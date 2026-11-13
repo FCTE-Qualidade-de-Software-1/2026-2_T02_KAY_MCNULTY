@@ -6,7 +6,8 @@
 **Objeto de Avaliação:** Portal Detran Digital DF ([portal.detran.df.gov.br](https://portal.detran.df.gov.br/#/home))  
 **Normas Base:** ISO/IEC 25010 (Modelo de Qualidade) e ISO/IEC 25040 (Processo de Avaliação)  
 **Frameworks de Apoio:** GQM (*Goal-Question-Metric*) e PSM/CID (*Practical Software Measurement*)  
-**Material de Apresentação:** [Download dos Slides da Apresentação (PDF)](../assets/Qualidade_do_Detran_Digital_Slides.pdf)
+**Material de Apresentação:** [Download dos Slides da Apresentação (PDF)](../assets/Qualidade_do_Detran_Digital_Slides.pdf)  
+**Release Oficial:** [Acessar Release E1 no GitHub (v1.0.0-pc1)](https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_KAY_MCNULTY/releases/tag/v1.0.0-pc1)
 
 ---
 
@@ -18,12 +19,12 @@ Esta seção formaliza a evolução cronológica do projeto da equipe Kay McNult
 
 | Marco (Milestone) | Etapa Relativa | Fase da ISO/IEC 25040 | Descrição das Atividades da Equipe | Status Atual |
 | :--- | :--- | :--- | :--- | :--- |
-| **M0: Setup Inicial e Governança** | Etapa 1 | Concepção e Governança | Definição do grupo, escolha do **Portal Detran Digital DF**, criação do repositório Git, configuração do MkDocs Material, templates de issues e governança de branches. | **CONCLUÍDO** |
-| **M1: Requisitos da Avaliação** | Etapa 2 | **Fase 1 (ISO/IEC 25040)** | Definição do propósito da avaliação, mapeamento de stakeholders, delimitação arquitetural dos 4 módulos (**Infração, Atendimento, Protocolo e Chatbot**), justificativa do recorte ISO 25010 (Usabilidade, Compatibilidade e Confiabilidade), cortes metodológicos e alinhamento com ODS 9 (Meta 9.c) e 16 (Meta 16.6). | **CONCLUÍDO** |
-| **M2: Especificação da Avaliação** | Etapa 3 | **Fase 2 (ISO/IEC 25040)** | Construção das árvores formais GQM para as três características selecionadas, definição das perguntas técnicas, hipóteses analíticas, métricas operacionais quantitativas e escalas de julgamento. | **CONCLUÍDO (Ponto de Controle 1)** |
-| **M3: Projeto da Avaliação** | Etapa 4 | **Fase 3 (ISO/IEC 25040)** | Definição dos métodos de coleta em produção para ambiente governamental (caixa-preta), seleção de ferramentas (Lighthouse, Postman, validadores W3C/e-MAG) e roteiro de inspeção heurística. | **PLANEJADO** |
-| **M4: Consolidação e Release E1** | Etapa 5 | **Entrega 1 (GitPage + Artigo v1 + Slides)** | Fechamento da 1ª versão do artigo científico (Fases 1 e 2), auditoria editorial de rubricas (zero emojis, declaração de IA, AG-C1 a AG-C5), preparação dos slides de apresentação e tag Git `v1.0.0-pc1`. | **EM ANDAMENTO (Onde Estamos)** |
-| **M5: Execução e Conclusão** | Etapa Final | **Fases 4 e 5 (PC2 / Release E2)** | Coleta empírica de evidências no Portal Detran Digital DF, processamento dos dados brutos, análise de conformidade frente aos limiares e redação do parecer conclusivo na 2ª versão do artigo. | **FUTURO (Entrega 2)** |
+| **M0: Setup Inicial e Governança** | Etapa 1 | Concepção e Governança | Definição do grupo, escolha do **Portal Detran Digital DF**, criação do repositório Git, configuração do MkDocs Material, templates de issues e governança de branches. | **CONCLUÍDO (12/10)** |
+| **M1: Requisitos da Avaliação** | Etapa 2 | **Fase 1 (ISO/IEC 25040)** | Definição do propósito da avaliação, mapeamento de stakeholders, delimitação arquitetural dos 4 módulos (**Infração, Atendimento, Protocolo e Chatbot**), justificativa do recorte ISO 25010 (Usabilidade, Compatibilidade e Confiabilidade), cortes metodológicos e alinhamento com ODS 9 (Meta 9.c) e 16 (Meta 16.6). | **CONCLUÍDO (18/10)** |
+| **M2: Especificação da Avaliação** | Etapa 3 | **Fase 2 (ISO/IEC 25040)** | Construção das árvores formais GQM para as três características selecionadas, definição das perguntas técnicas, hipóteses analíticas, métricas operacionais quantitativas e escalas de julgamento. | **CONCLUÍDO (21/10)** |
+| **M3: Consolidação e Release E1** | Etapa 4 | **Entrega 1 (GitPage + Artigo v1 + Slides)** | Fechamento da 1ª versão do artigo científico (Fases 1 e 2), auditoria editorial de rubricas (zero emojis, declaração de IA, AG-C1 a AG-C5), preparação dos slides de apresentação e publicação da tag Git `v1.0.0-pc1`. | **CONCLUÍDO (26/10)** |
+| **M4: Projeto da Avaliação** | Etapa 5 | **Fase 3 (ISO/IEC 25040)** | Definição dos métodos de coleta em produção para ambiente governamental (caixa-preta), seleção de ferramentas (Lighthouse, Postman, validadores W3C/e-MAG) e roteiro de inspeção heurística. | **EM ANDAMENTO (27/10 a 16/11)** |
+| **M5: Execução, Julgamento e Melhorias** | Etapa Final | **Fase 4 (PC2 / Release E2)** | Coleta empírica de evidências no Portal Detran Digital DF, processamento dos dados brutos, análise de conformidade frente aos limiares, execução da ação de melhoria obrigatória e redação do parecer conclusivo na 2ª versão do artigo. | **FUTURO (até 22/11)** |
 
 *Fonte: Elaborado pelos autores conforme metodologia da disciplina FGA0315.*
 

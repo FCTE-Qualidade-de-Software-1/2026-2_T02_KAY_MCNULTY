@@ -7,7 +7,7 @@ repo_url: https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_KAY_MCNULTY
 repo_name: FCTE-Qualidade-de-Software-1/2026-2_T02_KAY_MCNULTY
 edit_uri: edit/main/docs/
 
-copyright: Versão 1.0 · Atualizado em 18/10/2026 · Equipe Kay McNulty · Qualidade de Software 2026-2
+copyright: Versão 2.0 · Atualizado em 10/11/2026 · Equipe Kay McNulty · Qualidade de Software 2026-2
 
 theme:
   name: material
@@ -63,7 +63,7 @@ nav:
       - Usabilidade: fase2/usabilidade.md
       - Confiabilidade: fase2/confiabilidade.md
   - Gestão do Projeto (PSM):
-      # - Atas de Reunião: gestao/atas.md
+      - Atas de Reunião: gestao/atas.md
       - Métricas de Gestão PSM: gestao/metricas-psm.md
       - Tabela de Contribuição: gestao/tabela-contribuicao.md
   - Entregas:
