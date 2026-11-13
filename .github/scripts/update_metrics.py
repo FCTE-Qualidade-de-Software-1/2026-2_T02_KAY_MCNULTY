@@ -16,7 +16,7 @@ import subprocess
 import sys
 import urllib.request
 from collections import defaultdict
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
 from pathlib import Path
 
 # Diretórios principais
@@ -25,7 +25,12 @@ SNIPPETS_DIR = REPO_ROOT / "snippets"
 
 REPO_OWNER = "FCTE-Qualidade-de-Software-1"
 REPO_NAME = "2026-2_T02_KAY_MCNULTY"
-VALOR_HORA_BRL = 50.0  # R$ 50,00/h conforme diretriz orçamentária da equipe
+VALOR_HORA_BRL = 87.55
+ULTIMA_ISSUE_E1 = 17
+FONTE_VALOR_HORA = "https://www.poder360.com.br/poder-economia/alunos-de-universidades-federais-tem-custo-medio-anual-de-r-52-533/"
+IGNORED_LINE_STAT_PATHS = {
+    "docs/assets/Qualidade_do_Detran_Digital_Slides.pdf",
+}
 
 # Definição canônica dos integrantes, duplas e responsabilidades
 TEAM_MEMBERS = [
@@ -114,15 +119,6 @@ DEFAULT_HOURS_CATALOG = {
     18: 3.0,  # Estruturação PSM e Governança (Artur & João Eduardo)
 }
 
-# Fases acompanhadas pelas Necessidades de Informação 1 e 2 (datas em UTC, AAAA-MM-DD).
-# Uma issue/PR pertence à fase se foi criada entre `inicio` e `fim` (inclusive).
-FASES_NECESSIDADES = [
-    {"nome": "Entrega 1 (PC1)", "inicio": "2026-10-16", "fim": "2026-10-26"},
-    {"nome": "Entrega Final (parcial)", "inicio": "2026-10-27", "fim": "2026-11-22"},
-]
-LIMITE_FECHAMENTO_BLOCO = 50.0  # Necessidade 1: acima disso o fechamento é em bloco
-META_PRS_REVISADOS = 100.0      # Necessidade 2: meta de PRs mergeados com revisão de outra pessoa
-
 # Responsáveis canônicos para issues/PRs caso o GitHub retorne sem assignees
 FALLBACK_ASSIGNEES = {
     18: ["ArturFGaldino", "JoaoEduardoP"],
@@ -169,6 +165,7 @@ def get_git_log_data():
     cmd = [
         "git",
         "log",
+        "--no-merges",
         "--numstat",
         "--date=iso-strict",
         "--format=@@@COMMIT|%ad|%an|%ae%n%B%n@@@END_COMMIT",
@@ -239,6 +236,8 @@ def get_git_log_data():
         tot_deleted = 0
         for numline in numstat_part.strip().splitlines():
             parts = numline.split("\t")
+            if len(parts) >= 3 and parts[2] in IGNORED_LINE_STAT_PATHS:
+                continue
             if len(parts) >= 2:
                 tot_added += int(parts[0]) if parts[0].isdigit() else 0
                 tot_deleted += int(parts[1]) if parts[1].isdigit() else 0
@@ -325,7 +324,7 @@ def fetch_all_github_items():
 
 
 def extract_hours_from_item(item: dict) -> float:
-    """Extrai horas do corpo da issue ou do catálogo homologado."""
+    """Obtém a estimativa de horas do corpo da issue ou do catálogo da equipe."""
     num = item.get("number")
     body = item.get("body") or ""
 
@@ -339,12 +338,15 @@ def extract_hours_from_item(item: dict) -> float:
     if num in DEFAULT_HOURS_CATALOG:
         return DEFAULT_HOURS_CATALOG[num]
 
-    return 0.0
+    return 2.0
 
 
 def get_issue_and_effort_metrics():
-    """Calcula estatísticas de issues/PRs abertas, fechadas e esforço real em horas por membro."""
-    items = fetch_all_github_items()
+    """Calcula estatísticas de issues e esforço estimado por membro."""
+    items = [
+        item for item in fetch_all_github_items()
+        if "pull_request" not in item and item.get("number", 0) <= ULTIMA_ISSUE_E1
+    ]
 
     counts = {
         author: {
@@ -355,6 +357,7 @@ def get_issue_and_effort_metrics():
         }
         for author in TRACKED_AUTHORS
     }
+    counts["_meta"] = {"total": 0, "closed": 0}
 
     # Se não conseguirmos itens da API (offline), inicializa com o catálogo homologado
     if not items:
@@ -366,11 +369,19 @@ def get_issue_and_effort_metrics():
                     counts[handle]["total"] += 1
                     counts[handle]["closed"] += 1
                     counts[handle]["hours"] += h * w
-        return counts, len(DEFAULT_HOURS_CATALOG)
+            counts["_meta"]["total"] += 1
+            counts["_meta"]["closed"] += 1
+        return counts
 
+    unique_numbers = set()
+    closed_numbers = set()
     for item in items:
         closed = item.get("state") == "closed"
         num = item.get("number")
+        if num is not None:
+            unique_numbers.add(num)
+            if closed:
+                closed_numbers.add(num)
 
         assignees_raw = [a.get("login") for a in item.get("assignees", []) if a.get("login")]
         if not assignees_raw and num in FALLBACK_ASSIGNEES:
@@ -391,7 +402,11 @@ def get_issue_and_effort_metrics():
             else:
                 c["open"] += 1
 
-    return counts, len(items)
+    counts["_meta"] = {
+        "total": len(unique_numbers),
+        "closed": len(closed_numbers),
+    }
+    return counts
 
 
 def calculate_upper_bound(values, min_bound=5):
@@ -459,7 +474,7 @@ def render_bar_chart(title: str, y_label: str, counts_by_author: dict, key: str 
 def generate_tabela_contribuicao_matriz(issue_counts: dict) -> str:
     """
     Gera a Tabela 1 canônica de Matriz de Responsabilidades e Esforço para `tabela-contribuicao.md`,
-    atualizada diretamente a partir das horas extraídas pela automação.
+    atualizada diretamente a partir das horas estimadas pela equipe e processadas pela automação.
     """
     tot_hours = sum(issue_counts.get(h, {}).get("hours", 0.0) for h in TRACKED_AUTHORS)
     if tot_hours <= 0:
@@ -490,10 +505,6 @@ def generate_tabela_contribuicao_matriz(issue_counts: dict) -> str:
         f"| **TOTAL CONSOLIDADO** | — | — | **Esforço Acumulado no Ponto de Controle 1 (Fases 1 e 2)** | "
         f"**{fmt_br_number(tot_hours, 1)}h** | **100,00%** | **Homologado** |"
     )
-    lines.append("")
-    lines.append(
-        "*Nota: As horas e percentuais do Ponto de Controle 1 representam esforço estimado e homologado a partir do catálogo de tarefas do projeto; demandas compartilhadas têm esforço rateado igualmente.*"
-    )
 
     return "\n".join(lines)
 
@@ -501,7 +512,7 @@ def generate_tabela_contribuicao_matriz(issue_counts: dict) -> str:
 def generate_alocacao_recursos_custos(issue_counts: dict) -> str:
     """
     Gera a Tabela 3 de Alocação de Recursos, Esforço e Custos Individuais para `metricas-psm.md`,
-    calculando horas realizadas, custo total e % de esforço a partir da automação.
+    calculando horas estimadas, custo total e % de esforço a partir da automação.
     """
     tot_hours = sum(issue_counts.get(h, {}).get("hours", 0.0) for h in TRACKED_AUTHORS)
     if tot_hours <= 0:
@@ -527,12 +538,12 @@ def generate_alocacao_recursos_custos(issue_counts: dict) -> str:
 
         lines.append(
             f"| **{name}**<br>Matrícula: `{matricula}` | [@{handle}](https://github.com/{handle}) | {papel} | "
-            f"**{fmt_br_number(hours, 1)}h** | R$ 50,00 | {fmt_br_currency(custo)} | **{fmt_br_number(pct, 2)}%** | Concluído |"
+            f"**{fmt_br_number(hours, 1)}h** | {fmt_br_currency(VALOR_HORA_BRL)} | {fmt_br_currency(custo)} | **{fmt_br_number(pct, 2)}%** | Concluído |"
         )
 
     lines.append(
         f"| **TOTAL ACUMULADO (PC1)** | — | **Entregáveis Fases 1 e 2 Consolidados** | "
-        f"**{fmt_br_number(tot_hours, 1)}h** | Média: R$ 50,00/h | **{fmt_br_currency(tot_custo)}** | **100,00%** | **100% Ativo** |"
+        f"**{fmt_br_number(tot_hours, 1)}h** | Média: {fmt_br_currency(VALOR_HORA_BRL)}/h | **{fmt_br_currency(tot_custo)}** | **100,00%** | **100% Ativo** |"
     )
 
     return "\n".join(lines)
@@ -576,7 +587,7 @@ def generate_contributions_table(git_totals: dict, issue_counts: dict) -> str:
     tot_commits = 0
     tot_adds = 0
     tot_dels = 0
-    tot_closed = 0
+    tot_closed = issue_counts.get("_meta", {}).get("closed", 0)
     tot_hours = sum(issue_counts.get(h, {}).get("hours", 0.0) for h in TRACKED_AUTHORS)
     if tot_hours <= 0:
         tot_hours = 72.0
@@ -601,8 +612,6 @@ def generate_contributions_table(git_totals: dict, issue_counts: dict) -> str:
         tot_commits += c
         tot_adds += a
         tot_dels += d
-        tot_closed += closed_iss
-
         sign_net = f"+{net}" if net > 0 else str(net)
         lines.append(
             f"| **{name}**<br>Matrícula: `{matricula}` | [@{handle}](https://github.com/{handle}) | {dupla} | "
@@ -624,13 +633,13 @@ def generate_contributions_table(git_totals: dict, issue_counts: dict) -> str:
 def generate_issues_table(issue_counts: dict) -> str:
     """Gera tabela Markdown com taxa de conclusão de demandas por membro."""
     lines = [
-        "| Integrante | Usuário GitHub | Dupla | Tarefas Atribuídas | Concluídas | Em Aberto | Taxa de Conclusão |",
+        "| Integrante | Usuário GitHub | Dupla | Issues Fechadas | Issues Abertas | Total de Issues | Taxa de Conclusão |",
         "| :--- | :---: | :---: | :---: | :---: | :---: | :---: |",
     ]
 
-    tot_closed = 0
-    tot_open = 0
-    tot_all = 0
+    tot_closed = issue_counts.get("_meta", {}).get("closed", 0)
+    tot_all = issue_counts.get("_meta", {}).get("total", 0)
+    tot_open = tot_all - tot_closed
 
     for m in TEAM_MEMBERS:
         handle = m["handle"]
@@ -643,21 +652,13 @@ def generate_issues_table(issue_counts: dict) -> str:
         total = st.get("total", 0)
         rate = f"{(closed / total * 100):.1f}%".replace(".", ",") if total > 0 else "0,0%"
 
-        tot_closed += closed
-        tot_open += opened
-        tot_all += total
-
         lines.append(
-            f"| **{name}** | [@{handle}](https://github.com/{handle}) | {dupla} | {total} | {closed} | {opened} | {rate} |"
+            f"| **{name}** | [@{handle}](https://github.com/{handle}) | {dupla} | {closed} | {opened} | {total} | {rate} |"
         )
 
     overall_rate = f"{(tot_closed / tot_all * 100):.1f}%".replace(".", ",") if tot_all > 0 else "0,0%"
     lines.append(
-        f"| **TOTAL DE ATRIBUIÇÕES** | — | — | **{tot_all}** | **{tot_closed}** | **{tot_open}** | **{overall_rate}** |"
-    )
-    lines.append("")
-    lines.append(
-        "*Nota explicativa: Quando uma demanda possui dois responsáveis (trabalho em dupla), ela é contabilizada na carga de atribuições de cada um dos integrantes.*"
+        f"| **TOTAL CONSOLIDADO** | — | — | **{tot_closed}** | **{tot_open}** | **{tot_all}** | **{overall_rate}** |"
     )
 
     return "\n".join(lines)
@@ -666,13 +667,13 @@ def generate_issues_table(issue_counts: dict) -> str:
 def generate_process_performance_table(issue_counts: dict) -> str:
     """Gera a Tabela 2 do PSM com issues, horas e issues fechadas."""
     lines = [
-        "| Integrante | Usuário GitHub | Atribuições de Issues | Horas (h) | Issues Fechadas | Taxa de Conclusão |",
+        "| Integrante | Usuário GitHub | Issues | Horas (h) | Issues Fechadas | Taxa de Conclusão |",
         "| :--- | :---: | :---: | :---: | :---: | :---: |",
     ]
 
-    total_issues = 0
+    total_issues = issue_counts.get("_meta", {}).get("total", 0)
     total_hours = 0.0
-    total_closed = 0
+    total_closed = issue_counts.get("_meta", {}).get("closed", 0)
 
     for member in TEAM_MEMBERS:
         handle = member["handle"]
@@ -682,9 +683,7 @@ def generate_process_performance_table(issue_counts: dict) -> str:
         closed = stats.get("closed", 0)
         rate = (closed / issues * 100.0) if issues else 0.0
 
-        total_issues += issues
         total_hours += hours
-        total_closed += closed
 
         lines.append(
             f"| **{member['name']}** | [@{handle}](https://github.com/{handle}) | "
@@ -699,209 +698,16 @@ def generate_process_performance_table(issue_counts: dict) -> str:
     )
     lines.append("")
     lines.append(
-        "*As horas são extraídas do corpo das issues ou do catálogo homologado. O total representa relações issue-responsável, não a quantidade de issues únicas; quando uma issue possui mais de um responsável, ela aparece uma vez para cada responsável e o esforço é dividido igualmente.*"
+        "*As horas são estimativas da equipe, obtidas do corpo das issues ou do catálogo homologado; quando uma issue possui mais de um responsável, o esforço é dividido igualmente.*"
     )
     return "\n".join(lines)
-
-
-def github_get_json(path: str):
-    """GET autenticado (se houver token) na API REST do GitHub; retorna None em caso de falha."""
-    token = resolve_token("GITHUB_TOKEN", "GH_TOKEN")
-    headers = {"User-Agent": "KayMcNulty-MetricsAutomation", "Accept": "application/vnd.github.v3+json"}
-    if token:
-        headers["Authorization"] = f"Bearer {token}"
-    req = urllib.request.Request(f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/{path}", headers=headers)
-    try:
-        with urllib.request.urlopen(req, timeout=25) as resp:
-            return json.loads(resp.read().decode("utf-8"))
-    except Exception as e:
-        print(f"Aviso ao consultar {path}: {e}", file=sys.stderr)
-        return None
-
-
-def github_get_all(path: str):
-    """Pagina um endpoint de lista; retorna None se qualquer página falhar."""
-    sep = "&" if "?" in path else "?"
-    items, page = [], 1
-    while True:
-        data = github_get_json(f"{path}{sep}per_page=100&page={page}")
-        if data is None:
-            return None
-        items.extend(data)
-        if len(data) < 100:
-            return items
-        page += 1
-
-
-def parse_gh_datetime(value):
-    """Converte timestamp ISO do GitHub (UTC, sufixo Z) em datetime."""
-    return datetime.fromisoformat(value.replace("Z", "+00:00")) if value else None
-
-
-def in_phase(created_at: str, fase: dict) -> bool:
-    """True se a data de criação (UTC) está dentro da janela da fase."""
-    d = parse_gh_datetime(created_at).date()
-    return date.fromisoformat(fase["inicio"]) <= d <= date.fromisoformat(fase["fim"])
-
-
-def compute_closing_distribution(items: list, fase: dict) -> dict:
-    """Necessidade 1: maior fração de issues da fase fechadas em um único dia (UTC)."""
-    issues = [i for i in items if "pull_request" not in i and in_phase(i["created_at"], fase)]
-    por_dia = defaultdict(int)
-    for i in issues:
-        if i.get("closed_at"):
-            por_dia[parse_gh_datetime(i["closed_at"]).date()] += 1
-    total = len(issues)
-    if por_dia:
-        dia_pico, n_pico = max(por_dia.items(), key=lambda kv: (kv[1], -kv[0].toordinal()))
-    else:
-        dia_pico, n_pico = None, 0
-    pct = (n_pico / total * 100.0) if total else 0.0
-    return {
-        "total": total,
-        "fechadas": sum(por_dia.values()),
-        "dia_pico": dia_pico,
-        "n_pico": n_pico,
-        "pct": pct,
-        "em_bloco": pct > LIMITE_FECHAMENTO_BLOCO,
-        "por_dia": sorted(por_dia.items()),
-    }
-
-
-def compute_pr_review_coverage(pulls: list, reviews_by_pr: dict, fase: dict) -> dict:
-    """Necessidade 2: PRs mergeados na fase com ao menos uma revisão de pessoa diferente do autor."""
-    mergeados = [p for p in pulls if p.get("merged_at") and in_phase(p["created_at"], fase)]
-    detalhes = []
-    for p in mergeados:
-        autor = (p.get("user") or {}).get("login")
-        revs = [
-            r for r in reviews_by_pr.get(p["number"], [])
-            if r.get("state") != "PENDING" and (r.get("user") or {}).get("login") not in (autor, None)
-            and not (r.get("user") or {}).get("login", "").endswith("[bot]")
-        ]
-        horas = None
-        if revs:
-            primeira = min(parse_gh_datetime(r["submitted_at"]) for r in revs if r.get("submitted_at"))
-            horas = (primeira - parse_gh_datetime(p["created_at"])).total_seconds() / 3600.0
-        detalhes.append({
-            "numero": p["number"],
-            "autor": autor,
-            "revisores": sorted({r["user"]["login"] for r in revs}),
-            "horas_ate_revisao": horas,
-        })
-    total = len(mergeados)
-    revisados = sum(1 for d in detalhes if d["revisores"])
-    pct = (revisados / total * 100.0) if total else 0.0
-    return {"total": total, "revisados": revisados, "pct": pct, "atende_meta": total > 0 and pct >= META_PRS_REVISADOS, "detalhes": detalhes}
-
-
-def render_necessidade_1(resultados: list) -> str:
-    lines = [
-        "| Fase | Issues na fase | Fechadas | Dia de pico | Fechadas no pico | % no pico | Interpretação |",
-        "| :--- | :---: | :---: | :---: | :---: | :---: | :--- |",
-    ]
-    for fase, r in resultados:
-        pico = r["dia_pico"].strftime("%d/%m") if r["dia_pico"] else "—"
-        if r["total"] == 0:
-            interp = "Sem issues na fase"
-        else:
-            interp = "Fechamento em bloco (> 50%)" if r["em_bloco"] else "Fechamento distribuído (≤ 50%)"
-        lines.append(
-            f"| {fase['nome']} | {r['total']} | {r['fechadas']} | {pico} | {r['n_pico']} | "
-            f"**{fmt_br_number(r['pct'], 0)}%** | {interp} |"
-        )
-    lines.append("")
-    lines.append(
-        "*Datas em UTC, como retornadas pela API do GitHub. Indicador: issues fechadas no dia de pico ÷ total de issues da fase "
-        "(pull requests não entram na contagem). Gerado por `.github/scripts/update_metrics.py`.*"
-    )
-    return "\n".join(lines)
-
-
-def render_necessidade_2(resultados: list) -> str:
-    lines = [
-        "| Fase | PRs mergeados | Com revisão de outra pessoa | % revisados | Meta (100%) | PRs sem revisão |",
-        "| :--- | :---: | :---: | :---: | :---: | :--- |",
-    ]
-    for fase, r in resultados:
-        sem = ", ".join(f"#{d['numero']}" for d in r["detalhes"] if not d["revisores"]) or "—"
-        meta = "—" if r["total"] == 0 else ("Atendida" if r["atende_meta"] else "Não atendida")
-        lines.append(
-            f"| {fase['nome']} | {r['total']} | {r['revisados']} | **{fmt_br_number(r['pct'], 0)}%** | {meta} | {sem} |"
-        )
-    lines.append("")
-    lines.append("**Detalhe por pull request mergeado:**")
-    lines.append("")
-    lines.append("| PR | Autor | Revisores (diferentes do autor) | Tempo até a 1ª revisão |")
-    lines.append("| :---: | :---: | :--- | :---: |")
-    algum = False
-    for fase, r in resultados:
-        for d in r["detalhes"]:
-            algum = True
-            revs = ", ".join(f"@{x}" for x in d["revisores"]) or "nenhum"
-            tempo = f"{fmt_br_number(d['horas_ate_revisao'], 1)} h" if d["horas_ate_revisao"] is not None else "—"
-            lines.append(f"| #{d['numero']} | @{d['autor']} | {revs} | {tempo} |")
-    if not algum:
-        lines.append("| — | — | — | — |")
-    lines.append("")
-    lines.append(
-        "*Indicador: PRs mergeados com ao menos uma revisão enviada por pessoa diferente do autor ÷ PRs mergeados. "
-        "Bots não contam como revisores. Gerado por `.github/scripts/update_metrics.py`.*"
-    )
-    return "\n".join(lines)
-
-
-def render_chart_necessidade_1(resultados: list) -> str:
-    """Gráfico Mermaid: issues fechadas por dia (UTC), para ver picos de fechamento em bloco."""
-    por_dia = defaultdict(int)
-    for _, r in resultados:
-        for dia, n in r["por_dia"]:
-            por_dia[dia] += n
-    dias = sorted(por_dia)
-    if not dias:
-        return MERMAID_INIT + 'xychart-beta\n    title "Issues Fechadas por Dia"\n    x-axis ["sem dados"]\n    y-axis "Issues" 0 --> 10\n    bar [0]'
-    vals = [por_dia[d] for d in dias]
-    labels = ", ".join(f'"{d.strftime("%d/%m")}"' for d in dias)
-    return (
-        MERMAID_INIT
-        + "xychart-beta\n"
-        + '    title "Issues Fechadas por Dia (Necessidade 1)"\n'
-        + f"    x-axis [{labels}]\n"
-        + f'    y-axis "Issues fechadas" 0 --> {calculate_upper_bound(vals, min_bound=5)}\n'
-        + f"    bar [{', '.join(str(v) for v in vals)}]"
-    )
-
-
-def write_necessidades_snippets() -> bool:
-    """Gera os snippets das Necessidades 1 e 2. Sem acesso à API, preserva os arquivos existentes."""
-    items = fetch_all_github_items()
-    pulls = github_get_all("pulls?state=all")
-    if not items or pulls is None:
-        print("Aviso: API indisponível; snippets das Necessidades 1 e 2 mantidos.", file=sys.stderr)
-        return False
-
-    reviews_by_pr = {}
-    for p in pulls:
-        if p.get("merged_at"):
-            revs = github_get_all(f"pulls/{p['number']}/reviews")
-            if revs is None:
-                print("Aviso: falha ao ler revisões; snippets das Necessidades 1 e 2 mantidos.", file=sys.stderr)
-                return False
-            reviews_by_pr[p["number"]] = revs
-
-    n1 = [(f, compute_closing_distribution(items, f)) for f in FASES_NECESSIDADES]
-    n2 = [(f, compute_pr_review_coverage(pulls, reviews_by_pr, f)) for f in FASES_NECESSIDADES]
-    (SNIPPETS_DIR / "necessidade-1-fechamento.md").write_text(render_necessidade_1(n1) + "\n", encoding="utf-8")
-    (SNIPPETS_DIR / "necessidade-2-revisao-prs.md").write_text(render_necessidade_2(n2) + "\n", encoding="utf-8")
-    (SNIPPETS_DIR / "necessidade-1-grafico.mmd").write_text(render_chart_necessidade_1(n1) + "\n", encoding="utf-8")
-    return True
 
 
 def main():
     SNIPPETS_DIR.mkdir(parents=True, exist_ok=True)
 
     weeks, commits, additions, deletions, git_totals = get_git_log_data()
-    issue_counts, total_unique_items = get_issue_and_effort_metrics()
+    issue_counts = get_issue_and_effort_metrics()
 
     # 1. Gráficos Mermaid
     velocity_chart = render_timeline_chart(
@@ -944,18 +750,17 @@ def main():
     process_performance_table = generate_process_performance_table(issue_counts)
 
     tot_hours = sum(issue_counts.get(h, {}).get("hours", 0.0) for h in TRACKED_AUTHORS)
-    tot_closed = sum(issue_counts.get(h, {}).get("closed", 0) for h in TRACKED_AUTHORS)
-    tot_all = sum(issue_counts.get(h, {}).get("total", 0) for h in TRACKED_AUTHORS)
+    tot_closed = issue_counts.get("_meta", {}).get("closed", 0)
+    tot_all = issue_counts.get("_meta", {}).get("total", 0)
     media_horas = tot_hours / len(TRACKED_AUTHORS) if TRACKED_AUTHORS else 0.0
     taxa_conc = (tot_closed / tot_all * 100.0) if tot_all > 0 else 100.0
 
     resumo_processo = (
-        f"* **Total de Demandas Únicas no Repositório (Issues/PRs):** {total_unique_items} itens cadastrados\n"
-        f"* **Total de Tarefas Atribuídas aos Integrantes:** {tot_all} alocações individuais\n"
-        f"* **Tarefas Concluídas e Homologadas:** {tot_closed} atribuições finalizadas\n"
+        f"* **Total de Issues únicas no Repositório:** {tot_all} itens mapeados\n"
+        f"* **Tarefas Concluídas e Homologadas:** {tot_closed} tarefas\n"
         f"* **Taxa de Conclusão de Demandas:** **{fmt_br_number(taxa_conc, 1)}% de eficácia de processo**\n"
-        f"* **Média de Esforço por Integrante:** {fmt_br_number(media_horas, 1)} horas dedicadas (estimadas no PC1)\n"
-        f"* **Esforço Total Consolidado da Equipe:** {fmt_br_number(tot_hours, 1)} horas profissionais (estimadas no PC1)"
+        f"* **Média de Esforço por Integrante:** {fmt_br_number(media_horas, 1)} horas dedicadas\n"
+        f"* **Esforço Total Consolidado da Equipe:** {fmt_br_number(tot_hours, 1)} horas profissionais"
     )
 
     # 3. Escrita dos arquivos na pasta snippets/
@@ -973,9 +778,7 @@ def main():
     (SNIPPETS_DIR / "issues-summary.md").write_text(issues_table + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "process-performance-table.md").write_text(process_performance_table + "\n", encoding="utf-8")
 
-    write_necessidades_snippets()
-
-    resumo_horas = {k: f"{v['hours']:.1f}h" for k, v in issue_counts.items()}
+    resumo_horas = {k: f"{v['hours']:.1f}h" for k, v in issue_counts.items() if k != "_meta"}
     print(f"Snippets gerados com sucesso em: {SNIPPETS_DIR}")
     print(f"Horas computadas por membro: {resumo_horas}")
 

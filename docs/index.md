@@ -20,13 +20,13 @@ A Tabela 1 consolida os membros da equipe avaliadora, suas matrículas acadêmic
 
 | Integrante | Matrícula UnB | Usuário GitHub | E-mail de Contato | Papel Principal na Avaliação | Horas (h) | Valor / Hora (R$) | Custo Total (R$) | % Esforço (AG-C5) |
 | :--- | :---: | :---: | :--- | :--- | :---: | :---: | :---: | :---: |
-| **Artur Fernandes Galdino** | `241010923` | `@ArturFGaldino` | `fernandesartur4@gmail.com` | Analista de Compatibilidade / Mapeamento de Arquitetura e Escopo | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
-| **Nicole Jovita Fernandes** | `241012347` | `@nicolejovita` | `nicolejovitafernandes@gmail.com` | Analista de Requisitos / Stakeholders, Modelo ISO 25010 e ODS | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
-| **Davi Ursolino de Oliveira** | `241012202` | `@DaviUrsulino` | `daviursulinodeoliveira@gmail.com` | Analista de Confiabilidade / Especificação GQM e Métricas | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
-| **João Eduardo Pereira Rabelo** | `180053299` | `@JoaoEduardoP` | `180053299@aluno.unb.br` | Analista de Confiabilidade / Metodologia e Métricas PSM | 12h | R$ 50,00 | R$ 600,00 | **16,66%** |
-| **Natan José França** | `241011537` | `@Natan8643` | `natan.j.franca@gmail.com` | Analista de Usabilidade / Diagrama GQM e Níveis de Julgamento | 12h | R$ 50,00 | R$ 600,00 | **16,66%** |
-| **Yan Santos Rodrigues** | `241025480` | `@yanrdgs-dev` | `yansantosrodrigues.dev@gmail.com` | Analista de Usabilidade / Especificação Operacional e Heurísticas | 12h | R$ 50,00 | R$ 600,00 | **16,67%** |
-| **TOTAL CONSOLIDADO** | — | — | — | **Esforço Acumulado — Ponto de Controle 1** | **72h** | Média: R$ 50,00/h | **R$ 3.600,00** | **100%** |
+| **Artur Fernandes Galdino** | `241010923` | `@ArturFGaldino` | `fernandesartur4@gmail.com` | Analista de Compatibilidade / Mapeamento de Arquitetura e Escopo | 10,5h | R$ 87,55 | R$ 919,28 | **26,92%** |
+| **Nicole Jovita Fernandes** | `241012347` | `@nicolejovita` | `nicolejovitafernandes@gmail.com` | Analista de Requisitos / Stakeholders, Modelo ISO 25010 e ODS | 9,5h | R$ 87,55 | R$ 831,73 | **24,36%** |
+| **Davi Ursolino de Oliveira** | `241012202` | `@DaviUrsulino` | `daviursulinodeoliveira@gmail.com` | Analista de Confiabilidade / Especificação GQM e Métricas | 6,0h | R$ 87,55 | R$ 525,30 | **15,38%** |
+| **João Eduardo Pereira Rabelo** | `180053299` | `@JoaoEduardoP` | `180053299@aluno.unb.br` | Analista de Confiabilidade / Metodologia e Métricas PSM | 4,0h | R$ 87,55 | R$ 350,20 | **10,26%** |
+| **Natan José França** | `241011537` | `@Natan8643` | `natan.j.franca@gmail.com` | Analista de Usabilidade / Diagrama GQM e Níveis de Julgamento | 4,5h | R$ 87,55 | R$ 393,98 | **11,54%** |
+| **Yan Santos Rodrigues** | `241025480` | `@yanrdgs-dev` | `yansantosrodrigues.dev@gmail.com` | Analista de Usabilidade / Especificação Operacional e Heurísticas | 4,5h | R$ 87,55 | R$ 393,98 | **11,54%** |
+| **TOTAL CONSOLIDADO** | — | — | — | **Esforço Acumulado — Ponto de Controle 1** | **39,0h** | Média: R$ 87,55/h | **R$ 3.414,45** | **100%** |
 
 *Fonte: Elaborado pelos autores conforme diretrizes da disciplina FGA0315 e modelo PSM/CID.*
 
@@ -68,7 +68,7 @@ A avaliação adota o rigor de normas e modelos consolidados da Engenharia de So
 | :--- | :--- | :--- |
 | **Requisitos da Avaliação (Fase 1)** | [`fase1/`](fase1/proposito-stakeholders.md) | Propósito, partes interessadas, mapeamento dos 4 módulos (Infração, Atendimento, Protocolo e Chatbot), modelo ISO 25010, limites de escopo e ODS 9 e 16. |
 | **Especificação GQM (Fase 2)** | [`fase2/`](fase2/index.md) | Árvores GQM completas, fórmulas, procedimentos de coleta e limiares de decisão para Compatibilidade, Usabilidade e Confiabilidade. |
-| **Gestão do Projeto (PSM/CID)** | [`gestao/`](gestao/metricas-psm.md) | Indicadores de processo, estrutura de Marcos M0 a M5, alocação de custos, atas e catálogo atômico das 17 issues fechadas. |
+| **Gestão do Projeto (PSM/CID)** | [`gestao/`](gestao/metricas-psm.md) | Indicadores de processo, estrutura de Marcos M0 a M5, alocação de custos, atas e catálogo de horas estimadas das 14 issues fechadas. |
 | **Ponto de Controle 1 (Entrega 1)** | [`entregas/entrega1.md`](entregas/entrega1.md) | Linha do tempo "Onde Estamos", matriz de entregáveis, consolidação de esforço e roteiro detalhado dos 10 slides da apresentação. |
 
 ---

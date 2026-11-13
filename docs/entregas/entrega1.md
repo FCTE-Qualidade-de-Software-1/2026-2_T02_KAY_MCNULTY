@@ -56,22 +56,55 @@ Esta seção formaliza a evolução cronológica do projeto da equipe Kay McNult
 
 ## 3. Gestão de Recursos, Esforço e Custos (PSM/CID e Critério AG-C5)
 
-A Tabela 2 apresenta a alocação completa de responsabilidades, horas de trabalho dedicadas, valor por hora profissional e custos financeiros acumulados para a Entrega 1, totalizando rigorosamente 100,00% de esforço em conformidade com o **Critério AG-C5**.
+A Tabela 2 apresenta a estimativa consolidada de responsabilidades, esforço, valor por hora profissional e custos financeiros para a Entrega 1, em conformidade com o **Critério AG-C5**. Como a equipe não registrou horas realizadas na E1, os valores abaixo são estimativas homologadas pela equipe, e não medições de tempo efetivamente apontadas.
+
+O valor de referência foi calculado a partir do custo médio anual de R$ 52.533,00 por estudante de universidade federal, conforme [Poder360](https://www.poder360.com.br/poder-economia/alunos-de-universidades-federais-tem-custo-medio-anual-de-r-52-533/). Considerando a média de 300 horas por semestre, ou 600 horas anuais, o cálculo resulta em R$ 87,555/h; foi aplicado truncamento para duas casas decimais, adotando-se **R$ 87,55/h** ($R\$\ 52.533,00 \div 600\text{h} = R\$\ 87,555/\text{h} \rightarrow R\$\ 87,55/\text{h}$). Esta é a única taxa usada nas tabelas da E1.
 
 ### Tabela 2 — Alocação de Recursos, Esforço e Custos Consolidados (PC1)
 
 | Integrante | Papel Principal na Equipe | Responsabilidades e Tarefas no Ponto de Controle 1 | Horas (h) | Valor / Hora (R$) | Custo Total (R$) | % de Esforço (AG-C5) |
 | :--- | :--- | :--- | :---: | :---: | :---: | :---: |
-| **Artur Fernandes Galdino**<br>Matrícula: `241010923` | Analista de Compatibilidade / Mapeamento de Arquitetura e Escopo | Mapeamento dos módulos de Infração, Atendimento, Protocolo e Chatbot (Issue #01); especificação GQM e métricas de Compatibilidade ($TCBN$, $ICR$, $TSIS$) (Issues #03 e #04); escopo e propósito (Issues #05 e #07). | 13,5h | R$ 50,00 | R$ 675,00 | **25,96%** |
-| **Nicole Jovita Fernandes**<br>Matrícula: `241012347` | Analista de Requisitos / Stakeholders, Modelo ISO 25010 e ODS | Justificativa de Compatibilidade cross-browser/mobile (Issue #02); mapeamento de stakeholders (Issue #05); adaptação do modelo ISO 25010 (Issue #06); alinhamento aos ODS 9 (Meta 9.c) e 16 (Meta 16.6) (Issue #08). | 9,5h | R$ 50,00 | R$ 475,00 | **18,27%** |
-| **Davi Ursolino de Oliveira**<br>Matrícula: `241012202` | Analista de Confiabilidade / Especificação GQM e Métricas | Especificação GQM de Confiabilidade (Issue #10); métricas quantitativas ($TDO$, $TCFF$, $DFF$, $TTOA$, $TRTI$, $TMR$) e réguas de pontuação (Issue #11); diagramação Mermaid e fórmulas MathJax (Issues #12 e #13). | 10,0h | R$ 50,00 | R$ 500,00 | **19,23%** |
-| **João Eduardo Pereira Rabelo**<br>Matrícula: `180053299` | Analista de Confiabilidade / Metodologia e Métricas PSM | Fundamentação de Confiabilidade em serviços transacionais (Issue #09); metodologia ISO 25040; métricas PSM/CID de processos e calendário; auditoria de governança e atas. | 4,0h | R$ 50,00 | R$ 200,00 | **7,69%** |
-| **Natan José França**<br>Matrícula: `241011537` | Analista de Usabilidade / Diagrama GQM e Níveis de Julgamento | Justificativa de Usabilidade (Issue #14); modelo GQM e hipóteses nos 4 módulos (Issue #15); escalas de julgamento das métricas $TCAPA$, $IEFO$ e $TPRE$ (Issue #16); diagrama GQM e artigo (Issue #17). | 9,0h | R$ 50,00 | R$ 450,00 | **17,31%** |
-| **Yan Santos Rodrigues**<br>Matrícula: `241025480` | Analista de Usabilidade / Especificação Operacional e Heurísticas | Análise ergonômica e perfil de condutores do DF (Issue #14); procedimentos operacionais para Heurísticas de Nielsen e questionário $SUS$ (Issue #15); métricas quantitativas de usabilidade (Issue #16); documentação MkDocs (Issue #17). | 6,0h | R$ 50,00 | R$ 300,00 | **11,54%** |
-| **TOTAL CONSOLIDADO** | — | **Entregáveis Fases 1 e 2 Consolidados — Ponto de Controle 1** | **52,0h** | Média: R$ 50,00/h | **R$ 2.600,00** | **100,00%** |
+| **Artur Fernandes Galdino**<br>Matrícula: `241010923` | Analista de Compatibilidade / Mapeamento de Arquitetura e Escopo | Mapeamento dos módulos de Infração, Atendimento, Protocolo e Chatbot (Issue #01); especificação GQM e métricas de Compatibilidade ($TCBN$, $ICR$, $TSIS$) (Issues #03 e #04); escopo e propósito (Issues #05 e #07). | 10,5h | R$ 87,55 | R$ 919,28 | **26,92%** |
+| **Nicole Jovita Fernandes**<br>Matrícula: `241012347` | Analista de Requisitos / Stakeholders, Modelo ISO 25010 e ODS | Justificativa de Compatibilidade cross-browser/mobile (Issue #02); mapeamento de stakeholders (Issue #05); adaptação do modelo ISO 25010 (Issue #06); alinhamento aos ODS 9 (Meta 9.c) e 16 (Meta 16.6) (Issue #08). | 9,5h | R$ 87,55 | R$ 831,73 | **24,36%** |
+| **Davi Ursolino de Oliveira**<br>Matrícula: `241012202` | Analista de Confiabilidade / Especificação GQM e Métricas | Especificação GQM de Confiabilidade (Issue #10); métricas quantitativas ($TDO$, $TCFF$, $DFF$, $TTOA$, $TRTI$, $TMR$) e réguas de pontuação (Issue #11); diagramação Mermaid e fórmulas MathJax (Issues #12 e #13). | 6,0h | R$ 87,55 | R$ 525,30 | **15,38%** |
+| **João Eduardo Pereira Rabelo**<br>Matrícula: `180053299` | Analista de Confiabilidade / Metodologia e Métricas PSM | Fundamentação de Confiabilidade em serviços transacionais (Issue #09); metodologia ISO 25040; métricas PSM/CID de processos e calendário; auditoria de governança e atas. | 4,0h | R$ 87,55 | R$ 350,20 | **10,26%** |
+| **Natan José França**<br>Matrícula: `241011537` | Analista de Usabilidade / Diagrama GQM e Níveis de Julgamento | Justificativa de Usabilidade (Issue #14); modelo GQM e hipóteses nos 4 módulos (Issue #15); escalas de julgamento das métricas $TCAPA$, $IEFO$ e $TPRE$ (Issue #16); diagrama GQM e artigo (Issue #17). | 4,5h | R$ 87,55 | R$ 393,98 | **11,54%** |
+| **Yan Santos Rodrigues**<br>Matrícula: `241025480` | Analista de Usabilidade / Especificação Operacional e Heurísticas | Análise ergonômica e perfil de condutores do DF (Issue #14); procedimentos operacionais para Heurísticas de Nielsen e questionário $SUS$ (Issue #15); métricas quantitativas de usabilidade (Issue #16); documentação MkDocs (Issue #17). | 4,5h | R$ 87,55 | R$ 393,98 | **11,54%** |
+| **TOTAL CONSOLIDADO** | — | **Entregáveis Fases 1 e 2 Consolidados — Ponto de Controle 1** | **39,0h** | Média: R$ 87,55/h | **R$ 3.414,45** | **100%** |
 
-*Fonte: Elaborado pelos autores conforme diretrizes da disciplina FGA0315 e modelo PSM/CID.*  
-*Nota: As horas e percentuais do Ponto de Controle 1 representam esforço estimado e homologado a partir do catálogo de tarefas do projeto; demandas compartilhadas têm esforço rateado igualmente.*
+*Fonte: Elaborado pelos autores conforme diretrizes da disciplina FGA0315 e modelo PSM/CID.*
+
+### 3.1 Análise dos Indicadores de Contribuição e Desempenho
+
+Os indicadores abaixo complementam a leitura da contribuição da equipe na E1. A interpretação combina a tabela de alocação declarada, o painel automatizado de issues e os dados PSM/CID registrados para o PC1.
+
+#### Taxa de conclusão de issues
+
+O painel automatizado registra 14 issues únicas, todas fechadas, resultando em taxa de conclusão de 100%. As contagens por responsável somam 23 atribuições porque uma issue compartilhada aparece para cada responsável; esse subtotal não deve ser interpretado como quantidade de issues do repositório.
+
+#### Distribuição de esforço individual
+
+O painel automatizado é a fonte oficial da E1. Ele registra 39 horas estimadas, distribuídas entre 10,5h e 4,0h por integrante, conforme a estimativa da equipe e o catálogo homologado pelo pipeline.
+
+#### Custos e percentual de contribuição
+
+Com o valor de referência de R$ 87,55 por hora, as 39 horas do painel resultam em R$ 3.414,45. Esse é o custo oficial utilizado na E1 e no cálculo do percentual de contribuição de cada integrante.
+
+#### Rastreabilidade e revisão
+
+O painel de contribuição consolida os commits sem merges, 14 issues fechadas e a associação dos integrantes às suas atividades. As issues compartilhadas podem aparecer nas linhas individuais de mais de um responsável, mas o total consolidado conta cada issue uma única vez. Esses dados indicam rastreabilidade entre trabalho registrado, revisão por pares e fechamento das demandas.
+
+#### Tempo de ciclo
+
+O arquivo PSM do PC1 registra tempo médio de resolução de 0,23 dia e tempo máximo de 2,49 dias. O resultado indica ciclo curto para as demandas do período analisado, com concentração das conclusões dentro da janela da Entrega 1. Esse indicador mede tempo de resolução, não esforço em horas, e por isso não deve ser somado à tabela de custos.
+
+#### Aderência aos prazos
+
+O burndown do PC1 mostra uma issue aberta entre 18 e 19 de outubro e saldo zerado a partir de 20 de outubro. A demanda foi concluída dentro do período de 16 a 26 de outubro, indicando aderência à janela planejada da entrega. A avaliação de antecipação de um dia, contudo, não é calculada automaticamente pelo pipeline atual e deve ser confirmada pelo marco oficial da disciplina.
+
+#### Limitação de medição
+
+O indicador N4, destinado à comparação entre esforço estimado e esforço real, ainda não possui resultado persistido no JSON do PC1 nem coluna própria no painel. Portanto, não é possível concluir a precisão das estimativas da E1 sem registrar também a estimativa original de cada issue.
 
 ---
 
