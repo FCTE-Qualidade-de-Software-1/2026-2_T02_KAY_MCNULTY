@@ -26,6 +26,7 @@ SNIPPETS_DIR = REPO_ROOT / "snippets"
 REPO_OWNER = "FCTE-Qualidade-de-Software-1"
 REPO_NAME = "2026-2_T02_KAY_MCNULTY"
 VALOR_HORA_BRL = 87.55
+ULTIMA_ISSUE_E1 = 17
 FONTE_VALOR_HORA = "https://www.poder360.com.br/poder-economia/alunos-de-universidades-federais-tem-custo-medio-anual-de-r-52-533/"
 IGNORED_LINE_STAT_PATHS = {
     "docs/assets/Qualidade_do_Detran_Digital_Slides.pdf",
@@ -344,7 +345,7 @@ def get_issue_and_effort_metrics():
     """Calcula estatísticas de issues e esforço estimado por membro."""
     items = [
         item for item in fetch_all_github_items()
-        if "pull_request" not in item
+        if "pull_request" not in item and item.get("number", 0) <= ULTIMA_ISSUE_E1
     ]
 
     counts = {
@@ -638,6 +639,7 @@ def generate_issues_table(issue_counts: dict) -> str:
 
     tot_closed = issue_counts.get("_meta", {}).get("closed", 0)
     tot_all = issue_counts.get("_meta", {}).get("total", 0)
+    tot_open = tot_all - tot_closed
 
     for m in TEAM_MEMBERS:
         handle = m["handle"]
@@ -776,7 +778,7 @@ def main():
     (SNIPPETS_DIR / "issues-summary.md").write_text(issues_table + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "process-performance-table.md").write_text(process_performance_table + "\n", encoding="utf-8")
 
-    resumo_horas = {k: f"{v['hours']:.1f}h" for k, v in issue_counts.items()}
+    resumo_horas = {k: f"{v['hours']:.1f}h" for k, v in issue_counts.items() if k != "_meta"}
     print(f"Snippets gerados com sucesso em: {SNIPPETS_DIR}")
     print(f"Horas computadas por membro: {resumo_horas}")
 
