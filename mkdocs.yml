@@ -62,6 +62,8 @@ nav:
       - Compatibilidade: fase2/compatibilidade.md
       - Usabilidade: fase2/usabilidade.md
       - Confiabilidade: fase2/confiabilidade.md
+  - Projeto da Avaliação (Fase 3):
+      - Confiabilidade: fase3/confiabilidade.md
   - Gestão do Projeto (PSM):
       - Atas de Reunião: gestao/atas.md
       - Métricas de Gestão PSM: gestao/metricas-psm.md
