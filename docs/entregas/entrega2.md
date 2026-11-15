@@ -66,6 +66,12 @@ Mantendo a coerência com a metodologia estabelecida na Entrega 1, os custos sã
 
 *Fonte: Elaborado pelos autores.*
 
+### Tabela dinamica - Issues e Esforco da Entrega 2
+
+Os dados abaixo sao calculados automaticamente a partir das issues posteriores ao Ponto de Controle 1:
+
+--8<-- "process-performance-table-entrega2.md"
+
 ---
 
 ## 4. Rastreabilidade com as Issues e Commits do Repositório

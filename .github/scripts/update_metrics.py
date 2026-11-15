@@ -341,11 +341,12 @@ def extract_hours_from_item(item: dict) -> float:
     return 2.0
 
 
-def get_issue_and_effort_metrics():
-    """Calcula estatísticas de issues e esforço estimado por membro."""
+def get_issue_and_effort_metrics(issue_filter=None):
+    """Calcula estatisticas de issues e esforco estimado por membro."""
     items = [
         item for item in fetch_all_github_items()
-        if "pull_request" not in item and item.get("number", 0) <= ULTIMA_ISSUE_E1
+        if "pull_request" not in item
+        and (issue_filter is None or issue_filter(item.get("number", 0)))
     ]
 
     counts = {
@@ -707,9 +708,12 @@ def main():
     SNIPPETS_DIR.mkdir(parents=True, exist_ok=True)
 
     weeks, commits, additions, deletions, git_totals = get_git_log_data()
-    issue_counts = get_issue_and_effort_metrics()
+    pc1_counts = get_issue_and_effort_metrics(lambda number: number <= ULTIMA_ISSUE_E1)
+    general_counts = get_issue_and_effort_metrics()
+    entrega2_counts = get_issue_and_effort_metrics(lambda number: number > ULTIMA_ISSUE_E1)
+    issue_counts = pc1_counts
 
-    # 1. Gráficos Mermaid
+    # 1. Graficos Mermaid
     velocity_chart = render_timeline_chart(
         "Velocidade de Commits por Integrante ao Longo do Tempo",
         "Commits",
@@ -748,6 +752,8 @@ def main():
     contributions_table = generate_contributions_table(git_totals, issue_counts)
     issues_table = generate_issues_table(issue_counts)
     process_performance_table = generate_process_performance_table(issue_counts)
+    general_contributions_table = generate_contributions_table(git_totals, general_counts)
+    entrega2_process_table = generate_process_performance_table(entrega2_counts)
 
     tot_hours = sum(issue_counts.get(h, {}).get("hours", 0.0) for h in TRACKED_AUTHORS)
     tot_closed = issue_counts.get("_meta", {}).get("closed", 0)
@@ -775,8 +781,10 @@ def main():
     (SNIPPETS_DIR / "alocacao-recursos-custos.md").write_text(alocacao_recursos_custos + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "distribuicao-custos-areas.md").write_text(distribuicao_custos_areas + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "contributions-summary.md").write_text(contributions_table + "\n", encoding="utf-8")
+    (SNIPPETS_DIR / "contributions-summary-geral.md").write_text(general_contributions_table + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "issues-summary.md").write_text(issues_table + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "process-performance-table.md").write_text(process_performance_table + "\n", encoding="utf-8")
+    (SNIPPETS_DIR / "process-performance-table-entrega2.md").write_text(entrega2_process_table + "\n", encoding="utf-8")
 
     resumo_horas = {k: f"{v['hours']:.1f}h" for k, v in issue_counts.items() if k != "_meta"}
     print(f"Snippets gerados com sucesso em: {SNIPPETS_DIR}")
