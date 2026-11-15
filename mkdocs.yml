@@ -63,13 +63,23 @@ nav:
       - Usabilidade: fase2/usabilidade.md
       - Confiabilidade: fase2/confiabilidade.md
   - Projeto da Avaliação (Fase 3):
+      - Visão Geral da Fase 3: fase3/index.md
+      - Compatibilidade: fase3/compatibilidade.md
+      - Usabilidade: fase3/usabilidade.md
       - Confiabilidade: fase3/confiabilidade.md
+  - Execução e Resultados (Fase 4):
+      - Visão Geral da Fase 4: fase4/index.md
+      - Compatibilidade: fase4/compatibilidade.md
+      - Usabilidade: fase4/usabilidade.md
+      - Confiabilidade: fase4/confiabilidade.md
+      - Ações de Melhoria: fase4/melhorias.md
   - Gestão do Projeto (PSM):
       - Atas de Reunião: gestao/atas.md
       - Métricas de Gestão PSM: gestao/metricas-psm.md
       - Tabela de Contribuição: gestao/tabela-contribuicao.md
   - Entregas:
       - Entrega 1: entregas/entrega1.md
+      - Entrega 2: entregas/entrega2.md
       - Artigo: entregas/artigo.md
 
 plugins:
@@ -79,6 +89,9 @@ plugins:
       type: date
       locale: pt
       enable_creation_date: true
+      enable_git_follow: false
+      fallback_to_build_date: true
+      strict: false
 
 markdown_extensions:
   - abbr
