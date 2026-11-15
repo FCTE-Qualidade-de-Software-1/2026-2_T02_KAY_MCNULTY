@@ -177,3 +177,70 @@ Este ensaio verifica se as interfaces e comportamentos dinâmicos dos quatro mó
 Para cada módulo avaliado, o cenário de teste só é considerado **Aprovado** ($N_{ap} = 1$) se obtiver sucesso pleno nos **quatro navegadores testados**. Se houver qualquer falha impeditiva ou severa em um único navegador (e.g., Safari ou Firefox), o cenário do módulo é pontuado como **Reprovado** ($N_{ap} = 0$).
 
 $$\text{Critério de Sucesso do Módulo:} \quad \text{Sucesso(Chrome)} \land \text{Sucesso(Firefox)} \land \text{Sucesso(Edge)} \land \text{Sucesso(Safari)}$$
+
+
+---
+
+### 4.2 Roteiro de Conformidade Responsiva Multi-resolução (ICR / Questão Q2)
+
+Este ensaio tem como finalidade medir a capacidade de adaptação visual e ergonômica das telas do Portal Detran Digital DF frente a diferentes larguras de exibição (*viewports*), assegurando que o cidadão consiga utilizar os serviços tanto em smartphones simples quanto em monitores desktop de alta resolução.
+
+#### Viewports de Referência Padronizadas
+
+As medições realizam-se obrigatoriamente sobre cinco resoluções fixas configuradas via *Device Mode* do DevTools (`Ctrl+Shift+M`):
+
+1. **VP-01 — Mobile Pequeno (360 × 640 px):** Dispositivos móveis de entrada e telas compactas.
+2. **VP-02 — Mobile Médio (414 × 896 px):** Smartphones intermediários e padrão de mercado moderno.
+3. **VP-03 — Tablet Retrato (768 × 1024 px):** Dispositivos intermediários (e.g., Apple iPad).
+4. **VP-04 — Desktop HD (1366 × 768 px):** Notebooks corporativos e monitores de resolução padrão.
+5. **VP-05 — Desktop Full HD (1920 × 1080 px):** Monitores amplos e estações de alta definição.
+
+#### Procedimento Passo a Passo de Inspeção Responsiva
+
+* **Passo 1:** No navegador de referência (Google Chrome ou Edge), abrir o DevTools (`F12`) e ativar a barra de emulação de dispositivos (*Toggle device toolbar* / `Ctrl+Shift+M`).
+* **Passo 2:** No seletor de dimensões, selecionar o modo **"Responsive"** (Responsivo).
+* **Passo 3:** Ajustar a largura e altura para a viewport correspondente (iniciando em `360 × 640 px`).
+* **Passo 4:** Fixar o zoom do emulador em **100%** e o fator de escala de dispositivo (*Device Pixel Ratio - DPR*) em 1.0 ou 2.0.
+* **Passo 5:** Recarregar a página (`Ctrl+F5`) para que as media queries e scripts de redimensionamento sejam computados a frio.
+* **Passo 6:** Para o módulo sob teste (Infração, Atendimento, Protocolo ou Chatbot), executar a inspeção visual e de controle conforme os critérios abaixo:
+  * **Checagem de Rolagem Horizontal (Overflow):** Tentar rolar a tela lateralmente. A largura do documento deve ser estritamente contida na viewport (`document.documentElement.scrollWidth === window.innerWidth`).
+  * **Checagem de Sobreposição de Elementos Flutuantes:** Localizar o widget do Chatbot e verificar se o botão flutuante sobrepõe botões de submissão ("Consultar", "Avançar", "Salvar") ou campos de formulário.
+  * **Checagem de Rótulos e Quebras de Linha:** Avaliar se títulos, instruções e campos de formulário mantêm legibilidade, sem caracteres cortados ou sobreposição de linhas.
+  * **Checagem de Menu e Navegação:** No mobile (VP-01 e VP-02), verificar se o menu principal colapsa para o ícone de hambúrguer e se a abertura/fechamento do menu ocorre sem deslocar o cabeçalho.
+* **Passo 7:** Registrar o resultado na planilha de inspeção e capturar a tela completa da viewport.
+
+#### Tabela 2 — Matriz de Pontos de Inspeção Responsiva ($T_{tot} = 20$ pontos)
+
+| Código | Módulo Avaliado | Viewport Avaliada | Dimensão (px) | Foco Principal da Inspeção |
+| :---: | :--- | :---: | :---: | :--- |
+| **RESP-01** | Infração | VP-01 (Mobile Pequeno) | 360 × 640 | Contenção da tabela de débitos e campos de placa/Renavam sem overflow |
+| **RESP-02** | Infração | VP-02 (Mobile Médio) | 414 × 896 | Alinhamento dos botões de consulta e mensagem de retorno |
+| **RESP-03** | Infração | VP-03 (Tablet) | 768 × 1024 | Distribuição em grade dos cartões de serviços de veículos |
+| **RESP-04** | Infração | VP-04 (Desktop HD) | 1366 × 768 | Proporção de tela e margens laterais |
+| **RESP-05** | Infração | VP-05 (Desktop Full HD) | 1920 × 1080 | Centralização de layout e preenchimento de espaço útil |
+| **RESP-06** | Atendimento | VP-01 (Mobile Pequeno) | 360 × 640 | Empilhamento do calendário e grade de horários sem corte de dias |
+| **RESP-07** | Atendimento | VP-02 (Mobile Médio) | 414 × 896 | Toque preciso nos seletores de postos de atendimento |
+| **RESP-08** | Atendimento | VP-03 (Tablet) | 768 × 1024 | Exibição lado a lado de unidade física e grade de horários |
+| **RESP-09** | Atendimento | VP-04 (Desktop HD) | 1366 × 768 | Navegabilidade do fluxo sequencial de agendamento |
+| **RESP-10** | Atendimento | VP-05 (Desktop Full HD) | 1920 × 1080 | Renderização limpa e espaçamento confortável dos componentes |
+| **RESP-11** | Protocolo | VP-01 (Mobile Pequeno) | 360 × 640 | Sanfonas explicativas e botão de upload adaptados a telas estreitas |
+| **RESP-12** | Protocolo | VP-02 (Mobile Médio) | 414 × 896 | Visibilidade da lista de documentos e status de carregamento |
+| **RESP-13** | Protocolo | VP-03 (Tablet) | 768 × 1024 | Adaptação de formulários longos de peticionamento |
+| **RESP-14** | Protocolo | VP-04 (Desktop HD) | 1366 × 768 | Estabilidade das áreas de arraste (*drag-and-drop*) |
+| **RESP-15** | Protocolo | VP-05 (Desktop Full HD) | 1920 × 1080 | Integridade de margens e contêineres de instrução normativa |
+| **RESP-16** | Chatbot | VP-01 (Mobile Pequeno) | 360 × 640 | Comportamento do modal aberto (deve ocupar tela inteira sem vazar) |
+| **RESP-17** | Chatbot | VP-02 (Mobile Médio) | 414 × 896 | Teclado virtual simulado sem ocultar a caixa de digitação |
+| **RESP-18** | Chatbot | VP-03 (Tablet) | 768 × 1024 | Posicionamento do balão e ausência de bloqueio de cliques úteis |
+| **RESP-19** | Chatbot | VP-04 (Desktop HD) | 1366 × 768 | Proporção da janela flutuante em relação à página |
+| **RESP-20** | Chatbot | VP-05 (Desktop Full HD) | 1920 × 1080 | Fixação no canto inferior direito sem deslocamento ao rolar a página |
+
+*Fonte: Elaborado pelos autores.*
+
+#### Critério de Pontuação da Métrica ICR
+Cada um dos 20 pontos de inspeção recebe pontuação binária:
+* **Conforme ($T_{conf} = 1$):** Zero rolagem horizontal não planejada, zero sobreposição obstrutiva do Chatbot e textos 100% contidos e legíveis.
+* **Não Conforme ($T_{conf} = 0$):** Ocorrência de qualquer uma das três anomalias visuais acima.
+
+O índice final é a razão entre os pontos aprovados e o total de 20 pontos:
+
+$$ICR = \left(\frac{T_{conf}}{20}\right) \times 100\%$$
