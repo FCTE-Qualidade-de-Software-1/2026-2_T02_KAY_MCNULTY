@@ -329,21 +329,103 @@ Para garantir a auditabilidade integral das medições, todas as evidências col
 
 ---
 
-## 6. Matriz de Rastreabilidade (Fase 2 para Fase 3)
+## 6. Cronograma de Execução das Baterias de Avaliação
 
-Esta matriz comprova a rastreabilidade estrita entre a especificação teórica da Fase 2 e os métodos operacionais da Fase 3:
+O cronograma operacional define as janelas de realização das baterias de medição de Compatibilidade, alinhadas aos marcos da Entrega 2 (Ponto de Controle 2 — 16/11/2026) e à margem de consolidação de resultados prevista para 22/11/2026. As datas foram calibradas para que a Fase 4 (execução em campo) transcorra de maneira estruturada e sem atritos operacionais.
 
-| Métrica Formal (Fase 2) | Questão e Hipótese | Medidas Básicas (PSM) | Seção no Plano (Fase 3) | Instrumentos e Ferramentas | Artefatos de Evidência | Níveis de Julgamento (Fase 2) |
-| :--- | :---: | :--- | :---: | :--- | :--- | :--- |
-| **M1 – TCBN** | Q1, H1 | $N_{ap}$, $N_{tot}$ | Seção 4.1 | Chrome, Firefox, Edge e Safari | Capturas de tela comparativas e checklist | Excelente: ≥ 95%<br>Bom: 85% a 94%<br>Satisfatório: 70% a 84%<br>Insuficiente: < 70% |
-| **M2 – ICR** | Q2, H2 | $T_{conf}$, $T_{tot}$ | Seção 4.2 | DevTools Device Mode (5 viewports) | Capturas de tela com réguas e matriz de 20 pontos | Excelente: ≥ 95%<br>Bom: 80% a 94%<br>Satisfatório: 70% a 79%<br>Insuficiente: < 70% |
-| **M3 – TSIS** | Q3, H3 | $Req_{ok}$, $Req_{tot}$ | Seção 4.3 | DevTools Network (Fetch/XHR) | Arquivos `.har` e capturas com status HTTP | Excelente: ≥ 98%<br>Bom: 90% a 97%<br>Satisfatório: 80% a 89%<br>Insuficiente: < 80% |
+### Tabela 4 — Cronograma Operacional das Baterias de Avaliação
+
+| Rodada | Período | Atividade Principal | Métricas Cobertas | Responsáveis |
+| :---: | :---: | :--- | :---: | :--- |
+| **R0** | 15/11/2026 | Revisão final do plano e execução dos ensaios piloto em um único módulo (Infração) para calibrar os roteiros | TCBN, ICR, TSIS | Artur Fernandes Galdino e Nicole Jovita Fernandes |
+| **R1** | 16/11/2026 | Bateria completa Cross-Browser (TCBN): execução dos ensaios TC-CB-01 a TC-CB-04 nos quatro navegadores | TCBN | Artur Fernandes Galdino e Nicole Jovita Fernandes |
+| **R2** | 17/11/2026 | Bateria completa de Responsividade (ICR): inspeção dos 20 pontos de viewport (RESP-01 a RESP-20) | ICR | Artur Fernandes Galdino e Nicole Jovita Fernandes |
+| **R3** | 18/11/2026 | Bateria completa de Interoperabilidade (TSIS): monitoramento de tráfego de rede nas integrações INT-01 a INT-04 | TSIS | Artur Fernandes Galdino e Nicole Jovita Fernandes |
+| **R4** | 19/11/2026 | Compilação de dados brutos, cálculo dos índices TCBN, ICR e TSIS e registro de discrepâncias para reteste | TCBN, ICR, TSIS | Artur Fernandes Galdino e Nicole Jovita Fernandes |
+| **R5** | 20/11/2026 – 21/11/2026 | Reteste de itens reprovados ou inconclusos; redação do relatório consolidado de resultados (Fase 4) | TCBN, ICR, TSIS | Artur Fernandes Galdino e Nicole Jovita Fernandes |
+| **R6** | 22/11/2026 | Revisão final de evidências, publicação dos resultados e encerramento da Fase 4 | — | Artur Fernandes Galdino e Nicole Jovita Fernandes |
 
 *Fonte: Elaborado pelos autores.*
 
+### 6.1 Considerações de Calendário
+
+- As rodadas R1, R2 e R3 são independentes entre si e podem ser executadas em paralelo pelos dois avaliadores, desde que cada avaliador cubra módulos distintos para prevenir conflitos de concorrência de sessão no portal.
+- A rodada R0 é mandatória: o piloto valida que os roteiros operacionais das Seções 4.1, 4.2 e 4.3 são perfeitamente reproduzíveis no ambiente de produção antes da execução integral.
+- O cronograma harmoniza-se com a métrica de calendário CID (*Compressed Issue Duration*) monitorada no painel PSM da equipe, garantindo janela de execução de 5 a 7 dias úteis para os artefatos da Entrega 2.
+
 ---
 
-## 7. Limitações Metodológicas e Mitigação de Riscos Éticos
+## 7. Perfil e Requisitos dos Avaliadores
+
+Para assegurar a reprodutibilidade dos ensaios por qualquer engenheiro de software avaliador independente, os requisitos mínimos de conhecimento técnico e de domínio foram formalizados a seguir.
+
+### 7.1 Conhecimento de Domínio
+
+| Área | Nível Exigido | Justificativa |
+| :--- | :---: | :--- |
+| Navegação em portais web governamentais | Básico | O avaliador precisa compreender a taxonomia de serviços e menus do Detran Digital DF para navegar nos fluxos sem desvio |
+| Conceitos de compatibilidade de navegadores (*Cross-Browser*) | Básico | Capacidade de distinguir divergências reais de renderização entre motores Blink, Gecko e WebKit |
+| Conceitos de design responsivo e viewport | Básico | Compreensão de media queries CSS, quebras de layout e operação da ferramenta Device Mode |
+| Protocolo HTTP (*status codes*, métodos e cabeçalhos) | Intermediário | Necessário para classificar requisições em $Req_{ok}$ (2xx/3xx) ou $Req_{falha}$ (4xx/5xx/CORS) na métrica TSIS |
+| Análise de tráfego de rede via DevTools | Intermediário | Habilidade técnica para filtrar requisições Fetch/XHR, inspecionar payloads e exportar arquivos `.har` |
+
+### 7.2 Habilidades Técnicas com Ferramentas
+
+| Ferramenta | Operação Esperada | Nível Exigido |
+| :--- | :--- | :---: |
+| DevTools — Aba Console | Identificar exceções JavaScript impeditivas (`Uncaught TypeError`, `SyntaxError`) e violações de CORS | Básico |
+| DevTools — Aba Network | Aplicar filtro Fetch/XHR, habilitar *Preserve log*, manter *Disable cache* ativo e exportar arquivo `.har` | Intermediário |
+| DevTools — Device Toolbar | Configurar larguras e alturas fixas de viewport e ajustar DPR (1.0 e 2.0) | Básico |
+| Ferramenta de Captura de Tela | Capturar telas integrais da área de visualização e salvar em formato `.png` com a taxonomia do plano | Básico |
+| Controle de Versão (Git) | Versionar relatórios e evidências no repositório GitHub da equipe | Básico |
+
+### 7.3 Conhecimentos e Acessos Desnecessários
+
+Os ensaios operacionais foram desenhados para **não exigir**:
+
+- Escrita ou compilação de código-fonte (scripts de automação, testes unitários ou suites E2E automatizadas).
+- Ferramentas externas pagas ou pesadas (Selenium Grid, BrowserStack corporativo, proxies locais como Charles ou Fiddler).
+- Acesso a código-fonte proprietário, esquemas de bancos de dados ou documentação restrita de APIs do Detran-DF.
+- Credenciais reais de cidadão ou contas com nível Prata/Ouro no Gov.br (todas as validações utilizam massa de dados sintética pública).
+
+---
+
+## 8. Matriz de Rastreabilidade Formal (Fase 2 para Fase 3)
+
+Esta matriz comprova a rastreabilidade estrita exigida pelo processo de avaliação da ISO/IEC 25040, demonstrando que cada decisão, objetivo e métrica especificados na Fase 2 é operacionalizado por métodos, recursos e evidências concretas nesta Fase 3.
+
+### 8.1 Objetivo de Medição (GQM — Nível Conceitual)
+
+> **Objetivo GQM:** Avaliar o grau de Compatibilidade do Portal Detran Digital DF com o propósito de identificar divergências de comportamento, layout e integração entre os quatro módulos avaliados (Infração, Atendimento, Protocolo e Chatbot), do ponto de vista da equipe de qualidade de software, no contexto de um portal governamental de alta disponibilidade.
+
+### 8.2 Matriz de Rastreabilidade GQM Completa
+
+| Objetivo GQM | Questão de Pesquisa | Hipótese Associada | Métrica Derivada | Medidas Básicas (PSM) | Roteiro da Fase 3 | Instrumento de Medição | Nível de Julgamento (Fase 2) | Artefato de Evidência |
+| :--- | :--- | :--- | :---: | :--- | :---: | :--- | :--- | :--- |
+| Avaliar a Compatibilidade do Portal Detran Digital DF | **Q1:** O sistema preserva a funcionalidade e a integridade de layout nos navegadores modernos mais difundidos? | **H1:** Pelo menos 95% dos módulos avaliados operam de forma equivalente nos quatro navegadores em escopo | **M1 – TCBN** | $N_{ap}$ (módulos aprovados) e $N_{tot}$ (módulos totais = 4) | Seção 4.1 (TC-CB-01 a TC-CB-04) | Google Chrome 130+, Mozilla Firefox 131+, Microsoft Edge 130+, Apple Safari 17+ | Excelente: ≥ 95%<br>Bom: 85% a 94%<br>Satisfatório: 70% a 84%<br>Insuficiente: < 70% | `CB_[MODULO]_[BROWSER].png` |
+| Avaliar a Compatibilidade do Portal Detran Digital DF | **Q2:** As páginas e componentes dos quatro módulos adaptam-se de forma consistente às diferentes dimensões de tela? | **H2:** Pelo menos 95% dos 20 pontos de inspeção de viewport são classificados como conformes | **M2 – ICR** | $T_{conf}$ (pontos conformes) e $T_{tot}$ (20 pontos fixos) | Seção 4.2 (RESP-01 a RESP-20) | DevTools Device Toolbar em 5 viewports (360px a 1920px) | Excelente: ≥ 95%<br>Bom: 80% a 94%<br>Satisfatório: 70% a 79%<br>Insuficiente: < 70% | `RESP_[MODULO]_[LARGURA]px.png` |
+| Avaliar a Compatibilidade do Portal Detran Digital DF | **Q3:** Os fluxos de comunicação e troca de dados com serviços externos ocorrem de maneira íntegra e padronizada? | **H3:** Pelo menos 98% das requisições Fetch/XHR monitoradas retornam status HTTP 2xx ou 3xx válido | **M3 – TSIS** | $Req_{ok}$ (requisições bem-sucedidas) e $Req_{tot}$ (total de requisições de escopo) | Seção 4.3 (INT-01 a INT-04) | DevTools Network (filtro Fetch/XHR) + exportação `.har` | Excelente: ≥ 98%<br>Bom: 90% a 97%<br>Satisfatório: 80% a 89%<br>Insuficiente: < 80% | `NET_[MODULO]_[SERVICO].har`<br>`NET_[MODULO]_[SERVICO].png` |
+
+*Fonte: Elaborado pelos autores com base no modelo GQM da Fase 2 e nos roteiros operacionais desta Fase 3.*
+
+### 8.3 Verificação de Consistência entre Decisões da Fase 2 e Métodos da Fase 3
+
+| Decisão Metodológica da Fase 2 | Especificação Teórica (Fase 2) | Implementação Operacional (Fase 3) | Seção de Conformidade |
+| :--- | :--- | :--- | :---: |
+| Fórmula e unidade de TCBN | $TCBN = (N_{ap}/N_{tot}) \times 100$ | Critério de julgamento dos ensaios TC-CB-01 a TC-CB-04 e Tabela 1 | Seção 4.1 e Seção 1 |
+| Escala de classificação TCBN | Excelente ≥ 95%, Bom 85–94%, Satisfatório 70–84%, Insuficiente < 70% | Matriz de pontuação por módulo e escala da Tabela 8.2 | Seção 4.1 e Seção 8.2 |
+| Fórmula e unidade de ICR | $ICR = (T_{conf}/T_{tot}) \times 100$ | Critério de pontuação dos 20 pontos de inspeção (RESP-01 a RESP-20) | Seção 4.2 e Tabela 2 |
+| Escala de classificação ICR | Excelente ≥ 95%, Bom 80–94%, Satisfatório 70–79%, Insuficiente < 70% | Limiares de aceitação de layout e escala da Tabela 8.2 | Seção 4.2 e Seção 8.2 |
+| Fórmula e unidade de TSIS | $TSIS = (Req_{ok}/Req_{tot}) \times 100$ | Critério de categorização de status code HTTP (2xx/3xx vs 4xx/5xx) | Seção 4.3 e Tabela 3 |
+| Escala de classificação TSIS | Excelente ≥ 98%, Bom 90–97%, Satisfatório 80–89%, Insuficiente < 80% | Limiares de conformidade de rede e escala da Tabela 8.2 | Seção 4.3 e Seção 8.2 |
+| Motores web em escopo | Blink, Gecko, WebKit (Chrome, Firefox, Edge, Safari) | Especificação de versões estáveis e requisitos de ambiente | Seção 2.2 e Seção 4.1 |
+| Viewports padronizadas | 360px, 414px, 768px, 1366px, 1920px | Especificação VP-01 a VP-05 e Tabela 2 | Seção 4.2 |
+| Serviços externos mapeados | Gov.br, SEFAZ-DF/Bancos, SEI-GDF e InBot/AWS | Cenários de integração INT-01 a INT-04 e Tabela 3 | Seção 4.3 |
+| Proteção de dados e ética | Diretrizes da LGPD (Lei 13.709/2018) | Catálogo de dados sintéticos e diretrizes de não-interferência | Seção 3 e Seção 9 |
+
+---
+
+## 9. Limitações Metodológicas e Mitigação de Riscos Éticos
 
 1. **Acesso Não-Autenticado versus Áreas Restritas:** Parte dos serviços transacionais profundos exige login formal via Gov.br (com biometria facial ou conta bancária). A equipe mitiga qualquer risco jurídico ou de integridade executando os ensaios de interoperabilidade nas requisições públicas de handshake e direcionamento, sem expor dados pessoais reais.
 2. **Prevenção de Sobrecarga de Servidores Governamentais:** Todos os ensaios de rede são executados manualmente ou com cadência espaçada (mínimo de 3 segundos entre chamadas), prevenindo bloqueios por firewall de aplicação web (*Web Application Firewall - WAF*) ou negação acidental de serviço.
