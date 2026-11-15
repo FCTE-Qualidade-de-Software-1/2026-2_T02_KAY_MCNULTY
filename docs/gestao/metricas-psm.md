@@ -301,6 +301,12 @@ A tabela abaixo reflete as métricas calculadas em tempo real a partir dos commi
 
 --8<-- "contributions-summary.md"
 
+### Tabela geral - Contribuicao e Esforco de Todas as Issues
+
+Esta tabela inclui todas as issues fechadas e abertas do repositorio, independentemente do ponto de controle:
+
+--8<-- "contributions-summary-geral.md"
+
 ---
 
 ## 5. Catálogo Detalhado de Issues (Padrão Task-Builder / FGA0315)
