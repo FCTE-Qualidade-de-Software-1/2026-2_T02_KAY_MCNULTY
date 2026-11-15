@@ -329,7 +329,33 @@ Para garantir a auditabilidade integral das medições, todas as evidências col
 
 ---
 
-## 6. Matriz de Rastreabilidade (Fase 2 para Fase 3)
+## 6. Cronograma de Execução das Baterias de Avaliação
+
+O cronograma operacional define as janelas de realização das baterias de medição de Compatibilidade, alinhadas aos marcos da Entrega 2 (Ponto de Controle 2 — 16/11/2026) e à margem de consolidação de resultados prevista para 22/11/2026. As datas foram calibradas para que a Fase 4 (execução em campo) transcorra de maneira estruturada e sem atritos operacionais.
+
+### Tabela 4 — Cronograma Operacional das Baterias de Avaliação
+
+| Rodada | Período | Atividade Principal | Métricas Cobertas | Responsáveis |
+| :---: | :---: | :--- | :---: | :--- |
+| **R0** | 15/11/2026 | Revisão final do plano e execução dos ensaios piloto em um único módulo (Infração) para calibrar os roteiros | TCBN, ICR, TSIS | Artur Fernandes Galdino e Nicole Jovita Fernandes |
+| **R1** | 16/11/2026 | Bateria completa Cross-Browser (TCBN): execução dos ensaios TC-CB-01 a TC-CB-04 nos quatro navegadores | TCBN | Artur Fernandes Galdino e Nicole Jovita Fernandes |
+| **R2** | 17/11/2026 | Bateria completa de Responsividade (ICR): inspeção dos 20 pontos de viewport (RESP-01 a RESP-20) | ICR | Artur Fernandes Galdino e Nicole Jovita Fernandes |
+| **R3** | 18/11/2026 | Bateria completa de Interoperabilidade (TSIS): monitoramento de tráfego de rede nas integrações INT-01 a INT-04 | TSIS | Artur Fernandes Galdino e Nicole Jovita Fernandes |
+| **R4** | 19/11/2026 | Compilação de dados brutos, cálculo dos índices TCBN, ICR e TSIS e registro de discrepâncias para reteste | TCBN, ICR, TSIS | Artur Fernandes Galdino e Nicole Jovita Fernandes |
+| **R5** | 20/11/2026 – 21/11/2026 | Reteste de itens reprovados ou inconclusos; redação do relatório consolidado de resultados (Fase 4) | TCBN, ICR, TSIS | Artur Fernandes Galdino e Nicole Jovita Fernandes |
+| **R6** | 22/11/2026 | Revisão final de evidências, publicação dos resultados e encerramento da Fase 4 | — | Artur Fernandes Galdino e Nicole Jovita Fernandes |
+
+*Fonte: Elaborado pelos autores.*
+
+### 6.1 Considerações de Calendário
+
+- As rodadas R1, R2 e R3 são independentes entre si e podem ser executadas em paralelo pelos dois avaliadores, desde que cada avaliador cubra módulos distintos para prevenir conflitos de concorrência de sessão no portal.
+- A rodada R0 é mandatória: o piloto valida que os roteiros operacionais das Seções 4.1, 4.2 e 4.3 são perfeitamente reproduzíveis no ambiente de produção antes da execução integral.
+- O cronograma harmoniza-se com a métrica de calendário CID (*Compressed Issue Duration*) monitorada no painel PSM da equipe, garantindo janela de execução de 5 a 7 dias úteis para os artefatos da Entrega 2.
+
+---
+
+## 7. Matriz de Rastreabilidade (Fase 2 para Fase 3)
 
 Esta matriz comprova a rastreabilidade estrita entre a especificação teórica da Fase 2 e os métodos operacionais da Fase 3:
 
@@ -343,7 +369,7 @@ Esta matriz comprova a rastreabilidade estrita entre a especificação teórica 
 
 ---
 
-## 7. Limitações Metodológicas e Mitigação de Riscos Éticos
+## 8. Limitações Metodológicas e Mitigação de Riscos Éticos
 
 1. **Acesso Não-Autenticado versus Áreas Restritas:** Parte dos serviços transacionais profundos exige login formal via Gov.br (com biometria facial ou conta bancária). A equipe mitiga qualquer risco jurídico ou de integridade executando os ensaios de interoperabilidade nas requisições públicas de handshake e direcionamento, sem expor dados pessoais reais.
 2. **Prevenção de Sobrecarga de Servidores Governamentais:** Todos os ensaios de rede são executados manualmente ou com cadência espaçada (mínimo de 3 segundos entre chamadas), prevenindo bloqueios por firewall de aplicação web (*Web Application Firewall - WAF*) ou negação acidental de serviço.
