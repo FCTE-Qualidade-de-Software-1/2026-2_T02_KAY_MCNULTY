@@ -1,0 +1,35 @@
+{
+  "timeout_s": 20,
+  "alvos": [
+    {
+      "id": "A01",
+      "modulo": "Portal (pagina inicial)",
+      "url": "https://portal.detran.df.gov.br/",
+      "esperado": "Detran Digital"
+    },
+    {
+      "id": "A02",
+      "modulo": "Chatbot (script do widget)",
+      "url": "https://bot-server.s3.amazonaws.com/api/inbot.gz.js?bot_id=1010&bot_token=45lyi7gjii&bot_server_type=production",
+      "esperado": "inbot.js-loaded"
+    },
+    {
+      "id": "A04",
+      "modulo": "Login (autenticacao)",
+      "url": "https://portal.detran.df.gov.br/#/login",
+      "esperado": "Detran Digital"
+    },
+    {
+      "id": "A05",
+      "modulo": "Atendimento (Balcao Virtual)",
+      "url": "https://balcaovirtual.detran.df.gov.br/",
+      "esperado": "Virtual do Detran"
+    },
+    {
+      "id": "C01",
+      "modulo": "Controle (fora do portal)",
+      "url": "https://example.com/",
+      "esperado": "Example Domain"
+    }
+  ]
+}

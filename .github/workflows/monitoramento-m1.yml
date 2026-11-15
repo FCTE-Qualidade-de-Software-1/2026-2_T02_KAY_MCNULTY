@@ -1,0 +1,82 @@
+name: Monitoramento M1 (Confiabilidade)
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # a cada 15 min; o GitHub pode atrasar ou pular execucoes
+  workflow_dispatch:          # permite rodar manualmente para testar
+
+permissions:
+  contents: write
+
+concurrency:
+  group: monitoramento-m1
+  cancel-in-progress: false
+
+env:
+  # A coleta para quando este instante passa (fim de 21/11/2026, horario de Brasilia).
+  # Para parar no inicio do dia 21, troque por 2026-11-21T00:00:00-03:00.
+  FIM_COLETA: "2026-11-22T00:00:00-03:00"
+
+jobs:
+  coletar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Verificar janela de coleta
+        id: janela
+        run: |
+          if [ "$(date -u +%s)" -lt "$(date -d "$FIM_COLETA" +%s)" ]; then
+            echo "ativa=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ativa=false" >> "$GITHUB_OUTPUT"
+            echo "Janela encerrada em $FIM_COLETA. Nada a coletar."
+          fi
+
+      - name: Coletar A03 (widget do chatbot) com Playwright
+        if: steps.janela.outputs.ativa == 'true'
+        run: |
+          pip install playwright
+          playwright install --with-deps chromium
+          python codigo/.github/scripts/monitor_playwright.py \
+            --saida dados/confiabilidade/m1/disponibilidade.csv
+
+      - name: Checkout do codigo (branch padrao)
+        if: steps.janela.outputs.ativa == 'true'
+        uses: actions/checkout@v4
+        with:
+          path: codigo
+
+      - name: Checkout da branch de dados
+        if: steps.janela.outputs.ativa == 'true'
+        uses: actions/checkout@v4
+        with:
+          ref: monitoramento-m1
+          path: dados
+
+      - name: Configurar Python
+        if: steps.janela.outputs.ativa == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Coletar verificacoes
+        if: steps.janela.outputs.ativa == 'true'
+        run: |
+          python codigo/.github/scripts/monitor_m1.py coletar \
+            --config codigo/.github/config/m1_alvos.json \
+            --saida dados/confiabilidade/m1/disponibilidade.csv
+
+      - name: Publicar dados na branch monitoramento-m1
+        if: steps.janela.outputs.ativa == 'true'
+        working-directory: dados
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add confiabilidade/m1/disponibilidade.csv
+          if git diff --cached --quiet; then
+            echo "Nada para commitar."
+            exit 0
+          fi
+          git commit -m "dados(m1): coleta $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git pull --rebase origin monitoramento-m1
+          git push origin HEAD:monitoramento-m1
