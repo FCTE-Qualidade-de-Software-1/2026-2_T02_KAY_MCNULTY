@@ -2,8 +2,8 @@
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | **Artur Fernandes Galdino**<br>Matrícula: `241010923` | [@ArturFGaldino](https://github.com/ArturFGaldino) | Dupla 1 (Compatibilidade) | 32 | +3331 / -630 (+2701) | 7 | 10,5h | R$ 919,27 | **26,92%** |
 | **Nicole Jovita Fernandes**<br>Matrícula: `241012347` | [@nicolejovita](https://github.com/nicolejovita) | Dupla 1 (Compatibilidade) | 25 | +825 / -154 (+671) | 7 | 9,5h | R$ 831,73 | **24,36%** |
-| **Davi Ursolino de Oliveira**<br>Matrícula: `241012202` | [@DaviUrsulino](https://github.com/DaviUrsulino) | Dupla 2 (Confiabilidade) | 8 | +776 / -145 (+631) | 2 | 6,0h | R$ 525,30 | **15,38%** |
-| **João Eduardo Pereira Rabelo**<br>Matrícula: `180053299` | [@JoaoEduardoP](https://github.com/JoaoEduardoP) | Dupla 2 (Confiabilidade) | 12 | +727 / -110 (+617) | 1 | 4,0h | R$ 350,20 | **10,26%** |
+| **Davi Ursolino de Oliveira**<br>Matrícula: `241012202` | [@DaviUrsulino](https://github.com/DaviUrsulino) | Dupla 2 (Confiabilidade) | 9 | +776 / -153 (+623) | 2 | 6,0h | R$ 525,30 | **15,38%** |
+| **João Eduardo Pereira Rabelo**<br>Matrícula: `180053299` | [@JoaoEduardoP](https://github.com/JoaoEduardoP) | Dupla 2 (Confiabilidade) | 13 | +1178 / -142 (+1036) | 1 | 4,0h | R$ 350,20 | **10,26%** |
 | **Natan José França**<br>Matrícula: `241011537` | [@Natan8643](https://github.com/Natan8643) | Dupla 3 (Usabilidade) | 12 | +424 / -125 (+299) | 3 | 4,5h | R$ 393,97 | **11,54%** |
 | **Yan Santos Rodrigues**<br>Matrícula: `241025480` | [@yanrdgs-dev](https://github.com/yanrdgs-dev) | Dupla 3 (Usabilidade) | 4 | +328 / -24 (+304) | 3 | 4,5h | R$ 393,97 | **11,54%** |
-| **TOTAL CONSOLIDADO** | — | — | **93** | **+6411 / -1188 (+5223)** | **14** | **39,0h** | **R$ 3.414,45** | **100,00%** |
+| **TOTAL CONSOLIDADO** | — | — | **95** | **+6862 / -1228 (+5634)** | **14** | **39,0h** | **R$ 3.414,45** | **100,00%** |
