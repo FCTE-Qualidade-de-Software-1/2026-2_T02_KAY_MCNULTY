@@ -96,3 +96,84 @@ Como as medições ocorrem diretamente no ambiente de produção do Detran-DF ([
 | **Chatbot** | Caixa de Mensagem | Consulta com Caracteres Especiais | `Qual o valor da taxa de licenciamento 2026? & DUD / PIX` | Testar encoding UTF-8 e preservação de caracteres especiais na tela |
 
 *Fonte: Elaborado pelos autores.*
+
+
+---
+
+## 4. Roteiros Operacionais Passo a Passo para o Avaliador
+
+Para assegurar a repetibilidade e a reprodutibilidade dos ensaios em conformidade com a ISO/IEC 25040, os procedimentos a seguir detalham as ações exatas que o avaliador deve executar, as checagens visuais e funcionais a realizar e os critérios objetivos de aceitação ou reprovação de cada ensaio.
+
+### 4.1 Roteiro de Compatibilidade Cross-Browser (TCBN / Questão Q1)
+
+Este ensaio verifica se as interfaces e comportamentos dinâmicos dos quatro módulos operam de forma equivalente e sem degradação nos quatro navegadores em escopo (Google Chrome, Mozilla Firefox, Microsoft Edge e Apple Safari).
+
+#### Pré-condições Gerais do Ensaio
+1. Estação de trabalho com resolução de tela configurada em 1920 × 1080 pixels (escala 100%).
+2. Navegador aberto em **janela anônima / privativa** (para prevenir interferência de extensões, ad-blockers ou cookies residuais).
+3. Cache do navegador limpo antes do início da bateria.
+4. Painel de Ferramentas do Desenvolvedor aberto (`F12`), aba *Console* visível para detecção de exceções JavaScript.
+
+#### Procedimento de Execução por Módulo
+
+##### Ensaio TC-CB-01 — Módulo Infração
+* **Passo 1:** Acessar a URL inicial do portal: `https://portal.detran.df.gov.br/#/home`.
+* **Passo 2:** Clicar no cartão de serviço correspondente a **"Veículo / Consulta de Débitos e Infrações"**.
+* **Passo 3:** Inspecionar a renderização inicial da página: verificar se as fontes, ícones institucionais e campos de formulário carregam alinhados.
+* **Passo 4:** No campo "Placa", digitar o dado sintético `BRA2E19`. Verificar se a máscara formata automaticamente ou aceita o padrão Mercosul.
+* **Passo 5:** No campo "RENAVAM", preencher com `00123456789`.
+* **Passo 6:** Pressionar a tecla `Tab` e acionar o botão "Consultar".
+* **Passo 7:** Inspecionar o console do navegador (`F12` > *Console*).
+* **Verificação de Sucesso:**
+  * O formulário não trava e processa o envio da consulta.
+  * Modal ou mensagem de validação ("Veículo não localizado" ou retorno de dados) é exibido centralizado e legível.
+  * O console não apresenta erros fatais (`Uncaught TypeError`, `SyntaxError` ou falha de renderização de script).
+* **Evidência Obrigatória:** Captura de tela inteira com o console aberto no momento da resposta, salva como `CB_INFRACAO_[BROWSER].png`.
+
+##### Ensaio TC-CB-02 — Módulo Atendimento
+* **Passo 1:** No menu superior ou página inicial, selecionar **"Agendamento de Atendimento"**.
+* **Passo 2:** No seletor de serviços, escolher `Veículo - Emissão de CRLV-e`.
+* **Passo 3:** No seletor de unidades físicas, escolher `Detran - Taguatinga (Shopping JK)`.
+* **Passo 4:** Localizar o componente de calendário dinâmico de datas disponíveis.
+* **Passo 5:** Clicar nos botões de avançar e retroceder mês.
+* **Passo 6:** Clicar em um dos dias disponíveis destacados no calendário.
+* **Passo 7:** Observar o carregamento da grade de horários disponíveis.
+* **Verificação de Sucesso:**
+  * O calendário responde de imediato aos cliques de navegação entre meses em todos os navegadores.
+  * Os dias bloqueados e disponíveis possuem contraste visual distinguível.
+  * A grade de horários carrega os botões de seleção de horário sem sobreposição de textos.
+  * Não há congelamento de script ou desconfiguração da folha de estilo.
+* **Evidência Obrigatória:** Captura de tela com a grade de horários aberta no calendário, salva como `CB_ATENDIMENTO_[BROWSER].png`.
+
+##### Ensaio TC-CB-03 — Módulo Protocolo
+* **Passo 1:** Acessar a área de **"Protocolo Online"**.
+* **Passo 2:** Selecionar o tipo de peticionamento `Defesa Prévia de Notificação`.
+* **Passo 3:** Expandir os itens sanfonados (*accordions*) de instruções gerais e documentação exigida.
+* **Passo 4:** Localizar o componente de upload de arquivos (área de *drag-and-drop* ou botão "Anexar Documento").
+* **Passo 5:** Selecionar o arquivo de teste `documento_teste_conforme.pdf` (512 KB).
+* **Passo 6:** Verificar a resposta da interface quanto ao carregamento do arquivo.
+* **Verificação de Sucesso:**
+  * Os componentes sanfonados abrem e fecham suavemente sem cortes de texto.
+  * O componente de upload reconhece o arquivo PDF e exibe o nome e tamanho na lista de anexos pendentes.
+  * Botão de exclusão do anexo temporário funciona corretamente.
+  * Ausência de alertas de incompatibilidade de DOM no console.
+* **Evidência Obrigatória:** Captura de tela com o documento anexado na lista de arquivos, salva como `CB_PROTOCOLO_[BROWSER].png`.
+
+##### Ensaio TC-CB-04 — Módulo Chatbot
+* **Passo 1:** Em qualquer página do portal, localizar o widget flutuante do Chatbot no canto inferior direito.
+* **Passo 2:** Clicar sobre o ícone do robô / balão de diálogo para expandir a janela.
+* **Passo 3:** Observar o posicionamento do modal sobre o conteúdo da página.
+* **Passo 4:** Digitar a mensagem de teste: `Como emitir segunda via da CNH?` e pressionar `Enter` (ou clicar no botão de envio).
+* **Passo 5:** Aguardar o retorno da resposta automática do assistente.
+* **Passo 6:** Clicar no botão "Minimizar" / "Fechar" do widget.
+* **Verificação de Sucesso:**
+  * O widget abre em camada superior (*z-index* correto) sem quebrar o layout da página subjacente.
+  * O campo de digitação mantém foco e aceita digitação fluida.
+  * A resposta textual e eventuais botões de atalho são renderizados com quebra de linha correta.
+  * O widget fecha e retorna ao estado de botão flutuante sem deixar resíduos visuais na tela.
+* **Evidência Obrigatória:** Captura de tela com o diálogo aberto e mensagem respondida, salva como `CB_CHATBOT_[BROWSER].png`.
+
+#### Matriz de Julgamento da Métrica TCBN
+Para cada módulo avaliado, o cenário de teste só é considerado **Aprovado** ($N_{ap} = 1$) se obtiver sucesso pleno nos **quatro navegadores testados**. Se houver qualquer falha impeditiva ou severa em um único navegador (e.g., Safari ou Firefox), o cenário do módulo é pontuado como **Reprovado** ($N_{ap} = 0$).
+
+$$\text{Critério de Sucesso do Módulo:} \quad \text{Sucesso(Chrome)} \land \text{Sucesso(Firefox)} \land \text{Sucesso(Edge)} \land \text{Sucesso(Safari)}$$
