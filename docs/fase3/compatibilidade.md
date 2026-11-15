@@ -1,126 +1,98 @@
 # Plano de Avaliação – Característica: Compatibilidade
 
-**Responsáveis:** Artur Fernandes Galdino e Nicole Jovita Fernandes  
+**Disciplina:** Qualidade de Software 1 (FGA0315) – Universidade de Brasília (UnB / FCTE)  
+**Semestre:** 2026.2  
+**Equipe:** Kay McNulty (Turma 02)  
+**Objeto de Avaliação:** Portal Detran Digital DF ([portal.detran.df.gov.br](https://portal.detran.df.gov.br/#/home))  
+**Norma Base:** ABNT NBR ISO/IEC 25040:2011 (Processo de Avaliação de Produto de Software, Seção 6.3 – *Design the evaluation*)  
 **Característica:** Compatibilidade (ISO/IEC 25010:2023)  
 **Subcaracterísticas:** Coexistência e Interoperabilidade  
-**Módulos Avaliados:** Infração, Atendimento, Protocolo e Chatbot (Portal Detran Digital DF)  
-**Fase Normativa:** Fase 3 (Projeto da Avaliação – ISO/IEC 25040)
-
-!!! note "Status do Documento"
-    Documento em desenvolvimento ativo pela dupla responsável (Artur Fernandes Galdino e Nicole Jovita Fernandes). A estrutura metodológica, a matriz de rastreabilidade e os roteiros operacionais de teste preliminares estão definidos. A execução empírica dos testes em produção no Portal Detran Digital DF será realizada na sequência para alimentação da Fase 4.
+**Módulos Avaliados:** Infração, Atendimento, Protocolo e Chatbot  
+**Responsáveis:** Artur Fernandes Galdino e Nicole Jovita Fernandes  
+**Marcos de Referência:** Marco M4 (*Plano de Avaliação e Metodologia Operacional*)
 
 ---
 
-## 1. Método de Avaliação
+## 1. Métodos de Avaliação e Indicadores Operacionais
 
-A avaliação da característica de **Compatibilidade** fundamenta-se nos objetivos conceituais, questões operacionais e métricas formais estabelecidos na [Fase 2](../fase2/compatibilidade.md). O plano operacional divide-se nas duas subcaracterísticas normativas:
+O Plano de Avaliação operacionaliza formalmente os objetivos, questões e métricas definidos na [Fase 2](../fase2/compatibilidade.md). O processo de medição fundamenta-se em princípios de auditoria diagnóstica externa de caixa-preta, garantindo repetibilidade e reprodutibilidade sem provocar efeitos colaterais adversos no portal governamental em produção.
 
-1. **Coexistência (*Co-existence*):**
-   * Avaliação de conformidade funcional e de renderização visual entre diferentes navegadores de mercado (*Cross-browser*), vinculada à métrica **TCBN** ($Taxa\ de\ Compatibilidade\ Entre\ Navegadores$) e à Questão Q1.
-   * Avaliação de adaptabilidade responsiva em diferentes resoluções de tela (*Cross-device*), vinculada à métrica **ICR** ($Índice\ de\ Conformidade\ Responsiva$) e à Questão Q2.
-2. **Interoperabilidade (*Interoperability*):**
-   * Avaliação de consistência das trocas de mensagens e integridade das requisições com serviços externos e barramentos de integração (Gov.br, sistemas bancários/PIX e SEI-GDF), vinculada à métrica **TSIS** ($Taxa\ de\ Sucesso\ de\ Integração\ de\ Serviços$) e à Questão Q3.
+A característica de **Compatibilidade** desdobra-se em três frentes metodológicas independentes e complementares:
 
-### 1.1 Visão Geral dos Métodos e Métricas
+1. **Avaliação de Coexistência entre Navegadores (*Cross-Browser*):**
+   * **Indicador Operacional:** Taxa de Compatibilidade Entre Navegadores ($TCBN$).
+   * **Questão Vinculada:** Questão Q1 (*O sistema preserva a funcionalidade e a integridade de layout nos navegadores modernos mais difundidos?*).
+   * **Procedimento:** Execução padronizada de fluxos operacionais nos quatro motores web dominantes, inspecionando paridade funcional, renderização de folhas de estilo e ausência de exceções JavaScript não tratadas no console.
+2. **Avaliação de Coexistência Multi-resolução (*Responsividade Cross-Device*):**
+   * **Indicador Operacional:** Índice de Conformidade Responsiva ($ICR$).
+   * **Questão Vinculada:** Questão Q2 (*As páginas e componentes dos quatro módulos adaptam-se de forma consistente às diferentes dimensões de tela?*).
+   * **Procedimento:** Inspeção visual e funcional em cinco viewports padronizadas representando dispositivos móveis compactos, intermediários, tablets e monitores desktop de alta definição.
+3. **Avaliação de Interoperabilidade e Troca de Dados (*Interoperabilidade de APIs HTTP*):**
+   * **Indicador Operacional:** Taxa de Sucesso de Interoperabilidade de Serviços ($TSIS$).
+   * **Questão Vinculada:** Questão Q3 (*Os fluxos de comunicação e troca de dados com serviços externos e barramentos ocorrem de maneira íntegra e padronizada?*).
+   * **Procedimento:** Monitoramento passivo do tráfego de rede via DevTools (filtro *Fetch/XHR*), analisando códigos de resposta HTTP, integridade de cabeçalhos e conformidade de payloads durante transações reais com o Gov.br, SEI-GDF, emissão bancária de guias e motor de inteligência artificial do Chatbot.
 
-| Métrica | Questão GQM | O que é medido | Instrumento / Ferramenta | Procedimento de Coleta | Amostra Planejada |
-| :--- | :---: | :--- | :--- | :--- | :---: |
-| **M1 – TCBN** | Q1 | Paridade funcional e integridade de renderização entre navegadores | Google Chrome, Mozilla Firefox, Microsoft Edge e Apple Safari | Execução manual dos cenários funcionais centrais nos 4 navegadores | 4 cenários × 4 navegadores = 16 ensaios |
-| **M2 – ICR** | Q2 | Ausência de quebras de layout, truncamentos e sobreposição de controles | Emulador responsivo DevTools em viewports padronizadas (Mobile: 360px e 414px; Tablet: 768px; Desktop: 1366px e 1920px) | Verificação de pontos de quebra (*breakpoints*), barras de rolagem horizontais e contenção de elementos de tela | 4 módulos × 5 viewports = 20 verificações |
-| **M3 – TSIS** | Q3 | Taxa de requisições com status HTTP esperado (2xx e 3xx) em fluxos de integração externa | Aba *Rede (Network)* do DevTools do navegador e console de inspeção HTTP | Registro de chamadas REST/XHR durante as transações entre o portal e serviços externos | Monitoramento contínuo das chamadas nos fluxos de escopo |
+### Tabela 1 — Síntese Metodológica das Métricas de Compatibilidade
 
-**Tabela 1 – Visão geral dos métodos operacionais de Compatibilidade.** Fonte: Elaborado pelos autores.
+| Indicador | Questão GQM | Unidade de Medida | Fórmula do Indicador | Instrumento de Coleta | Amostra Operacional |
+| :--- | :---: | :---: | :---: | :--- | :---: |
+| **TCBN** | Q1 | Percentual (%) | $TCBN = \left(\frac{N_{ap}}{N_{tot}}\right) \times 100$ | Google Chrome, Mozilla Firefox, Microsoft Edge e Apple Safari | 4 módulos × 4 navegadores = 16 ensaios |
+| **ICR** | Q2 | Percentual (%) | $ICR = \left(\frac{T_{conf}}{T_{tot}}\right) \times 100$ | Emulação DevTools em 5 viewports (360px a 1920px) | 4 módulos × 5 viewports = 20 verificações |
+| **TSIS** | Q3 | Percentual (%) | $TSIS = \left(\frac{Req_{ok}}{Req_{tot}}\right) \times 100$ | Aba *Rede (Network)* DevTools (Fetch/XHR) | Amostragem contínua de requisições de escopo |
 
----
-
-## 2. Roteiros Operacionais de Teste por Módulo
-
-Os testes contemplam os quatro módulos delimitados no escopo da [Fase 1](../fase1/escopo-limites.md). Para cada cenário, a inspeção registra evidências auditáveis (capturas de tela padronizadas e registros de tráfego de rede).
-
-### 2.1 Cenários de Teste para Compatibilidade Cross-Browser (TCBN / Q1)
-
-| Código | Módulo | Descrição do Fluxo Operacional | Critério de Sucesso do Ensaio |
-| :---: | :--- | :--- | :--- |
-| **TC-CB-01** | Infração | Acesso à tela de consulta de infrações, preenchimento de campos de validação e disparo da busca. | Renderização correta dos seletores, máscara de entrada preservada e resposta da interface sem travamento ou erro de script. |
-| **TC-CB-02** | Atendimento | Navegação pelo fluxo de agendamento presencial e seleção de data no calendário interativo. | Calendário dinâmico responsivo aos cliques, renderização das datas disponíveis e transição para o seletor de horários. |
-| **TC-CB-03** | Protocolo | Abertura do formulário de protocolo e expansão dos itens informativos. | Campos de texto editáveis, sanfonas (*accordions*) funcionais e preservação da hierarquia visual. |
-| **TC-CB-04** | Chatbot | Abertura do botão flutuante de atendimento, expansão do painel de diálogo e envio de mensagem de teste. | Painel renderizado com posicionamento fixo correto, diálogo exibido na íntegra e sem sobreposição de botões de fechamento. |
-
-**Tabela 2 – Cenários operacionais para o ensaio Cross-Browser.** Fonte: Elaborado pelos autores.
-
-### 2.2 Cenários de Teste para Responsividade Multi-resolução (ICR / Q2)
-
-As verificações de responsividade avaliam o comportamento visual sob cinco viewports padrão da indústria:
-
-1. **Mobile Pequeno (360 x 640 px):** Resolução base para dispositivos móveis de entrada.
-2. **Mobile Médio (414 x 896 px):** Resolução representativa de smartphones intermediários e avançados.
-3. **Tablet (768 x 1024 px):** Modo retrato em telas intermediárias.
-4. **Desktop HD (1366 x 768 px):** Resolução comum em notebooks e monitores corporativos.
-5. **Desktop Full HD (1920 x 1080 px):** Resolução widescreen padrão de alta definição.
-
-Para cada viewport nos 4 módulos, inspecionam-se três falhas críticas de coexistência:
-* Ocorrência de rolagem horizontal não planejada (*horizontal overflow*).
-* Truncamento ou ocultação indevida de textos explicativos ou labels de formulário.
-* Sobreposição de elementos flutuantes (especialmente o botão do Chatbot sobre campos de dados ou botões de confirmação).
-
-### 2.3 Cenários de Teste para Interoperabilidade e Integrações (TSIS / Q3)
-
-| Código | Módulo | Ponto de Integração Externa | Verificação Técnica de Rede |
-| :---: | :--- | :--- | :--- |
-| **TC-IN-01** | Atendimento / Infração | Redirecionamento e handshake com o provedor de identidade Gov.br. | Verificação de URLs de retorno, parâmetros de autenticação e ausência de códigos HTTP de erro (4xx/5xx). |
-| **TC-IN-02** | Infração | Emissão e download do documento de arrecadação (DUD / boleto / PIX). | Obtenção do payload de emissão com status HTTP 200, preservação do tipo MIME (PDF/imagem) e geração íntegra do código de barras/QR Code. |
-| **TC-IN-03** | Protocolo | Troca de metadados com o barramento do Sistema Eletrônico de Informações (SEI-GDF). | Verificação do endpoint de consulta de processos e estabilidade da comunicação REST. |
-| **TC-IN-04** | Chatbot | Comunicação XHR/WebSocket entre a interface do portal e a plataforma InBot/AWS. | Entrega e recebimento de pacotes de dados sem quebra de conexão ou erros de timeout em tempo real. |
-
-**Tabela 3 – Cenários de interoperabilidade de serviços externos.** Fonte: Elaborado pelos autores.
+*Fonte: Elaborado pelos autores com base na especificação da Fase 2.*
 
 ---
 
-## 3. Recursos e Ambientes de Medição
+## 2. Requisitos e Especificação dos Ambientes de Medição
 
-A realização das medições segue especificações de hardware, software e conectividade padronizadas:
+Para assegurar que qualquer engenheiro de software avaliador replique com exatidão as condições experimentais, o ambiente de teste é estritamente padronizado quanto a hardware, sistemas operacionais, versões de navegadores e ferramentas analíticas.
 
-* **Hardware de Teste:**
-  * Estação de trabalho base com processador de múltiplos núcleos e memória RAM mínima de 16 GB.
-  * Dispositivos móveis reais (Android e iOS) para contraprova e validação dos achados do emulador.
-* **Navegadores em Escopo (Versões Estáveis):**
-  * Google Chrome (v130 ou superior)
-  * Mozilla Firefox (v131 ou superior)
-  * Microsoft Edge (v130 ou superior)
-  * Apple Safari (v17 ou superior em ambiente macOS / iOS e WebKit DevTools)
-* **Condições de Rede:** Conexão estável de banda larga (superior a 50 Mbps) e testes adicionais sob latência simulada (perfil *Fast 3G* nas ferramentas DevTools para avaliar resiliência de interoperabilidade).
+### 2.1 Hardware de Referência e Estações de Trabalho
+* **Processador:** Arquitetura x86-64 ou ARM64 com mínimo de 4 núcleos físicos (2.4 GHz ou superior).
+* **Memória RAM:** Mínimo de 8 GB (recomendado 16 GB) para evitar lentidão ou descarte de abas durante sessões de inspeção com ferramentas de desenvolvimento ativas.
+* **Monitor Principal:** Resolução nativa mínima de 1920 × 1080 pixels (Full HD) calibrado em escala de exibição de 100% (sem zoom de sistema operacional), garantindo que as medições de pixel nos testes de viewport sejam 1:1.
+* **Dispositivo Móvel Físico (Contraprova):** Smartphone Android (v13 ou superior) e dispositivo Apple iOS (v17 ou superior) para validação cruzada do comportamento de toque (*touch events*) e renderização móvel.
 
----
+### 2.2 Navegadores e Motores de Renderização Homologados
+A seleção dos navegadores fundamenta-se nos dados de participação de mercado no Brasil (fonte: StatCounter Global Stats para o Distrito Federal e território nacional), cobrindo mais de 98% dos acessos de cidadãos:
 
-## 4. Cronograma Operacional e Janela de Execução
+1. **Google Chrome:** Versão estável 130.0 ou superior (Motor: *Blink* / V8). Representa a referência majoritária de mercado.
+2. **Mozilla Firefox:** Versão estável 131.0 ou superior (Motor: *Gecko* / SpiderMonkey). Essencial para avaliar padrões web puros e motores não-Chromium.
+3. **Microsoft Edge:** Versão estável 130.0 ou superior (Motor: *Blink* / V8 em ambiente Windows). Relevante para ambientes corporativos e governamentais.
+4. **Apple Safari:** Versão estável 17.0 ou superior (Motor: *WebKit* / JavaScriptCore em macOS/iOS, ou via emulador WebKit Playwright). Fundamental para assegurar compatibilidade no ecossistema Apple.
 
-| Período | Atividade Operacional | Responsáveis |
-| :--- | :--- | :--- |
-| 12/11 a 14/11 | Elaboração dos roteiros e validação da bateria de testes preliminares | Artur Galdino e Nicole Jovita |
-| 15/11 a 17/11 | Execução empírica nos 4 navegadores e nas 5 resoluções de tela | Artur Galdino e Nicole Jovita |
-| 18/11 a 19/11 | Análise de tráfego de rede e coleta dos dados brutos de integração | Artur Galdino e Nicole Jovita |
-| 20/11 a 21/11 | Consolidação dos dados brutos, cálculo das métricas e redação da Fase 4 | Artur Galdino e Nicole Jovita |
-
-**Tabela 4 – Cronograma operacional de Compatibilidade.** Fonte: Elaborado pelos autores.
-
----
-
-## 5. Matriz de Rastreabilidade (Fase 2 para Fase 3)
-
-Esta matriz demonstra a aderência do planejamento operacional aos conceitos especificados na Fase 2:
-
-| Métrica Formal (Fase 2) | Questão e Hipótese | Medidas Básicas | Roteiro Operacional (Fase 3) | Evidências Exigidas | Níveis de Pontuação (Fase 2) |
-| :--- | :---: | :--- | :--- | :--- | :--- |
-| **M1 – TCBN** | Q1, H1 | $N_{ap}$, $N_{tot}$ | Seção 2.1 (Tabela 2) | Capturas de tela comparativas nos 4 navegadores | Excelente: 100%<br>Bom: 75% a 99%<br>Regular: 50% a 74%<br>Insuficiente: < 50% |
-| **M2 – ICR** | Q2, H2 | $N_{cp}$, $N_{res}$ | Seção 2.2 (Viewports) | Prints com réguas de resolução ativadas no DevTools | Excelente: 100%<br>Bom: 80% a 99%<br>Regular: 60% a 79%<br>Insuficiente: < 60% |
-| **M3 – TSIS** | Q3, H3 | $R_{suc}$, $R_{tot}$ | Seção 2.3 (Tabela 3) | Logs de rede (.har ou prints com código HTTP) | Excelente: ≥ 98%<br>Bom: 95% a 97%<br>Regular: 90% a 94%<br>Insuficiente: < 90% |
-
-**Tabela 5 – Matriz de rastreabilidade entre Fase 2 e Fase 3 para Compatibilidade.** Fonte: Elaborado pelos autores.
+### 2.3 Ferramental Técnico de Inspeção
+* **Navegador DevTools Integrado:**
+  * Aba *Elements / Inspetor*: Para análise do DOM, regras de CSS computadas, detecção de overflow e classes responsivas.
+  * Aba *Console*: Para monitoramento em tempo real de advertências de layout, falhas de scripts JS, quebras de CORS e erros de runtime.
+  * Aba *Network*: Configurada com cache desativado (*Disable cache* ativado enquanto DevTools estiver aberto) e filtro ativo para `Fetch/XHR` e `Doc`.
+  * Modo de Dispositivo (*Device Toolbar* / `Ctrl+Shift+M` ou `Cmd+Option+M`): Para fixação exata das resoluções de tela e densidade de pixels (DPR = 1.0, 2.0 e 3.0).
+* **Capturador de Tráfego HTTP:** Capacidade de exportação de arquivos `.har` (*HTTP Archive*) para auditoria posterior de cabeçalhos e payloads.
 
 ---
 
-## 6. Limitações Metodológicas e Mitigação de Riscos
+## 3. Mapeamento de Massa de Dados e Conformidade com a LGPD
 
-1. **Acesso Autenticado em Ambiente Governamental:** Certos serviços avançados de emissão e protocolo requerem autenticação formal pelo Gov.br com contas nível Prata ou Ouro. A equipe mitiga restrições executando os ensaios até o estágio imediatamente anterior à gravação definitiva ou pagamento real.
-2. **Ambiente Safari:** A execução no motor WebKit/Safari requer hardware Apple dedicado ou contraprova direta em dispositivos móveis iPhone/iPad, evitando distorções decorrentes de motores alternativos.
-3. **Flutuações de Terceiros:** A indisponibilidade de serviços bancários ou barramentos do GDF durante a janela de testes é registrada como evento externo com timestamp, não penalizando a métrica caso a causa raiz seja externa ao portal avaliado.
+Como as medições ocorrem diretamente no ambiente de produção do Detran-DF ([portal.detran.df.gov.br](https://portal.detran.df.gov.br/#/home)), a equipe estabeleceu uma rigorosa política de **dados de teste sintéticos**, em total conformidade com a Lei Geral de Proteção de Dados (Lei Federal nº 13.709/2018 - LGPD).
+
+### 3.1 Diretrizes de Segurança e Não-Interferência
+1. **Zero Efeitos Colaterais no Banco Governamental:** Os ensaios não concluem transações que possam gerar débitos reais, agendamentos indevidos que ocupem vagas de cidadãos ou abertura definitiva de processos fictícios no SEI-GDF.
+2. **Dados Pessoais Sintéticos:** Proibido o uso de CPFs, nomes completos ou dados sensíveis de terceiros. As buscas e simulações usam dados de domínio público, números sintéticos gerados por algoritmos matemáticos ou parâmetros deliberadamente inválidos para teste de resiliência.
+
+### 3.2 Catálogo de Massa de Dados de Teste
+
+| Módulo Alvo | Campo do Formulário | Tipo do Dado de Teste | Valor de Entrada Utilizado | Finalidade do Ensaio |
+| :--- | :--- | :--- | :--- | :--- |
+| **Infração** | Placa do Veículo | Padrão Mercosul Sintético | `BRA2E19` | Testar máscara de entrada e validação de formato sem consulta a veículo de terceiros |
+| **Infração** | Placa do Veículo | Padrão Antigo (Cinza) | `JFP-1234` | Testar retrocompatibilidade do seletor e conversão de formato |
+| **Infração** | RENAVAM | Sintético Válido (11 dígitos) | `00123456789` | Verificar disparo assíncrono da busca e máscara de campo |
+| **Atendimento** | Serviço Solicitado | Categoria de Atendimento | `Veículo - Emissão de CRLV-e` | Acessar fluxo de agendamento e carregar o calendário de postos |
+| **Atendimento** | Posto de Atendimento | Unidade Física | `Detran - Taguatinga (Shopping JK)` | Testar renderização de dropdown e carregamento de grade horária |
+| **Protocolo** | Tipo de Processo | Categoria Administrativa | `Defesa Prévia de Notificação` | Abrir o formulário de peticionamento e carregar componentes |
+| **Protocolo** | Anexo de Documento | Arquivo PDF de Referência | `documento_teste_conforme.pdf` (Tamanho: 512 KB) | Testar upload nominal, barra de progresso e validação de tipo MIME |
+| **Protocolo** | Anexo de Documento | Arquivo Inválido de Teste | `arquivo_extensao_invalida.exe` (Tamanho: 100 KB) | Testar rejeição de formatos não suportados sem quebra de página |
+| **Chatbot** | Caixa de Mensagem | Consulta Curta Nominal | `Como emitir segunda via da CNH?` | Avaliar tempo de resposta do assistente e renderização de botões rápidos |
+| **Chatbot** | Caixa de Mensagem | Consulta com Caracteres Especiais | `Qual o valor da taxa de licenciamento 2026? & DUD / PIX` | Testar encoding UTF-8 e preservação de caracteres especiais na tela |
+
+*Fonte: Elaborado pelos autores.*
