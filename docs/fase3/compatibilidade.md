@@ -355,7 +355,42 @@ O cronograma operacional define as janelas de realização das baterias de medi�
 
 ---
 
-## 7. Matriz de Rastreabilidade (Fase 2 para Fase 3)
+## 7. Perfil e Requisitos dos Avaliadores
+
+Para assegurar a reprodutibilidade dos ensaios por qualquer engenheiro de software avaliador independente, os requisitos mínimos de conhecimento técnico e de domínio foram formalizados a seguir.
+
+### 7.1 Conhecimento de Domínio
+
+| Área | Nível Exigido | Justificativa |
+| :--- | :---: | :--- |
+| Navegação em portais web governamentais | Básico | O avaliador precisa compreender a taxonomia de serviços e menus do Detran Digital DF para navegar nos fluxos sem desvio |
+| Conceitos de compatibilidade de navegadores (*Cross-Browser*) | Básico | Capacidade de distinguir divergências reais de renderização entre motores Blink, Gecko e WebKit |
+| Conceitos de design responsivo e viewport | Básico | Compreensão de media queries CSS, quebras de layout e operação da ferramenta Device Mode |
+| Protocolo HTTP (*status codes*, métodos e cabeçalhos) | Intermediário | Necessário para classificar requisições em $Req_{ok}$ (2xx/3xx) ou $Req_{falha}$ (4xx/5xx/CORS) na métrica TSIS |
+| Análise de tráfego de rede via DevTools | Intermediário | Habilidade técnica para filtrar requisições Fetch/XHR, inspecionar payloads e exportar arquivos `.har` |
+
+### 7.2 Habilidades Técnicas com Ferramentas
+
+| Ferramenta | Operação Esperada | Nível Exigido |
+| :--- | :--- | :---: |
+| DevTools — Aba Console | Identificar exceções JavaScript impeditivas (`Uncaught TypeError`, `SyntaxError`) e violações de CORS | Básico |
+| DevTools — Aba Network | Aplicar filtro Fetch/XHR, habilitar *Preserve log*, manter *Disable cache* ativo e exportar arquivo `.har` | Intermediário |
+| DevTools — Device Toolbar | Configurar larguras e alturas fixas de viewport e ajustar DPR (1.0 e 2.0) | Básico |
+| Ferramenta de Captura de Tela | Capturar telas integrais da área de visualização e salvar em formato `.png` com a taxonomia do plano | Básico |
+| Controle de Versão (Git) | Versionar relatórios e evidências no repositório GitHub da equipe | Básico |
+
+### 7.3 Conhecimentos e Acessos Desnecessários
+
+Os ensaios operacionais foram desenhados para **não exigir**:
+
+- Escrita ou compilação de código-fonte (scripts de automação, testes unitários ou suites E2E automatizadas).
+- Ferramentas externas pagas ou pesadas (Selenium Grid, BrowserStack corporativo, proxies locais como Charles ou Fiddler).
+- Acesso a código-fonte proprietário, esquemas de bancos de dados ou documentação restrita de APIs do Detran-DF.
+- Credenciais reais de cidadão ou contas com nível Prata/Ouro no Gov.br (todas as validações utilizam massa de dados sintética pública).
+
+---
+
+## 8. Matriz de Rastreabilidade (Fase 2 para Fase 3)
 
 Esta matriz comprova a rastreabilidade estrita entre a especificação teórica da Fase 2 e os métodos operacionais da Fase 3:
 
@@ -369,7 +404,7 @@ Esta matriz comprova a rastreabilidade estrita entre a especificação teórica 
 
 ---
 
-## 8. Limitações Metodológicas e Mitigação de Riscos Éticos
+## 9. Limitações Metodológicas e Mitigação de Riscos Éticos
 
 1. **Acesso Não-Autenticado versus Áreas Restritas:** Parte dos serviços transacionais profundos exige login formal via Gov.br (com biometria facial ou conta bancária). A equipe mitiga qualquer risco jurídico ou de integridade executando os ensaios de interoperabilidade nas requisições públicas de handshake e direcionamento, sem expor dados pessoais reais.
 2. **Prevenção de Sobrecarga de Servidores Governamentais:** Todos os ensaios de rede são executados manualmente ou com cadência espaçada (mínimo de 3 segundos entre chamadas), prevenindo bloqueios por firewall de aplicação web (*Web Application Firewall - WAF*) ou negação acidental de serviço.
