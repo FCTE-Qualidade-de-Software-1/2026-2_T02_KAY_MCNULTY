@@ -244,3 +244,96 @@ Cada um dos 20 pontos de inspeção recebe pontuação binária:
 O índice final é a razão entre os pontos aprovados e o total de 20 pontos:
 
 $$ICR = \left(\frac{T_{conf}}{20}\right) \times 100\%$$
+
+
+---
+
+### 4.3 Roteiro de Interoperabilidade e Monitoramento de Rede (TSIS / Questão Q3)
+
+Este ensaio analisa a integridade das trocas de informações e chamadas a serviços externos (Gov.br, SEFAZ-DF/Bancos, SEI-GDF e motor InBot) a partir do tráfego HTTP/HTTPS de borda do cliente.
+
+#### Configuração das Ferramentas de Inspeção de Rede
+1. No navegador, abrir o DevTools (`F12`) e selecionar a aba **"Rede" (Network)**.
+2. Marcar a caixa de seleção **"Preservar registro" (Preserve log)**: imprescindível para não perder as requisições em páginas que realizam recarga ou redirecionamento.
+3. Marcar a caixa **"Desativar cache" (Disable cache)**.
+4. Aplicar o filtro **"Fetch/XHR"** na barra de ferramentas da aba Rede para isolar chamadas de API, descartando imagens estáticas, fontes e ícones que não representam integrações funcionais.
+
+#### Procedimento Passo a Passo de Coleta de Rede
+
+* **Passo 1:** Limpar o histórico de requisições clicando no botão "Limpar" (*Clear network log* / ícone de círculo cortado).
+* **Passo 2:** Iniciar a execução do fluxo sob teste no portal (ex.: acionar consulta de infração, iniciar agendamento ou abrir o Chatbot).
+* **Passo 3:** Observar o fluxo contínuo de linhas na tabela da aba Rede.
+* **Passo 4:** Para cada requisição de serviço externo, inspecionar:
+  * **Nome / URL da Requisição:** Endpoint de destino (identificando se é do domínio próprio do Detran ou barramento integrado).
+  * **Status Code HTTP:** Código numérico de retorno do servidor.
+  * **Método HTTP:** `GET`, `POST`, `OPTIONS` ou `PUT`.
+  * **Tipo / Formato:** Payload retornado (`application/json`, `application/pdf`, etc.).
+  * **Tempo de Resposta:** Latência de transferência em milissegundos.
+* **Passo 5:** Verificar se há requisições marcadas em vermelho (falha de rede, bloqueio por CORS ou status HTTP 4xx/5xx).
+* **Passo 6:** Ao final do fluxo, clicar com o botão direito sobre a tabela da aba Rede e selecionar **"Salvar tudo como HAR com conteúdo"** (*Save all as HAR with content*).
+* **Passo 7:** Capturar a tela mostrando a lista de requisições com os códigos de status legíveis.
+
+#### Tabela 3 — Mapeamento das Integrações Críticas Avaliadas
+
+| Código | Módulo | Serviço Externo Integrado | Ponto Crítico de Troca de Dados | Status HTTP Esperado |
+| :---: | :--- | :--- | :--- | :---: |
+| **INT-01** | Atendimento / Infração | Provedor de Identidade Gov.br | Handshake OAuth2/OIDC, redirecionamento e validação de token | 302 (Redirect) / 200 (OK) |
+| **INT-02** | Infração | Barramento Bancário / SEFAZ-DF | Emissão do Documento Único do Detran (DUD) e chave Pix | 200 (OK com payload JSON/PDF) |
+| **INT-03** | Protocolo | Barramento do SEI-GDF | Consulta de processos, validação de metadados e pré-anexo | 200 (OK) |
+| **INT-04** | Chatbot | Plataforma InBot / Nuvem AWS | Comunicação assíncrona XHR/WebSocket para envio e recepção de diálogo | 200 (OK) / 101 (Switching Protocols) |
+
+*Fonte: Elaborado pelos autores.*
+
+#### Critério de Classificação da Métrica TSIS
+Cada chamada de rede inspecionada é categorizada de acordo com seu código de status:
+* **Requisição Bem-Sucedida ($Req_{ok}$):**
+  * Códigos da família **2xx** (Sucesso): `200 OK`, `201 Created`, `204 No Content`.
+  * Códigos da família **3xx** (Redirecionamento válido): `301 Moved`, `302 Found`, `304 Not Modified`, `307 Temporary Redirect`.
+* **Requisição com Falha ($Req_{falha}$):**
+  * Códigos de erro de cliente gerados por contratos de API inconsistentes (**4xx**): `400 Bad Request`, `401 Unauthorized`, `403 Forbidden`, `404 Not Found`, `422 Unprocessable Entity`.
+  * Códigos de erro interno de servidor ou timeout de gateway (**5xx**): `500 Internal Server Error`, `502 Bad Gateway`, `503 Service Unavailable`, `504 Gateway Timeout`.
+  * Falhas de rede que abortam a requisição (`(failed)`, `net::ERR_CONNECTION_REFUSED`, `net::ERR_BLOCKED_BY_ORB` ou erro de CORS).
+
+A taxa percentual consolidada calcula-se como:
+
+$$TSIS = \left(\frac{Req_{ok}}{Req_{tot}}\right) \times 100\%$$
+
+---
+
+## 5. Protocolo de Registro de Evidências e Nomenclatura de Arquivos
+
+Para garantir a auditabilidade integral das medições, todas as evidências coletadas pelos avaliadores devem seguir rigorosamente o padrão de nomenclatura abaixo, sendo armazenadas em diretório específico no repositório (`docs/assets/evidencias/fase3/compatibilidade/`):
+
+### 5.1 Padrão de Nomenclatura para Capturas de Tela
+* **Ensaios Cross-Browser:**
+  * `CB_[MODULO]_[NAVEGADOR].png`
+  * *Exemplos:* `CB_INFRACAO_CHROME.png`, `CB_ATENDIMENTO_FIREFOX.png`, `CB_PROTOCOLO_EDGE.png`, `CB_CHATBOT_SAFARI.png`.
+* **Ensaios de Responsividade Multi-resolução:**
+  * `RESP_[MODULO]_[LARGURA]px.png`
+  * *Exemplos:* `RESP_INFRACAO_360px.png`, `RESP_ATENDIMENTO_414px.png`, `RESP_PROTOCOLO_768px.png`, `RESP_CHATBOT_1920px.png`.
+* **Ensaios de Interoperabilidade e Tráfego de Rede:**
+  * `NET_[MODULO]_[SERVICO].png` (Captura da tabela de rede do DevTools)
+  * `NET_[MODULO]_[SERVICO].har` (Dump estruturado do tráfego HTTP com cabeçalhos e tempos)
+  * *Exemplos:* `NET_INFRACAO_DUD.har`, `NET_ATENDIMENTO_GOVBR.png`.
+
+---
+
+## 6. Matriz de Rastreabilidade (Fase 2 para Fase 3)
+
+Esta matriz comprova a rastreabilidade estrita entre a especificação teórica da Fase 2 e os métodos operacionais da Fase 3:
+
+| Métrica Formal (Fase 2) | Questão e Hipótese | Medidas Básicas (PSM) | Seção no Plano (Fase 3) | Instrumentos e Ferramentas | Artefatos de Evidência | Níveis de Julgamento (Fase 2) |
+| :--- | :---: | :--- | :---: | :--- | :--- | :--- |
+| **M1 – TCBN** | Q1, H1 | $N_{ap}$, $N_{tot}$ | Seção 4.1 | Chrome, Firefox, Edge e Safari | Capturas de tela comparativas e checklist | Excelente: ≥ 95%<br>Bom: 85% a 94%<br>Satisfatório: 70% a 84%<br>Insuficiente: < 70% |
+| **M2 – ICR** | Q2, H2 | $T_{conf}$, $T_{tot}$ | Seção 4.2 | DevTools Device Mode (5 viewports) | Capturas de tela com réguas e matriz de 20 pontos | Excelente: ≥ 95%<br>Bom: 80% a 94%<br>Satisfatório: 70% a 79%<br>Insuficiente: < 70% |
+| **M3 – TSIS** | Q3, H3 | $Req_{ok}$, $Req_{tot}$ | Seção 4.3 | DevTools Network (Fetch/XHR) | Arquivos `.har` e capturas com status HTTP | Excelente: ≥ 98%<br>Bom: 90% a 97%<br>Satisfatório: 80% a 89%<br>Insuficiente: < 80% |
+
+*Fonte: Elaborado pelos autores.*
+
+---
+
+## 7. Limitações Metodológicas e Mitigação de Riscos Éticos
+
+1. **Acesso Não-Autenticado versus Áreas Restritas:** Parte dos serviços transacionais profundos exige login formal via Gov.br (com biometria facial ou conta bancária). A equipe mitiga qualquer risco jurídico ou de integridade executando os ensaios de interoperabilidade nas requisições públicas de handshake e direcionamento, sem expor dados pessoais reais.
+2. **Prevenção de Sobrecarga de Servidores Governamentais:** Todos os ensaios de rede são executados manualmente ou com cadência espaçada (mínimo de 3 segundos entre chamadas), prevenindo bloqueios por firewall de aplicação web (*Web Application Firewall - WAF*) ou negação acidental de serviço.
+3. **Ambiente Safari / WebKit:** Nos casos em que hardware Apple nativo com macOS não estiver disponível em tempo integral, o motor WebKit é inspecionado através de dispositivo móvel iPhone físico complementar associado ao ambiente de automação Playwright WebKit para validação de layout.
