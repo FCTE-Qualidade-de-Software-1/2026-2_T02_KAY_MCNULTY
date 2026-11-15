@@ -19,17 +19,28 @@ O Plano de Avaliação operacionaliza formalmente os objetivos, questões e mét
 
 A característica de **Compatibilidade** desdobra-se em três frentes metodológicas independentes e complementares:
 
-1. **Avaliação de Coexistência entre Navegadores (*Cross-Browser*):**
+I. **Avaliação de Coexistência entre Navegadores (*Cross-Browser*):**
+   
    * **Indicador Operacional:** Taxa de Compatibilidade Entre Navegadores ($TCBN$).
+   
    * **Questão Vinculada:** Questão Q1 (*O sistema preserva a funcionalidade e a integridade de layout nos navegadores modernos mais difundidos?*).
+   
    * **Procedimento:** Execução padronizada de fluxos operacionais nos quatro motores web dominantes, inspecionando paridade funcional, renderização de folhas de estilo e ausência de exceções JavaScript não tratadas no console.
-2. **Avaliação de Coexistência Multi-resolução (*Responsividade Cross-Device*):**
-   * **Indicador Operacional:** Índice de Conformidade Responsiva ($ICR$).
-   * **Questão Vinculada:** Questão Q2 (*As páginas e componentes dos quatro módulos adaptam-se de forma consistente às diferentes dimensões de tela?*).
-   * **Procedimento:** Inspeção visual e funcional em cinco viewports padronizadas representando dispositivos móveis compactos, intermediários, tablets e monitores desktop de alta definição.
-3. **Avaliação de Interoperabilidade e Troca de Dados (*Interoperabilidade de APIs HTTP*):**
+
+II. **Avaliação de Coexistência Multi-resolução (*Responsividade Cross-Device*):**
+   
+  * **Indicador Operacional:** Índice de Conformidade Responsiva ($ICR$).
+  
+  * **Questão Vinculada:** Questão Q2 (*As páginas e componentes dos quatro módulos adaptam-se de forma consistente às diferentes dimensões de tela?*).
+   
+  * **Procedimento:** Inspeção visual e funcional em cinco viewports padronizadas representando dispositivos móveis compactos, intermediários, tablets e monitores desktop de alta definição.
+
+III. **Avaliação de Interoperabilidade e Troca de Dados (*Interoperabilidade de APIs HTTP*):**
+   
    * **Indicador Operacional:** Taxa de Sucesso de Interoperabilidade de Serviços ($TSIS$).
+
    * **Questão Vinculada:** Questão Q3 (*Os fluxos de comunicação e troca de dados com serviços externos e barramentos ocorrem de maneira íntegra e padronizada?*).
+
    * **Procedimento:** Monitoramento passivo do tráfego de rede via DevTools (filtro *Fetch/XHR*), analisando códigos de resposta HTTP, integridade de cabeçalhos e conformidade de payloads durante transações reais com o Gov.br, SEI-GDF, emissão bancária de guias e motor de inteligência artificial do Chatbot.
 
 ### Tabela 1 — Síntese Metodológica das Métricas de Compatibilidade
