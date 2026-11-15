@@ -390,17 +390,38 @@ Os ensaios operacionais foram desenhados para **não exigir**:
 
 ---
 
-## 8. Matriz de Rastreabilidade (Fase 2 para Fase 3)
+## 8. Matriz de Rastreabilidade Formal (Fase 2 para Fase 3)
 
-Esta matriz comprova a rastreabilidade estrita entre a especificação teórica da Fase 2 e os métodos operacionais da Fase 3:
+Esta matriz comprova a rastreabilidade estrita exigida pelo processo de avaliação da ISO/IEC 25040, demonstrando que cada decisão, objetivo e métrica especificados na Fase 2 é operacionalizado por métodos, recursos e evidências concretas nesta Fase 3.
 
-| Métrica Formal (Fase 2) | Questão e Hipótese | Medidas Básicas (PSM) | Seção no Plano (Fase 3) | Instrumentos e Ferramentas | Artefatos de Evidência | Níveis de Julgamento (Fase 2) |
-| :--- | :---: | :--- | :---: | :--- | :--- | :--- |
-| **M1 – TCBN** | Q1, H1 | $N_{ap}$, $N_{tot}$ | Seção 4.1 | Chrome, Firefox, Edge e Safari | Capturas de tela comparativas e checklist | Excelente: ≥ 95%<br>Bom: 85% a 94%<br>Satisfatório: 70% a 84%<br>Insuficiente: < 70% |
-| **M2 – ICR** | Q2, H2 | $T_{conf}$, $T_{tot}$ | Seção 4.2 | DevTools Device Mode (5 viewports) | Capturas de tela com réguas e matriz de 20 pontos | Excelente: ≥ 95%<br>Bom: 80% a 94%<br>Satisfatório: 70% a 79%<br>Insuficiente: < 70% |
-| **M3 – TSIS** | Q3, H3 | $Req_{ok}$, $Req_{tot}$ | Seção 4.3 | DevTools Network (Fetch/XHR) | Arquivos `.har` e capturas com status HTTP | Excelente: ≥ 98%<br>Bom: 90% a 97%<br>Satisfatório: 80% a 89%<br>Insuficiente: < 80% |
+### 8.1 Objetivo de Medição (GQM — Nível Conceitual)
 
-*Fonte: Elaborado pelos autores.*
+> **Objetivo GQM:** Avaliar o grau de Compatibilidade do Portal Detran Digital DF com o propósito de identificar divergências de comportamento, layout e integração entre os quatro módulos avaliados (Infração, Atendimento, Protocolo e Chatbot), do ponto de vista da equipe de qualidade de software, no contexto de um portal governamental de alta disponibilidade.
+
+### 8.2 Matriz de Rastreabilidade GQM Completa
+
+| Objetivo GQM | Questão de Pesquisa | Hipótese Associada | Métrica Derivada | Medidas Básicas (PSM) | Roteiro da Fase 3 | Instrumento de Medição | Nível de Julgamento (Fase 2) | Artefato de Evidência |
+| :--- | :--- | :--- | :---: | :--- | :---: | :--- | :--- | :--- |
+| Avaliar a Compatibilidade do Portal Detran Digital DF | **Q1:** O sistema preserva a funcionalidade e a integridade de layout nos navegadores modernos mais difundidos? | **H1:** Pelo menos 95% dos módulos avaliados operam de forma equivalente nos quatro navegadores em escopo | **M1 – TCBN** | $N_{ap}$ (módulos aprovados) e $N_{tot}$ (módulos totais = 4) | Seção 4.1 (TC-CB-01 a TC-CB-04) | Google Chrome 130+, Mozilla Firefox 131+, Microsoft Edge 130+, Apple Safari 17+ | Excelente: ≥ 95%<br>Bom: 85% a 94%<br>Satisfatório: 70% a 84%<br>Insuficiente: < 70% | `CB_[MODULO]_[BROWSER].png` |
+| Avaliar a Compatibilidade do Portal Detran Digital DF | **Q2:** As páginas e componentes dos quatro módulos adaptam-se de forma consistente às diferentes dimensões de tela? | **H2:** Pelo menos 95% dos 20 pontos de inspeção de viewport são classificados como conformes | **M2 – ICR** | $T_{conf}$ (pontos conformes) e $T_{tot}$ (20 pontos fixos) | Seção 4.2 (RESP-01 a RESP-20) | DevTools Device Toolbar em 5 viewports (360px a 1920px) | Excelente: ≥ 95%<br>Bom: 80% a 94%<br>Satisfatório: 70% a 79%<br>Insuficiente: < 70% | `RESP_[MODULO]_[LARGURA]px.png` |
+| Avaliar a Compatibilidade do Portal Detran Digital DF | **Q3:** Os fluxos de comunicação e troca de dados com serviços externos ocorrem de maneira íntegra e padronizada? | **H3:** Pelo menos 98% das requisições Fetch/XHR monitoradas retornam status HTTP 2xx ou 3xx válido | **M3 – TSIS** | $Req_{ok}$ (requisições bem-sucedidas) e $Req_{tot}$ (total de requisições de escopo) | Seção 4.3 (INT-01 a INT-04) | DevTools Network (filtro Fetch/XHR) + exportação `.har` | Excelente: ≥ 98%<br>Bom: 90% a 97%<br>Satisfatório: 80% a 89%<br>Insuficiente: < 80% | `NET_[MODULO]_[SERVICO].har`<br>`NET_[MODULO]_[SERVICO].png` |
+
+*Fonte: Elaborado pelos autores com base no modelo GQM da Fase 2 e nos roteiros operacionais desta Fase 3.*
+
+### 8.3 Verificação de Consistência entre Decisões da Fase 2 e Métodos da Fase 3
+
+| Decisão Metodológica da Fase 2 | Especificação Teórica (Fase 2) | Implementação Operacional (Fase 3) | Seção de Conformidade |
+| :--- | :--- | :--- | :---: |
+| Fórmula e unidade de TCBN | $TCBN = (N_{ap}/N_{tot}) \times 100$ | Critério de julgamento dos ensaios TC-CB-01 a TC-CB-04 e Tabela 1 | Seção 4.1 e Seção 1 |
+| Escala de classificação TCBN | Excelente ≥ 95%, Bom 85–94%, Satisfatório 70–84%, Insuficiente < 70% | Matriz de pontuação por módulo e escala da Tabela 8.2 | Seção 4.1 e Seção 8.2 |
+| Fórmula e unidade de ICR | $ICR = (T_{conf}/T_{tot}) \times 100$ | Critério de pontuação dos 20 pontos de inspeção (RESP-01 a RESP-20) | Seção 4.2 e Tabela 2 |
+| Escala de classificação ICR | Excelente ≥ 95%, Bom 80–94%, Satisfatório 70–79%, Insuficiente < 70% | Limiares de aceitação de layout e escala da Tabela 8.2 | Seção 4.2 e Seção 8.2 |
+| Fórmula e unidade de TSIS | $TSIS = (Req_{ok}/Req_{tot}) \times 100$ | Critério de categorização de status code HTTP (2xx/3xx vs 4xx/5xx) | Seção 4.3 e Tabela 3 |
+| Escala de classificação TSIS | Excelente ≥ 98%, Bom 90–97%, Satisfatório 80–89%, Insuficiente < 80% | Limiares de conformidade de rede e escala da Tabela 8.2 | Seção 4.3 e Seção 8.2 |
+| Motores web em escopo | Blink, Gecko, WebKit (Chrome, Firefox, Edge, Safari) | Especificação de versões estáveis e requisitos de ambiente | Seção 2.2 e Seção 4.1 |
+| Viewports padronizadas | 360px, 414px, 768px, 1366px, 1920px | Especificação VP-01 a VP-05 e Tabela 2 | Seção 4.2 |
+| Serviços externos mapeados | Gov.br, SEFAZ-DF/Bancos, SEI-GDF e InBot/AWS | Cenários de integração INT-01 a INT-04 e Tabela 3 | Seção 4.3 |
+| Proteção de dados e ética | Diretrizes da LGPD (Lei 13.709/2018) | Catálogo de dados sintéticos e diretrizes de não-interferência | Seção 3 e Seção 9 |
 
 ---
 
