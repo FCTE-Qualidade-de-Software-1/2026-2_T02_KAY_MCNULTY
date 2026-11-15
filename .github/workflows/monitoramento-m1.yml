@@ -32,14 +32,6 @@ jobs:
             echo "Janela encerrada em $FIM_COLETA. Nada a coletar."
           fi
 
-      - name: Coletar A03 (widget do chatbot) com Playwright
-        if: steps.janela.outputs.ativa == 'true'
-        run: |
-          pip install playwright
-          playwright install --with-deps chromium
-          python codigo/.github/scripts/monitor_playwright.py \
-            --saida dados/confiabilidade/m1/disponibilidade.csv
-
       - name: Checkout do codigo (branch padrao)
         if: steps.janela.outputs.ativa == 'true'
         uses: actions/checkout@v4
