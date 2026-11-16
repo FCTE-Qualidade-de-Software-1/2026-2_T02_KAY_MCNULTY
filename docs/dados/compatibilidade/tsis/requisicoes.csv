@@ -1,0 +1,13 @@
+id_requisicao,modulo,servico_integrado,url_endpoint,metodo_http,status_code,resultado_execucao,tempo_resposta_ms,observacoes
+1,Atendimento,Provedor Gov.br (Selos),https://api5.detran.df.gov.br/portal/fuse/api/gov-br/selos,GET,200,Sucesso,1525.5,Integracao com barramento de autenticacao Gov.br
+2,Atendimento,Perfil do Cidadao,https://api5.detran.df.gov.br/portal/detalhes-usuario/area-basica/detalhes-usuario,GET,200,Sucesso,1804.7,Carregamento de dados de identificacao
+3,Atendimento,Mensageria / Notificacoes,https://api5.detran.df.gov.br/prod/portal/mensageria/area-segura/mensageria/qtd-nao-acessadas,GET,200,Sucesso,693.9,Consulta de notificacoes pendentes
+4,Atendimento,Grade de Habilitacao,https://api5.detran.df.gov.br/portal/habilitacao/area-segura/habilitacao,GET,200,Sucesso,2043.3,Carregamento de postos e categorias
+5,Atendimento,Candidato Habilitacao,https://api5.detran.df.gov.br/portal/habilitacao/area-segura/habilitacao/candidato,GET,200,Sucesso,1889.5,Consulta de dados do processo de CNH
+6,Infracao,Consulta de Veiculo / Debitos,https://api5.detran.df.gov.br/portal/vinculo-veiculo/area-basica/vinculoVeiculo,GET,200,Sucesso,156.9,Retorno nominal de pesquisa veicular
+7,Infracao,Servicos de Credenciadas,https://api5.detran.df.gov.br/prod/portal/servicos-credenciadas/credenciada/area,GET,200,Sucesso,718.8,Consulta de postos bancarios e parceiros
+8,Infracao,Validacao de Seguranca (hCaptcha),https://api.hcaptcha.com/checksiteconfig,POST,200,Sucesso,213.2,Verificacao de integridade e protecao anti-bot
+9,Infracao,Desafio de Seguranca (hCaptcha),https://api.hcaptcha.com/getcaptcha/93b08d40-d46c-400a-ba07-6f91cda815b9,POST,200,Sucesso,692.2,Requisicao de captcha para emissao de guia
+10,Chatbot,Servico de Chatbot InBot (Firefox),https://cf.in.bot/api/bot-loader-production.php,GET,200,Sucesso,350.0,Carregamento do assistente virtual no Mozilla Firefox
+11,Chatbot,Servico de Chatbot InBot (Edge),https://cf.in.bot/api/bot-loader-production.php,GET,0,Falha,187.3,Bloqueio de conexao no Edge (ERR_CONNECTION_RESET)
+12,Protocolo,Consulta Processual SEI-GDF,https://api5.detran.df.gov.br/prod/portal/acompanhamento-protocolo,GET,422,Falha Tratada,412.0,Dado de teste sintetico inexistente (retorno 422 tratado com modal amigavel)
