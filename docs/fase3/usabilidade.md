@@ -9,6 +9,9 @@
 !!! note "Status do Documento"
     Página placeholder estruturada pela equipe Kay McNulty para a Fase 3 da ISO/IEC 25040. Os roteiros detalhados de inspeção heurística, tarefas de usuário e formulários do System Usability Scale (SUS) estão em desenvolvimento ativo pela dupla responsável (Natan França e Yan).
 
+!!! info "Atualização do Status (16/11/2026)"
+    Os instrumentos da Fase 3 foram definidos e estão integrados nas Seções 6 a 11: catálogo de tarefas e fluxos, cenários de erro, plano do teste com participantes, protocolo de inspeção heurística, matriz de rastreabilidade, responsabilidades e cronograma de coleta. O **piloto dos instrumentos** (Seção 11) ainda não foi concluído, e os ajustes decorrentes dele serão registrados na Seção 11.3. A coleta oficial é feita na Fase 4. O texto das Seções 1 a 5 foi mantido como registrado anteriormente.
+
 ---
 
 ## 1. Método de Avaliação
@@ -31,6 +34,21 @@ A avaliação da característica de **Capacidade de Interação** fundamenta-se 
 | **M4 – SUS** | Q4 | Escore padronizado de capacidade de interação percebida (escala de 0 a 100) | Questionário SUS de 10 perguntas | Cálculo ponderado conforme fórmula oficial de John Brooke |
 
 **Tabela 1 – Métricas operacionais para Capacidade de Interação.** Fonte: Elaborado pelos autores.
+
+### 1.2 Nota de Consistência com a Fase 2
+
+O conteúdo das Seções 1 a 5 foi mantido como estava. Na especificação formal da [Fase 2](../fase2/usabilidade.md), fonte normativa da avaliação, alguns elementos diferem do que consta nas Tabelas 1 e 2. Para a coleta e o julgamento, **prevalece a Fase 2**:
+
+| Elemento | Nas Tabelas 1 e 2 | Na Fase 2 (especificação formal) |
+| :--- | :--- | :--- |
+| **M2 – IEFO** | Tempo ideal ÷ tempo real, com cronometragem | Passos: P_min ÷ P_exec × 100%. Cada clique ou toque e cada campo preenchido contam como um passo |
+| **M4** | SUS | **IPH** (Índice de Problemas Heurísticos), por módulo e severidade |
+| **M5** | Não consta | **SUS** (escore de 0 a 100) |
+| **Questões e hipóteses** | Q1 a Q4 e H1 a H4 | Q1 a Q3 e H1 a H3; o SUS se associa a Q1 e Q2 |
+| **Faixas de julgamento** | Excelente, Bom, Regular e Insuficiente, com limites distintos por métrica | Excelente, Bom, Satisfatório e Insuficiente, aplicadas só a M1, M2 e M3 (≥ 90% / 80% a < 90% / 70% a < 80% / < 70%; na M3, ≥ 95% / 85% a < 95% / 75% a < 85% / < 75%) |
+| **Faixas para M4 e M5** | SUS com faixas | Sem faixas: IPH e SUS são apresentados diretamente |
+
+A matriz atualizada de acordo com a Fase 2 está na Seção 8 (Tabela 6).
 
 ---
 
@@ -70,3 +88,182 @@ Os procedimentos práticos cobrem os quatro módulos prioritários definidos no 
 
 * **Tamanho Amostral de Participantes:** Por se tratar de auditoria acadêmica diagnóstica, os ensaios laboratoriais com usuários utilizam amostragem de conveniência especializada, complementada pela análise heurística exaustiva dos avaliadores.
 * **Simulação de Pagamentos e Envios Oficiais:** Para evitar geração indevida de dados no banco do Detran-DF, as tarefas terminam antes da confirmação final do protocolo ou quitação bancária de guias.
+
+### 5.1 Limitações Adicionais do Plano Operacional
+
+Complementam as limitações acima, a partir dos instrumentos definidos nas Seções 6 a 11.
+
+- **Amostra pequena e de conveniência.** Os resultados valem para os participantes e não se generalizam. Todos os percentuais são acompanhados de numerador e denominador.
+- **Ambiente de produção.** As tarefas e os cenários de erro não geram efeitos reais (protocolos, agendamentos ou pagamentos) e param nos pontos de parada seguros.
+- **Versão do portal.** Os resultados refletem o portal na data da coleta.
+- **Infração.** Não tem campo de entrada, então a proteção contra erros desse módulo não é medida por M3.
+- **Protocolo.** Os cenários de anexo inválido não são executados, pela assinatura com gov.br.
+- **Acessibilidade.** A avaliação não equivale a uma auditoria de acessibilidade. Leitores de tela e contraste ficam fora do escopo.
+- **Caixa-preta.** A análise usa só o que é observável na interface, sem acesso ao código-fonte e sem intervenção no portal.
+- **Julgamento de especialistas.** O IPH é um julgamento de especialistas e não substitui a observação de usuários.
+
+---
+
+## 6. Instrumentos Integrados
+
+### 6.1 Catálogo de tarefas e fluxos de referência (M1 e M2)
+
+Há uma tarefa por módulo, executada em desktop e em mobile (8 linhas em `tarefas-e-fluxos.csv`). Os enunciados são neutros e não citam nomes de menus ou botões. Cada clique ou toque conta como um passo, e o preenchimento de um campo também.
+
+| Tarefa | Módulo | P_min (desktop) | P_min (mobile) | Ponto de parada seguro |
+| :---: | :--- | :---: | :---: | :--- |
+| **T1** | Consultar infrações | 8 | 8 | Lista de infrações, sem pagar, emitir boleto ou recorrer |
+| **T2** | Agendar atendimento | 15 | 15 | Formulário preenchido, antes de *Concluir agendamento* |
+| **T3** | Abrir protocolo (Requerimento Geral) | 10 | 10 | Etapa de assinatura, sem concluir com gov.br |
+| **T4** | Interagir com o chatbot | 3 | 3 | Resposta do assistente exibida |
+
+**Tabela 3 – Tarefas e P_min.** Fonte: Elaborado pelos autores. Valores conciliados entre os dois avaliadores.
+
+- **Login gov.br:** todas as ações, exceto o assistente virtual, exigem login. T1 a T3 começam sem sessão iniciada e **o login conta no P_min**. O teste usa conta de teste, nunca dados de terceiros.
+- **T3 usa o Requerimento Geral**, porque "Acesso a processos" exige o número de um processo existente, que não pode ser igual para todos.
+- **T4:** a resposta do assistente varia entre execuções. A conclusão é "uma resposta sobre o prazo, indicando onde ele consta e como é contado", e não um valor em dias.
+
+### 6.2 Cenários de erro controlados (M3)
+
+Os cenários usam apenas valores sabidamente inválidos, sem CPF, placa ou RENAVAM de terceiros, e não geram efeitos reais. Cada evento é classificado como `prevenido`, `corrigido_1a_tentativa`, `nao_recuperado` ou `sem_erro`. Os dois primeiros entram em E_prev, e os quatro em E_tot, exceto `N/A`. **Quando E_tot = 0, a métrica é não aplicável, e nunca 100%.**
+
+| Módulo | Cenários | Situação |
+| :--- | :--- | :--- |
+| Protocolo | Campo obrigatório vazio, placa incompleta e Renavam curto no Requerimento Geral | Executáveis |
+| Chatbot | Entrada vazia, só espaços, texto incoerente, pergunta fora do escopo e símbolos ou emojis | Executáveis |
+| Atendimento | Roteiro de observação: resumo antes da ação final, voltar, cancelar | Qualitativo; só entra em M3 se ocorrer erro |
+| Infração | Cenários definidos para CPF, placa e RENAVAM | **Não aplicáveis**: a consulta usa o veículo da conta logada e não tem campo de entrada |
+
+**Tabela 4 – Cenários de erro por módulo.** Fonte: Elaborado pelos autores.
+
+**Limitação.** O módulo de Infração não atinge o mínimo de dois cenários executáveis por desenho do portal. Os cenários de anexo inválido do Protocolo não foram executados, porque a tela de anexos só vem depois da assinatura com gov.br, que tem validade legal.
+
+### 6.3 Plano do teste com participantes (M1, M2, M3 e M5)
+
+| Item | Definição |
+| :--- | :--- |
+| Amostra | Mínimo de **6 participantes**: cidadãos com diferentes faixas etárias e níveis de letramento digital (ao menos 2 de baixo letramento) e ao menos 1 engenheiro avaliador |
+| Dispositivos | **3 em desktop e 3 em mobile**; cada pessoa usa um só dispositivo |
+| Denominador de M1 | N_tot = 24 tarefas (6 participantes × 4 tarefas) |
+| Primeiro acesso | O participante nunca executou a tarefa e não recebe demonstração prévia |
+| Exclusões | Os avaliadores da inspeção heurística não participam do teste |
+| Anonimização | Código sequencial (P01, P02, ...), sem dados pessoais nos arquivos (LGPD); perfil em categorias amplas |
+| Ordem das tarefas | Rotação circular entre participantes, para reduzir o efeito de aprendizado |
+| SUS | Aplicado uma vez, ao **portal como um todo**, logo após a última tarefa e antes de qualquer discussão |
+
+**Tabela 5 – Plano do teste com participantes.** Fonte: Elaborado pelos autores.
+
+A amostra é de conveniência e tem finalidade diagnóstica. Os resultados valem para ela e não podem ser generalizados. O roteiro do moderador, o termo de consentimento, a regra do que conta como auxílio externo e a fórmula do SUS estão em `roteiro-moderador.md` e `sus-ptbr.md`.
+
+### 6.4 Protocolo de inspeção heurística (M4)
+
+Cada avaliador inspeciona de forma independente os 4 módulos em desktop e em mobile e registra cada problema com heurística (H1 a H10), tela ou fluxo, severidade (0 a 4) e evidência. As listas são consolidadas, as duplicidades eliminadas e a severidade final definida por consenso. O guia de severidade, a rotina de consolidação, o checklist de cobertura (4 módulos × 2 dispositivos) e o padrão de nomes das capturas estão em `guia-severidade.md`. As capturas ficam em `docs/img/usabilidade/`.
+
+---
+
+## 7. Ferramentas e Ambiente
+
+| Item | Uso |
+| :--- | :--- |
+| Navegador em janela anônima | Início de cada tarefa sem sessão anterior |
+| Desktop e celular em modo retrato | Contextos de acesso; registrar resolução, navegador e versão |
+| Conta de teste gov.br | Login nas tarefas T1 a T3, sem dados reais |
+| Gravação de tela (com consentimento) | Conferência da contagem de passos; não é versionada |
+| Planilhas (CSV) | Registro de tarefas, cenários, inspeção e SUS |
+
+Os resultados refletem a versão do portal na data da coleta. Data, horário, navegador, dispositivo e largura de tela são registrados em cada sessão.
+
+---
+
+## 8. Matriz de Rastreabilidade (Fase 2 → Fase 3)
+
+| Questão | Hipótese | Métrica | Medidas básicas | Instrumento | Tarefa ou cenário | Execução | Cálculo e julgamento |
+| :---: | :---: | :--- | :--- | :--- | :--- | :---: | :---: |
+| **Q1** Aprendibilidade | H1 | **M1 – TCAPA** | N_aut, N_tot | `registro-tarefas.csv` | T1 a T4 | #56 | #57 |
+| **Q2** Operabilidade | H2 | **M2 – IEFO** | P_min, P_exec | `registro-tarefas.csv` e `tarefas-e-fluxos.csv` | T1 a T4 | #56 | #57 |
+| **Q3** Proteção contra erros | H3 | **M3 – TPRE** | E_prev, E_tot | `cenarios-de-erro.csv` | E-PRO, E-BOT e E-ATE | #56 | #57 |
+| **Q2 e Q3** | H2, H3 | **M4 – IPH** | N₁ a N₄ por módulo | `inspecao-heuristica.csv` | Inspeção dos 4 módulos × 2 dispositivos | #55 | #57 |
+| **Q1 e Q2** | H1, H2 | **M5 – SUS** | R₁ a R₁₀ | `sus-respostas.csv` | Aplicado após as tarefas | #56 | #57 |
+
+**Tabela 6 – Matriz de rastreabilidade para Capacidade de Interação.** Fonte: Elaborado pelos autores.
+
+**Níveis de pontuação (Fase 2).** Aplicam-se a M1, M2 e M3, separadamente a cada métrica:
+
+| Nível | TCAPA (M1) | IEFO (M2) | TPRE (M3) |
+| :---: | :---: | :---: | :---: |
+| Excelente | ≥ 90% | ≥ 90% | ≥ 95% |
+| Bom | 80% a < 90% | 80% a < 90% | 85% a < 95% |
+| Satisfatório | 70% a < 80% | 70% a < 80% | 75% a < 85% |
+| Insuficiente | < 70% | < 70% | < 75% |
+
+**Hipóteses a verificar.** H1: facilidade de aprendizado maior em Infração e Chatbot do que em Protocolo e Atendimento. H2: operabilidade melhor em desktop do que em mobile. H3: fragilidades na proteção contra erros. São expectativas e não resultados constatados. Cada uma será confirmada, refutada ou considerada inconclusiva na Fase 4.
+
+---
+
+## 9. Responsabilidades
+
+| Atividade | Issue | Responsável |
+| :--- | :---: | :--- |
+| Catálogo de tarefas e fluxos | #50 | Natan |
+| Cenários de erro | #51 | Natan |
+| Plano do teste e instrumentos | #52 | Natan |
+| Protocolo heurístico | #53 | Yan |
+| Consolidação da Fase 3 e piloto | #54 | Natan |
+| Inspeção heurística (execução) | #55 | Yan e Natan, de forma independente |
+| Sessões com participantes (execução) | #56 | Natan, com Yan como observador ou moderador |
+| Cálculo, julgamento e GQM | #57 | Yan |
+
+**Tabela 7 – Responsabilidades da dupla.** Fonte: Elaborado pelos autores, a partir das issues. A divisão das sessões da #56 é uma proposta para confirmação pela dupla.
+
+Nas sessões, quem modera não conta passos, e quem observa não interfere. Os dois alternam os papéis entre participantes.
+
+---
+
+## 10. Cronograma da Coleta
+
+As datas abaixo são uma **proposta** para confirmação pela dupla. A coleta termina antes de 22/11/2026, data de encerramento da Fase 4.
+
+| Rodada | Período | Atividade | Métricas | Issue |
+| :---: | :---: | :--- | :---: | :---: |
+| **R0** | 16/11 | Piloto dos instrumentos e ajustes | M1 a M5 | #54 |
+| **R1** | 17/11 | Recrutamento e agendamento dos participantes; início da inspeção heurística | M4 | #55 |
+| **R2** | 17/11 a 19/11 | Inspeção heurística independente dos 4 módulos, em desktop e em mobile | M4 | #55 |
+| **R3** | 18/11 a 20/11 | Sessões com os 6 participantes e aplicação do SUS | M1, M2, M3, M5 | #56 |
+| **R4** | 20/11 | Consolidação das listas heurísticas e conferência dos registros | M4 | #55 |
+| **R5** | 20/11 a 21/11 | Cálculo das métricas, julgamento e respostas GQM | M1 a M5 | #57 |
+| **R6** | 21/11 a 22/11 | Oportunidades, protótipo e validação (Fase 4) | – | #58, #59 e #60 |
+
+**Tabela 8 – Cronograma de coleta.** Fonte: Elaborado pelos autores.
+
+- R2 e R3 podem ocorrer em paralelo, pois a inspeção depende só dos avaliadores.
+- O recrutamento é o ponto de maior risco do cronograma. Se o número de participantes ficar abaixo de 6, o denominador de M1 diminui e a limitação deve ser registrada.
+- Os participantes da validação do protótipo (#60) devem ser, preferencialmente, outros, porque quem fez o teste deixa de estar em primeiro acesso.
+
+---
+
+## 11. Piloto dos Instrumentos
+
+### 11.1 Escopo
+
+Piloto curto, com um avaliador e **uma tarefa por módulo**, para validar o roteiro, o tempo de sessão e as planilhas antes da coleta oficial. Os dados do piloto **não entram** nos resultados.
+
+### 11.2 O que já foi validado
+
+| Instrumento | Verificação feita | Resultado |
+| :--- | :--- | :--- |
+| Catálogo de tarefas (T1 a T4) | Os dois avaliadores percorreram os fluxos de forma independente e conciliaram o P_min | Consenso nos 8 casos; divergência da T1 mobile resolvida e registrada |
+| Cenários de erro (M3) | Execução-piloto dos avaliadores nos módulos Protocolo e Chatbot | Cenários executáveis; Infração não aplicável; anexos do Protocolo não executados |
+
+### 11.3 Pendente
+
+| Instrumento | Verificação a fazer | Situação |
+| :--- | :--- | :---: |
+| Roteiro do moderador | Executar uma sessão completa e medir a duração (meta de 30 a 40 minutos) | Pendente |
+| Regra de auxílio externo | Conferir se o observador consegue aplicá-la sem ambiguidade | Pendente |
+| `registro-tarefas.csv` | Preencher uma linha por tarefa e verificar se N_aut, N_tot, P_min e P_exec saem sem consulta a outra fonte | Pendente |
+| `sus-respostas.csv` | Conferir a fórmula com os valores-limite (100, 0 e 50) | Pendente |
+| `inspecao-heuristica.csv` | Registrar um problema por módulo e verificar se a rotina de consolidação funciona | Pendente |
+
+**Ajustes feitos nos instrumentos a partir do piloto:** a registrar após a execução.
+
+---
