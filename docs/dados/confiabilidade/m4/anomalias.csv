@@ -1,1 +1,4 @@
 cenario,data_hora,comportamento,codigo_http,tolerado,origem_falha,evidencia
+A5,2026-11-16 20:08,"Portal lista so datas e horarios com vaga; horario indisponivel nao pode ser escolhido",,sim,nenhuma,M4_A5_20261116_2008_1.png;M4_A5_20261116_2008_2.png
+A6,2026-11-16 20:09,"Voltar e avancar do navegador manteve a pagina funcionando, mas o formulario de agendamento voltou vazio (perda de estado)",,nao,nenhuma,M4_A6_20261116_2009_1.png;M4_A6_20261116_2009_2.png
+A7,2026-11-16 20:05,"Nao executado: campo de anexo so aparece depois do Avancar com placa e auto de infracao reais (desvio)",,,nenhuma,M4_A7_20261116_2005_1.png;M4_A7_20261116_2005_2.png
