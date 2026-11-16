@@ -478,18 +478,21 @@ def render_bar_chart(title: str, y_label: str, counts_by_author: dict, key: str 
     return chart
 
 
-def generate_tabela_contribuicao_matriz(issue_counts: dict) -> str:
+def generate_tabela_contribuicao_matriz(issue_counts: dict, etapa: str = "pc1") -> str:
     """
-    Gera a Tabela 1 canônica de Matriz de Responsabilidades e Esforço para `tabela-contribuicao.md`.
-    Recebe as métricas de todas as issues do repositório (Entrega 1 e Entrega 2), de modo que as
-    horas, o percentual e o status acompanham o mesmo cálculo da tabela do painel da seção 4.2.
+    Gera a matriz de Responsabilidades e Esforço para `tabela-contribuicao.md`.
+    Com etapa="pc1", usa as issues da Entrega 1 (até a última issue do PC1) e as responsabilidades
+    do Ponto de Controle 1. Com etapa="pc2", usa as issues posteriores ao PC1 e as responsabilidades
+    da Entrega 2. O percentual de esforço é calculado dentro de cada etapa.
     """
+    pc2 = etapa == "pc2"
     tot_hours = sum(issue_counts.get(h, {}).get("hours", 0.0) for h in TRACKED_AUTHORS)
     if tot_hours <= 0:
         tot_hours = 72.0
 
+    rotulo = "no Ponto de Controle 2" if pc2 else "no Ponto de Controle 1"
     lines = [
-        "| Integrante (Nome e Matrícula) | Usuário GitHub | Papel Principal na Equipe | Principais Responsabilidades e Tarefas Realizadas (Entrega 1 e Entrega 2) | Horas (h) | % Esforço (AG-C5) | Status |",
+        f"| Integrante (Nome e Matrícula) | Usuário GitHub | Papel Principal na Equipe | Principais Responsabilidades e Tarefas Realizadas {rotulo} | Horas (h) | % Esforço (AG-C5) | Status |",
         "| :--- | :---: | :--- | :--- | :---: | :---: | :---: |",
     ]
 
@@ -499,10 +502,7 @@ def generate_tabela_contribuicao_matriz(issue_counts: dict) -> str:
         name = m["name"]
         matricula = m["matricula"]
         papel = m["papel"]
-        resp = m["responsabilidades"]
-        resp_e2 = m.get("responsabilidades_e2")
-        if resp_e2:
-            resp = f"**Entrega 1:**<br>{resp}<br>**Entrega 2:**<br>{resp_e2}"
+        resp = m["responsabilidades_e2"] if pc2 else m["responsabilidades"]
 
         st = issue_counts.get(handle, {})
         hours = st.get("hours", 0.0)
@@ -516,9 +516,10 @@ def generate_tabela_contribuicao_matriz(issue_counts: dict) -> str:
             f"{papel} | {resp} | **{fmt_br_number(hours, 1)}h** | **{fmt_br_number(pct, 2)}%** | {status} |"
         )
 
+    escopo = "Esforço Acumulado no Ponto de Controle 2 (Fases 3 e 4)" if pc2 else "Esforço Acumulado no Ponto de Controle 1 (Fases 1 e 2)"
     status_total = "Homologado" if tot_open == 0 else "Em andamento"
     lines.append(
-        f"| **TOTAL CONSOLIDADO** | — | — | **Esforço Acumulado em Todas as Issues (Entrega 1 e Entrega 2)** | "
+        f"| **TOTAL CONSOLIDADO** | — | — | **{escopo}** | "
         f"**{fmt_br_number(tot_hours, 1)}h** | **100,00%** | **{status_total}** |"
     )
 
@@ -761,7 +762,8 @@ def main():
     )
 
     # 2. Tabelas e Trechos Markdown Dinâmicos
-    tabela_contribuicao_matriz = generate_tabela_contribuicao_matriz(general_counts)
+    tabela_contribuicao_matriz = generate_tabela_contribuicao_matriz(pc1_counts, "pc1")
+    tabela_contribuicao_matriz_pc2 = generate_tabela_contribuicao_matriz(entrega2_counts, "pc2")
     alocacao_recursos_custos = generate_alocacao_recursos_custos(issue_counts)
     distribuicao_custos_areas = generate_distribuicao_custos_areas(issue_counts)
     contributions_table = generate_contributions_table(git_totals, general_counts)
@@ -792,6 +794,7 @@ def main():
 
     (SNIPPETS_DIR / "resumo-processo.md").write_text(resumo_processo + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "tabela-contribuicao-matriz.md").write_text(tabela_contribuicao_matriz + "\n", encoding="utf-8")
+    (SNIPPETS_DIR / "tabela-contribuicao-matriz-pc2.md").write_text(tabela_contribuicao_matriz_pc2 + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "alocacao-recursos-custos.md").write_text(alocacao_recursos_custos + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "distribuicao-custos-areas.md").write_text(distribuicao_custos_areas + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "contributions-summary.md").write_text(contributions_table + "\n", encoding="utf-8")
