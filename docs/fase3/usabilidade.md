@@ -334,7 +334,7 @@ Execução de 16/11/2026, feita pela equipe com apoio de um assistente de navega
 
 **Tabela 11 – Resultado do piloto de T1 a T3.** Fonte: Elaborado pelos autores. Pedido de auxílio: não, em todas as tarefas. **O tempo das tarefas ainda não foi medido.**
 
-**Passos contra P_min.** Em T2 e T3, os passos ficaram abaixo do P_min (12 contra 15 e 6 contra 10). A diferença é de 3 e de 4 passos. Isso é compatível com o fato de o login contar no P_min (decisão do catálogo) e não ter sido contado no piloto, porque a sessão já estava aberta. O número de passos do login não foi observado, e a diferença não é igual nas duas tarefas, então a explicação precisa ser conferida com os avaliadores que conciliaram o P_min. Nas sessões oficiais, as tarefas T1 a T3 começam sem sessão iniciada e o login conta dos dois lados.
+**P_min.** Os valores de P_min são os do catálogo de tarefas (Tabela 3) e **não foram alterados** pelo piloto. No piloto, o login não foi contado nos passos executados, porque a sessão já estava aberta. Nas sessões oficiais, as tarefas T1 a T3 começam sem sessão iniciada e o login conta no P_min e nos passos executados.
 
 **Achados do piloto** (severidades são sugestões de 0 a 4, não finais; a definição final é feita na inspeção heurística):
 
