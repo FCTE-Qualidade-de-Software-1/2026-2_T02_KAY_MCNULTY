@@ -341,11 +341,12 @@ def extract_hours_from_item(item: dict) -> float:
     return 2.0
 
 
-def get_issue_and_effort_metrics():
-    """Calcula estatísticas de issues e esforço estimado por membro."""
+def get_issue_and_effort_metrics(issue_filter=None):
+    """Calcula estatisticas de issues e esforco estimado por membro."""
     items = [
         item for item in fetch_all_github_items()
-        if "pull_request" not in item and item.get("number", 0) <= ULTIMA_ISSUE_E1
+        if "pull_request" not in item
+        and (issue_filter is None or issue_filter(item.get("number", 0)))
     ]
 
     counts = {
@@ -509,11 +510,14 @@ def generate_tabela_contribuicao_matriz(issue_counts: dict) -> str:
     return "\n".join(lines)
 
 
-def generate_alocacao_recursos_custos(issue_counts: dict) -> str:
+def generate_alocacao_recursos_custos(issue_counts: dict, etapa: str = "pc1") -> str:
     """
-    Gera a Tabela 3 de Alocação de Recursos, Esforço e Custos Individuais para `metricas-psm.md`,
+    Gera a tabela de Alocação de Recursos, Esforço e Custos Individuais para `metricas-psm.md`,
     calculando horas estimadas, custo total e % de esforço a partir da automação.
+    Com etapa="pc1" gera a Tabela 3 (issues da Entrega 1); com etapa="pc2" gera a Tabela 4
+    (issues posteriores ao PC1). O percentual de esforço é calculado dentro de cada etapa.
     """
+    pc2 = etapa == "pc2"
     tot_hours = sum(issue_counts.get(h, {}).get("hours", 0.0) for h in TRACKED_AUTHORS)
     if tot_hours <= 0:
         tot_hours = 72.0
@@ -524,6 +528,7 @@ def generate_alocacao_recursos_custos(issue_counts: dict) -> str:
     ]
 
     tot_custo = tot_hours * VALOR_HORA_BRL
+    tot_open = 0
 
     for m in TEAM_MEMBERS:
         handle = m["handle"]
@@ -533,17 +538,23 @@ def generate_alocacao_recursos_custos(issue_counts: dict) -> str:
 
         st = issue_counts.get(handle, {})
         hours = st.get("hours", 0.0)
+        abertas = st.get("open", 0)
+        tot_open += abertas
         custo = hours * VALOR_HORA_BRL
         pct = (hours / tot_hours * 100.0) if tot_hours > 0 else (100.0 / len(TEAM_MEMBERS))
+        status = "Concluído" if abertas == 0 else f"Em andamento ({abertas} abertas)"
 
         lines.append(
             f"| **{name}**<br>Matrícula: `{matricula}` | [@{handle}](https://github.com/{handle}) | {papel} | "
-            f"**{fmt_br_number(hours, 1)}h** | {fmt_br_currency(VALOR_HORA_BRL)} | {fmt_br_currency(custo)} | **{fmt_br_number(pct, 2)}%** | Concluído |"
+            f"**{fmt_br_number(hours, 1)}h** | {fmt_br_currency(VALOR_HORA_BRL)} | {fmt_br_currency(custo)} | **{fmt_br_number(pct, 2)}%** | {status} |"
         )
 
+    rotulo = "TOTAL ACUMULADO (PC2)" if pc2 else "TOTAL ACUMULADO (PC1)"
+    entregaveis = "Entregáveis Fases 3 e 4 Consolidados" if pc2 else "Entregáveis Fases 1 e 2 Consolidados"
+    status_total = "100% Ativo" if tot_open == 0 else "Em andamento"
     lines.append(
-        f"| **TOTAL ACUMULADO (PC1)** | — | **Entregáveis Fases 1 e 2 Consolidados** | "
-        f"**{fmt_br_number(tot_hours, 1)}h** | Média: {fmt_br_currency(VALOR_HORA_BRL)}/h | **{fmt_br_currency(tot_custo)}** | **100,00%** | **100% Ativo** |"
+        f"| **{rotulo}** | — | **{entregaveis}** | "
+        f"**{fmt_br_number(tot_hours, 1)}h** | Média: {fmt_br_currency(VALOR_HORA_BRL)}/h | **{fmt_br_currency(tot_custo)}** | **100,00%** | **{status_total}** |"
     )
 
     return "\n".join(lines)
@@ -707,9 +718,12 @@ def main():
     SNIPPETS_DIR.mkdir(parents=True, exist_ok=True)
 
     weeks, commits, additions, deletions, git_totals = get_git_log_data()
-    issue_counts = get_issue_and_effort_metrics()
+    pc1_counts = get_issue_and_effort_metrics(lambda number: number <= ULTIMA_ISSUE_E1)
+    general_counts = get_issue_and_effort_metrics()
+    entrega2_counts = get_issue_and_effort_metrics(lambda number: number > ULTIMA_ISSUE_E1)
+    issue_counts = pc1_counts
 
-    # 1. Gráficos Mermaid
+    # 1. Graficos Mermaid
     velocity_chart = render_timeline_chart(
         "Velocidade de Commits por Integrante ao Longo do Tempo",
         "Commits",
@@ -744,10 +758,12 @@ def main():
     # 2. Tabelas e Trechos Markdown Dinâmicos
     tabela_contribuicao_matriz = generate_tabela_contribuicao_matriz(issue_counts)
     alocacao_recursos_custos = generate_alocacao_recursos_custos(issue_counts)
+    alocacao_recursos_custos_pc2 = generate_alocacao_recursos_custos(entrega2_counts, "pc2")
     distribuicao_custos_areas = generate_distribuicao_custos_areas(issue_counts)
-    contributions_table = generate_contributions_table(git_totals, issue_counts)
+    contributions_table = generate_contributions_table(git_totals, general_counts)
     issues_table = generate_issues_table(issue_counts)
     process_performance_table = generate_process_performance_table(issue_counts)
+    entrega2_process_table = generate_process_performance_table(entrega2_counts)
 
     tot_hours = sum(issue_counts.get(h, {}).get("hours", 0.0) for h in TRACKED_AUTHORS)
     tot_closed = issue_counts.get("_meta", {}).get("closed", 0)
@@ -773,10 +789,12 @@ def main():
     (SNIPPETS_DIR / "resumo-processo.md").write_text(resumo_processo + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "tabela-contribuicao-matriz.md").write_text(tabela_contribuicao_matriz + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "alocacao-recursos-custos.md").write_text(alocacao_recursos_custos + "\n", encoding="utf-8")
+    (SNIPPETS_DIR / "alocacao-recursos-custos-pc2.md").write_text(alocacao_recursos_custos_pc2 + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "distribuicao-custos-areas.md").write_text(distribuicao_custos_areas + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "contributions-summary.md").write_text(contributions_table + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "issues-summary.md").write_text(issues_table + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "process-performance-table.md").write_text(process_performance_table + "\n", encoding="utf-8")
+    (SNIPPETS_DIR / "process-performance-table-entrega2.md").write_text(entrega2_process_table + "\n", encoding="utf-8")
 
     resumo_horas = {k: f"{v['hours']:.1f}h" for k, v in issue_counts.items() if k != "_meta"}
     print(f"Snippets gerados com sucesso em: {SNIPPETS_DIR}")

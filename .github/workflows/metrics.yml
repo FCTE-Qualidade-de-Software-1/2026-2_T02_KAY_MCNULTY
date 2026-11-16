@@ -9,6 +9,8 @@ on:
       - 'snippets/**'
       - 'site/**'
   workflow_dispatch:
+  issues:
+    types: [opened, edited, closed, reopened, assigned, unassigned]
 
 permissions:
   contents: write

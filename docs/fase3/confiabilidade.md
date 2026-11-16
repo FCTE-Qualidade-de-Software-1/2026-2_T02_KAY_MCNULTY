@@ -68,26 +68,27 @@ Os conjuntos abaixo definem os totais das medidas básicas Fₑₓₑ, Sₜₒ�
 
 **M1 – Taxa de Disponibilidade Observada (TDO)**
 
-1. Configurar o monitor com os alvos da Tabela 5, todos acessíveis sem login, e com o elemento esperado de cada um. O monitor principal é um navegador automatizado (Playwright), em máquina ligada de forma contínua durante a janela.
-2. A cada 15 minutos, carregar cada alvo e registrar uma linha no CSV: data e hora, endereço, código HTTP, indicador de elemento esperado renderizado (sim ou não), tempo de carga e resultado do alvo de controle no mesmo ciclo. O tempo limite é de 20 s por alvo, sem nova tentativa: uma verificação que falha é registrada como falha.
-3. Contar como verificação com sucesso (Cₒₖ) a que retornou HTTP 2xx ou 3xx e renderizou o elemento esperado. Contar todas as verificações válidas em Cₜₒₜ.
-4. Se o alvo de controle (C01) também falhar no mesmo ciclo, marcar o ciclo como falha local (computador ou rede do monitor) e excluí-lo de Cₜₒₜ. Ciclos perdidos e lacunas no CSV são registrados e reportados junto com o TDO.
-5. Registrar à parte qualquer manutenção anunciada pelo órgão e calcular a TDO com e sem exclusão dessas janelas.
-6. Ao corte dos dados (Tabela 9), calcular TDO = Cₒₖ / Cₜₒₜ × 100%.
-7. Como segunda fonte independente, um workflow agendado do GitHub Actions executa o script `.github/scripts/monitor_m1.py` com os mesmos alvos e grava o resultado na branch `monitoramento-m1`. A segunda fonte serve para comparação e não substitui o monitor principal.
-8. O CSV do monitor principal é versionado no repositório ao fim de cada dia de coleta, em `docs/dados/confiabilidade/`.
+1. Configurar dois monitores com os alvos da Tabela 5, todos acessíveis sem login, e com o elemento esperado de cada um. O workflow agendado do GitHub Actions executa o script `.github/scripts/monitor_m1.py` com os alvos do arquivo `.github/config/m1_alvos.json` e confere o texto esperado no conteúdo bruto devolvido pelo servidor. O navegador automatizado (Playwright), executado pelo script `.github/scripts/monitor_playwright.py` em máquina ligada de forma contínua durante a janela, confere o alvo A03, que só existe depois que o navegador executa o JavaScript da página.
+2. A cada 15 minutos, cada monitor executa um ciclo: carrega cada um dos seus alvos e registra uma linha no CSV por alvo, com as colunas da Tabela 8 (data e hora em UTC e em Brasília, alvo, endereço, código HTTP, tempo de carga, indicador de elemento esperado encontrado e resultado da verificação). O alvo de controle (C01) é verificado em todo ciclo e gravado com o mesmo `timestamp_utc` dos demais alvos desse ciclo. O tempo limite é de 20 s por alvo, sem nova tentativa: uma verificação que falha é registrada como falha.
+3. Contar como verificação com sucesso (Cₒₖ) a que retornou HTTP 2xx ou 3xx e encontrou o elemento ou texto esperado (`ok` = 1). Contar todas as verificações válidas em Cₜₒₜ.
+4. Se o alvo de controle (C01) também falhar no mesmo ciclo do mesmo monitor, marcar o ciclo como falha local (computador, rede ou servidor de execução do monitor) e excluí-lo de Cₜₒₜ. Ciclos perdidos e lacunas no CSV, inclusive execuções que o agendador do GitHub atrasa ou pula, são registrados e reportados junto com o TDO.
+5. Registrar à parte, em `manutencoes_anunciadas.csv`, qualquer manutenção anunciada pelo órgão e calcular a TDO com e sem exclusão dessas janelas.
+6. Ao corte dos dados (seção 3.1), calcular TDO = Cₒₖ / Cₜₒₜ × 100% por alvo e no geral, com o comando `python .github/scripts/monitor_m1.py resumo --saida <arquivo> --ate "2026-11-20 18:00"` sobre o CSV de cada monitor. O TDO geral soma os Cₒₖ e os Cₜₒₜ dos dois arquivos.
+7. Os dois monitores são complementares, e cada alvo é medido por um único monitor (coluna "Monitor" da Tabela 5). O workflow não substitui o Playwright no A03 e o Playwright não substitui o workflow nos demais alvos.
+8. O CSV do Playwright é versionado no repositório ao fim de cada dia de coleta, em `docs/dados/confiabilidade/`. O CSV do workflow é gravado na branch `monitoramento-m1` a cada ciclo e copiado para a mesma pasta ao fim da janela.
 
-| ID | Alvo | Endereço | Elemento esperado |
-| :---: | :--- | :--- | :--- |
-| A01 | Portal (página inicial) | `https://portal.detran.df.gov.br/` | Elemento `app-header` renderizado (Playwright); texto `Detran Digital` no HTML (workflow) |
-| A02 | Widget do Chatbot (script) | `https://bot-server.s3.amazonaws.com/api/inbot.gz.js?bot_id=1010&bot_token=45lyi7gjii&bot_server_type=production` | Texto `inbot.js-loaded` |
-| A03 | Widget do Chatbot (montado na página) | Página inicial (A01) | Elemento `#divtoincludechat` com conteúdo renderizado (somente Playwright) |
-| A04 | Endpoints públicos do portal | **A DEFINIR** (identificados pela aba de rede, sem login) | **A DEFINIR** |
-| C01 | Controle (fora do portal) | `https://example.com/` | Texto `Example Domain` |
+| ID | Alvo | Endereço | Elemento esperado | Monitor |
+| :---: | :--- | :--- | :--- | :---: |
+| A01 | Portal (página inicial) | `https://portal.detran.df.gov.br/` | Texto `Detran Digital` no HTML | Workflow |
+| A02 | Widget do Chatbot (script) | `https://bot-server.s3.amazonaws.com/api/inbot.gz.js?bot_id=1010&bot_token=45lyi7gjii&bot_server_type=production` | Texto `inbot.js-loaded` | Workflow |
+| A03 | Widget do Chatbot (montado na página) | Página inicial (A01) | Elemento `#divtoincludechat` com conteúdo renderizado | Playwright |
+| A04 | Login (Autenticação) | `https://portal.detran.df.gov.br/#/login` | Texto `Detran Digital` no HTML | Workflow |
+| A05 | Atendimento (Balcão Virtual) | `https://balcaovirtual.detran.df.gov.br/` | Texto `Virtual do Detran` no HTML | Workflow |
+| C01 | Controle (fora do portal) | `https://example.com/` | Texto `Example Domain` | Workflow e Playwright, cada um com o seu próprio controle |
 
-**Tabela 5 – Alvos do monitoramento (M1).** O alvo C01 não faz parte do cálculo do TDO e serve apenas para identificar falhas locais do monitor. Fonte: elaboração da equipe.
+**Tabela 5 – Alvos do monitoramento (M1).** O alvo C01 não faz parte do cálculo do TDO e serve apenas para identificar falhas locais do monitor. O trecho `#/login` do A04 é um fragmento que o navegador não envia ao servidor, então no workflow o A04 recebe a mesma resposta do A01 (seção 5). Fonte: elaboração da equipe.
 
-Como o portal é uma aplicação de página única, um código HTTP 200 não prova que a página funciona. Por isso a verificação exige que um elemento visível da página seja renderizado.
+Como o portal é uma aplicação de página única, um código HTTP 200 não prova que a página funciona. A verificação de elemento renderizado só existe no A03, feita pelo Playwright. Nos demais alvos, o workflow lê o HTML bruto e confirma apenas que o servidor entrega a página, e a funcionalidade das telas é observada nas execuções manuais.
 
 Os módulos de Infração e Protocolo exigem login e, em conformidade com a definição da M1 na Fase 2, não são monitorados automaticamente. A acessibilidade deles é observada nas execuções manuais da M2: o primeiro passo de cada fluxo é o acesso ao módulo, e uma falha nele é registrada como falha do fluxo.
 
@@ -139,7 +140,7 @@ Cada passo acima usa só ferramentas públicas e registra a evidência em arquiv
 | Dispositivo | Computador pessoal (desktop) com resolução de 1366 por 768 |
 | Rede | Conexão residencial de banda larga no Distrito Federal |
 | Perfil do navegador | Perfil limpo (sem cache e sem cookies) no início de cada sessão de teste. A sessão autenticada é mantida entre os fluxos da mesma sessão, exceto no cenário B3 |
-| Monitoramento (M1) | Navegador automatizado em máquina ligada de forma contínua durante a janela, mais o workflow do GitHub Actions como segunda fonte |
+| Monitoramento (M1) | Workflow do GitHub Actions em servidor do GitHub (alvos A01, A02, A04, A05 e C01) e navegador automatizado (Playwright) em máquina ligada de forma contínua durante a janela (alvos A03 e C01) |
 
 **Tabela 6 – Ambiente de referência.** A variação entre navegadores e resoluções é objeto da Compatibilidade e não é avaliada aqui. Fonte: elaboração da equipe.
 
@@ -147,8 +148,8 @@ Cada passo acima usa só ferramentas públicas e registra a evidência em arquiv
 
 | Ferramenta | Uso |
 | :--- | :--- |
-| Playwright (navegador automatizado) | Verificação da M1 e checagem do elemento renderizado |
-| Python e GitHub Actions | Segunda fonte da M1 (`monitor_m1.py`, dados na branch `monitoramento-m1`) |
+| Python e GitHub Actions | Coleta dos alvos A01, A02, A04, A05 e C01 na M1 (`monitor_m1.py`, dados na branch `monitoramento-m1`) |
+| Playwright (navegador automatizado) | Coleta do alvo A03 e do controle C01 na M1, com checagem do elemento renderizado (`monitor_playwright.py`) |
 | Ferramentas do desenvolvedor do navegador (aba de rede) | Registro de códigos HTTP, simulação de modo offline e limpeza de sessão |
 | Gravador de tela | Evidência das execuções da M2, M4 e M5 e base da cronometragem da M6 |
 | Cronômetro sobre a gravação | Medida Tᵢ da M6 |
@@ -170,17 +171,18 @@ Cada passo acima usa só ferramentas públicas e registra a evidência em arquiv
 
 | Arquivo | Conteúdo | Métricas |
 | :--- | :--- | :--- |
-| `disponibilidade.csv` | data_hora, endereço, codigo_http, elemento_renderizado, tempo_carga_ms, controle_ok, manutencao_anunciada | M1 |
-| `disponibilidade_actions.csv` | timestamp_utc, timestamp_brasilia, alvo_id, modulo, url, http_status, tempo_ms, elemento_ok, ok, erro | M1 (segunda fonte) |
+| `disponibilidade_actions.csv` | timestamp_utc, timestamp_brasilia, alvo_id, modulo, url, http_status, tempo_ms, elemento_ok, ok, erro | M1 (A01, A02, A04, A05 e C01) |
+| `disponibilidade_playwright.csv` | timestamp_utc, timestamp_brasilia, alvo_id, modulo, url, http_status, tempo_ms, elemento_ok, ok, erro | M1 (A03 e C01) |
+| `manutencoes_anunciadas.csv` | inicio_brasilia, fim_brasilia, fonte, descricao | M1 |
 | `fluxos.csv` | fluxo, execucao, data_hora, resultado, causa_da_falha, origem_falha, evidencia | M2 e M3 |
 | `anomalias.csv` | cenario, data_hora, comportamento, codigo_http, tolerado, origem_falha, evidencia | M4 |
 | `interrupcoes.csv` | cenario, data_hora, recuperado, tempo_recuperacao_s, origem_falha, evidencia | M5 e M6 |
 
-**Tabela 8 – Arquivos de dados brutos.** Os arquivos ficam em `docs/dados/confiabilidade/`, e as evidências em subpastas por métrica. O arquivo `disponibilidade_actions.csv` é gerado na branch `monitoramento-m1` e copiado para essa pasta ao fim da janela. Gravações que exibam dados pessoais seguem a regra da seção 2.3, com o link registrado no `fluxos.csv`, `anomalias.csv` ou `interrupcoes.csv`. Fonte: elaboração da equipe.
+**Tabela 8 – Arquivos de dados brutos.** Os arquivos ficam em `docs/dados/confiabilidade/`, e as evidências em subpastas por métrica. Nos dois CSVs da M1, cada linha é uma verificação de um alvo, `ok` vale 1 quando a verificação teve sucesso e 0 quando falhou, e o ciclo é identificado pelo `timestamp_utc`. O controle C01 aparece como uma linha em cada ciclo. O arquivo `disponibilidade_actions.csv` é gerado na branch `monitoramento-m1`, no caminho `confiabilidade/m1/disponibilidade.csv`, e copiado para essa pasta ao fim da janela. Gravações que exibam dados pessoais seguem a regra da seção 2.3, com o link registrado no `fluxos.csv`, `anomalias.csv` ou `interrupcoes.csv`. Fonte: elaboração da equipe.
 
 ### 2.5 Conhecimento exigido do avaliador
 
-Familiaridade básica com o navegador e suas ferramentas do desenvolvedor, e leitura dos roteiros da seção 1.3. A configuração do monitor da M1 exige conhecimento de Playwright, e quem a executar deve ser o integrante que a configurou.
+Familiaridade básica com o navegador e suas ferramentas do desenvolvedor, e leitura dos roteiros da seção 1.3. A configuração dos monitores da M1 exige conhecimento de Python, GitHub Actions e Playwright, e quem a executar deve ser o integrante que a configurou.
 
 ---
 
@@ -191,21 +193,24 @@ O cronograma segue o [calendário oficial da disciplina](../gestao/metricas-psm.
 | Período | Atividade | Responsável | Issue |
 | :--- | :--- | :--- | :---: |
 | 15/11 | Plano de avaliação pronto e piloto do monitor da M1. Início do monitoramento | João Eduardo e Davi Ursolino | #46 |
-| 15/11 a 20/11 (corte às 18h) | Janela de observação da M1 | João Eduardo e Davi Ursolino | #47 |
+| 15/11 a 20/11 (corte às 18h) | Janela de observação da M1, usada no cálculo do TDO | João Eduardo e Davi Ursolino | #47 |
 | 16/11 ou 18/11 | Ponto de Controle 2, com dados parciais da M1 | Equipe | |
 | 16/11 a 19/11 | Execução manual da M2, M3, M4, M5 e M6 e registro dos dados brutos | João Eduardo e Davi Ursolino | #47 |
 | 20/11 (após o corte) a 21/11 | Cálculo das métricas, julgamento e respostas ao GQM | João Eduardo e Davi Ursolino | #48 |
 | 20/11 a 21/11 | Ação técnica de melhoria | Davi Ursolino | #49 |
 | 20/11 a 21/11 | Artigo v2 e atualização do GitPage | João Eduardo e Davi Ursolino | #45 |
+| 20/11 (após as 18h) a 21/11 (fim do dia) | Fim da coleta automática da M1 (`FIM_COLETA` do workflow). Os dados dessa margem ficam no CSV bruto e fora do TDO | Automático | #47 |
 | 22/11 | Entrega final | Equipe | |
 
 **Tabela 9 – Cronograma operacional da Confiabilidade.** Fonte: elaboração da equipe.
 
 ### 3.1 Desvio em relação à Fase 2
 
-A Fase 2 especifica que o monitoramento da M1 dura 14 dias. Com a entrega final em 22/11 e a Fase 3 concluída em 15/11, a janela de observação vai de 15/11 até o corte dos dados em 20/11 às 18h, cerca de 5 dias e 18 horas. Com uma verificação a cada 15 minutos, isso dá até 552 verificações por endereço, em vez das 1.344 previstas.
+A Fase 2 especifica que o monitoramento da M1 dura 14 dias. Com a entrega final em 22/11 e a Fase 3 concluída em 15/11, a janela de observação vai de 15/11 até o corte dos dados em 20/11 às 18h, cerca de 5 dias e 18 horas. Com uma verificação a cada 15 minutos, isso dá até 552 verificações por endereço, em vez das 1.344 previstas. O número efetivo pode ser menor, porque o agendador do GitHub atrasa ou pula execuções, e as lacunas são reportadas junto com o resultado (seção 1.3, passo 4).
 
 A decisão é manter o intervalo de 15 minutos e reduzir a janela. As consequências são registradas no julgamento da Fase 4: a TDO representa só esse período e não deve ser lida como disponibilidade média do portal, e o desvio será citado no artigo. Os níveis de pontuação da Fase 2 não mudam.
+
+O workflow e o Playwright continuam coletando até o fim de 21/11 como margem de segurança contra falhas dos monitores. Os dados coletados depois do corte ficam no CSV bruto e não entram no TDO, que é calculado com `--ate "2026-11-20 18:00"`. Se a equipe decidir estender o corte para 21/11, o cálculo do TDO passa para essa data e o cronograma da Tabela 9 e o número de verificações desta seção precisam ser atualizados.
 
 O TDO usado no artigo é calculado com os dados até o corte. Verificações descartadas por falha local (seção 1.3, passo 4) ficam fora de Cₜₒₜ, e a quantidade delas é reportada junto com o resultado.
 
@@ -217,7 +222,7 @@ A matriz mostra que cada elemento da especificação da Fase 2 tem um método e 
 
 | Métrica | Questão e hipótese | Medidas básicas (Fase 2) | Método (Fase 3) | Recurso e evidência | Níveis de pontuação (Fase 2) |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| M1 – TDO | Q1, H1 | Cₒₖ, Cₜₒₜ | Seção 1.3, M1 | Playwright e `disponibilidade.csv` | Excelente ≥ 99,5%; Bom 98% a < 99,5%; Satisfatório 95% a < 98%; Insuficiente < 95% |
+| M1 – TDO | Q1, H1 | Cₒₖ, Cₜₒₜ | Seção 1.3, M1 | Workflow do Actions, Playwright, `disponibilidade_actions.csv` e `disponibilidade_playwright.csv` | Excelente ≥ 99,5%; Bom 98% a < 99,5%; Satisfatório 95% a < 98%; Insuficiente < 95% |
 | M2 – TCFF | Q2, H2 | Fₒₖ, Fₑₓₑ | Seção 1.3, M2 e M3 | Tabela 2, gravação de tela e `fluxos.csv` | Excelente ≥ 95%; Bom 85% a < 95%; Satisfatório 70% a < 85%; Insuficiente < 70% |
 | M3 – DFF | Q2, H2 | Fd, Flₜₒₜ | Seção 1.3, M2 e M3 | Tabela 2 e `fluxos.csv` | Excelente 0; Bom > 0 a ≤ 0,5; Satisfatório > 0,5 a ≤ 1,0; Insuficiente > 1,0 |
 | M4 – TTOA | Q3, H3 | Sₜₒₗ, Sₜₒₜ | Seção 1.3, M4 | Tabela 3, aba de rede e `anomalias.csv` | Excelente ≥ 95%; Bom 85% a < 95%; Satisfatório 70% a < 85%; Insuficiente < 70% |
@@ -236,6 +241,8 @@ A agregação das notas (Q1 = M1; Q2 = média de M2 e M3; Q3 = M4; Q4 = média d
 * **Amostras pequenas:** M4 e M5 usam uma execução por cenário, e M2 usa cinco por fluxo. Nessas amostras, um único resultado muda o nível: na M4, 9 de 10 cenários toleram (Bom) e 8 de 10 (Satisfatório). A amostra é pequena e não aleatória, e os resultados não permitem estimar o comportamento geral do portal.
 * **Falhas intermitentes:** a Fase 2 prevê erros intermitentes (H2), e eles podem não aparecer nas execuções manuais.
 * **Módulos autenticados:** Infração e Protocolo não entram no monitoramento automático da M1. Sua acessibilidade é observada apenas nas execuções manuais, e a nota da Q1 reflete só os alvos públicos.
-* **Origem das verificações:** o monitor principal roda de uma conexão residencial no Distrito Federal, e a segunda fonte roda em servidores do GitHub fora do DF. Diferenças entre as duas fontes podem refletir o caminho de rede, e não o portal.
-* **Aplicação de página única:** a verificação depende de elementos renderizados no navegador, e a segunda fonte, que lê o HTML bruto, só confirma que o servidor entrega a página.
+* **Origem das verificações:** o workflow roda em servidores do GitHub fora do DF, e o Playwright roda de uma conexão residencial no Distrito Federal. Como cada alvo é medido por um único monitor, as diferenças de caminho de rede entre os dois não podem ser separadas das diferenças do portal, e o controle C01 só detecta problemas gerais de conexão.
+* **Aplicação de página única:** só o A03 é verificado com o elemento renderizado no navegador. Nos demais alvos, o workflow lê o HTML bruto e confirma apenas que o servidor entrega a página.
+* **Alvo A04:** o trecho `#/login` é um fragmento que não chega ao servidor, então no workflow o A04 recebe a mesma resposta do A01. A tela de login não é verificada como renderizada, e o A04 conta como uma segunda verificação da mesma página no TDO geral.
+* **Agendador do GitHub:** o workflow pode atrasar ou pular execuções, e o Playwright depende de a máquina ficar ligada e sem suspensão. As lacunas reduzem Cₜₒₜ e são reportadas.
 * **Terceiros:** o Gov.br, o SEI-GDF e o serviço do chatbot (InBot, na Amazon) não estão sob controle do portal, e suas falhas contam como falhas do módulo avaliado (seção 1.4), registradas com a origem.
