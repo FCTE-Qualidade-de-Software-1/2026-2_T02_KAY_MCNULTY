@@ -1,5 +1,5 @@
 id_requisicao,modulo,servico_integrado,url_endpoint,metodo_http,status_code,resultado_execucao,tempo_resposta_ms,observacoes
-1,Infracao,Consulta / DUD,/api/infracoes,POST,200,Sucesso,,
-2,Atendimento,Autenticacao Gov.br,/oauth/authorize,GET,302,Sucesso,,
-3,Protocolo,Integracao SEI-GDF,/sei/documentos,POST,200,Sucesso,,
-4,Chatbot,Servico InBot (AWS),/chat/message,POST,200,Sucesso,,
+1,Infracao,Consulta / Emissao DUD,portal.detran.df.gov.br,POST/GET,200,Sucesso,180,Requisicao monitorada e registrada via arquivo HAR
+2,Atendimento,Autenticacao Gov.br,/oauth/authorize,GET,302,Pendente,,Aguardando consolidacao final
+3,Protocolo,Integracao SEI-GDF,/sei/documentos,POST,200,Pendente,,Aguardando consolidacao final
+4,Chatbot,Servico InBot (AWS),/chat/message,POST,-,Indisponivel,-,Widget nao carregado no portal durante a sessao de testes

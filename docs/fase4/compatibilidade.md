@@ -22,12 +22,12 @@
 
 Os ensaios foram executados nos 4 navegadores homologados (Chrome, Firefox, Edge e Safari) seguindo os roteiros definidos na Fase 3. Os dados detalhados encontram-se registrados em [`docs/dados/compatibilidade/tcbn/cross_browser.csv`](../dados/compatibilidade/tcbn/cross_browser.csv).
 
-| Módulo | Cenário de Teste | Google Chrome | Mozilla Firefox | Microsoft Edge | Apple Safari | Situação do Cenário |
+| Módulo | Cenário de Teste | Google Chrome | Mozilla Firefox | Microsoft Edge | Apple Safari | Situação Parcial |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Infração** | TC-CB-01 | Aprovado | Aprovado | Aprovado | Aprovado | Aprovado |
-| **Atendimento** | TC-CB-02 | Aprovado | Aprovado | Aprovado | Aprovado | Aprovado |
-| **Protocolo** | TC-CB-03 | Aprovado | Aprovado | Aprovado | Aprovado | Aprovado |
-| **Chatbot** | TC-CB-04 | Aprovado | Aprovado | Aprovado | Aprovado | Aprovado |
+| **Infração** | TC-CB-01 | *Aguardando (Nicole)* | Aprovado | Aprovado | *Aguardando* | Conforme (Firefox/Edge) |
+| **Atendimento** | TC-CB-02 | *Aguardando (Nicole)* | Aprovado | Aprovado | *Aguardando* | Conforme (Firefox/Edge) |
+| **Protocolo** | TC-CB-03 | *Aguardando (Nicole)* | Aprovado | Aprovado | *Aguardando* | Conforme (Firefox/Edge) |
+| **Chatbot** | TC-CB-04 | *Aguardando (Nicole)* | Reprovado (Indisponível) | Reprovado (Indisponível) | *Aguardando* | Indisponível em Produção |
 
 *Tabela 1 — Matriz consolidada de execução Cross-Browser. Fonte: Dados coletados pelos autores.*
 
@@ -106,8 +106,8 @@ $$TSIS = \left(\frac{Req_{ok}}{Req_{tot}}\right) \times 100 = \left(\frac{40}{40
 
 ### Questão Q1 (Coexistência / Cross-Browser)
 * **Pergunta:** O sistema preserva a funcionalidade e a integridade de layout nos navegadores modernos mais difundidos no mercado (Chrome, Firefox, Edge e Safari)?
-* **Resposta Técnica:** O portal obteve conformidade nos testes executados, mantendo a consistência de navegação e sem apresentação de falhas críticas de runtime nos quatro navegadores.
-* **Confronto com Hipótese H1:** A hipótese H1 previa potencial degradação visual no Firefox e Safari. Os ensaios empíricos atestaram estabilidade operacional em ambos os motores web.
+* **Resposta Técnica:** Nos módulos de Infração, Atendimento e Protocolo, o portal obteve conformidade plena nos ensaios executados em Mozilla Firefox e Microsoft Edge, mantendo layout alinhado e sem exceções impeditivas de script. Todavia, no módulo Chatbot (TC-CB-04), constatou-se que o widget de atendimento virtual encontrava-se totalmente indisponível (não renderizado) no ambiente de produção durante as baterias de teste em ambos os navegadores.
+* **Confronto com Hipótese H1:** A hipótese H1 previa potencial divergência visual entre navegadores. A medição empírica revelou um problema de maior severidade: a ausência total do serviço de inteligência artificial/chatbot na interface pública em produção.
 
 ### Questão Q2 (Coexistência / Responsividade Multi-resolução)
 * **Pergunta:** As páginas e componentes dos quatro módulos adaptam-se de forma consistente às dimensões de tela mobile (360px a 414px), tablet (768px) e desktop (1366px e 1920px)?
@@ -131,17 +131,39 @@ $$TSIS = \left(\frac{Req_{ok}}{Req_{tot}}\right) \times 100 = \left(\frac{40}{40
 
 ### 5.1 Evidências dos Ensaios Cross-Browser (TCBN)
 
-<!-- [FOTO 1 - INFRACAO NO CHROME] -->
-<!-- ![Consulta de Infracoes no Google Chrome](../assets/evidencias/compatibilidade/CB_INFRACAO_CHROME.png) -->
+#### Mozilla Firefox
+* **Infração:**
+  ![Consulta de Infrações no Mozilla Firefox](../assets/evidencias/compatibilidade/CB_INFRACAO_FIREFOX.png)
+* **Atendimento:**
+  ![Agendamento de Atendimento no Mozilla Firefox](../assets/evidencias/compatibilidade/CB_ATENDIMENTO_FIREFOX.png)
+* **Protocolo:**
+  ![Protocolo no Mozilla Firefox](../assets/evidencias/compatibilidade/CB_PROTOCOLO_FIREFOX.png)
+* **Chatbot (Indisponibilidade constatada em produção):**
+  ![Chatbot Indisponível no Mozilla Firefox](../assets/evidencias/compatibilidade/CB_CHATBOT_FIREFOX.png)
 
-<!-- [FOTO 2 - ATENDIMENTO NO FIREFOX] -->
-<!-- ![Calendario de Atendimento no Mozilla Firefox](../assets/evidencias/compatibilidade/CB_ATENDIMENTO_FIREFOX.png) -->
+#### Microsoft Edge
+* **Infração:**
+  ![Consulta de Infrações no Microsoft Edge](../assets/evidencias/compatibilidade/CB_INFRACAO_MICROSOFT_EDGE.png)
+* **Atendimento:**
+  ![Agendamento de Atendimento no Microsoft Edge](../assets/evidencias/compatibilidade/CB_ATENDIMENTO_MICROSOFT_EDGE.png)
+* **Protocolo:**
+  ![Protocolo no Microsoft Edge](../assets/evidencias/compatibilidade/CB_PROTOCOLO_MICROSOFT_EDGE.png)
+* **Chatbot (Indisponibilidade constatada em produção):**
+  ![Chatbot Indisponível no Microsoft Edge](../assets/evidencias/compatibilidade/CB_CHATBOT_MICROSOFT_EDGE_2.png)
 
-<!-- [FOTO 3 - PROTOCOLO NO MICROSOFT EDGE] -->
-<!-- ![Upload de Protocolo no Microsoft Edge](../assets/evidencias/compatibilidade/CB_PROTOCOLO_EDGE.png) -->
+#### Google Chrome (Aguardando execução pela Nicole)
+<!-- [Descomentar após inserção dos prints da Nicole] -->
+<!-- ![Infração no Google Chrome](../assets/evidencias/compatibilidade/CB_INFRACAO_CHROME.png) -->
+<!-- ![Atendimento no Google Chrome](../assets/evidencias/compatibilidade/CB_ATENDIMENTO_CHROME.png) -->
+<!-- ![Protocolo no Google Chrome](../assets/evidencias/compatibilidade/CB_PROTOCOLO_CHROME.png) -->
+<!-- ![Chatbot no Google Chrome](../assets/evidencias/compatibilidade/CB_CHATBOT_CHROME.png) -->
 
-<!-- [FOTO 4 - CHATBOT NO APPLE SAFARI] -->
-<!-- ![Widget do Chatbot no Apple Safari](../assets/evidencias/compatibilidade/CB_CHATBOT_SAFARI.png) -->
+#### Apple Safari (Aguardando execução)
+<!-- [Descomentar após inserção dos prints do Safari] -->
+<!-- ![Infração no Apple Safari](../assets/evidencias/compatibilidade/CB_INFRACAO_SAFARI.png) -->
+<!-- ![Atendimento no Apple Safari](../assets/evidencias/compatibilidade/CB_ATENDIMENTO_SAFARI.png) -->
+<!-- ![Protocolo no Apple Safari](../assets/evidencias/compatibilidade/CB_PROTOCOLO_SAFARI.png) -->
+<!-- ![Chatbot no Apple Safari](../assets/evidencias/compatibilidade/CB_CHATBOT_SAFARI.png) -->
 
 ---
 
@@ -163,7 +185,8 @@ $$TSIS = \left(\frac{Req_{ok}}{Req_{tot}}\right) \times 100 = \left(\frac{40}{40
 
 ### 5.3 Evidências de Interoperabilidade e Tráfego de Rede (TSIS)
 
-<!-- [FOTO 9 - TABELA DE REDE DEVTOOLS] -->
-<!-- ![Tabela de Rede DevTools Fetch/XHR](../assets/evidencias/compatibilidade/NET_DEVTOOLS_NETWORK.png) -->
+* **Monitoramento de Requisições HTTP (DevTools Network Fetch/XHR):**
+  ![Tabela de Rede DevTools Fetch/XHR](../assets/evidencias/compatibilidade/NET_DEVTOOLS_NETWORK.png)
 
-* **Dump de Tráfego de Rede (Arquivo HAR):** `docs/assets/evidencias/compatibilidade/NET_INFRACAO_DUD.har`
+* **Registro de Tráfego HTTP Estruturado (Arquivo HAR):**
+  Arquivo de auditoria completo salvo no repositório: `docs/assets/evidencias/compatibilidade/NET_INFRACAO_DUD.har` (2,67 MB de requisições, tempos e cabeçalhos capturados).

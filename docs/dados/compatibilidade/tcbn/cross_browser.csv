@@ -1,17 +1,17 @@
 modulo,cenario,navegador,versao,status_execucao,observacoes_console
-Infracao,TC-CB-01,Google Chrome,130+,Pendente,
-Infracao,TC-CB-01,Mozilla Firefox,131+,Pendente,
-Infracao,TC-CB-01,Microsoft Edge,130+,Pendente,
-Infracao,TC-CB-01,Apple Safari,17+,Pendente,
-Atendimento,TC-CB-02,Google Chrome,130+,Pendente,
-Atendimento,TC-CB-02,Mozilla Firefox,131+,Pendente,
-Atendimento,TC-CB-02,Microsoft Edge,130+,Pendente,
-Atendimento,TC-CB-02,Apple Safari,17+,Pendente,
-Protocolo,TC-CB-03,Google Chrome,130+,Pendente,
-Protocolo,TC-CB-03,Mozilla Firefox,131+,Pendente,
-Protocolo,TC-CB-03,Microsoft Edge,130+,Pendente,
-Protocolo,TC-CB-03,Apple Safari,17+,Pendente,
-Chatbot,TC-CB-04,Google Chrome,130+,Pendente,
-Chatbot,TC-CB-04,Mozilla Firefox,131+,Pendente,
-Chatbot,TC-CB-04,Microsoft Edge,130+,Pendente,
-Chatbot,TC-CB-04,Apple Safari,17+,Pendente,
+Infracao,TC-CB-01,Google Chrome,130+,Pendente,Aguardando execucao (Nicole)
+Infracao,TC-CB-01,Mozilla Firefox,131+,Aprovado,Layout integro e sem erros impeditivos
+Infracao,TC-CB-01,Microsoft Edge,130+,Aprovado,Layout integro e sem erros impeditivos
+Infracao,TC-CB-01,Apple Safari,17+,Pendente,Aguardando execucao
+Atendimento,TC-CB-02,Google Chrome,130+,Pendente,Aguardando execucao (Nicole)
+Atendimento,TC-CB-02,Mozilla Firefox,131+,Aprovado,Calendario e postos operacionais
+Atendimento,TC-CB-02,Microsoft Edge,130+,Aprovado,Calendario e postos operacionais
+Atendimento,TC-CB-02,Apple Safari,17+,Pendente,Aguardando execucao
+Protocolo,TC-CB-03,Google Chrome,130+,Pendente,Aguardando execucao (Nicole)
+Protocolo,TC-CB-03,Mozilla Firefox,131+,Aprovado,Formularios e instrucoes normativas operacionais
+Protocolo,TC-CB-03,Microsoft Edge,130+,Aprovado,Formularios e instrucoes normativas operacionais
+Protocolo,TC-CB-03,Apple Safari,17+,Pendente,Aguardando execucao
+Chatbot,TC-CB-04,Google Chrome,130+,Pendente,Aguardando execucao (Nicole)
+Chatbot,TC-CB-04,Mozilla Firefox,131+,Reprovado,Widget indisponivel / nao carregado em producao
+Chatbot,TC-CB-04,Microsoft Edge,130+,Reprovado,Widget indisponivel / nao carregado em producao
+Chatbot,TC-CB-04,Apple Safari,17+,Pendente,Aguardando execucao
