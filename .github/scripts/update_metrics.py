@@ -42,6 +42,7 @@ TEAM_MEMBERS = [
         "area": "Compatibilidade",
         "papel": "Analista de Compatibilidade / Mapeamento de Arquitetura e Escopo",
         "responsabilidades": "• Mapeamento arquitetural do Portal Detran Digital DF e delimitação dos 4 módulos avaliados: Infração, Atendimento, Protocolo e Chatbot (Issue #01).<br>• Especificação conceitual e operacional da árvore GQM de Compatibilidade (Issue #03).<br>• Formulação das métricas operacionais ($TCBN$, $ICR$, $TSIS$), procedimentos de coleta e limiares de decisão de Compatibilidade (Issue #04).<br>• Co-redação do propósito da avaliação, partes interessadas e limites de escopo (Issues #05 e #07).",
+        "responsabilidades_e2": "• Estruturação das páginas e da navegação das Fases 3 e 4 e do relatório de acompanhamento do Ponto de Controle 2.<br>• Plano da Fase 3 de Compatibilidade: métodos, ambientes e massa de dados, roteiros de testes cross-browser e de responsividade, monitoramento de interoperabilidade, cronograma das baterias, perfil dos avaliadores e matriz de rastreabilidade GQM.<br>• Estrutura dos placeholders de dados e das tabelas de resultados da Fase 4.<br>• Automação inicial das métricas PSM, atas de reunião, marcos M0–M5 e criação da Release E1 (tag `v1.0.0-pc1`).",
     },
     {
         "name": "Nicole Jovita Fernandes",
@@ -51,6 +52,7 @@ TEAM_MEMBERS = [
         "area": "Compatibilidade",
         "papel": "Analista de Requisitos / Stakeholders, Modelo ISO 25010 e ODS",
         "responsabilidades": "• Justificativa e delimitação de profundidade de Compatibilidade cross-browser/cross-platform (Issue #02).<br>• Mapeamento formal de stakeholders e matriz de decisões apoiadas pela avaliação (Issue #05).<br>• Adaptação gráfica do modelo SQuaRE (ISO/IEC 25010) e matriz de priorização de características (Issue #06).<br>• Conexão dos serviços de trânsito aos Objetivos de Desenvolvimento Sustentável da ONU — ODS 9 (Meta 9.c) e ODS 16 (Meta 16.6) (Issue #08).",
+        "responsabilidades_e2": "• Revisão e integração dos pull requests da Fase 3 de Compatibilidade (#65, #66 e #67) e ajustes de formatação da documentação.",
     },
     {
         "name": "Davi Ursolino de Oliveira",
@@ -60,6 +62,7 @@ TEAM_MEMBERS = [
         "area": "Confiabilidade",
         "papel": "Analista de Confiabilidade / Especificação GQM e Métricas",
         "responsabilidades": "• Especificação GQM formal da característica de Confiabilidade (Seção 4.3 do artigo) (Issue #10).<br>• Definição das métricas quantitativas de Confiabilidade ($TDO$, $TCFF$, $DFF$, $TTOA$, $TRTI$, $TMR$), procedimentos de cálculo e níveis de julgamento (Issue #11).<br>• Construção e validação do diagrama visual da árvore GQM de Confiabilidade em Mermaid (Issue #12).<br>• Padronização matemática das equações em LaTeX/MathJax e revisão de consistência teórica (Issue #13).",
+        "responsabilidades_e2": "• Linha do tempo com o calendário oficial na seção de cronograma do PSM (Issue #21) e subtópico de Necessidades de Informação (Issue #22).<br>• Plano de avaliação de Confiabilidade da Fase 3 (Issue #46).<br>• Correção do workflow de monitoramento M1 (Issue #47) e dos erros do script de métricas.",
     },
     {
         "name": "João Eduardo Pereira Rabelo",
@@ -69,6 +72,7 @@ TEAM_MEMBERS = [
         "area": "Confiabilidade",
         "papel": "Analista de Confiabilidade / Metodologia e Métricas PSM",
         "responsabilidades": "• Fundamentação e justificativa técnica da característica de Confiabilidade em serviços governamentais (Issue #09).<br>• Apoio na modelagem do processo de avaliação sob a ótica da norma ISO/IEC 25040.<br>• Estruturação das categorias de acompanhamento do modelo PSM/CID (Processos, Calendário e Recursos).<br>• Auditoria de conformidade das atas de reunião e governança de releases.",
+        "responsabilidades_e2": "• Tópicos 1 e 6 do PSM (Issue #20) e correção da definição dos PRs que estavam como issues.<br>• Monitoramento de disponibilidade (M1) e estrutura de coleta de dados da Confiabilidade.<br>• Atualização da tabela de fluxos e métodos de coleta no plano de avaliação de Confiabilidade.",
     },
     {
         "name": "Natan José França",
@@ -78,6 +82,7 @@ TEAM_MEMBERS = [
         "area": "Usabilidade",
         "papel": "Analista de Usabilidade / Diagrama GQM e Níveis de Julgamento",
         "responsabilidades": "• Delimitação de escopo e justificativa da característica de Usabilidade / Capacidade de Interação (Issue #14).<br>• Modelagem do objetivo, questões analíticas e hipóteses de Usabilidade nos 4 módulos (Issue #15).<br>• Estabelecimento das réguas de pontuação e critérios de julgamento para proteção contra erros ($TCAPA$, $IEFO$, $TPRE$) (Issue #16).<br>• Elaboração do diagrama visual GQM de Usabilidade e revisão do texto para o artigo (Issue #17).",
+        "responsabilidades_e2": "• Template padrão de issues do repositório.<br>• Tabelas de desempenho dos processos, horas, valor-hora e custos nos relatórios da Entrega 1.<br>• Workflow de métricas e publicação automática da GitPage; separação das métricas do PC1, geral e Entrega 2.",
     },
     {
         "name": "Yan Santos Rodrigues",
@@ -87,6 +92,7 @@ TEAM_MEMBERS = [
         "area": "Usabilidade",
         "papel": "Analista de Usabilidade / Especificação Operacional e Heurísticas",
         "responsabilidades": "• Justificativa ergonômica da avaliação diante do perfil de letramento digital dos condutores do DF (Issue #14).<br>• Especificação operacional dos procedimentos de inspeção por Heurísticas de Nielsen e questionário $SUS$ (Issue #15).<br>• Definição das métricas quantitativas de usabilidade e procedimentos de coleta (Issue #16).<br>• Redação e validação formal da documentação da Fase 2 de Usabilidade na GitPage (Issue #17).",
+        "responsabilidades_e2": "• Retrospectiva da Entrega 1.<br>• Automação das Necessidades de Informação 1 e 2 do PSM e gráfico de fechamento diário de issues.",
     },
 ]
 
@@ -474,37 +480,46 @@ def render_bar_chart(title: str, y_label: str, counts_by_author: dict, key: str 
 
 def generate_tabela_contribuicao_matriz(issue_counts: dict) -> str:
     """
-    Gera a Tabela 1 canônica de Matriz de Responsabilidades e Esforço para `tabela-contribuicao.md`,
-    atualizada diretamente a partir das horas estimadas pela equipe e processadas pela automação.
+    Gera a Tabela 1 canônica de Matriz de Responsabilidades e Esforço para `tabela-contribuicao.md`.
+    Recebe as métricas de todas as issues do repositório (Entrega 1 e Entrega 2), de modo que as
+    horas, o percentual e o status acompanham o mesmo cálculo da tabela do painel da seção 4.2.
     """
     tot_hours = sum(issue_counts.get(h, {}).get("hours", 0.0) for h in TRACKED_AUTHORS)
     if tot_hours <= 0:
         tot_hours = 72.0
 
     lines = [
-        "| Integrante (Nome e Matrícula) | Usuário GitHub | Papel Principal na Equipe | Principais Responsabilidades e Tarefas Realizadas no Ponto de Controle 1 | Horas (h) | % Esforço (AG-C5) | Status |",
+        "| Integrante (Nome e Matrícula) | Usuário GitHub | Papel Principal na Equipe | Principais Responsabilidades e Tarefas Realizadas (Entrega 1 e Entrega 2) | Horas (h) | % Esforço (AG-C5) | Status |",
         "| :--- | :---: | :--- | :--- | :---: | :---: | :---: |",
     ]
 
+    tot_open = 0
     for m in TEAM_MEMBERS:
         handle = m["handle"]
         name = m["name"]
         matricula = m["matricula"]
         papel = m["papel"]
         resp = m["responsabilidades"]
+        resp_e2 = m.get("responsabilidades_e2")
+        if resp_e2:
+            resp = f"**Entrega 1:**<br>{resp}<br>**Entrega 2:**<br>{resp_e2}"
 
         st = issue_counts.get(handle, {})
         hours = st.get("hours", 0.0)
+        abertas = st.get("open", 0)
+        tot_open += abertas
         pct = (hours / tot_hours * 100.0) if tot_hours > 0 else (100.0 / len(TEAM_MEMBERS))
+        status = "Concluído" if abertas == 0 else f"Em andamento ({abertas} abertas)"
 
         lines.append(
             f"| **{name}**<br>Matrícula: `{matricula}` | [@{handle}](https://github.com/{handle}) | "
-            f"{papel} | {resp} | **{fmt_br_number(hours, 1)}h** | **{fmt_br_number(pct, 2)}%** | Concluído |"
+            f"{papel} | {resp} | **{fmt_br_number(hours, 1)}h** | **{fmt_br_number(pct, 2)}%** | {status} |"
         )
 
+    status_total = "Homologado" if tot_open == 0 else "Em andamento"
     lines.append(
-        f"| **TOTAL CONSOLIDADO** | — | — | **Esforço Acumulado no Ponto de Controle 1 (Fases 1 e 2)** | "
-        f"**{fmt_br_number(tot_hours, 1)}h** | **100,00%** | **Homologado** |"
+        f"| **TOTAL CONSOLIDADO** | — | — | **Esforço Acumulado em Todas as Issues (Entrega 1 e Entrega 2)** | "
+        f"**{fmt_br_number(tot_hours, 1)}h** | **100,00%** | **{status_total}** |"
     )
 
     return "\n".join(lines)
@@ -746,13 +761,12 @@ def main():
     )
 
     # 2. Tabelas e Trechos Markdown Dinâmicos
-    tabela_contribuicao_matriz = generate_tabela_contribuicao_matriz(issue_counts)
+    tabela_contribuicao_matriz = generate_tabela_contribuicao_matriz(general_counts)
     alocacao_recursos_custos = generate_alocacao_recursos_custos(issue_counts)
     distribuicao_custos_areas = generate_distribuicao_custos_areas(issue_counts)
-    contributions_table = generate_contributions_table(git_totals, issue_counts)
+    contributions_table = generate_contributions_table(git_totals, general_counts)
     issues_table = generate_issues_table(issue_counts)
     process_performance_table = generate_process_performance_table(issue_counts)
-    general_contributions_table = generate_contributions_table(git_totals, general_counts)
     entrega2_process_table = generate_process_performance_table(entrega2_counts)
 
     tot_hours = sum(issue_counts.get(h, {}).get("hours", 0.0) for h in TRACKED_AUTHORS)
@@ -781,7 +795,6 @@ def main():
     (SNIPPETS_DIR / "alocacao-recursos-custos.md").write_text(alocacao_recursos_custos + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "distribuicao-custos-areas.md").write_text(distribuicao_custos_areas + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "contributions-summary.md").write_text(contributions_table + "\n", encoding="utf-8")
-    (SNIPPETS_DIR / "contributions-summary-geral.md").write_text(general_contributions_table + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "issues-summary.md").write_text(issues_table + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "process-performance-table.md").write_text(process_performance_table + "\n", encoding="utf-8")
     (SNIPPETS_DIR / "process-performance-table-entrega2.md").write_text(entrega2_process_table + "\n", encoding="utf-8")
