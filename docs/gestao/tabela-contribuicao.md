@@ -9,7 +9,7 @@
 
 ## 1. Distribuição de Responsabilidades e Esforço Individual
 
-Conforme preconizado nas diretrizes acadêmicas da disciplina e na rubrica do **Critério AG-C5 (Transparência da Contribuição Individual)**, a Tabela 1 detalha e quantifica de forma transparente o papel técnico, as entregas concretas realizadas, a carga horária dedicada e a participação percentual de cada membro considerando todas as issues do repositório, da Entrega 1 e da Entrega 2 (totalizando exatamente 100,00%).
+Conforme preconizado nas diretrizes acadêmicas da disciplina e na rubrica do **Critério AG-C5 (Transparência da Contribuição Individual)**, a Tabela 1 detalha e quantifica de forma transparente o papel técnico, as entregas concretas realizadas, a carga horária dedicada e a participação percentual de cada membro na conclusão do Ponto de Controle 1 (totalizando exatamente 100,00%). O esforço do Ponto de Controle 2 aparece na Tabela 4 da página de Métricas PSM.
 
 ### Tabela 1 — Matriz de Responsabilidades, Tarefas e Percentual de Esforço
 
