@@ -10,7 +10,7 @@
     Página placeholder estruturada pela equipe Kay McNulty para a Fase 3 da ISO/IEC 25040. Os roteiros detalhados de inspeção heurística, tarefas de usuário e formulários do System Usability Scale (SUS) estão em desenvolvimento ativo pela dupla responsável (Natan França e Yan).
 
 !!! info "Atualização do Status (16/11/2026)"
-    Os instrumentos da Fase 3 foram definidos e estão integrados nas Seções 6 a 11: catálogo de tarefas e fluxos, cenários de erro, plano do teste com participantes, protocolo de inspeção heurística, matriz de rastreabilidade, responsabilidades e cronograma de coleta. O **piloto dos instrumentos** (Seção 11) ainda não foi concluído, e os ajustes decorrentes dele serão registrados na Seção 11.3. A coleta oficial é feita na Fase 4. O texto das Seções 1 a 5 foi mantido como registrado anteriormente.
+    Os instrumentos da Fase 3 foram definidos e estão integrados nas Seções 6 a 11: catálogo de tarefas e fluxos, cenários de erro, plano do teste com participantes, protocolo de inspeção heurística, matriz de rastreabilidade, responsabilidades e cronograma de coleta. O **piloto dos instrumentos** (Seção 11) foi executado em parte, com T1 a T4 em desktop, e os resultados e ajustes propostos estão na Seção 11.6. Ficam pendentes o piloto da sessão completa, da regra de auxílio, do SUS e da inspeção heurística (Seção 11.3). A coleta oficial é feita na Fase 4. O texto das Seções 1 a 5 foi mantido como registrado anteriormente.
 
 ---
 
@@ -260,11 +260,11 @@ Piloto curto, com um avaliador e **uma tarefa por módulo**, para validar o rote
 | :--- | :--- | :---: |
 | Roteiro do moderador | Executar uma sessão completa e medir a duração (meta de 30 a 40 minutos) | Pendente |
 | Regra de auxílio externo | Conferir se o observador consegue aplicá-la sem ambiguidade | Pendente |
-| `registro-tarefas.csv` | Preencher uma linha por tarefa e verificar se N_aut, N_tot, P_min e P_exec saem sem consulta a outra fonte | Pendente |
+| `registro-tarefas.csv` | Preencher uma linha por tarefa e verificar se N_aut, N_tot, P_min e P_exec saem sem consulta a outra fonte | Parcial: T1 a T3 registradas fora da planilha (Seção 11.6); falta preencher o arquivo |
 | `sus-respostas.csv` | Conferir a fórmula com os valores-limite (100, 0 e 50) | Pendente |
 | `inspecao-heuristica.csv` | Registrar um problema por módulo e verificar se a rotina de consolidação funciona | Pendente |
 
-**Ajustes feitos nos instrumentos a partir do piloto:** a registrar após a execução.
+**Ajustes nos instrumentos a partir do piloto:** propostos na Seção 11.6, a aplicar nos arquivos de instrumentos após a confirmação da dupla.
 
 ### 11.4 Piloto da T4 (Chatbot) em 16/11/2026
 
@@ -320,5 +320,43 @@ Capturas das telas percorridas no piloto de T1 (Infração), T2 (Atendimento) e 
 | T3 | Ponto de parada: etapa de assinatura, sem assinar | ![T3, ponto de parada](../img/usabilidade/piloto/PILOTO-T3-ponto-de-parada-etapa-assinatura_desktop_2026-11-16.png){ width="300" } |
 
 **Tabela 10 – Capturas do piloto de T1 a T3.** Fonte: Elaborado pelos autores.
+
+### 11.6 Resultados do piloto de T1 a T3 (desktop)
+
+Execução de 16/11/2026, feita pela equipe com apoio de um assistente de navegador, em conta de teste do gov.br com o login feito antes do início. O aviso "É GOLPE!" da página inicial não foi contado como passo. Os valores servem para validar os instrumentos e **não são resultados da avaliação**.
+
+| Tarefa | Dispositivo | Concluiu | Chegou ao ponto de parada | P_min | Passos executados | Erros espontâneos |
+| :---: | :--- | :---: | :---: | :---: | :---: | :--- |
+| T1 | Desktop | Não | Não | 8 | 2 | Nenhum de caminho; a tela não listou veículos nem exibiu mensagem de vazio |
+| T2 | Desktop | Sim | Sim | 15 | 12 (14 cliques) | 2 cliques sem efeito (Unidade e Data) |
+| T3 | Desktop | Sim | Sim | 10 | 6 | Nenhum na rodada principal; em uma segunda tentativa, "Avançar" não levou à assinatura em 20 s, sem mensagem |
+| T1 | Mobile (360 px) | Não executada | – | 8 | 0 | – |
+
+**Tabela 11 – Resultado do piloto de T1 a T3.** Fonte: Elaborado pelos autores. Pedido de auxílio: não, em todas as tarefas. Tempo das tarefas: não medido (a M2 usa passos, e não tempo).
+
+**Passos contra P_min.** Em T2 e T3, os passos ficaram abaixo do P_min (12 contra 15 e 6 contra 10). A diferença é de 3 e de 4 passos. Isso é compatível com o fato de o login contar no P_min (decisão do catálogo) e não ter sido contado no piloto, porque a sessão já estava aberta. O número de passos do login não foi observado, e a diferença não é igual nas duas tarefas, então a explicação precisa ser conferida com os avaliadores que conciliaram o P_min. Nas sessões oficiais, as tarefas T1 a T3 começam sem sessão iniciada e o login conta dos dois lados.
+
+**Achados do piloto** (severidades são sugestões de 0 a 4, não finais; a definição final é feita na inspeção heurística):
+
+| Tarefa | Achado | Heurística | Sugestão | Observação |
+| :---: | :--- | :---: | :---: | :--- |
+| T1 | A tela "Histórico de Infrações por Veículo" não lista veículos nem explica o vazio | H1 e H9 | 3 | Depende de repetir com uma conta que tenha veículo vinculado |
+| T2 | A lista de datas demorou de 15 a 21 s para aparecer | H1 | 2 | Medido em execução automatizada; confirmar com uso manual |
+| T2 | Dois cliques (Unidade e Data) sem efeito; em outra rodada, o primeiro clique em Categoria e em Unidade também não abriu a lista | – | – | Pode ser falha de acionamento da automação; registrar se ocorrer com participantes |
+| T3 | A prévia do documento exibe dados pessoais do perfil, sem aviso e sem edição | H3 e H5 | 3 | Dados cobertos nas capturas |
+
+**Ajustes propostos nos instrumentos:**
+
+1. **Conta de teste com veículo.** A T1 só é executável se a conta de teste tiver ao menos um veículo vinculado. Registrar isso na preparação da sessão do roteiro do moderador. Sem isso, o módulo de Infração fica sem tarefa concluível.
+2. **Contagem do login.** Definir no catálogo e no roteiro quantos passos o login gov.br conta e como o observador os registra, para que P_min e P_exec sejam contados da mesma forma.
+3. **Viewport.** Conferir e registrar a resolução antes de cada sessão. No piloto, a largura da janela variou (967 e 1630 px, além de um layout estreito), e o desktop de referência é 1366×768.
+4. **Cliques sem efeito.** Registrar em `observacoes` e separar da contagem de erros do participante.
+5. **T3 e rascunhos.** Orientar a não repetir "Avançar", para não gerar vários rascunhos de protocolo.
+
+**Limites e desvios do piloto.**
+- A T1 em mobile (360 px) não foi executada.
+- Os passos e as capturas vêm de uma rodada com cliques reais. Uma rodada posterior, para medir esperas do sistema, usou scripts de JavaScript em itens de menus e listas, e não gerou capturas.
+- Não foram pilotados: a sessão completa com o roteiro (e sua duração), a regra de auxílio externo, o SUS e a inspeção heurística com consolidação.
+- **Verificação pendente:** os cliques repetidos em "Avançar" na T3 podem ter deixado mais de um rascunho de protocolo no portal. Conferir em "Minhas Solicitações" e remover, pois a Seção 6 da Fase 2 proíbe efeitos reais.
 
 ---
