@@ -1,0 +1,9 @@
+| Integrante (Nome e Matrícula) | Usuário GitHub | Papel Principal na Avaliação | Horas Realizadas (h) | Valor / Hora (R$) | Custo Total (R$) | % Esforço (AG-C5) | Status |
+| :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: |
+| **Artur Fernandes Galdino**<br>Matrícula: `241010923` | [@ArturFGaldino](https://github.com/ArturFGaldino) | Analista de Compatibilidade / Mapeamento de Arquitetura e Escopo | **7,5h** | R$ 87,55 | R$ 656,62 | **19,74%** | Em andamento (4 abertas) |
+| **Nicole Jovita Fernandes**<br>Matrícula: `241012347` | [@nicolejovita](https://github.com/nicolejovita) | Analista de Requisitos / Stakeholders, Modelo ISO 25010 e ODS | **7,5h** | R$ 87,55 | R$ 656,62 | **19,74%** | Em andamento (4 abertas) |
+| **Davi Ursolino de Oliveira**<br>Matrícula: `241012202` | [@DaviUrsulino](https://github.com/DaviUrsulino) | Analista de Confiabilidade / Especificação GQM e Métricas | **10,2h** | R$ 87,55 | R$ 890,09 | **26,75%** | Em andamento (4 abertas) |
+| **João Eduardo Pereira Rabelo**<br>Matrícula: `180053299` | [@JoaoEduardoP](https://github.com/JoaoEduardoP) | Analista de Confiabilidade / Metodologia e Métricas PSM | **7,2h** | R$ 87,55 | R$ 627,44 | **18,86%** | Em andamento (4 abertas) |
+| **Natan José França**<br>Matrícula: `241011537` | [@Natan8643](https://github.com/Natan8643) | Analista de Usabilidade / Diagrama GQM e Níveis de Julgamento | **2,7h** | R$ 87,55 | R$ 233,47 | **7,02%** | Em andamento (6 abertas) |
+| **Yan Santos Rodrigues**<br>Matrícula: `241025480` | [@yanrdgs-dev](https://github.com/yanrdgs-dev) | Analista de Usabilidade / Especificação Operacional e Heurísticas | **3,0h** | R$ 87,55 | R$ 262,65 | **7,89%** | Em andamento (6 abertas) |
+| **TOTAL ACUMULADO (PC2)** | — | **Entregáveis Fases 3 e 4 Consolidados** | **38,0h** | Média: R$ 87,55/h | **R$ 3.326,90** | **100,00%** | **Em andamento** |
