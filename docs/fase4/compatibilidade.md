@@ -51,14 +51,15 @@ As inspeções de layout cobriram as 5 viewports normatizadas (360px a 1920px). 
 
 ### 1.3 Ensaios de Interoperabilidade e Tráfego de Rede (TSIS)
 
-Amostragem de requisições de rede capturadas via DevTools Network (Fetch/XHR) durante a integração com serviços externos. O arquivo bruto consolidado está disponível em [`docs/dados/compatibilidade/tsis/requisicoes.csv`](../dados/compatibilidade/tsis/requisicoes.csv).
+Amostragem de requisições de rede capturadas via DevTools Network (Fetch/XHR) e arquivo HAR durante as interações com serviços externos (Gov.br, SEFAZ/Bancos, SEI-GDF e motor InBot/AWS). O arquivo bruto consolidado com os endpoints, métodos, tempos de resposta e observações está disponível em [`docs/dados/compatibilidade/tsis/requisicoes.csv`](../dados/compatibilidade/tsis/requisicoes.csv).
 
 | Módulo | Serviço Externo Integrado | Total de Requisições | Requisições Sucesso (2xx/3xx) | Falhas (4xx/5xx/CORS) | Taxa de Sucesso |
 | :--- | :--- | :---: | :---: | :---: | :---: |
-| **Infração** | Consulta de Débitos e Guia DUD | 10 | 10 | 0 | 100% |
-| **Atendimento** | Autenticação Gov.br | 10 | 10 | 0 | 100% |
-| **Protocolo** | Peticionamento SEI-GDF | 10 | 10 | 0 | 100% |
-| **Chatbot** | Plataforma InBot (AWS) | 10 | 10 | 0 | 100% |
+| **Infração** | Consulta Veicular, Débitos e Proteção hCaptcha | 4 | 4 | 0 | 100,0% |
+| **Atendimento** | Provedor Gov.br (Selos), Perfil e Habilitação | 5 | 5 | 0 | 100,0% |
+| **Protocolo** | Peticionamento e Consulta SEI-GDF | 1 | 0 | 1 (HTTP 422) | 0,0% |
+| **Chatbot** | Plataforma InBot (AWS / CDN) | 2 | 1 | 1 (Connection Reset) | 50,0% |
+| **Total Consolidado** | **Amostra de Interoperabilidade** | **12** | **10** | **2** | **83,33%** |
 
 *Tabela 3 — Síntese do tráfego de rede e interoperabilidade. Fonte: Dados coletados pelos autores.*
 
@@ -67,26 +68,24 @@ Amostragem de requisições de rede capturadas via DevTools Network (Fetch/XHR) 
 ## 2. Medidas Básicas e Cálculo das Métricas
 
 ### 2.1 Taxa de Compatibilidade Entre Navegadores (TCBN)
-* Medida Básica $N_{ap}$ (Cenários aprovados em todos os 4 navegadores): `4`
+* Medida Básica $N_{ap}$ (Cenários aprovados em todos os 4 navegadores): *Em consolidação final (aguardando Nicole)*
 * Medida Básica $N_{tot}$ (Total de cenários planejados): `4`
 
-$$TCBN = \left(\frac{N_{ap}}{N_{tot}}\right) \times 100 = \left(\frac{4}{4}\right) \times 100 = 100\%$$
+$$\text{Status Parcial:} \quad \text{Infração, Atendimento e Protocolo conformes em Firefox e Edge; Chatbot com divergência.}$$
 
 ---
 
 ### 2.2 Índice de Conformidade Responsiva (ICR)
-* Medida Básica $T_{conf}$ (Pontos de inspeção conformes): `20`
+* Medida Básica $T_{conf}$ (Pontos de inspeção conformes): *Em consolidação final (aguardando Nicole)*
 * Medida Básica $T_{tot}$ (Total de pontos de inspeção): `20`
-
-$$ICR = \left(\frac{T_{conf}}{T_{tot}}\right) \times 100 = \left(\frac{20}{20}\right) \times 100 = 100\%$$
 
 ---
 
 ### 2.3 Taxa de Sucesso de Interoperabilidade de Serviços (TSIS)
-* Medida Básica $Req_{ok}$ (Requisições com status HTTP 2xx/3xx): `40`
-* Medida Básica $Req_{tot}$ (Total de requisições de rede monitoradas): `40`
+* Medida Básica $Req_{ok}$ (Requisições com status HTTP 2xx/3xx): `10`
+* Medida Básica $Req_{tot}$ (Total de requisições de rede monitoradas no escopo): `12`
 
-$$TSIS = \left(\frac{Req_{ok}}{Req_{tot}}\right) \times 100 = \left(\frac{40}{40}\right) \times 100 = 100\%$$
+$$TSIS = \left(\frac{Req_{ok}}{Req_{tot}}\right) \times 100 = \left(\frac{10}{12}\right) \times 100 = 83,33\%$$
 
 ---
 
@@ -94,11 +93,11 @@ $$TSIS = \left(\frac{Req_{ok}}{Req_{tot}}\right) \times 100 = \left(\frac{40}{40
 
 | Métrica Avaliada | Valor Apurado | Nível de Julgamento Obtido | Situação de Conformidade |
 | :--- | :---: | :---: | :---: |
-| **M1 – TCBN (Cross-Browser)** | 100% | **Excelente** (≥ 95%) | Em plena conformidade |
-| **M2 – ICR (Responsividade)** | 100% | **Excelente** (≥ 95%) | Em plena conformidade |
-| **M3 – TSIS (Interoperabilidade)** | 100% | **Excelente** (≥ 98%) | Em plena conformidade |
+| **M1 – TCBN (Cross-Browser)** | *Parcial* | *Em consolidação* | Divergência identificada no Chatbot |
+| **M2 – ICR (Responsividade)** | *Parcial* | *Em consolidação* | Aguardando dados das 5 viewports |
+| **M3 – TSIS (Interoperabilidade)** | **83,33%** | **Satisfatório** (80% a 89%) | Em conformidade básica; atenção à CDN do Chatbot |
 
-*Tabela 4 — Julgamento das métricas de Compatibilidade. Fonte: Elaborado pelos autores.*
+*Tabela 4 — Julgamento das métricas de Compatibilidade. Fonte: Elaborado pelos autores com base nas escalas da Fase 2.*
 
 ---
 
@@ -111,13 +110,13 @@ $$TSIS = \left(\frac{Req_{ok}}{Req_{tot}}\right) \times 100 = \left(\frac{40}{40
 
 ### Questão Q2 (Coexistência / Responsividade Multi-resolução)
 * **Pergunta:** As páginas e componentes dos quatro módulos adaptam-se de forma consistente às dimensões de tela mobile (360px a 414px), tablet (768px) e desktop (1366px e 1920px)?
-* **Resposta Técnica:** As interfaces apresentaram adaptação fluida com quebra de grid responsiva, preservação de margens e ausência de sobreposição do Chatbot sobre botões essenciais.
-* **Confronto com Hipótese H2:** A hipótese H2 previa possíveis problemas de overflow horizontal no mobile, os quais foram verificados e contidos nos componentes principais inspecionados.
+* **Resposta Técnica:** *Seção em consolidação final pela avaliadora Nicole Jovita após a conclusão dos testes de emulação DevTools nas 5 resoluções.*
+* **Confronto com Hipótese H2:** A hipótese H2 será confrontada com a matriz de 20 pontos de inspeção de responsividade.
 
 ### Questão Q3 (Interoperabilidade / Comunicação com Serviços Externos)
 * **Pergunta:** Os fluxos de comunicação e troca de dados dos quatro módulos com serviços externos ocorrem de maneira íntegra e padronizada (códigos de status HTTP adequados)?
-* **Resposta Técnica:** As integrações monitoradas responderam com códigos de status HTTP da família de sucesso (2xx) e redirecionamentos seguros (3xx).
-* **Confronto com Hipótese H3:** A hipótese H3 foi confirmada quanto à alta taxa de sucesso das requisições de serviço em produção.
+* **Resposta Técnica:** O índice de interoperabilidade apurado atingiu **83,33%**, enquadrando-se no nível **Satisfatório** segundo a escala da Fase 2. As integrações com o barramento do Gov.br (Selos de confiabilidade) e com os serviços internos de veículo, habilitação e credenciadas responderam com 100% de sucesso e códigos HTTP 200 OK. As perdas de taxa decorreram de: (1) uma falha de conexão na CDN do Chatbot no Edge (`net::ERR_CONNECTION_RESET`), e (2) retorno HTTP 422 na consulta de processo sintético do Protocolo (que, embora adequadamente tratado com mensagem visual ao usuário, constitui código de erro de cliente da família 4xx).
+* **Confronto com Hipótese H3:** A hipótese H3 previa que pelo menos 98% das requisições seriam bem-sucedidas (nível Excelente). A medição empírica refuta o nível Excelente, classificando o portal no nível **Satisfatório (80% a 89%)**, evidenciando a necessidade de maior resiliência na entrega de componentes terceirizados.
 
 ---
 
