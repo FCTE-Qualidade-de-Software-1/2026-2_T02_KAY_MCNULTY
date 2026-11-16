@@ -266,4 +266,32 @@ Piloto curto, com um avaliador e **uma tarefa por módulo**, para validar o rote
 
 **Ajustes feitos nos instrumentos a partir do piloto:** a registrar após a execução.
 
+### 11.4 Piloto da T4 (Chatbot) em 16/11/2026
+
+Execução da T4 nas partes **públicas** do portal, em Chrome automatizado, com 1366×768 (desktop) e 360×640 (mobile). É um piloto de instrumentos: os valores **não** entram nos resultados da avaliação e não substituem a inspeção dos avaliadores nem o teste com participantes. As tarefas T1 a T3 exigem login gov.br e não foram executadas neste piloto.
+
+| Contexto | Passos executados | Tempo | Resultado |
+| :--- | :---: | :---: | :--- |
+| Desktop (1366×768) | 4 | ~24 s | Resposta do assistente exibida, com sugestões de perguntas |
+| Mobile (360×640) | 4 | ~24 s | Resposta do assistente exibida, com sugestões de perguntas |
+
+**Passos observados:** fechar o aviso da página inicial, abrir o assistente, digitar a mensagem e enviar.
+
+**Achado 1: aviso temporário na página inicial.** Ao abrir o portal, aparece o modal "É GOLPE!", um aviso de segurança sobre mensagens e links falsos em nome do Detran-DF. O modal bloqueia a tela até o clique em "ENTENDI". A equipe o trata como **aviso temporário**, de campanha de alerta, e não como parte do fluxo permanente do portal. Por isso, o catálogo de tarefas **não o conta** no P_min (T4 = 3 passos). Nas execuções oficiais, o fechamento do aviso deve ser registrado em `observacoes`, sem entrar em `passos_executados`, para que o IEFO não seja penalizado por um elemento passageiro. Se o aviso tiver sido removido na data da coleta, registre essa informação.
+
+**Achado 2: sobreposição em mobile.** Em 360 px, o cartão flutuante "Mulher Não se Cale!" cobre o título "Nossos serviços…", e o avatar do chatbot fica sobre o conteúdo. A compatibilidade registrou ocorrência semelhante nos pontos de responsividade.
+
+**Achado 3: resposta do assistente.** O conteúdo variou entre desktop e mobile para a mesma pergunta, como já observado no piloto dos cenários de erro. A condição de conclusão da T4 ("uma resposta sobre o prazo, indicando onde ele consta e como é contado") foi atendida nas duas execuções.
+
+**Evidências:** capturas em `docs/img/usabilidade/piloto/`, nomeadas `PILOTO-{etapa}_{dispositivo}_{data}.png`. Sem dado pessoal.
+
+| Etapa | Desktop | Mobile |
+| :--- | :---: | :---: |
+| Aviso na página inicial | ![Aviso na página inicial, desktop](../img/usabilidade/piloto/PILOTO-modal-aviso_desktop_2026-11-16.png){ width="260" } | ![Aviso na página inicial, mobile](../img/usabilidade/piloto/PILOTO-modal-aviso_mobile_2026-11-16.png){ width="150" } |
+| Página inicial após fechar o aviso | ![Página inicial, desktop](../img/usabilidade/piloto/PILOTO-home_desktop_2026-11-16.png){ width="260" } | ![Página inicial, mobile](../img/usabilidade/piloto/PILOTO-home_mobile_2026-11-16.png){ width="150" } |
+| Assistente aberto | ![Assistente aberto, desktop](../img/usabilidade/piloto/PILOTO-T4-chat-aberto_desktop_2026-11-16.png){ width="260" } | ![Assistente aberto, mobile](../img/usabilidade/piloto/PILOTO-T4-chat-aberto_mobile_2026-11-16.png){ width="150" } |
+| Resposta do assistente | ![Resposta do assistente, desktop](../img/usabilidade/piloto/PILOTO-T4-resposta_desktop_2026-11-16.png){ width="260" } | ![Resposta do assistente, mobile](../img/usabilidade/piloto/PILOTO-T4-resposta_mobile_2026-11-16.png){ width="150" } |
+
+**Tabela 9 – Capturas do piloto da T4.** Fonte: Elaborado pelos autores.
+
 ---
