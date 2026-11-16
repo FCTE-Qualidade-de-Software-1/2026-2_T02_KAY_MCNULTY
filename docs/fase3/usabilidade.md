@@ -294,4 +294,31 @@ Execução da T4 nas partes **públicas** do portal, em Chrome automatizado, com
 
 **Tabela 9 – Capturas do piloto da T4.** Fonte: Elaborado pelos autores.
 
+### 11.5 Capturas do piloto de T1 a T3 (desktop)
+
+Capturas das telas percorridas no piloto de T1 (Infração), T2 (Atendimento) e T3 (Protocolo), em desktop, com conta de teste. O nome do usuário no cabeçalho e os dados da prévia do documento de T3 estão cobertos. As capturas mostram o estado das telas e **não substituem** o registro de passos, tempo e erros, que será preenchido no piloto com o `registro-tarefas.csv`. Os mesmos limites da Seção 11.4 se aplicam: os dados do piloto não entram nos resultados.
+
+| Tarefa | Etapa | Captura |
+| :---: | :--- | :--- |
+| T1 | Menu Infração aberto | ![T1, menu Infração](../img/usabilidade/piloto/PILOTO-T1-menu-infracao_desktop_2026-11-16.png){ width="300" } |
+| T1 | Histórico de Infrações por Veículo: a tela não lista veículos para a conta de teste | ![T1, histórico sem lista](../img/usabilidade/piloto/PILOTO-T1-historico-sem-lista_desktop_2026-11-16.png){ width="300" } |
+| T1 | Mesma tela com janela estreita | ![T1, layout estreito](../img/usabilidade/piloto/PILOTO-T1-historico-sem-lista-layout-estreito_desktop_2026-11-16.png){ width="300" } |
+| T2 | Entrada do Agendamento (Novo agendamento) | ![T2, entrada](../img/usabilidade/piloto/PILOTO-T2-novo-agendamento-entrada_desktop_2026-11-16.png){ width="300" } |
+| T2 | Formulário vazio | ![T2, formulário vazio](../img/usabilidade/piloto/PILOTO-T2-formulario-vazio_desktop_2026-11-16.png){ width="300" } |
+| T2 | Lista de categorias, com texto sobreposto | ![T2, lista de categorias](../img/usabilidade/piloto/PILOTO-T2-categoria-lista-sobreposta_desktop_2026-11-16.png){ width="300" } |
+| T2 | Categoria Biometria e declaração | ![T2, categoria Biometria](../img/usabilidade/piloto/PILOTO-T2-categoria-biometria-declaracao_desktop_2026-11-16.png){ width="300" } |
+| T2 | Lista de unidades | ![T2, unidades](../img/usabilidade/piloto/PILOTO-T2-unidade-lista_desktop_2026-11-16.png){ width="300" } |
+| T2 | Lista de datas | ![T2, datas](../img/usabilidade/piloto/PILOTO-T2-data-lista_desktop_2026-11-16.png){ width="300" } |
+| T2 | Lista de horários | ![T2, horários](../img/usabilidade/piloto/PILOTO-T2-hora-lista_desktop_2026-11-16.png){ width="300" } |
+| T2 | Ponto de parada: formulário preenchido, sem acionar a conclusão | ![T2, ponto de parada](../img/usabilidade/piloto/PILOTO-T2-ponto-de-parada-formulario-preenchido_desktop_2026-11-16.png){ width="300" } |
+| T3 | Menu Protocolo-e | ![T3, menu](../img/usabilidade/piloto/PILOTO-T3-menu-protocolo-e_desktop_2026-11-16.png){ width="300" } |
+| T3 | Home do Protocolo Eletrônico | ![T3, home](../img/usabilidade/piloto/PILOTO-T3-protocolo-eletronico-home_desktop_2026-11-16.png){ width="300" } |
+| T3 | Nova Solicitação, com as abas de tipo de protocolo | ![T3, abas](../img/usabilidade/piloto/PILOTO-T3-nova-solicitacao-abas_desktop_2026-11-16.png){ width="300" } |
+| T3 | Requerimento Geral, formulário vazio | ![T3, formulário vazio](../img/usabilidade/piloto/PILOTO-T3-requerimento-geral-formulario-vazio_desktop_2026-11-16.png){ width="300" } |
+| T3 | Formulário preenchido com texto de teste | ![T3, formulário preenchido](../img/usabilidade/piloto/PILOTO-T3-formulario-preenchido_desktop_2026-11-16.png){ width="300" } |
+| T3 | Prévia do documento (dados cobertos) | ![T3, prévia](../img/usabilidade/piloto/PILOTO-T3-previa-pdf-assinatura-DADOS-COBERTOS_desktop_2026-11-16.png){ width="300" } |
+| T3 | Ponto de parada: etapa de assinatura, sem assinar | ![T3, ponto de parada](../img/usabilidade/piloto/PILOTO-T3-ponto-de-parada-etapa-assinatura_desktop_2026-11-16.png){ width="300" } |
+
+**Tabela 10 – Capturas do piloto de T1 a T3.** Fonte: Elaborado pelos autores.
+
 ---
