@@ -1,11 +1,11 @@
 | Integrante | Usuário GitHub | Issues | Horas (h) | Issues Fechadas | Taxa de Conclusão |
 | :--- | :---: | :---: | :---: | :---: | :---: |
 | **Artur Fernandes Galdino** | [@ArturFGaldino](https://github.com/ArturFGaldino) | 8 | 15,0h | 6 | 75,0% |
-| **Nicole Jovita Fernandes** | [@nicolejovita](https://github.com/nicolejovita) | 8 | 15,0h | 6 | 75,0% |
+| **Nicole Jovita Fernandes** | [@nicolejovita](https://github.com/nicolejovita) | 9 | 15,0h | 6 | 66,7% |
 | **Davi Ursolino de Oliveira** | [@DaviUrsulino](https://github.com/DaviUrsulino) | 8 | 10,2h | 4 | 50,0% |
 | **João Eduardo Pereira Rabelo** | [@JoaoEduardoP](https://github.com/JoaoEduardoP) | 8 | 7,2h | 4 | 50,0% |
 | **Natan José França** | [@Natan8643](https://github.com/Natan8643) | 9 | 7,7h | 5 | 55,6% |
 | **Yan Santos Rodrigues** | [@yanrdgs-dev](https://github.com/yanrdgs-dev) | 7 | 3,0h | 1 | 14,3% |
-| **TOTAL CONSOLIDADO** | — | **33** | **58,0h** | **17** | **51,5%** |
+| **TOTAL CONSOLIDADO** | — | **34** | **58,0h** | **17** | **50,0%** |
 
 *As horas são estimativas da equipe, obtidas do corpo das issues ou do catálogo homologado; quando uma issue possui mais de um responsável, o esforço é dividido igualmente.*

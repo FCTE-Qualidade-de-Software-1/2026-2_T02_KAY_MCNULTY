@@ -1,7 +1,7 @@
 | Integrante (Nome e Matrícula) | Usuário GitHub | Papel Principal na Avaliação | Horas Realizadas (h) | Valor / Hora (R$) | Custo Total (R$) | % Esforço (AG-C5) | Status |
 | :--- | :---: | :--- | :---: | :---: | :---: | :---: | :---: |
 | **Artur Fernandes Galdino**<br>Matrícula: `241010923` | [@ArturFGaldino](https://github.com/ArturFGaldino) | Analista de Compatibilidade / Mapeamento de Arquitetura e Escopo | **15,0h** | R$ 87,55 | R$ 1.313,25 | **25,86%** | Em andamento (2 abertas) |
-| **Nicole Jovita Fernandes**<br>Matrícula: `241012347` | [@nicolejovita](https://github.com/nicolejovita) | Analista de Requisitos / Stakeholders, Modelo ISO 25010 e ODS | **15,0h** | R$ 87,55 | R$ 1.313,25 | **25,86%** | Em andamento (2 abertas) |
+| **Nicole Jovita Fernandes**<br>Matrícula: `241012347` | [@nicolejovita](https://github.com/nicolejovita) | Analista de Requisitos / Stakeholders, Modelo ISO 25010 e ODS | **15,0h** | R$ 87,55 | R$ 1.313,25 | **25,86%** | Em andamento (3 abertas) |
 | **Davi Ursolino de Oliveira**<br>Matrícula: `241012202` | [@DaviUrsulino](https://github.com/DaviUrsulino) | Analista de Confiabilidade / Especificação GQM e Métricas | **10,2h** | R$ 87,55 | R$ 890,09 | **17,53%** | Em andamento (4 abertas) |
 | **João Eduardo Pereira Rabelo**<br>Matrícula: `180053299` | [@JoaoEduardoP](https://github.com/JoaoEduardoP) | Analista de Confiabilidade / Metodologia e Métricas PSM | **7,2h** | R$ 87,55 | R$ 627,44 | **12,36%** | Em andamento (4 abertas) |
 | **Natan José França**<br>Matrícula: `241011537` | [@Natan8643](https://github.com/Natan8643) | Analista de Capacidade de Interação / Diagrama GQM e Níveis de Julgamento | **7,7h** | R$ 87,55 | R$ 671,22 | **13,22%** | Em andamento (4 abertas) |
