@@ -68,64 +68,132 @@ Amostragem de requisições de rede capturadas via DevTools Network (Fetch/XHR) 
 
 ## 2. Medidas Básicas e Cálculo das Métricas
 
-*(Esta seção destina-se à consolidação formal dos cálculos matemáticos das métricas TCBN, ICR e TSIS, a ser realizada na issue de consolidação e análise da Fase 4 após o fechamento da coleta de dados).*
+Os cálculos a seguir aplicam rigorosamente as fórmulas matemáticas padronizadas na [Fase 2](../fase2/compatibilidade.md) e detalhadas no Plano de Avaliação da [Fase 3](../fase3/compatibilidade.md), alimentadas pelos registros empíricos brutos coletados em ambiente de produção do Portal Detran Digital DF.
 
 ### 2.1 Taxa de Compatibilidade Entre Navegadores (TCBN)
-* Medida Básica $N_{ap}$ (Cenários aprovados em todos os 4 navegadores): `[Aguardando consolidação]`
-* Medida Básica $N_{tot}$ (Total de cenários planejados): `4`
 
-$$TCBN = \left(\frac{N_{ap}}{N_{tot}}\right) \times 100$$
+Conforme a metodologia da Fase 3, um módulo avaliado só é considerado aprovado ($N_{ap} = 1$) se obtiver conformidade estrita e funcional nos quatro navegadores em escopo (Google Chrome, Mozilla Firefox, Microsoft Edge e Apple Safari).
+
+* **Medida Básica $N_{ap}$ (Cenários aprovados em todos os 4 navegadores):** `3` (Infração, Atendimento e Protocolo obtiveram sucesso pleno em todos os navegadores; o Chatbot reprovou no Chrome e Edge).
+* **Medida Básica $N_{tot}$ (Total de cenários/módulos avaliados):** `4`
+
+$$TCBN = \left(\frac{N_{ap}}{N_{tot}}\right) \times 100 = \left(\frac{3}{4}\right) \times 100 = 75,00\%$$
 
 ---
 
 ### 2.2 Índice de Conformidade Responsiva (ICR)
-* Medida Básica $T_{conf}$ (Pontos de inspeção conformes): `[Aguardando consolidação]`
-* Medida Básica $T_{tot}$ (Total de pontos de inspeção): `20`
 
-$$ICR = \left(\frac{T_{conf}}{T_{tot}}\right) \times 100$$
+O índice consolida a inspeção visual e ergonômica sobre as cinco viewports padronizadas nos quatro módulos, totalizando 20 pontos de verificação.
+
+* **Medida Básica $T_{conf}$ (Pontos de inspeção conformes):** `14` (Infração: 1/5; Atendimento: 4/5; Protocolo: 4/5; Chatbot: 5/5).
+* **Medida Básica $T_{tot}$ (Total de pontos de inspeção):** `20`
+
+$$ICR = \left(\frac{T_{conf}}{T_{tot}}\right) \times 100 = \left(\frac{14}{20}\right) \times 100 = 70,00\%$$
 
 ---
 
 ### 2.3 Taxa de Sucesso de Interoperabilidade de Serviços (TSIS)
-* Medida Básica $Req_{ok}$ (Requisições com status HTTP 2xx/3xx): `[Aguardando consolidação]`
-* Medida Básica $Req_{tot}$ (Total de requisições de rede monitoradas no escopo): `[Aguardando consolidação]`
 
-$$TSIS = \left(\frac{Req_{ok}}{Req_{tot}}\right) \times 100$$
+A taxa quantifica a integridade das chamadas de rede às APIs e barramentos externos (Gov.br, SEFAZ/Bancos, hCaptcha, SEI-GDF e motor de IA InBot), capturadas no arquivo HAR e na aba Network do DevTools.
+
+* **Medida Básica $Req_{ok}$ (Requisições com status HTTP 2xx/3xx):** `10`
+* **Medida Básica $Req_{tot}$ (Total de requisições de serviço monitoradas no escopo):** `12`
+* **Requisições com Falha ou Erro 4xx ($Req_{falha}$):** `2` (1 bloqueio de conexão na CDN do Chatbot no Edge e 1 retorno HTTP 422 na busca de requerimento do Protocolo).
+
+$$TSIS = \left(\frac{Req_{ok}}{Req_{tot}}\right) \times 100 = \left(\frac{10}{12}\right) \times 100 = 83,33\%$$
 
 ---
 
 ## 3. Aplicação dos Níveis de Pontuação e Julgamento
 
-*(Esta seção destina-se ao enquadramento dos índices apurados nas escalas ordinais de qualidade da Fase 2, a ser realizada na issue subsequente de consolidação da Fase 4).*
+A tabela a seguir confronta diretamente os índices quantitativos apurados nesta Fase 4 com as réguas ordinais de pontuação formalizadas na Fase 2:
 
-| Métrica Avaliada | Valor Apurado | Nível de Julgamento Obtido | Situação de Conformidade |
-| :--- | :---: | :---: | :---: |
-| **M1 – TCBN (Cross-Browser)** | `[Pendente]` | `[Pendente]` | Aguardando cálculo |
-| **M2 – ICR (Responsividade)** | `[Pendente]` | `[Pendente]` | Aguardando cálculo |
-| **M3 – TSIS (Interoperabilidade)** | `[Pendente]` | `[Pendente]` | Aguardando cálculo |
+| Métrica Avaliada | Valor Apurado | Faixa de Enquadramento | Nível de Julgamento Obtido | Situação de Conformidade |
+| :--- | :---: | :---: | :---: | :---: |
+| **M1 – TCBN (Cross-Browser)** | **75,00%** | 70% a 84% | **Satisfatório** | Em conformidade básica (falha concentrada no Chatbot) |
+| **M2 – ICR (Responsividade)** | **70,00%** | 70% a 79% | **Satisfatório** | Em conformidade básica (sobreposição do Chatbot em telas menores) |
+| **M3 – TSIS (Interoperabilidade)** | **83,33%** | 80% a 89% | **Satisfatório** | Em conformidade básica (barramentos estáveis, falha de CDN) |
 
-*Tabela 4 — Julgamento das métricas de Compatibilidade. Fonte: Elaborado pelos autores.*
+*Tabela 4 — Julgamento consolidado das métricas de Compatibilidade. Fonte: Elaborado pelos autores com base nas réguas da Fase 2.*
+
+### 3.1 Síntese do Enquadramento
+Todas as três métricas da característica de Compatibilidade enquadraram-se uniformemente no nível **Satisfatório**. Este resultado reflete um sistema governamental cujos serviços essenciais e formulários centrais (Infração, Agendamento e Protocolo) operam de forma funcional e integrada, mas que apresenta vulnerabilidades visuais e de infraestrutura nos componentes periféricos e widgets de terceiros (Chatbot flutuante).
 
 ---
 
 ## 4. Respostas às Questões e Validação de Hipóteses GQM
 
-*(As respostas técnicas formais e o confronto com as hipóteses H1, H2 e H3 serão redigidos no escopo da issue de consolidação e relatório final da Fase 4).*
-
-### Questão Q1 (Coexistência / Cross-Browser)
+### 4.1 Questão Q1 (Coexistência / Cross-Browser)
 * **Pergunta:** O sistema preserva a funcionalidade e a integridade de layout nos navegadores modernos mais difundidos no mercado (Chrome, Firefox, Edge e Safari)?
-* **Resposta Técnica:** `[A ser preenchida após consolidação dos ensaios]`
-* **Confronto com Hipótese H1:** `[A ser confrontada após consolidação]`
+* **Resposta Técnica:** **Parcialmente ($TCBN = 75,00\%$).** Os módulos de Infração, Atendimento e Protocolo apresentaram paridade funcional e visual absoluta nos quatro navegadores testados (Blink no Chrome/Edge, Gecko no Firefox e WebKit no Safari), sem travamentos de script ou divergências de layout. No entanto, o módulo Chatbot apresentou falha nos navegadores baseados no Chromium: no Microsoft Edge o loader da CDN falhou com `net::ERR_CONNECTION_RESET` (impedindo a renderização do widget), e no Google Chrome a imagem do avatar quebrou pelo mesmo erro de conexão. Em contrapartida, no Firefox e no Safari o assistente virtual operou perfeitamente, trocando mensagens com a IA da plataforma InBot.
+* **Confronto com Hipótese H1:** A hipótese H1 (*Pelo menos 95% dos módulos avaliados operam de forma equivalente nos quatro navegadores em escopo*) foi **refutada** no nível Excelente (que exigia $\ge 95\%$), sendo confirmada no nível **Satisfatório** ($75\%$). A constatação empírica evidencia que dependências de scripts e CDNs de terceiros são o principal ponto de quebra de coexistência entre navegadores.
 
-### Questão Q2 (Coexistência / Responsividade Multi-resolução)
+### 4.2 Questão Q2 (Coexistência / Responsividade Multi-resolução)
 * **Pergunta:** As páginas e componentes dos quatro módulos adaptam-se de forma consistente às dimensões de tela mobile (360px a 414px), tablet (768px) e desktop (1366px e 1920px)?
-* **Resposta Técnica:** `[A ser preenchida após consolidação dos ensaios]`
-* **Confronto com Hipótese H2:** `[A ser confrontada após consolidação]`
+* **Resposta Técnica:** **Parcialmente ($ICR = 70,00\%$).** O design responsivo das páginas centrais comporta-se adequadamente: os cartões de serviço empilham verticalmente no mobile, o menu colapsa corretamente para hambúrguer e não há rolagem horizontal (*horizontal overflow*) nas 5 viewports. Contudo, foi detectado um **defeito crítico de ergonomia visual**: o widget flutuante do assistente virtual (avatar do Chatbot) possui posicionamento fixo (`fixed position`) descalibrado, sobrepondo diretamente os botões "Consultar" e "Voltar" no módulo Infração em 360px, 414px, 768px e 1366px, além de cobrir campos de agendamento em 360px e o botão "Acessar" de protocolos em 360px, inviabilizando cliques em telas compactas.
+* **Confronto com Hipótese H2:** A hipótese H2 (*Pelo menos 95% dos 20 pontos de inspeção de viewport são classificados como conformes*) foi **refutada** no nível Excelente, atingindo o patamar **Satisfatório** ($70\%$). A avaliação empírica comprovou a predição teórica da equipe de que elementos flutuantes sobrepostos sem media queries específicas constituem a principal barreira de acessibilidade móvel.
 
-### Questão Q3 (Interoperabilidade / Comunicação com Serviços Externos)
+### 4.3 Questão Q3 (Interoperabilidade / Comunicação com Serviços Externos)
 * **Pergunta:** Os fluxos de comunicação e troca de dados dos quatro módulos com serviços externos ocorrem de maneira íntegra e padronizada (códigos de status HTTP adequados)?
-* **Resposta Técnica:** `[A ser preenchida após consolidação dos ensaios]`
-* **Confronto com Hipótese H3:** `[A ser confrontada após consolidação]`
+* **Resposta Técnica:** **Sim, em nível satisfatório ($TSIS = 83,33\%$).** O monitoramento passivo de rede atestou alta estabilidade nos serviços centrais de governo: a integração com o barramento Gov.br (Selos de confiabilidade), consultas veiculares, carregamento de habilitação e autenticações hCaptcha responderam com 100% de sucesso e códigos `HTTP 200 OK`. As deduções pontuais derivaram de: (1) bloqueio de conexão na CDN do Chatbot (`net::ERR_CONNECTION_RESET`), e (2) retorno de código `HTTP 422 (Unprocessable Content)` na consulta processual com dado sintético inexistente no Protocolo, que embora represente um código de erro de cliente, foi absorvido e tratado pela interface com modal amigável ao cidadão.
+* **Confronto com Hipótese H3:** A hipótese H3 (*Pelo menos 98% das requisições monitoradas retornam status HTTP 2xx ou 3xx válido*) foi **refutada** para o nível Excelente e confirmada no nível **Satisfatório** ($83,33\%$), comprovando a robustez dos barramentos estatais e a necessidade de contingência para microsserviços terceirizados.
+
+---
+
+### 4.4 Visualização Gráfica dos Resultados
+
+O gráfico abaixo ilustra a relação entre as metas estabelecidas na Fase 2 e os valores apurados na Fase 4:
+
+```mermaid
+xychart-beta
+    title "Comparativo de Métricas de Compatibilidade: Realizado vs Metas Fase 2 (%)"
+    x-axis ["TCBN (Cross-Browser)", "ICR (Responsividade)", "TSIS (Interoperabilidade)"]
+    y-axis "Percentual (%)" 0 --> 100
+    bar [75.0, 70.0, 83.3]
+```
+
+O diagrama a seguir detalha a distribuição de conformidade responsiva por módulo do Detran Digital DF:
+
+```mermaid
+flowchart TD
+    subgraph S1["Módulo Infração (1/5 Conforme - 20%)"]
+        INF1["360px: Sobreposição Chatbot"]:::reprovado
+        INF2["414px: Sobreposição Chatbot"]:::reprovado
+        INF3["768px: Sobreposição Chatbot"]:::reprovado
+        INF4["1366px: Sobreposição Chatbot"]:::reprovado
+        INF5["1920px: Layout Conforme"]:::aprovado
+    end
+
+    subgraph S2["Módulo Atendimento (4/5 Conforme - 80%)"]
+        AT1["360px: Sobreposição Chatbot"]:::reprovado
+        AT2["414px a 1920px: Conforme"]:::aprovado
+    end
+
+    subgraph S3["Módulo Protocolo (4/5 Conforme - 80%)"]
+        PR1["360px: Sobreposição Chatbot"]:::reprovado
+        PR2["414px a 1920px: Conforme"]:::aprovado
+    end
+
+    subgraph S4["Módulo Chatbot (5/5 Conforme - 100%)"]
+        CB1["360px a 1920px: Modal Conforme"]:::aprovado
+    end
+
+    classDef aprovado fill:#d4edda,stroke:#28a745,stroke-width:2px,color:#155724;
+    classDef reprovado fill:#f8d7da,stroke:#dc3545,stroke-width:2px,color:#721c24;
+```
+
+---
+
+### 4.5 Impacto Social e Alinhamento com os Objetivos de Desenvolvimento Sustentável (ODS)
+
+Em estreita consonância com o Critério F4-C4 da ISO/IEC 25040, a avaliação da característica de Compatibilidade conecta-se diretamente aos propósitos de transformação digital pública da Agenda 2030 da ONU:
+
+1. **ODS 9 — Indústria, Inovação e Infraestrutura (Meta 9.c):**
+   * *Aumentar significativamente o acesso às tecnologias de informação e comunicação e proporcionar acesso universal e a preços acessíveis à internet.*
+   * **Análise de Impacto:** No Distrito Federal e no Brasil, as faixas populacionais de menor renda acessam a internet e serviços essenciais de trânsito quase exclusivamente através de dispositivos móveis com telas de 360px a 414px. O índice $ICR$ de 70%, penalizado pela sobreposição do botão flutuante sobre os botões "Consultar" e "Voltar", impõe uma barreira física e ergonômica de usabilidade aos cidadãos mais vulneráveis, forçando o deslocamento presencial desnecessário aos postos do Detran-DF.
+2. **ODS 16 — Paz, Justiça e Eficácia das Instituições (Meta 16.6):**
+   * *Desenvolver instituições eficazes, responsáveis e transparentes em todos os níveis.*
+   * **Análise de Impacto:** O índice $TSIS$ de 83,33% atesta que a espinha dorsal de interoperabilidade do Detran Digital DF com o barramento do Governo Federal (Gov.br) e o sistema SEI-GDF é sólida e segura. A autenticação unificada e a integridade de resposta garantem transparência, combate a fraudes e continuidade no fornecimento de certidões e licenciamentos aos cidadãos. A fragilidade encontrada na CDN do assistente virtual aponta a necessidade de acordos de nível de serviço (SLA) mais rígidos com fornecedores terceirizados de TI pública.
 
 ---
 
