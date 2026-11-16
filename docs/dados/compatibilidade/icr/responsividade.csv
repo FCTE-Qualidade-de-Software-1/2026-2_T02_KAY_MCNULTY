@@ -1,21 +1,21 @@
 codigo,modulo,viewport,largura_px,altura_px,conformidade,overflow_horizontal,sobreposicao_chatbot,texto_truncado,observacoes
-RESP-01,Infracao,Mobile Pequeno,360,640,Pendente,Nao,Nao,Nao,
-RESP-02,Infracao,Mobile Medio,414,896,Pendente,Nao,Nao,Nao,
-RESP-03,Infracao,Tablet,768,1024,Pendente,Nao,Nao,Nao,
-RESP-04,Infracao,Desktop HD,1366,768,Pendente,Nao,Nao,Nao,
-RESP-05,Infracao,Desktop Full HD,1920,1080,Pendente,Nao,Nao,Nao,
-RESP-06,Atendimento,Mobile Pequeno,360,640,Pendente,Nao,Nao,Nao,
-RESP-07,Atendimento,Mobile Medio,414,896,Pendente,Nao,Nao,Nao,
-RESP-08,Atendimento,Tablet,768,1024,Pendente,Nao,Nao,Nao,
-RESP-09,Atendimento,Desktop HD,1366,768,Pendente,Nao,Nao,Nao,
-RESP-10,Atendimento,Desktop Full HD,1920,1080,Pendente,Nao,Nao,Nao,
-RESP-11,Protocolo,Mobile Pequeno,360,640,Pendente,Nao,Nao,Nao,
-RESP-12,Protocolo,Mobile Medio,414,896,Pendente,Nao,Nao,Nao,
-RESP-13,Protocolo,Tablet,768,1024,Pendente,Nao,Nao,Nao,
-RESP-14,Protocolo,Desktop HD,1366,768,Pendente,Nao,Nao,Nao,
-RESP-15,Protocolo,Desktop Full HD,1920,1080,Pendente,Nao,Nao,Nao,
-RESP-16,Chatbot,Mobile Pequeno,360,640,Pendente,Nao,Nao,Nao,
-RESP-17,Chatbot,Mobile Medio,414,896,Pendente,Nao,Nao,Nao,
-RESP-18,Chatbot,Tablet,768,1024,Pendente,Nao,Nao,Nao,
-RESP-19,Chatbot,Desktop HD,1366,768,Pendente,Nao,Nao,Nao,
-RESP-20,Chatbot,Desktop Full HD,1920,1080,Pendente,Nao,Nao,Nao,
+RESP-01,Infracao,Mobile Pequeno,360,640,Nao Conforme,Nao,Sim,Nao,Avatar do Chatbot sobrepoe o botao Consultar
+RESP-02,Infracao,Mobile Medio,414,896,Nao Conforme,Nao,Sim,Nao,Avatar do Chatbot sobrepoe o botao Consultar
+RESP-03,Infracao,Tablet,768,1024,Nao Conforme,Nao,Sim,Nao,Avatar do Chatbot sobrepoe o botao Consultar
+RESP-04,Infracao,Desktop HD,1366,768,Nao Conforme,Nao,Sim,Nao,Avatar do Chatbot sobrepoe card e botao Voltar
+RESP-05,Infracao,Desktop Full HD,1920,1080,Conforme,Nao,Nao,Nao,Layout amplo e centralizado sem interferencia
+RESP-06,Atendimento,Mobile Pequeno,360,640,Nao Conforme,Nao,Sim,Nao,Avatar do Chatbot sobrepoe campos de selecao do formulario
+RESP-07,Atendimento,Mobile Medio,414,896,Conforme,Nao,Nao,Nao,Formulario e calendario contidos na largura
+RESP-08,Atendimento,Tablet,768,1024,Conforme,Nao,Nao,Nao,Distribuicao em grade sem corte de elementos
+RESP-09,Atendimento,Desktop HD,1366,768,Conforme,Nao,Nao,Nao,Fluxo sequencial de agendamento estavel
+RESP-10,Atendimento,Desktop Full HD,1920,1080,Conforme,Nao,Nao,Nao,Espacamento e tipografia confortaveis
+RESP-11,Protocolo,Mobile Pequeno,360,640,Nao Conforme,Nao,Sim,Nao,Avatar do Chatbot sobrepoe o botao Acessar do primeiro card
+RESP-12,Protocolo,Mobile Medio,414,896,Conforme,Nao,Nao,Nao,Cards de servicos empilhados verticalmente sem overflow
+RESP-13,Protocolo,Tablet,768,1024,Conforme,Nao,Nao,Nao,Area de pesquisa e botoes de solicitacao alinhados
+RESP-14,Protocolo,Desktop HD,1366,768,Conforme,Nao,Nao,Nao,Grid com 3 colunas de servicos bem distribuida
+RESP-15,Protocolo,Desktop Full HD,1920,1080,Conforme,Nao,Nao,Nao,Margens laterais amplas e integridade visual
+RESP-16,Chatbot,Mobile Pequeno,360,640,Conforme,Nao,Nao,Nao,Modal preenche largura de tela com navegacao por toque
+RESP-17,Chatbot,Mobile Medio,414,896,Conforme,Nao,Nao,Nao,Baloes de mensagem e teclado virtual simulado legiveis
+RESP-18,Chatbot,Tablet,768,1024,Conforme,Nao,Nao,Nao,Dimensoes confortaveis da janela flutuante
+RESP-19,Chatbot,Desktop HD,1366,768,Conforme,Nao,Nao,Nao,Janela flutuante fixada no canto inferior direito
+RESP-20,Chatbot,Desktop Full HD,1920,1080,Conforme,Nao,Nao,Nao,Widget alinhado na viewport sem quebras ao rolar

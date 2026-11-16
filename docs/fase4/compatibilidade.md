@@ -22,12 +22,12 @@
 
 Os ensaios foram executados nos 4 navegadores homologados (Chrome, Firefox, Edge e Safari) seguindo os roteiros definidos na Fase 3. Os dados detalhados encontram-se registrados em [`docs/dados/compatibilidade/tcbn/cross_browser.csv`](../dados/compatibilidade/tcbn/cross_browser.csv).
 
-| Módulo | Cenário de Teste | Google Chrome | Mozilla Firefox | Microsoft Edge | Apple Safari | Situação Parcial |
+| Módulo | Cenário de Teste | Google Chrome | Mozilla Firefox | Microsoft Edge | Apple Safari | Situação do Cenário |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Infração** | TC-CB-01 | *Aguardando (Nicole)* | Aprovado | Aprovado | *Aguardando* | Conforme (Firefox/Edge) |
-| **Atendimento** | TC-CB-02 | *Aguardando (Nicole)* | Aprovado | Aprovado | *Aguardando* | Conforme (Firefox/Edge) |
-| **Protocolo** | TC-CB-03 | *Aguardando (Nicole)* | Aprovado | Aprovado | *Aguardando* | Conforme (Firefox/Edge) |
-| **Chatbot** | TC-CB-04 | *Aguardando (Nicole)* | Aprovado | Reprovado | *Aguardando* | Divergência Cross-Browser |
+| **Infração** | TC-CB-01 | Aprovado | Aprovado | Aprovado | Aprovado | **Aprovado** |
+| **Atendimento** | TC-CB-02 | Aprovado | Aprovado | Aprovado | Aprovado | **Aprovado** |
+| **Protocolo** | TC-CB-03 | Aprovado | Aprovado | Aprovado | Aprovado | **Aprovado** |
+| **Chatbot** | TC-CB-04 | Reprovado | Aprovado | Reprovado | Aprovado | **Reprovado (Divergência)** |
 
 *Tabela 1 — Matriz consolidada de execução Cross-Browser. Fonte: Dados coletados pelos autores.*
 
@@ -39,11 +39,12 @@ As inspeções de layout cobriram as 5 viewports normatizadas (360px a 1920px). 
 
 | Viewport | Resolução (px) | Infração | Atendimento | Protocolo | Chatbot | Total de Conformidades |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
-| **Mobile Pequeno** | 360 × 640 | Conforme | Conforme | Conforme | Conforme | 4 / 4 |
-| **Mobile Médio** | 414 × 896 | Conforme | Conforme | Conforme | Conforme | 4 / 4 |
-| **Tablet** | 768 × 1024 | Conforme | Conforme | Conforme | Conforme | 4 / 4 |
-| **Desktop HD** | 1366 × 768 | Conforme | Conforme | Conforme | Conforme | 4 / 4 |
+| **Mobile Pequeno** | 360 × 640 | Não Conforme | Não Conforme | Não Conforme | Conforme | 1 / 4 |
+| **Mobile Médio** | 414 × 896 | Não Conforme | Conforme | Conforme | Conforme | 3 / 4 |
+| **Tablet** | 768 × 1024 | Não Conforme | Conforme | Conforme | Conforme | 3 / 4 |
+| **Desktop HD** | 1366 × 768 | Não Conforme | Conforme | Conforme | Conforme | 3 / 4 |
 | **Desktop Full HD** | 1920 × 1080 | Conforme | Conforme | Conforme | Conforme | 4 / 4 |
+| **Total por Módulo** | — | **1 / 5** | **4 / 5** | **4 / 5** | **5 / 5** | **14 / 20** |
 
 *Tabela 2 — Matriz consolidada de inspeção responsiva. Fonte: Dados coletados pelos autores.*
 
@@ -159,35 +160,80 @@ $$TSIS = \left(\frac{Req_{ok}}{Req_{tot}}\right) \times 100$$
   ![Erro de Conexão do Chatbot no Microsoft Edge](../assets/evidencias/compatibilidade/CB_CHATBOT_MICROSOFT-EDGE.png)
   ![Aba Rede DevTools com Falha bot-loader no Microsoft Edge](../assets/evidencias/compatibilidade/CB_CHATBOT_MICROSOFT_EDGE_2.png)
 
-#### Google Chrome (Aguardando execução pela Nicole)
-<!-- [Descomentar após inserção dos prints da Nicole] -->
-<!-- ![Infração no Google Chrome](../assets/evidencias/compatibilidade/CB_INFRACAO_CHROME.png) -->
-<!-- ![Atendimento no Google Chrome](../assets/evidencias/compatibilidade/CB_ATENDIMENTO_CHROME.png) -->
-<!-- ![Protocolo no Google Chrome](../assets/evidencias/compatibilidade/CB_PROTOCOLO_CHROME.png) -->
-<!-- ![Chatbot no Google Chrome](../assets/evidencias/compatibilidade/CB_CHATBOT_CHROME.png) -->
+#### Google Chrome (3 de 4 Aprovados — Falha no Chatbot)
+* **Infração:**
+  ![Consulta de Infrações no Google Chrome](../assets/evidencias/compatibilidade/CB_INFRACAO_CHROME.png)
+* **Atendimento:**
+  ![Agendamento de Atendimento no Google Chrome](../assets/evidencias/compatibilidade/CB_ATENDIMENTO_CHROME.png)
+* **Protocolo:**
+  ![Protocolo no Google Chrome](../assets/evidencias/compatibilidade/CB_PROTOCOLO_CHROME.png)
+* **Chatbot (Falha de Carregamento de Asset do Bot):**
+  ![Falha de Asset do Chatbot no Google Chrome](../assets/evidencias/compatibilidade/CB_CHATBOT_CHROME.png)
+  ![Aba Rede DevTools no Google Chrome](../assets/evidencias/compatibilidade/CB_CHATBOT_CHROME_2.png)
 
-#### Apple Safari (Aguardando execução)
-<!-- [Descomentar após inserção dos prints do Safari] -->
-<!-- ![Infração no Apple Safari](../assets/evidencias/compatibilidade/CB_INFRACAO_SAFARI.png) -->
-<!-- ![Atendimento no Apple Safari](../assets/evidencias/compatibilidade/CB_ATENDIMENTO_SAFARI.png) -->
-<!-- ![Protocolo no Apple Safari](../assets/evidencias/compatibilidade/CB_PROTOCOLO_SAFARI.png) -->
-<!-- ![Chatbot no Apple Safari](../assets/evidencias/compatibilidade/CB_CHATBOT_SAFARI.png) -->
+#### Apple Safari (4 de 4 Aprovados)
+* **Infração:**
+  ![Consulta de Infrações no Apple Safari](../assets/evidencias/compatibilidade/CB_INFRACAO_SAFARI.png)
+* **Atendimento:**
+  ![Agendamento de Atendimento no Apple Safari](../assets/evidencias/compatibilidade/CB_ATENDIMENTO_SAFARI.png)
+* **Protocolo:**
+  ![Protocolo no Apple Safari](../assets/evidencias/compatibilidade/CB_PROTOCOLO_SAFARI.png)
+* **Chatbot (Assistente Virtual Operacional com IA):**
+  ![Chatbot Operacional no Apple Safari](../assets/evidencias/compatibilidade/CB_CHATBOT_SAFARI.png)
 
 ---
 
 ### 5.2 Evidências dos Ensaios de Responsividade (ICR)
 
-<!-- [FOTO 5 - MOBILE 360px INFRACAO] -->
-<!-- ![Visualizacao Mobile 360px Infracao](../assets/evidencias/compatibilidade/RESP_INFRACAO_360px.png) -->
+As 20 capturas de tela registradas pela avaliadora Nicole Jovita comprovam o comportamento de layout em cada viewport normatizada:
 
-<!-- [FOTO 6 - MOBILE 414px ATENDIMENTO] -->
-<!-- ![Visualizacao Mobile 414px Atendimento](../assets/evidencias/compatibilidade/RESP_ATENDIMENTO_414px.png) -->
+#### Módulo Infração
+* **360px (Mobile Pequeno — Sobreposição do Chatbot sobre botão Consultar):**
+  ![Infração 360px](../assets/evidencias/compatibilidade/RESP_INFRACAO_360px.png)
+* **414px (Mobile Médio — Sobreposição do Chatbot):**
+  ![Infração 414px](../assets/evidencias/compatibilidade/RESP_INFRACAO_414px.png)
+* **768px (Tablet — Sobreposição do Chatbot sobre botão Consultar):**
+  ![Infração 768px](../assets/evidencias/compatibilidade/RESP_INFRACAO_768px.png)
+* **1366px (Desktop HD — Sobreposição do Chatbot sobre card/Voltar):**
+  ![Infração 1366px](../assets/evidencias/compatibilidade/RESP_INFRACAO_1366px.png)
+* **1920px (Desktop Full HD — Conforme):**
+  ![Infração 1920px](../assets/evidencias/compatibilidade/RESP_INFRACAO_1920px.png)
 
-<!-- [FOTO 7 - TABLET 768px PROTOCOLO] -->
-<!-- ![Visualizacao Tablet 768px Protocolo](../assets/evidencias/compatibilidade/RESP_PROTOCOLO_768px.png) -->
+#### Módulo Atendimento (Agendamento)
+* **360px (Mobile Pequeno — Sobreposição do Chatbot sobre formulário):**
+  ![Atendimento 360px](../assets/evidencias/compatibilidade/RESP_AGENDAMENTO_360px.png)
+* **414px (Mobile Médio — Conforme):**
+  ![Atendimento 414px](../assets/evidencias/compatibilidade/RESP_AGENDAMENTO_414px.png)
+* **768px (Tablet — Conforme):**
+  ![Atendimento 768px](../assets/evidencias/compatibilidade/RESP_AGENDAMENTO_768px.png)
+* **1366px (Desktop HD — Conforme):**
+  ![Atendimento 1366px](../assets/evidencias/compatibilidade/RESP_AGENDAMENTO_1366px.png)
+* **1920px (Desktop Full HD — Conforme):**
+  ![Atendimento 1920px](../assets/evidencias/compatibilidade/RESP_AGENDAMENTO_1920px.png)
 
-<!-- [FOTO 8 - DESKTOP 1920px CHATBOT] -->
-<!-- ![Visualizacao Desktop 1920px Chatbot](../assets/evidencias/compatibilidade/RESP_CHATBOT_1920px.png) -->
+#### Módulo Protocolo
+* **360px (Mobile Pequeno — Sobreposição do Chatbot sobre botão Acessar):**
+  ![Protocolo 360px](../assets/evidencias/compatibilidade/RESP_PROTOCOLO_360px.png)
+* **414px (Mobile Médio — Conforme):**
+  ![Protocolo 414px](../assets/evidencias/compatibilidade/RESP_PROTOCOLO_414px.png)
+* **768px (Tablet — Conforme):**
+  ![Protocolo 768px](../assets/evidencias/compatibilidade/RESP_PROTOCOLO_768px.png)
+* **1366px (Desktop HD — Conforme):**
+  ![Protocolo 1366px](../assets/evidencias/compatibilidade/RESP_PROTOCOLO_1366px.png)
+* **1920px (Desktop Full HD — Conforme):**
+  ![Protocolo 1920px](../assets/evidencias/compatibilidade/RESP_PROTOCOLO_1920px.png)
+
+#### Módulo Chatbot
+* **360px (Mobile Pequeno — Conforme):**
+  ![Chatbot 360px](../assets/evidencias/compatibilidade/RESP_CHATBOT_360px.png)
+* **414px (Mobile Médio — Conforme):**
+  ![Chatbot 414px](../assets/evidencias/compatibilidade/RESP_CHATBOT_414px.png)
+* **768px (Tablet — Conforme):**
+  ![Chatbot 768px](../assets/evidencias/compatibilidade/RESP_CHATBOT_768px.png)
+* **1366px (Desktop HD — Conforme):**
+  ![Chatbot 1366px](../assets/evidencias/compatibilidade/RESP_CHATBOT_1366px.png)
+* **1920px (Desktop Full HD — Conforme):**
+  ![Chatbot 1920px](../assets/evidencias/compatibilidade/RESP_CHATBOT_1920px.png)
 
 ---
 
