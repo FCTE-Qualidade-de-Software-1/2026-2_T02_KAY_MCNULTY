@@ -1,10 +1,10 @@
-# GQM – Característica: Usabilidade
+# GQM – Característica: Capacidade de Interação
 
 **Responsáveis:** Natan França e Yan Santos
 
-A avaliação da característica de **Usabilidade** fundamenta-se na ISO/IEC 25010:2023 e considera o uso do Portal Detran Digital DF por cidadãos com diferentes faixas etárias, níveis de letramento digital e pessoas com deficiência. O objetivo é identificar barreiras que dificultem a compreensão, a navegação e a conclusão autônoma dos serviços nos módulos de Infração, Atendimento, Protocolo e Chatbot.
+A avaliação da característica de **Capacidade de Interação** fundamenta-se na ISO/IEC 25010:2023 e considera o uso do Portal Detran Digital DF por cidadãos com diferentes faixas etárias, níveis de letramento digital e pessoas com deficiência. O objetivo é identificar barreiras que dificultem a compreensão, a navegação e a conclusão autônoma dos serviços nos módulos de Infração, Atendimento, Protocolo e Chatbot.
 
-Nesta especificação, o foco quantitativo está nas subcaracterísticas **Aprendibilidade**, **Operabilidade** e **Proteção contra Erros de Usuário**, conforme delimitado para a avaliação. A Estética da Interface do Usuário e a Acessibilidade fazem parte do contexto conceitual de Usabilidade, mas não recebem métricas próprias nesta modelagem. Uma auditoria exaustiva de acessibilidade, incluindo testes completos com leitores de tela e avaliação especializada de contraste, está fora do escopo desta etapa.
+Nesta especificação, o foco quantitativo está nas subcaracterísticas **Aprendibilidade**, **Operabilidade** e **Proteção contra Erros de Usuário**, conforme delimitado para a avaliação. A Estética da Interface do Usuário e a Acessibilidade fazem parte do contexto conceitual de Capacidade de Interação, mas não recebem métricas próprias nesta modelagem. Uma auditoria exaustiva de acessibilidade, incluindo testes completos com leitores de tela e avaliação especializada de contraste, está fora do escopo desta etapa.
 
 ---
 
@@ -14,7 +14,7 @@ Nesta especificação, o foco quantitativo está nas subcaracterísticas **Apren
 | :--- | :--- |
 | **Analisar** | Os módulos de Infração, Atendimento, Protocolo e Chatbot do Portal Detran Digital DF |
 | **Para o propósito de** | Avaliar |
-| **Com respeito a** | Usabilidade, com foco em Aprendibilidade, Operabilidade e Proteção contra Erros de Usuário (ISO/IEC 25010:2023) |
+| **Com respeito a** | Capacidade de Interação, com foco em Aprendibilidade, Operabilidade e Proteção contra Erros de Usuário (ISO/IEC 25010:2023) |
 | **Do ponto de vista do** | Cidadão usuário e dos engenheiros de software avaliadores |
 | **No contexto de** | Acessos ao portal em ambiente web e mobile no Distrito Federal |
 
@@ -115,12 +115,12 @@ TPRE = \frac{E_{prev}}{E_{tot}} \times 100\%
 
 **Questões associadas:** Q2 – Operabilidade e Q3 – Proteção contra Erros de Usuário.
 
-Quantifica os problemas de interface identificados por inspeção com as 10 heurísticas de usabilidade de Nielsen, classificados por severidade. Complementa as métricas M2 e M3 ao abranger aspectos que elas não medem diretamente, como consistência da interface, clareza da navegação, retorno ao usuário, mensagens de erro e ajuda contextual.
+Quantifica os problemas de interface identificados por inspeção com as 10 heurísticas de capacidade de interação de Nielsen, classificados por severidade. Complementa as métricas M2 e M3 ao abranger aspectos que elas não medem diretamente, como consistência da interface, clareza da navegação, retorno ao usuário, mensagens de erro e ajuda contextual.
 
 **Medidas básicas:**
 
 - **N_s:** número de problemas distintos, após a consolidação das listas dos avaliadores, com severidade \(s\) em determinado módulo, sendo \(s\) um valor de 1 a 4.
-- **Severidade (\(s\)):** 1 = cosmético; 2 = menor; 3 = maior; 4 = catastrófico. O valor 0 é atribuído quando o avaliador não considera a ocorrência um problema de usabilidade, e ela não é contabilizada.
+- **Severidade (\(s\)):** 1 = cosmético; 2 = menor; 3 = maior; 4 = catastrófico. O valor 0 é atribuído quando o avaliador não considera a ocorrência um problema de capacidade de interação, e ela não é contabilizada.
 
 **Fórmula:**
 
@@ -132,13 +132,13 @@ em que \(IPH_{m}\) é o total de problemas consolidados do módulo \(m\), sempre
 
 **Procedimento de coleta:** cada avaliador inspeciona de forma independente os quatro módulos, em desktop e mobile, associando cada problema a uma heurística violada, à tela ou ao fluxo em que ocorre e a uma severidade. Em seguida, os avaliadores consolidam as listas, eliminam duplicidades e definem a severidade final de cada problema. A inspeção não envolve o envio de dados reais nem a conclusão de transações no portal. Registrar a evidência de cada problema, como captura de tela e descrição do cenário.
 
-**Critério de interpretação:** quanto menor o número de problemas, e quanto menor a proporção de problemas de severidade 3 e 4, melhor a condição de usabilidade do módulo. O valor total não deve ser interpretado isoladamente, pois um módulo com poucos problemas de severidade 4 pode ser mais crítico que outro com muitos problemas cosméticos. Trata-se de um julgamento de especialistas e não substitui a observação de usuários.
+**Critério de interpretação:** quanto menor o número de problemas, e quanto menor a proporção de problemas de severidade 3 e 4, melhor a condição de capacidade de interação do módulo. O valor total não deve ser interpretado isoladamente, pois um módulo com poucos problemas de severidade 4 pode ser mais crítico que outro com muitos problemas cosméticos. Trata-se de um julgamento de especialistas e não substitui a observação de usuários.
 
 ### Métrica M5 – System Usability Scale (SUS)
 
 **Questões associadas:** Q1 – Aprendibilidade e Q2 – Operabilidade.
 
-Mensura a percepção subjetiva dos participantes quanto à usabilidade, por meio do questionário padronizado de 10 itens System Usability Scale. Complementa as métricas M1 e M2 ao registrar a opinião do cidadão sobre a facilidade de aprender e de operar o portal, aspecto que a observação das tarefas não captura.
+Mensura a percepção subjetiva dos participantes quanto à capacidade de interação, por meio do questionário padronizado de 10 itens System Usability Scale. Complementa as métricas M1 e M2 ao registrar a opinião do cidadão sobre a facilidade de aprender e de operar o portal, aspecto que a observação das tarefas não captura.
 
 **Medidas básicas:**
 
@@ -152,7 +152,7 @@ SUS = 2{,}5 \times \left[ \sum_{i \in \{1,3,5,7,9\}} (R_i - 1) + \sum_{i \in \{2
 
 **Procedimento de coleta:** aplicar o questionário individualmente a cada participante, imediatamente após a execução das tarefas e antes de qualquer discussão sobre o resultado, utilizando a versão em português com os 10 itens originais. Registrar o escopo ao qual o questionário se refere (módulo ou portal como um todo), o dispositivo utilizado e o perfil do participante. Calcular a pontuação de cada participante e apresentar a média junto às pontuações individuais.
 
-**Critério de interpretação:** o resultado varia de 0 a 100 e não representa um percentual. Valores maiores indicam melhor percepção de usabilidade; a literatura costuma citar 68 como média de referência. O SUS indica a percepção geral, mas não identifica a causa das dificuldades, devendo ser interpretado junto às demais métricas e às observações qualitativas.
+**Critério de interpretação:** o resultado varia de 0 a 100 e não representa um percentual. Valores maiores indicam melhor percepção de capacidade de interação; a literatura costuma citar 68 como média de referência. O SUS indica a percepção geral, mas não identifica a causa das dificuldades, devendo ser interpretado junto às demais métricas e às observações qualitativas.
 
 ---
 
@@ -162,10 +162,10 @@ Os resultados percentuais das métricas M1, M2 e M3 devem ser classificados conf
 
 | Nível de julgamento | TCAPA (M1) | IEFO (M2) | TPRE (M3) | Interpretação técnica |
 | :---: | :---: | :---: | :---: | :--- |
-| **Excelente** | ≥ 90% | ≥ 90% | ≥ 95% | Usabilidade exemplar: tarefas realizadas com autonomia, fluxo eficiente e elevada prevenção ou recuperação de erros. |
-| **Bom** | 80% a < 90% | 80% a < 90% | 85% a < 95% | Usabilidade adequada: podem ocorrer dúvidas ou desvios pontuais, sem impedir a conclusão da tarefa. |
-| **Satisfatório** | 70% a < 80% | 70% a < 80% | 75% a < 85% | Usabilidade limítrofe: o cidadão pode precisar de esforço adicional, repetir ações ou consultar ajuda ocasionalmente. |
-| **Insuficiente** | < 70% | < 70% | < 75% | Usabilidade crítica: há indícios de abandono, navegação confusa ou erros sem orientação suficiente para correção. |
+| **Excelente** | ≥ 90% | ≥ 90% | ≥ 95% | Capacidade de Interação exemplar: tarefas realizadas com autonomia, fluxo eficiente e elevada prevenção ou recuperação de erros. |
+| **Bom** | 80% a < 90% | 80% a < 90% | 85% a < 95% | Capacidade de Interação adequada: podem ocorrer dúvidas ou desvios pontuais, sem impedir a conclusão da tarefa. |
+| **Satisfatório** | 70% a < 80% | 70% a < 80% | 75% a < 85% | Capacidade de Interação limítrofe: o cidadão pode precisar de esforço adicional, repetir ações ou consultar ajuda ocasionalmente. |
+| **Insuficiente** | < 70% | < 70% | < 75% | Capacidade de Interação crítica: há indícios de abandono, navegação confusa ou erros sem orientação suficiente para correção. |
 
 **Regras de aplicação e registro:**
 
@@ -184,7 +184,7 @@ O diagrama abaixo explicita a rastreabilidade entre o objetivo de medição, as 
 
 ```mermaid
 flowchart TD
-    G["Objetivo G: Avaliar a usabilidade dos módulos de Infração, Atendimento, Protocolo e Chatbot do Detran Digital DF, do ponto de vista do cidadão e dos avaliadores, em acessos web e mobile"]
+    G["Objetivo G: Avaliar a capacidade de interação dos módulos de Infração, Atendimento, Protocolo e Chatbot do Detran Digital DF, do ponto de vista do cidadão e dos avaliadores, em acessos web e mobile"]
 
     Q1["Q1 — Aprendibilidade: o cidadão consegue concluir tarefas no primeiro acesso sem ajuda externa?"]
     Q2["Q2 — Operabilidade: os fluxos são claros e exigem quantidade adequada de passos/cliques?"]
@@ -210,7 +210,7 @@ flowchart TD
 
 ---
 
-## 6. Limites da Avaliação de Usabilidade
+## 6. Limites da Avaliação de Capacidade de Interação
 
 A avaliação será realizada por inspeção heurística da interface, conduzida por avaliadores independentes, e testes de tarefas guiadas com amostragem técnica reduzida de cidadãos e engenheiros avaliadores, com aplicação do questionário SUS aos participantes. Não contempla testes presenciais em laboratório UX com centenas de participantes, nem intervenção ou alteração direta no portal de produção. Por ocorrer em ambiente real, as tarefas e os cenários de erro não devem gerar efeitos efetivos (protocolos, agendamentos ou pagamentos), e os resultados refletem a versão do portal na data da avaliação.
 

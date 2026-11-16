@@ -24,7 +24,7 @@ Para assegurar profundidade técnica, rigor estatístico e rastreabilidade metod
 | Característica Avaliada | Subcaracterísticas Focadas | Responsáveis Técnicos | Documento Operacional |
 | :--- | :--- | :--- | :---: |
 | **Compatibilidade** | Coexistência (*Cross-browser* e Responsividade) e Interoperabilidade | Artur Fernandes Galdino e Nicole Jovita Fernandes | [Acessar Plano](../fase3/compatibilidade.md) |
-| **Usabilidade** | Aprendibilidade, Operabilidade e Proteção contra Erros de Usuário | Natan França e Yan | [Acessar Plano](../fase3/usabilidade.md) |
+| **Capacidade de Interação** | Aprendibilidade, Operabilidade e Proteção contra Erros de Usuário | Natan França e Yan | [Acessar Plano](../fase3/usabilidade.md) |
 | **Confiabilidade** | Disponibilidade, Ausência de Falhas, Tolerância a Falhas e Recuperabilidade | Davi Ursolino de Oliveira e João Eduardo Pereira Rabelo | [Acessar Plano](../fase3/confiabilidade.md) |
 
 **Tabela 1 – Matriz de atribuição de características na Fase 3.** Fonte: Elaborado pelos autores.

@@ -13,7 +13,7 @@
 
 A avaliação da qualidade de software fundamentada na ISO/IEC 25040 não se encerra no diagnóstico numérico; seu valor essencial reside em orientar melhorias tangíveis na arquitetura e na interface do produto.
 
-Com base nos dados empíricos apurados nas características de **Compatibilidade**, **Usabilidade** e **Confiabilidade**, a equipe selecionará os gargalos de maior criticidade observados no Portal Detran Digital DF para planejar e executar ações práticas de intervenção técnica.
+Com base nos dados empíricos apurados nas características de **Compatibilidade**, **Capacidade de Interação** e **Confiabilidade**, a equipe selecionará os gargalos de maior criticidade observados no Portal Detran Digital DF para planejar e executar ações práticas de intervenção técnica.
 
 ---
 

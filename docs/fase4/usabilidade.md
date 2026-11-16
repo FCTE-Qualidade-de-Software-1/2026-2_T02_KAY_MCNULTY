@@ -1,13 +1,13 @@
-# Resultados Empíricos e Julgamento – Característica: Usabilidade
+# Resultados Empíricos e Julgamento – Característica: Capacidade de Interação
 
 **Responsáveis:** Natan França e Yan  
-**Característica:** Usabilidade (ISO/IEC 25010:2023)  
+**Característica:** Capacidade de Interação (ISO/IEC 25010:2023)  
 **Subcaracterísticas:** Aprendibilidade, Operabilidade e Proteção contra Erros de Usuário  
 **Módulos Avaliados:** Infração, Atendimento, Protocolo e Chatbot (Portal Detran Digital DF)  
 **Fase Normativa:** Fase 4 (Execução e Julgamento da Avaliação – ISO/IEC 25040)
 
 !!! note "Status do Documento"
-    Página placeholder estruturada pela equipe Kay McNulty para a consolidação dos resultados empíricos da avaliação de Usabilidade. A tabulação das violações heurísticas, o cálculo dos índices de desempenho e a apuração do escore SUS serão preenchidos pela dupla responsável (Natan França e Yan).
+    Página placeholder estruturada pela equipe Kay McNulty para a consolidação dos resultados empíricos da avaliação de Capacidade de Interação. A tabulação das violações heurísticas, o cálculo dos índices de desempenho e a apuração do escore SUS serão preenchidos pela dupla responsável (Natan França e Yan).
 
 ---
 
@@ -48,7 +48,7 @@ Cálculo ponderado conforme metodologia padronizada de Brooke (1996), gerando es
 | **M3 – TPRE** | *Aguardando dados* | *A definir* | *Pendente de medição* |
 | **M4 – SUS** | *Aguardando dados* | *A definir* | *Pendente de medição* |
 
-**Tabela 1 – Julgamento das métricas de Usabilidade.** Fonte: Elaborado pelos autores.
+**Tabela 1 – Julgamento das métricas de Capacidade de Interação.** Fonte: Elaborado pelos autores.
 
 ---
 
@@ -63,4 +63,4 @@ Cálculo ponderado conforme metodologia padronizada de Brooke (1996), gerando es
 
 ## 5. Recomendações Ergonômicas e Propostas de Interface
 
-Síntese das melhorias de usabilidade prioritárias sugeridas para o Portal Detran Digital DF com foco no cidadão usuário.
+Síntese das melhorias de capacidade de interação prioritárias sugeridas para o Portal Detran Digital DF com foco no cidadão usuário.
