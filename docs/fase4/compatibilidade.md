@@ -140,6 +140,63 @@ Todas as três métricas da característica de Compatibilidade enquadraram-se un
 
 ---
 
+### 4.4 Visualização Gráfica dos Resultados
+
+O gráfico abaixo ilustra a relação entre as metas estabelecidas na Fase 2 e os valores apurados na Fase 4:
+
+```mermaid
+xychart-beta
+    title "Comparativo de Métricas de Compatibilidade: Realizado vs Metas Fase 2 (%)"
+    x-axis ["TCBN (Cross-Browser)", "ICR (Responsividade)", "TSIS (Interoperabilidade)"]
+    y-axis "Percentual (%)" 0 --> 100
+    bar [75.0, 70.0, 83.3]
+```
+
+O diagrama a seguir detalha a distribuição de conformidade responsiva por módulo do Detran Digital DF:
+
+```mermaid
+flowchart TD
+    subgraph S1["Módulo Infração (1/5 Conforme - 20%)"]
+        INF1["360px: Sobreposição Chatbot"]:::reprovado
+        INF2["414px: Sobreposição Chatbot"]:::reprovado
+        INF3["768px: Sobreposição Chatbot"]:::reprovado
+        INF4["1366px: Sobreposição Chatbot"]:::reprovado
+        INF5["1920px: Layout Conforme"]:::aprovado
+    end
+
+    subgraph S2["Módulo Atendimento (4/5 Conforme - 80%)"]
+        AT1["360px: Sobreposição Chatbot"]:::reprovado
+        AT2["414px a 1920px: Conforme"]:::aprovado
+    end
+
+    subgraph S3["Módulo Protocolo (4/5 Conforme - 80%)"]
+        PR1["360px: Sobreposição Chatbot"]:::reprovado
+        PR2["414px a 1920px: Conforme"]:::aprovado
+    end
+
+    subgraph S4["Módulo Chatbot (5/5 Conforme - 100%)"]
+        CB1["360px a 1920px: Modal Conforme"]:::aprovado
+    end
+
+    classDef aprovado fill:#d4edda,stroke:#28a745,stroke-width:2px,color:#155724;
+    classDef reprovado fill:#f8d7da,stroke:#dc3545,stroke-width:2px,color:#721c24;
+```
+
+---
+
+### 4.5 Impacto Social e Alinhamento com os Objetivos de Desenvolvimento Sustentável (ODS)
+
+Em estreita consonância com o Critério F4-C4 da ISO/IEC 25040, a avaliação da característica de Compatibilidade conecta-se diretamente aos propósitos de transformação digital pública da Agenda 2030 da ONU:
+
+1. **ODS 9 — Indústria, Inovação e Infraestrutura (Meta 9.c):**
+   * *Aumentar significativamente o acesso às tecnologias de informação e comunicação e proporcionar acesso universal e a preços acessíveis à internet.*
+   * **Análise de Impacto:** No Distrito Federal e no Brasil, as faixas populacionais de menor renda acessam a internet e serviços essenciais de trânsito quase exclusivamente através de dispositivos móveis com telas de 360px a 414px. O índice $ICR$ de 70%, penalizado pela sobreposição do botão flutuante sobre os botões "Consultar" e "Voltar", impõe uma barreira física e ergonômica de usabilidade aos cidadãos mais vulneráveis, forçando o deslocamento presencial desnecessário aos postos do Detran-DF.
+2. **ODS 16 — Paz, Justiça e Eficácia das Instituições (Meta 16.6):**
+   * *Desenvolver instituições eficazes, responsáveis e transparentes em todos os níveis.*
+   * **Análise de Impacto:** O índice $TSIS$ de 83,33% atesta que a espinha dorsal de interoperabilidade do Detran Digital DF com o barramento do Governo Federal (Gov.br) e o sistema SEI-GDF é sólida e segura. A autenticação unificada e a integridade de resposta garantem transparência, combate a fraudes e continuidade no fornecimento de certidões e licenciamentos aos cidadãos. A fragilidade encontrada na CDN do assistente virtual aponta a necessidade de acordos de nível de serviço (SLA) mais rígidos com fornecedores terceirizados de TI pública.
+
+---
+
 ## 5. Galeria de Evidências e Capturas de Tela
 
 <!-- ================================================================= -->
