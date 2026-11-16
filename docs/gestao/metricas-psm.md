@@ -297,15 +297,9 @@ O valor-hora de referência é **R$ 87,55/h**, calculado a partir do custo médi
 
 ### 4.2 Painel Dinâmico de Contribuição e Esforço (Critério AG-C5)
 
-A tabela abaixo reflete as métricas calculadas em tempo real a partir dos commits, linhas alteradas (+/-), issues fechadas e valoração do esforço individual:
+A tabela abaixo reflete as métricas calculadas em tempo real a partir dos commits, linhas alteradas (+/-), issues fechadas e valoração do esforço individual. Ela considera todas as issues do repositório, independentemente do ponto de controle (Entrega 1 e Entrega 2). As horas e o custo contam apenas as issues fechadas; quando uma issue possui mais de um responsável, o esforço é dividido igualmente entre eles.
 
 --8<-- "contributions-summary.md"
-
-### Tabela geral - Contribuicao e Esforco de Todas as Issues
-
-Esta tabela inclui todas as issues fechadas e abertas do repositorio, independentemente do ponto de controle:
-
---8<-- "contributions-summary-geral.md"
 
 ---
 
