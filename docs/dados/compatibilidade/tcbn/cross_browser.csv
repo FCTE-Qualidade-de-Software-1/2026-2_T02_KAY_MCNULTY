@@ -12,6 +12,6 @@ Protocolo,TC-CB-03,Mozilla Firefox,131+,Aprovado,Formularios e instrucoes normat
 Protocolo,TC-CB-03,Microsoft Edge,130+,Aprovado,Formularios e instrucoes normativas operacionais
 Protocolo,TC-CB-03,Apple Safari,17+,Pendente,Aguardando execucao
 Chatbot,TC-CB-04,Google Chrome,130+,Pendente,Aguardando execucao (Nicole)
-Chatbot,TC-CB-04,Mozilla Firefox,131+,Reprovado,Widget indisponivel / nao carregado em producao
-Chatbot,TC-CB-04,Microsoft Edge,130+,Reprovado,Widget indisponivel / nao carregado em producao
+Chatbot,TC-CB-04,Mozilla Firefox,131+,Aprovado,Chatbot online e operacional com retorno de resposta da IA
+Chatbot,TC-CB-04,Microsoft Edge,130+,Reprovado,Falha de conexao bot-loader (ERR_CONNECTION_RESET) - widget nao renderizou
 Chatbot,TC-CB-04,Apple Safari,17+,Pendente,Aguardando execucao

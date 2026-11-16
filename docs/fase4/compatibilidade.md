@@ -27,7 +27,7 @@ Os ensaios foram executados nos 4 navegadores homologados (Chrome, Firefox, Edge
 | **Infração** | TC-CB-01 | *Aguardando (Nicole)* | Aprovado | Aprovado | *Aguardando* | Conforme (Firefox/Edge) |
 | **Atendimento** | TC-CB-02 | *Aguardando (Nicole)* | Aprovado | Aprovado | *Aguardando* | Conforme (Firefox/Edge) |
 | **Protocolo** | TC-CB-03 | *Aguardando (Nicole)* | Aprovado | Aprovado | *Aguardando* | Conforme (Firefox/Edge) |
-| **Chatbot** | TC-CB-04 | *Aguardando (Nicole)* | Reprovado (Indisponível) | Reprovado (Indisponível) | *Aguardando* | Indisponível em Produção |
+| **Chatbot** | TC-CB-04 | *Aguardando (Nicole)* | Aprovado | Reprovado | *Aguardando* | Divergência Cross-Browser |
 
 *Tabela 1 — Matriz consolidada de execução Cross-Browser. Fonte: Dados coletados pelos autores.*
 
@@ -106,8 +106,8 @@ $$TSIS = \left(\frac{Req_{ok}}{Req_{tot}}\right) \times 100 = \left(\frac{40}{40
 
 ### Questão Q1 (Coexistência / Cross-Browser)
 * **Pergunta:** O sistema preserva a funcionalidade e a integridade de layout nos navegadores modernos mais difundidos no mercado (Chrome, Firefox, Edge e Safari)?
-* **Resposta Técnica:** Nos módulos de Infração, Atendimento e Protocolo, o portal obteve conformidade plena nos ensaios executados em Mozilla Firefox e Microsoft Edge, mantendo layout alinhado e sem exceções impeditivas de script. Todavia, no módulo Chatbot (TC-CB-04), constatou-se que o widget de atendimento virtual encontrava-se totalmente indisponível (não renderizado) no ambiente de produção durante as baterias de teste em ambos os navegadores.
-* **Confronto com Hipótese H1:** A hipótese H1 previa potencial divergência visual entre navegadores. A medição empírica revelou um problema de maior severidade: a ausência total do serviço de inteligência artificial/chatbot na interface pública em produção.
+* **Resposta Técnica:** Nos módulos de Infração, Atendimento e Protocolo, o portal obteve conformidade plena nos ensaios executados em Mozilla Firefox e Microsoft Edge, mantendo layout alinhado, campos funcionais e mensagens de validação adequadas (incluindo tratamento de HTTP 422 com alerta amigável no Protocolo). No módulo Chatbot (TC-CB-04), foi detectada uma **divergência real entre navegadores (defeito Cross-Browser)**: enquanto no Mozilla Firefox o assistente virtual operou perfeitamente (com envio de mensagem e resposta da IA da plataforma InBot), no Microsoft Edge o widget falhou ao carregar devido a erro de conexão de script no loader (`net::ERR_CONNECTION_RESET` no endpoint `https://cf.in.bot/api/bot-loader-production.php`).
+* **Confronto com Hipótese H1:** A hipótese H1 previa divergências funcionais e de renderização entre os navegadores. A constatação empírica valida a hipótese H1, evidenciando que integrações de terceiros (serviço de Chatbot) podem apresentar instabilidade ou bloqueio em determinados motores web (Blink no Edge) enquanto operam estavelmente em outros (Gecko no Firefox).
 
 ### Questão Q2 (Coexistência / Responsividade Multi-resolução)
 * **Pergunta:** As páginas e componentes dos quatro módulos adaptam-se de forma consistente às dimensões de tela mobile (360px a 414px), tablet (768px) e desktop (1366px e 1920px)?
@@ -131,25 +131,26 @@ $$TSIS = \left(\frac{Req_{ok}}{Req_{tot}}\right) \times 100 = \left(\frac{40}{40
 
 ### 5.1 Evidências dos Ensaios Cross-Browser (TCBN)
 
-#### Mozilla Firefox
+#### Mozilla Firefox (4 de 4 Aprovados)
 * **Infração:**
   ![Consulta de Infrações no Mozilla Firefox](../assets/evidencias/compatibilidade/CB_INFRACAO_FIREFOX.png)
 * **Atendimento:**
   ![Agendamento de Atendimento no Mozilla Firefox](../assets/evidencias/compatibilidade/CB_ATENDIMENTO_FIREFOX.png)
 * **Protocolo:**
   ![Protocolo no Mozilla Firefox](../assets/evidencias/compatibilidade/CB_PROTOCOLO_FIREFOX.png)
-* **Chatbot (Indisponibilidade constatada em produção):**
-  ![Chatbot Indisponível no Mozilla Firefox](../assets/evidencias/compatibilidade/CB_CHATBOT_FIREFOX.png)
+* **Chatbot (Assistente Virtual Operacional com IA):**
+  ![Chatbot Operacional no Mozilla Firefox](../assets/evidencias/compatibilidade/CB_CHATBOT_FIREFOX.png)
 
-#### Microsoft Edge
+#### Microsoft Edge (3 de 4 Aprovados — Falha no Chatbot)
 * **Infração:**
   ![Consulta de Infrações no Microsoft Edge](../assets/evidencias/compatibilidade/CB_INFRACAO_MICROSOFT_EDGE.png)
 * **Atendimento:**
   ![Agendamento de Atendimento no Microsoft Edge](../assets/evidencias/compatibilidade/CB_ATENDIMENTO_MICROSOFT_EDGE.png)
 * **Protocolo:**
   ![Protocolo no Microsoft Edge](../assets/evidencias/compatibilidade/CB_PROTOCOLO_MICROSOFT_EDGE.png)
-* **Chatbot (Indisponibilidade constatada em produção):**
-  ![Chatbot Indisponível no Microsoft Edge](../assets/evidencias/compatibilidade/CB_CHATBOT_MICROSOFT_EDGE_2.png)
+* **Chatbot (Falha de Carregamento — Erro no Loader InBot):**
+  ![Erro de Conexão do Chatbot no Microsoft Edge](../assets/evidencias/compatibilidade/CB_CHATBOT_MICROSOFT-EDGE.png)
+  ![Aba Rede DevTools com Falha bot-loader no Microsoft Edge](../assets/evidencias/compatibilidade/CB_CHATBOT_MICROSOFT_EDGE_2.png)
 
 #### Google Chrome (Aguardando execução pela Nicole)
 <!-- [Descomentar após inserção dos prints da Nicole] -->
