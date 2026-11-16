@@ -20,9 +20,9 @@ Este relatório formaliza o progresso cronológico e técnico da equipe Kay McNu
 | :--- | :--- | :--- | :--- | :--- |
 | **M0: Setup Inicial e Governança** | Etapa 1 | Concepção e Governança | Definição do grupo, escolha do Portal Detran Digital DF, repositório Git, configuração do MkDocs Material, templates de issues e governança de branches. | **CONCLUÍDO (12/10)** |
 | **M1: Requisitos da Avaliação** | Etapa 2 | **Fase 1 (ISO/IEC 25040)** | Propósito da avaliação, mapeamento de stakeholders, delimitação arquitetural dos 4 módulos (Infração, Atendimento, Protocolo, Chatbot), modelo ISO 25010 e alinhamento aos ODS 9 e 16. | **CONCLUÍDO (18/10)** |
-| **M2: Especificação da Avaliação** | Etapa 3 | **Fase 2 (ISO/IEC 25040)** | Construção das árvores formais GQM para Compatibilidade, Usabilidade e Confiabilidade, formulação de hipóteses, métricas quantitativas e escalas de pontuação. | **CONCLUÍDO (21/10)** |
+| **M2: Especificação da Avaliação** | Etapa 3 | **Fase 2 (ISO/IEC 25040)** | Construção das árvores formais GQM para Compatibilidade, Capacidade de Interação e Confiabilidade, formulação de hipóteses, métricas quantitativas e escalas de pontuação. | **CONCLUÍDO (21/10)** |
 | **M3: Consolidação e Release E1** | Etapa 4 | **Entrega 1 (PC1)** | Fechamento da 1ª versão do artigo científico (Fases 1 e 2), auditoria editorial de rubricas, apresentação e publicação da tag `v1.0.0-pc1`. | **CONCLUÍDO (26/10)** |
-| **M4: Projeto da Avaliação** | Etapa 5 | **Fase 3 (ISO/IEC 25040)** | Elaboração dos planos operacionais e roteiros reproduzíveis de teste para Compatibilidade, Usabilidade e Confiabilidade, definição do ferramental e setup de ambientes. | **CONCLUÍDO / EM VALIDAÇÃO (15/11)** |
+| **M4: Projeto da Avaliação** | Etapa 5 | **Fase 3 (ISO/IEC 25040)** | Elaboração dos planos operacionais e roteiros reproduzíveis de teste para Compatibilidade, Capacidade de Interação e Confiabilidade, definição do ferramental e setup de ambientes. | **CONCLUÍDO / EM VALIDAÇÃO (15/11)** |
 | **M5: Execução, Julgamento e Melhorias** | Etapa Final | **Fase 4 (PC2 / Release Final)** | Execução empírica das coletas em produção, compilação de dados brutos, cálculo das métricas, validação de hipóteses, ação prática de melhoria e versão final do artigo. | **EM ANDAMENTO (16/11 a 22/11)** |
 
 *Fonte: Elaborado pelos autores conforme metodologia da disciplina FGA0315.*
@@ -36,7 +36,7 @@ Este relatório formaliza o progresso cronológico e técnico da equipe Kay McNu
 * **Avanço na Fase 3:** Elaboração do plano detalhado contemplando a matriz de testes *cross-browser* (Chrome, Firefox, Edge, Safari), a verificação responsiva nas 5 viewports críticas (360px a 1920px) e os pontos de verificação de cabeçalhos e payloads HTTP nos fluxos de integração com Gov.br, SEI-GDF e emissão de DUD bancário.
 * **Avanço na Fase 4:** Estruturação dos modelos de dados para tabulação dos índices $TCBN$, $ICR$ e $TSIS$.
 
-### 2.2 Usabilidade (Aprendibilidade, Operabilidade e Proteção contra Erros)
+### 2.2 Capacidade de Interação (Aprendibilidade, Operabilidade e Proteção contra Erros)
 * **Responsáveis:** Natan França e Yan.
 * **Avanço na Fase 3:** Especificação do roteiro de tarefas guiadas nos 4 módulos do portal, definição da matriz de severidade das 10 Heurísticas de Nielsen e planejamento da coleta do formulário *System Usability Scale* (SUS).
 * **Avanço na Fase 4:** Modelagem dos templates de consolidação de dados para cálculo de $TCAPA$, $IEFO$, $TPRE$ e escore global SUS.
@@ -60,8 +60,8 @@ Mantendo a coerência com a metodologia estabelecida na Entrega 1, os custos sã
 | **Nicole Jovita Fernandes** | Analista de Compatibilidade / Rastreabilidade | Rastreabilidade Fase 2 para Fase 3, testes de interoperabilidade HTTP/APIs e consolidação de evidências. | 7,0h | R$ 87,55 | R$ 612,85 |
 | **Davi Ursolino de Oliveira** | Analista de Confiabilidade / Automação | Execução dos ensaios de anomalias/recuperação, suporte ao monitoramento e ação prática de melhoria. | 7,5h | R$ 87,55 | R$ 656,63 |
 | **João Eduardo Pereira Rabelo** | Analista de Confiabilidade / PSM e Governança | Operação do monitor de disponibilidade (M1), métricas de processos PSM, governança de branches e atas. | 7,0h | R$ 87,55 | R$ 612,85 |
-| **Natan França** | Analista de Usabilidade / Avaliação Heurística | Roteiro de tarefas, condução das inspeções de usabilidade e consolidação de violações heurísticas. | 7,0h | R$ 87,55 | R$ 612,85 |
-| **Yan** | Analista de Usabilidade / Métricas de Desempenho | Tabulação dos tempos de tarefa (IEFO), apuração de erros de usuário e processamento do escore SUS. | 7,0h | R$ 87,55 | R$ 612,85 |
+| **Natan França** | Analista de Capacidade de Interação / Avaliação Heurística | Roteiro de tarefas, condução das inspeções de capacidade de interação e consolidação de violações heurísticas. | 7,0h | R$ 87,55 | R$ 612,85 |
+| **Yan** | Analista de Capacidade de Interação / Métricas de Desempenho | Tabulação dos tempos de tarefa (IEFO), apuração de erros de usuário e processamento do escore SUS. | 7,0h | R$ 87,55 | R$ 612,85 |
 | **Total Consolidado** | **Equipe Kay McNulty** | **Planejamento, Execução e Preparação do PC2** | **43,5h** | **R$ 87,55** | **R$ 3.808,43** |
 
 *Fonte: Elaborado pelos autores.*

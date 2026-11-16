@@ -14,4 +14,4 @@ A avaliação da qualidade de software do portal **Detran Digital DF** vincula-s
 
 ### ODS 16: Paz, Justiça e Instituições Eficazes
 * **Meta 16.6:** *"Desenvolver instituições eficazes, responsáveis e transparentes em todos os níveis."*
-* **Justificativa no Projeto:** O Detran-DF é uma autarquia pública prestadora de serviços essenciais. Identificar inconformidades de usabilidade, quebras de processo no módulo de protocolo e falhas de comunicação em sistemas transacionais contribui diretamente para a eficiência administrativa do Estado, aumentando a transparência pública, a tempestividade na prestação de serviços e a confiança do cidadão nas instituições governamentais.
+* **Justificativa no Projeto:** O Detran-DF é uma autarquia pública prestadora de serviços essenciais. Identificar inconformidades de capacidade de interação, quebras de processo no módulo de protocolo e falhas de comunicação em sistemas transacionais contribui diretamente para a eficiência administrativa do Estado, aumentando a transparência pública, a tempestividade na prestação de serviços e a confiança do cidadão nas instituições governamentais.

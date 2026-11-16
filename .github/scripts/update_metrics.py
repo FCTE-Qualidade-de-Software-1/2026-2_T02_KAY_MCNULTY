@@ -74,19 +74,19 @@ TEAM_MEMBERS = [
         "name": "Natan José França",
         "handle": "Natan8643",
         "matricula": "241011537",
-        "dupla": "Dupla 3 (Usabilidade)",
-        "area": "Usabilidade",
-        "papel": "Analista de Usabilidade / Diagrama GQM e Níveis de Julgamento",
-        "responsabilidades": "• Delimitação de escopo e justificativa da característica de Usabilidade / Capacidade de Interação (Issue #14).<br>• Modelagem do objetivo, questões analíticas e hipóteses de Usabilidade nos 4 módulos (Issue #15).<br>• Estabelecimento das réguas de pontuação e critérios de julgamento para proteção contra erros ($TCAPA$, $IEFO$, $TPRE$) (Issue #16).<br>• Elaboração do diagrama visual GQM de Usabilidade e revisão do texto para o artigo (Issue #17).",
+        "dupla": "Dupla 3 (Capacidade de Interação)",
+        "area": "Capacidade de Interação",
+        "papel": "Analista de Capacidade de Interação / Diagrama GQM e Níveis de Julgamento",
+        "responsabilidades": "• Delimitação de escopo e justificativa da característica de Capacidade de Interação / Capacidade de Interação (Issue #14).<br>• Modelagem do objetivo, questões analíticas e hipóteses de Capacidade de Interação nos 4 módulos (Issue #15).<br>• Estabelecimento das réguas de pontuação e critérios de julgamento para proteção contra erros ($TCAPA$, $IEFO$, $TPRE$) (Issue #16).<br>• Elaboração do diagrama visual GQM de Capacidade de Interação e revisão do texto para o artigo (Issue #17).",
     },
     {
         "name": "Yan Santos Rodrigues",
         "handle": "yanrdgs-dev",
         "matricula": "241025480",
-        "dupla": "Dupla 3 (Usabilidade)",
-        "area": "Usabilidade",
-        "papel": "Analista de Usabilidade / Especificação Operacional e Heurísticas",
-        "responsabilidades": "• Justificativa ergonômica da avaliação diante do perfil de letramento digital dos condutores do DF (Issue #14).<br>• Especificação operacional dos procedimentos de inspeção por Heurísticas de Nielsen e questionário $SUS$ (Issue #15).<br>• Definição das métricas quantitativas de usabilidade e procedimentos de coleta (Issue #16).<br>• Redação e validação formal da documentação da Fase 2 de Usabilidade na GitPage (Issue #17).",
+        "dupla": "Dupla 3 (Capacidade de Interação)",
+        "area": "Capacidade de Interação",
+        "papel": "Analista de Capacidade de Interação / Especificação Operacional e Heurísticas",
+        "responsabilidades": "• Justificativa ergonômica da avaliação diante do perfil de letramento digital dos condutores do DF (Issue #14).<br>• Especificação operacional dos procedimentos de inspeção por Heurísticas de Nielsen e questionário $SUS$ (Issue #15).<br>• Definição das métricas quantitativas de usabilidade e procedimentos de coleta (Issue #16).<br>• Redação e validação formal da documentação da Fase 2 de Capacidade de Interação na GitPage (Issue #17).",
     },
 ]
 
@@ -112,10 +112,10 @@ DEFAULT_HOURS_CATALOG = {
     11: 3.0,  # Métricas Confiabilidade (Davi)
     12: 2.0,  # Diagrama Mermaid Confiabilidade (Davi)
     13: 2.0,  # Padronização LaTeX Confiabilidade (Davi)
-    14: 3.0,  # Justificativa Usabilidade (Natan & Yan)
-    15: 3.0,  # GQM e Heurísticas Usabilidade (Natan & Yan)
-    16: 3.0,  # Métricas Usabilidade (Natan & Yan)
-    17: 3.0,  # Redação Usabilidade (Natan & Yan)
+    14: 3.0,  # Justificativa Capacidade de Interação (Natan & Yan)
+    15: 3.0,  # GQM e Heurísticas Capacidade de Interação (Natan & Yan)
+    16: 3.0,  # Métricas Capacidade de Interação (Natan & Yan)
+    17: 3.0,  # Redação Capacidade de Interação (Natan & Yan)
     18: 3.0,  # Estruturação PSM e Governança (Artur & João Eduardo)
 }
 
@@ -570,7 +570,7 @@ def generate_distribuicao_custos_areas(issue_counts: dict) -> str:
 
     lines = [
         f"* **Compatibilidade e Arquitetura (Artur e Nicole):** {fmt_br_number(h_compat, 1)}h dedicadas | {fmt_br_currency(c_compat)} ({fmt_br_number(pct_compat, 2)}% do orçamento total)",
-        f"* **Usabilidade e Interação (Natan e Yan):** {fmt_br_number(h_usab, 1)}h dedicadas | {fmt_br_currency(c_usab)} ({fmt_br_number(pct_usab, 2)}% do orçamento total)",
+        f"* **Capacidade de Interação e Interação (Natan e Yan):** {fmt_br_number(h_usab, 1)}h dedicadas | {fmt_br_currency(c_usab)} ({fmt_br_number(pct_usab, 2)}% do orçamento total)",
         f"* **Confiabilidade e Métricas de Processo (Davi e João Eduardo):** {fmt_br_number(h_conf, 1)}h dedicadas | {fmt_br_currency(c_conf)} ({fmt_br_number(pct_conf, 2)}% do orçamento total)",
         f"* **Total Orçamentário Alocado para a Fase de Planejamento:** {fmt_br_currency(tot_custo)}",
     ]

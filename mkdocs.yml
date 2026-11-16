@@ -60,17 +60,17 @@ nav:
   - Especificação GQM (Fase 2):
       - Visão Geral do GQM: fase2/index.md
       - Compatibilidade: fase2/compatibilidade.md
-      - Usabilidade: fase2/usabilidade.md
+      - Capacidade de Interação: fase2/usabilidade.md
       - Confiabilidade: fase2/confiabilidade.md
   - Projeto da Avaliação (Fase 3):
       - Visão Geral da Fase 3: fase3/index.md
       - Compatibilidade: fase3/compatibilidade.md
-      - Usabilidade: fase3/usabilidade.md
+      - Capacidade de Interação: fase3/usabilidade.md
       - Confiabilidade: fase3/confiabilidade.md
   - Execução e Resultados (Fase 4):
       - Visão Geral da Fase 4: fase4/index.md
       - Compatibilidade: fase4/compatibilidade.md
-      - Usabilidade: fase4/usabilidade.md
+      - Capacidade de Interação: fase4/usabilidade.md
       - Confiabilidade: fase4/confiabilidade.md
       - Ações de Melhoria: fase4/melhorias.md
   - Gestão do Projeto (PSM):

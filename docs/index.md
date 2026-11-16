@@ -24,8 +24,8 @@ A Tabela 1 consolida os membros da equipe avaliadora, suas matrículas acadêmic
 | **Nicole Jovita Fernandes** | `241012347` | `@nicolejovita` | `nicolejovitafernandes@gmail.com` | Analista de Requisitos / Stakeholders, Modelo ISO 25010 e ODS | 9,5h | R$ 87,55 | R$ 831,73 | **24,36%** |
 | **Davi Ursolino de Oliveira** | `241012202` | `@DaviUrsulino` | `daviursulinodeoliveira@gmail.com` | Analista de Confiabilidade / Especificação GQM e Métricas | 6,0h | R$ 87,55 | R$ 525,30 | **15,38%** |
 | **João Eduardo Pereira Rabelo** | `180053299` | `@JoaoEduardoP` | `180053299@aluno.unb.br` | Analista de Confiabilidade / Metodologia e Métricas PSM | 4,0h | R$ 87,55 | R$ 350,20 | **10,26%** |
-| **Natan José França** | `241011537` | `@Natan8643` | `natan.j.franca@gmail.com` | Analista de Usabilidade / Diagrama GQM e Níveis de Julgamento | 4,5h | R$ 87,55 | R$ 393,98 | **11,54%** |
-| **Yan Santos Rodrigues** | `241025480` | `@yanrdgs-dev` | `yansantosrodrigues.dev@gmail.com` | Analista de Usabilidade / Especificação Operacional e Heurísticas | 4,5h | R$ 87,55 | R$ 393,98 | **11,54%** |
+| **Natan José França** | `241011537` | `@Natan8643` | `natan.j.franca@gmail.com` | Analista de Capacidade de Interação / Diagrama GQM e Níveis de Julgamento | 4,5h | R$ 87,55 | R$ 393,98 | **11,54%** |
+| **Yan Santos Rodrigues** | `241025480` | `@yanrdgs-dev` | `yansantosrodrigues.dev@gmail.com` | Analista de Capacidade de Interação / Especificação Operacional e Heurísticas | 4,5h | R$ 87,55 | R$ 393,98 | **11,54%** |
 | **TOTAL CONSOLIDADO** | — | — | — | **Esforço Acumulado — Ponto de Controle 1** | **39,0h** | Média: R$ 87,55/h | **R$ 3.414,45** | **100%** |
 
 *Fonte: Elaborado pelos autores conforme diretrizes da disciplina FGA0315 e modelo PSM/CID.*
@@ -52,7 +52,7 @@ A avaliação concentra-se transversalmente nos **quatro módulos funcionais pri
 A avaliação adota o rigor de normas e modelos consolidados da Engenharia de Software:
 
 * **ISO/IEC 25010 (Product Quality Model):** Recorte analítico focado em três características de alta criticidade para o serviço público estadual:
-    * **Usabilidade (Capacidade de Interação):** Aprendibilidade, operabilidade e proteção contra erros de entrada, avaliadas pelas métricas $TCAPA$, $IEFO$, $TPRE$, inspeção por heurísticas de Nielsen e questionário $SUS$.
+    * **Capacidade de Interação (Capacidade de Interação):** Aprendibilidade, operabilidade e proteção contra erros de entrada, avaliadas pelas métricas $TCAPA$, $IEFO$, $TPRE$, inspeção por heurísticas de Nielsen e questionário $SUS$.
     * **Compatibilidade:** Coexistência e interoperabilidade (web e mobile), avaliadas por taxa de compatibilidade cross-browser ($TCBN$), índice de conformidade responsiva ($ICR$) e sucesso de integrações externas ($TSIS$).
     * **Confiabilidade:** Disponibilidade, ausência de falhas, tolerância e recuperação, medidas por taxa de disponibilidade observada ($TDO$), conclusão sem falhas ($TCFF$), densidade de falhas ($DFF$), operações anômalas ($TTOA$), taxa ($TRTI$) e tempo médio de recuperação ($TMR$).
 * **ISO/IEC 25040 (Processo de Avaliação de Produto):** Condução do trabalho em 5 fases sequenciais (Requisitos, Especificação, Projeto da Avaliação, Execução e Julgamento).
@@ -67,7 +67,7 @@ A avaliação adota o rigor de normas e modelos consolidados da Engenharia de So
 | Seção Documental | Caminho | Descrição do Conteúdo |
 | :--- | :--- | :--- |
 | **Requisitos da Avaliação (Fase 1)** | [`fase1/`](fase1/proposito-stakeholders.md) | Propósito, partes interessadas, mapeamento dos 4 módulos (Infração, Atendimento, Protocolo e Chatbot), modelo ISO 25010, limites de escopo e ODS 9 e 16. |
-| **Especificação GQM (Fase 2)** | [`fase2/`](fase2/index.md) | Árvores GQM completas, fórmulas, procedimentos de coleta e limiares de decisão para Compatibilidade, Usabilidade e Confiabilidade. |
+| **Especificação GQM (Fase 2)** | [`fase2/`](fase2/index.md) | Árvores GQM completas, fórmulas, procedimentos de coleta e limiares de decisão para Compatibilidade, Capacidade de Interação e Confiabilidade. |
 | **Gestão do Projeto (PSM/CID)** | [`gestao/`](gestao/metricas-psm.md) | Indicadores de processo, estrutura de Marcos M0 a M5, alocação de custos, atas e catálogo de horas estimadas das 14 issues fechadas. |
 | **Ponto de Controle 1 (Entrega 1)** | [`entregas/entrega1.md`](entregas/entrega1.md) | Linha do tempo "Onde Estamos", matriz de entregáveis, consolidação de esforço e roteiro detalhado dos 10 slides da apresentação. |
 

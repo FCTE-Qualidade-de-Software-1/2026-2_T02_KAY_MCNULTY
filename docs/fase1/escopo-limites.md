@@ -25,9 +25,9 @@ A avaliação da característica de Compatibilidade abrange transversalmente os 
 
 ---
 
-## 3. Profundidade e Limites de Usabilidade
+## 3. Profundidade e Limites de Capacidade de Interação
 
-A avaliação de Usabilidade abrange transversalmente os módulos de Infração, Atendimento, Protocolo e Chatbot, com foco em **Aprendibilidade**, **Operabilidade** e **Proteção contra Erros de Usuário**, conforme a especificação GQM registrada em [GQM – Característica: Usabilidade](../fase2/usabilidade.md). Cada item da profundidade abaixo indica a métrica que o sustenta: **M1** (TCAPA, Aprendibilidade), **M2** (IEFO, Operabilidade) e **M3** (TPRE, Proteção contra Erros de Usuário). As métricas **M4** (IPH, inspeção heurística de Nielsen, associada à Operabilidade e à Proteção contra Erros de Usuário) e **M5** (SUS, percepção dos participantes, associada à Aprendibilidade e à Operabilidade) complementam essas medidas nos quatro módulos.
+A avaliação de Capacidade de Interação abrange transversalmente os módulos de Infração, Atendimento, Protocolo e Chatbot, com foco em **Aprendibilidade**, **Operabilidade** e **Proteção contra Erros de Usuário**, conforme a especificação GQM registrada em [GQM – Característica: Capacidade de Interação](../fase2/usabilidade.md). Cada item da profundidade abaixo indica a métrica que o sustenta: **M1** (TCAPA, Aprendibilidade), **M2** (IEFO, Operabilidade) e **M3** (TPRE, Proteção contra Erros de Usuário). As métricas **M4** (IPH, inspeção heurística de Nielsen, associada à Operabilidade e à Proteção contra Erros de Usuário) e **M5** (SUS, percepção dos participantes, associada à Aprendibilidade e à Operabilidade) complementam essas medidas nos quatro módulos.
 
 ### 3.1 Profundidade da avaliação nos quatro módulos
 
@@ -42,7 +42,7 @@ A inspeção heurística (M4) será conduzida por avaliadores independentes, que
 
 ### 3.3 Limites do escopo e justificativas
 
-* **Testes laboratoriais em larga escala:** não serão realizados testes presenciais de usabilidade com centenas de participantes, pois exigiriam infraestrutura e prazo incompatíveis com o planejamento acadêmico. Os resultados serão interpretados considerando o tamanho e o perfil da amostra efetivamente utilizada.
+* **Testes laboratoriais em larga escala:** não serão realizados testes presenciais de capacidade de interação com centenas de participantes, pois exigiriam infraestrutura e prazo incompatíveis com o planejamento acadêmico. Os resultados serão interpretados considerando o tamanho e o perfil da amostra efetivamente utilizada.
 * **Auditoria avançada e exaustiva de acessibilidade:** embora a inclusão de pessoas com deficiência seja relevante para serviços públicos, esta etapa não contempla uma auditoria completa de acessibilidade com testes exaustivos de leitores de tela (por exemplo, NVDA e TalkBack), avaliação especializada de contraste e cobertura integral das diretrizes WCAG. Essas atividades ficam reservadas a estudos focados em acessibilidade.
 * **Alteração do portal:** a avaliação é diagnóstica e adota a abordagem caixa-preta (*Black-Box Testing*). Não haverá alteração de código-fonte, refatoração ou aplicação direta de correções no ambiente de produção.
 * **Ações reais em produção:** como a avaliação ocorre no ambiente de produção do Detran-DF, os cenários de erro e as tarefas não devem gerar efeitos reais, como protocolos, agendamentos ou pagamentos efetivos. Os fluxos são interrompidos antes da confirmação final ou, quando isso não for possível, o registro criado é cancelado em seguida.
