@@ -279,7 +279,7 @@ O Ponto de Controle 2 aparece nas duas datas porque o calendário não informa o
 
 ## 4. Recursos e Custos: Alocação Individual e Orçamento (Critério AG-C5)
 
-Em observância ao **Critério AG-C5 (Transparência da Contribuição Individual)** e às diretrizes do modelo PSM/CID, a Tabela 3 consolida o esforço estimado para cada membro da equipe avaliadora no Ponto de Controle 1.
+Em observância ao **Critério AG-C5 (Transparência da Contribuição Individual)** e às diretrizes do modelo PSM/CID, a Tabela 3 consolida o esforço estimado para cada membro da equipe avaliadora no Ponto de Controle 1, e a Tabela 4 consolida o esforço do Ponto de Controle 2, que reúne tudo o que foi feito após o PC1.
 
 O valor-hora de referência é **R$ 87,55/h**, calculado a partir do custo médio anual de R$ 52.533,00 por estudante de universidade federal, conforme [Poder360](https://www.poder360.com.br/poder-economia/alunos-de-universidades-federais-tem-custo-medio-anual-de-r-52-533/), dividido por 600 horas anuais (média de 300 horas por semestre). O resultado de R$ 87,555/h foi truncado para duas casas decimais: $R\$\ 52.533,00 \div 600\text{h} = R\$\ 87,555/\text{h} \rightarrow R\$\ 87,55/\text{h}$.
 
@@ -290,6 +290,14 @@ O valor-hora de referência é **R$ 87,55/h**, calculado a partir do custo médi
 *Fonte: Elaborado pelos autores e atualizado dinamicamente via pipeline de automação conforme modelo PSM/CID e rubrica AG-C5.*
 
 **Fórmulas:** Custo Total (R$) = Horas Realizadas × Valor/Hora (R$ 50,00); % Esforço = Horas do integrante ÷ Horas totais da equipe × 100. Em issues com mais de um responsável, as horas são divididas igualmente entre eles.
+
+### Tabela 4 — Alocação de Recursos, Esforço e Custos Individuais (Ponto de Controle 2)
+
+A tabela abaixo reúne as issues posteriores ao Ponto de Controle 1 (Issue #18 em diante), referentes às Fases 3 e 4 da ISO/IEC 25040. O valor-hora e as fórmulas são os mesmos da Tabela 3, e o percentual de esforço é calculado dentro do Ponto de Controle 2. O status indica quantas issues de cada integrante ainda estão abertas.
+
+--8<-- "alocacao-recursos-custos-pc2.md"
+
+*Fonte: Elaborado pelos autores e atualizado dinamicamente via pipeline de automação conforme modelo PSM/CID e rubrica AG-C5.*
 
 ### 4.1 Distribuição de Custos por Área Técnica da Avaliação
 
