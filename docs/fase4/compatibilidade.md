@@ -123,22 +123,20 @@ Todas as três métricas da característica de Compatibilidade enquadraram-se un
 
 ## 4. Respostas às Questões e Validação de Hipóteses GQM
 
-*(As respostas técnicas formais e o confronto com as hipóteses H1, H2 e H3 serão redigidos no escopo da issue de consolidação e relatório final da Fase 4).*
-
-### Questão Q1 (Coexistência / Cross-Browser)
+### 4.1 Questão Q1 (Coexistência / Cross-Browser)
 * **Pergunta:** O sistema preserva a funcionalidade e a integridade de layout nos navegadores modernos mais difundidos no mercado (Chrome, Firefox, Edge e Safari)?
-* **Resposta Técnica:** `[A ser preenchida após consolidação dos ensaios]`
-* **Confronto com Hipótese H1:** `[A ser confrontada após consolidação]`
+* **Resposta Técnica:** **Parcialmente ($TCBN = 75,00\%$).** Os módulos de Infração, Atendimento e Protocolo apresentaram paridade funcional e visual absoluta nos quatro navegadores testados (Blink no Chrome/Edge, Gecko no Firefox e WebKit no Safari), sem travamentos de script ou divergências de layout. No entanto, o módulo Chatbot apresentou falha nos navegadores baseados no Chromium: no Microsoft Edge o loader da CDN falhou com `net::ERR_CONNECTION_RESET` (impedindo a renderização do widget), e no Google Chrome a imagem do avatar quebrou pelo mesmo erro de conexão. Em contrapartida, no Firefox e no Safari o assistente virtual operou perfeitamente, trocando mensagens com a IA da plataforma InBot.
+* **Confronto com Hipótese H1:** A hipótese H1 (*Pelo menos 95% dos módulos avaliados operam de forma equivalente nos quatro navegadores em escopo*) foi **refutada** no nível Excelente (que exigia $\ge 95\%$), sendo confirmada no nível **Satisfatório** ($75\%$). A constatação empírica evidencia que dependências de scripts e CDNs de terceiros são o principal ponto de quebra de coexistência entre navegadores.
 
-### Questão Q2 (Coexistência / Responsividade Multi-resolução)
+### 4.2 Questão Q2 (Coexistência / Responsividade Multi-resolução)
 * **Pergunta:** As páginas e componentes dos quatro módulos adaptam-se de forma consistente às dimensões de tela mobile (360px a 414px), tablet (768px) e desktop (1366px e 1920px)?
-* **Resposta Técnica:** `[A ser preenchida após consolidação dos ensaios]`
-* **Confronto com Hipótese H2:** `[A ser confrontada após consolidação]`
+* **Resposta Técnica:** **Parcialmente ($ICR = 70,00\%$).** O design responsivo das páginas centrais comporta-se adequadamente: os cartões de serviço empilham verticalmente no mobile, o menu colapsa corretamente para hambúrguer e não há rolagem horizontal (*horizontal overflow*) nas 5 viewports. Contudo, foi detectado um **defeito crítico de ergonomia visual**: o widget flutuante do assistente virtual (avatar do Chatbot) possui posicionamento fixo (`fixed position`) descalibrado, sobrepondo diretamente os botões "Consultar" e "Voltar" no módulo Infração em 360px, 414px, 768px e 1366px, além de cobrir campos de agendamento em 360px e o botão "Acessar" de protocolos em 360px, inviabilizando cliques em telas compactas.
+* **Confronto com Hipótese H2:** A hipótese H2 (*Pelo menos 95% dos 20 pontos de inspeção de viewport são classificados como conformes*) foi **refutada** no nível Excelente, atingindo o patamar **Satisfatório** ($70\%$). A avaliação empírica comprovou a predição teórica da equipe de que elementos flutuantes sobrepostos sem media queries específicas constituem a principal barreira de acessibilidade móvel.
 
-### Questão Q3 (Interoperabilidade / Comunicação com Serviços Externos)
+### 4.3 Questão Q3 (Interoperabilidade / Comunicação com Serviços Externos)
 * **Pergunta:** Os fluxos de comunicação e troca de dados dos quatro módulos com serviços externos ocorrem de maneira íntegra e padronizada (códigos de status HTTP adequados)?
-* **Resposta Técnica:** `[A ser preenchida após consolidação dos ensaios]`
-* **Confronto com Hipótese H3:** `[A ser confrontada após consolidação]`
+* **Resposta Técnica:** **Sim, em nível satisfatório ($TSIS = 83,33\%$).** O monitoramento passivo de rede atestou alta estabilidade nos serviços centrais de governo: a integração com o barramento Gov.br (Selos de confiabilidade), consultas veiculares, carregamento de habilitação e autenticações hCaptcha responderam com 100% de sucesso e códigos `HTTP 200 OK`. As deduções pontuais derivaram de: (1) bloqueio de conexão na CDN do Chatbot (`net::ERR_CONNECTION_RESET`), e (2) retorno de código `HTTP 422 (Unprocessable Content)` na consulta processual com dado sintético inexistente no Protocolo, que embora represente um código de erro de cliente, foi absorvido e tratado pela interface com modal amigável ao cidadão.
+* **Confronto com Hipótese H3:** A hipótese H3 (*Pelo menos 98% das requisições monitoradas retornam status HTTP 2xx ou 3xx válido*) foi **refutada** para o nível Excelente e confirmada no nível **Satisfatório** ($83,33\%$), comprovando a robustez dos barramentos estatais e a necessidade de contingência para microsserviços terceirizados.
 
 ---
 
