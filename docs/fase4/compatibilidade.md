@@ -68,43 +68,56 @@ Amostragem de requisições de rede capturadas via DevTools Network (Fetch/XHR) 
 
 ## 2. Medidas Básicas e Cálculo das Métricas
 
-*(Esta seção destina-se à consolidação formal dos cálculos matemáticos das métricas TCBN, ICR e TSIS, a ser realizada na issue de consolidação e análise da Fase 4 após o fechamento da coleta de dados).*
+Os cálculos a seguir aplicam rigorosamente as fórmulas matemáticas padronizadas na [Fase 2](../fase2/compatibilidade.md) e detalhadas no Plano de Avaliação da [Fase 3](../fase3/compatibilidade.md), alimentadas pelos registros empíricos brutos coletados em ambiente de produção do Portal Detran Digital DF.
 
 ### 2.1 Taxa de Compatibilidade Entre Navegadores (TCBN)
-* Medida Básica $N_{ap}$ (Cenários aprovados em todos os 4 navegadores): `[Aguardando consolidação]`
-* Medida Básica $N_{tot}$ (Total de cenários planejados): `4`
 
-$$TCBN = \left(\frac{N_{ap}}{N_{tot}}\right) \times 100$$
+Conforme a metodologia da Fase 3, um módulo avaliado só é considerado aprovado ($N_{ap} = 1$) se obtiver conformidade estrita e funcional nos quatro navegadores em escopo (Google Chrome, Mozilla Firefox, Microsoft Edge e Apple Safari).
+
+* **Medida Básica $N_{ap}$ (Cenários aprovados em todos os 4 navegadores):** `3` (Infração, Atendimento e Protocolo obtiveram sucesso pleno em todos os navegadores; o Chatbot reprovou no Chrome e Edge).
+* **Medida Básica $N_{tot}$ (Total de cenários/módulos avaliados):** `4`
+
+$$TCBN = \left(\frac{N_{ap}}{N_{tot}}\right) \times 100 = \left(\frac{3}{4}\right) \times 100 = 75,00\%$$
 
 ---
 
 ### 2.2 Índice de Conformidade Responsiva (ICR)
-* Medida Básica $T_{conf}$ (Pontos de inspeção conformes): `[Aguardando consolidação]`
-* Medida Básica $T_{tot}$ (Total de pontos de inspeção): `20`
 
-$$ICR = \left(\frac{T_{conf}}{T_{tot}}\right) \times 100$$
+O índice consolida a inspeção visual e ergonômica sobre as cinco viewports padronizadas nos quatro módulos, totalizando 20 pontos de verificação.
+
+* **Medida Básica $T_{conf}$ (Pontos de inspeção conformes):** `14` (Infração: 1/5; Atendimento: 4/5; Protocolo: 4/5; Chatbot: 5/5).
+* **Medida Básica $T_{tot}$ (Total de pontos de inspeção):** `20`
+
+$$ICR = \left(\frac{T_{conf}}{T_{tot}}\right) \times 100 = \left(\frac{14}{20}\right) \times 100 = 70,00\%$$
 
 ---
 
 ### 2.3 Taxa de Sucesso de Interoperabilidade de Serviços (TSIS)
-* Medida Básica $Req_{ok}$ (Requisições com status HTTP 2xx/3xx): `[Aguardando consolidação]`
-* Medida Básica $Req_{tot}$ (Total de requisições de rede monitoradas no escopo): `[Aguardando consolidação]`
 
-$$TSIS = \left(\frac{Req_{ok}}{Req_{tot}}\right) \times 100$$
+A taxa quantifica a integridade das chamadas de rede às APIs e barramentos externos (Gov.br, SEFAZ/Bancos, hCaptcha, SEI-GDF e motor de IA InBot), capturadas no arquivo HAR e na aba Network do DevTools.
+
+* **Medida Básica $Req_{ok}$ (Requisições com status HTTP 2xx/3xx):** `10`
+* **Medida Básica $Req_{tot}$ (Total de requisições de serviço monitoradas no escopo):** `12`
+* **Requisições com Falha ou Erro 4xx ($Req_{falha}$):** `2` (1 bloqueio de conexão na CDN do Chatbot no Edge e 1 retorno HTTP 422 na busca de requerimento do Protocolo).
+
+$$TSIS = \left(\frac{Req_{ok}}{Req_{tot}}\right) \times 100 = \left(\frac{10}{12}\right) \times 100 = 83,33\%$$
 
 ---
 
 ## 3. Aplicação dos Níveis de Pontuação e Julgamento
 
-*(Esta seção destina-se ao enquadramento dos índices apurados nas escalas ordinais de qualidade da Fase 2, a ser realizada na issue subsequente de consolidação da Fase 4).*
+A tabela a seguir confronta diretamente os índices quantitativos apurados nesta Fase 4 com as réguas ordinais de pontuação formalizadas na Fase 2:
 
-| Métrica Avaliada | Valor Apurado | Nível de Julgamento Obtido | Situação de Conformidade |
-| :--- | :---: | :---: | :---: |
-| **M1 – TCBN (Cross-Browser)** | `[Pendente]` | `[Pendente]` | Aguardando cálculo |
-| **M2 – ICR (Responsividade)** | `[Pendente]` | `[Pendente]` | Aguardando cálculo |
-| **M3 – TSIS (Interoperabilidade)** | `[Pendente]` | `[Pendente]` | Aguardando cálculo |
+| Métrica Avaliada | Valor Apurado | Faixa de Enquadramento | Nível de Julgamento Obtido | Situação de Conformidade |
+| :--- | :---: | :---: | :---: | :---: |
+| **M1 – TCBN (Cross-Browser)** | **75,00%** | 70% a 84% | **Satisfatório** | Em conformidade básica (falha concentrada no Chatbot) |
+| **M2 – ICR (Responsividade)** | **70,00%** | 70% a 79% | **Satisfatório** | Em conformidade básica (sobreposição do Chatbot em telas menores) |
+| **M3 – TSIS (Interoperabilidade)** | **83,33%** | 80% a 89% | **Satisfatório** | Em conformidade básica (barramentos estáveis, falha de CDN) |
 
-*Tabela 4 — Julgamento das métricas de Compatibilidade. Fonte: Elaborado pelos autores.*
+*Tabela 4 — Julgamento consolidado das métricas de Compatibilidade. Fonte: Elaborado pelos autores com base nas réguas da Fase 2.*
+
+### 3.1 Síntese do Enquadramento
+Todas as três métricas da característica de Compatibilidade enquadraram-se uniformemente no nível **Satisfatório**. Este resultado reflete um sistema governamental cujos serviços essenciais e formulários centrais (Infração, Agendamento e Protocolo) operam de forma funcional e integrada, mas que apresenta vulnerabilidades visuais e de infraestrutura nos componentes periféricos e widgets de terceiros (Chatbot flutuante).
 
 ---
 
