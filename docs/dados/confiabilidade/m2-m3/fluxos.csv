@@ -6,3 +6,5 @@ PRO-01,2,2026-11-17 17:16,ok,,nenhuma,M2_PRO-01_e2_20261117_1716_1.png;M2_PRO-01
 CHA-01,1,2026-11-17 17:17,ok,,nenhuma,M2_CHA-01_e1_20261117_1717_1.png;M2_CHA-01_e1_20261117_1717_2.png;M2_CHA-01_e1_20261117_1717_3.png
 INF-01,2,2026-11-17 17:24,falha,"Consulta de debitos do veiculo: HTTP 503 no endpoint /debitos (API do Detran), mesma causa da execucao 1; spinner sem resultado",portal,M2_INF-01_e2_20261117_1723_1.png;M2_INF-01_e2_20261117_1724_2.png
 CHA-01,2,2026-11-17 20:47,ok,"conversa concluida; imagens das respostas do chat nao carregaram (requisicoes de imagem com falha)",chatbot,M2_CHA-01_e2_20261117_2047_1.png;M2_CHA-01_e2_20261117_2047_2.png;M2_CHA-01_e2_20261117_2048_3.png
+ATE-01,2,2026-11-17 20:49,ok,,nenhuma,M2_ATE-01_e2_20261117_2049_1.png;M2_ATE-01_e2_20261117_2049_2.png
+INF-01,3,2026-11-17 20:50,ok,,nenhuma,M2_INF-01_e3_20261117_2050_1.png;M2_INF-01_e3_20261117_2050_2.png
