@@ -2,3 +2,4 @@ fluxo,execucao,data_hora,resultado,causa_da_falha,origem_falha,evidencia
 PRO-01,1,2026-11-16 20:00,ok,,nenhuma,M2_PRO-01_e1_20261116_2000.mp4
 INF-01,1,2026-11-17 17:04,falha,"Consulta de debitos do veiculo: HTTP 503 no endpoint /debitos (API do Detran); nova tentativa travou por mais de 20 s e terminou em 504; sem resultado na tela",portal,M2_INF-01_e1_20261117_1703_1.png;M2_INF-01_e1_20261117_1704_2.png;M2_INF-01_e1_20261117_1704_3.png;M2_INF-01_e1_20261117_1708_4.png;M2_INF-01_e1_20261117_1710_5.png
 ATE-01,1,2026-11-17 17:14,ok,,nenhuma,M2_ATE-01_e1_20261117_1714_1.png;M2_ATE-01_e1_20261117_1715_2.png;M2_ATE-01_e1_20261117_1715_3.png
+PRO-01,2,2026-11-17 17:16,ok,,nenhuma,M2_PRO-01_e2_20261117_1716_1.png;M2_PRO-01_e2_20261117_1716_2.png;M2_PRO-01_e2_20261117_1716_3.png
