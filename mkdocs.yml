@@ -66,6 +66,7 @@ nav:
       - Visão Geral da Fase 3: fase3/index.md
       - Compatibilidade: fase3/compatibilidade.md
       - Capacidade de Interação: fase3/usabilidade.md
+      - Piloto de Capacidade de Interação: fase3/piloto-usabilidade.md
       - Confiabilidade: fase3/confiabilidade.md
   - Execução e Resultados (Fase 4):
       - Visão Geral da Fase 4: fase4/index.md
