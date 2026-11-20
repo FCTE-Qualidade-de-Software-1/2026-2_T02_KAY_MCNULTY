@@ -7,32 +7,41 @@ Rascunho de apoio ao arquivo `sus-respostas.csv`. Base: métrica M5 de `docs/fas
 - **Escopo:** o questionário se refere ao **Portal Detran Digital DF como um todo**, considerando as tarefas que o participante executou na sessão. A justificativa está na Seção 4.5 de `roteiro-moderador.md`.
 - **Quando aplicar:** individualmente, **logo após a última tarefa e antes de qualquer discussão** sobre o resultado.
 - **Quem preenche:** o próprio participante, sem interferência do moderador. O moderador só esclarece o significado de uma palavra, se perguntado, sem explicar como responder.
+- **Formulário em papel**, para não coletar e-mail nem IP. As respostas são transcritas para `sus-respostas.csv` pelo observador.
 - **Registro:** além das 10 respostas, anote o código do participante, o dispositivo, o escopo e as tarefas executadas.
 
 ## 2. Instrução ao participante
 
-> Para cada afirmação abaixo, marque o quanto você concorda, **pensando no Portal Detran Digital DF, considerando as tarefas que acabou de fazer**. Responda com a sua primeira impressão, sem pensar muito. Não existem respostas certas ou erradas. Se uma afirmação não parecer se aplicar, marque 3.
+> Para cada afirmação abaixo, marque o quanto você concorda, **pensando no Portal Detran Digital DF, considerando as tarefas que acabou de fazer**. **Não considere o login do gov.br**: responda só sobre o portal do Detran-DF. Responda com a sua primeira impressão, sem pensar muito. Não existem respostas certas ou erradas. Se uma afirmação não parecer se aplicar, marque 3.
 
 Escala: **1** = discordo totalmente · **2** · **3** · **4** · **5** = concordo totalmente.
 
 ## 3. Os 10 itens
 
-Versão em português do System Usability Scale (Brooke, 1996), com os 10 itens originais, na tradução e adaptação transcultural para o português do Brasil (Martins et al., 2015).
+Versão em português do Brasil do System Usability Scale (BROOKE, 1996), na tradução e adaptação transcultural de Lourenço, Carmona e Lopes (2022). Os itens abaixo foram copiados da Tabela 1 do artigo (coluna "Consensus version in Portuguese").
 
 | Item | Afirmação | Polaridade |
 |:---:|---|:---:|
-| 1 | Eu acho que gostaria de usar este sistema com frequência. | Positiva |
-| 2 | Eu achei o sistema desnecessariamente complexo. | Negativa |
-| 3 | Eu achei o sistema fácil de usar. | Positiva |
-| 4 | Eu acho que precisaria de ajuda de uma pessoa com conhecimentos técnicos para usar o sistema. | Negativa |
-| 5 | Eu achei que as várias funções do sistema estão muito bem integradas. | Positiva |
-| 6 | Eu achei que o sistema apresenta muita inconsistência. | Negativa |
-| 7 | Eu imagino que as pessoas aprenderão como usar esse sistema rapidamente. | Positiva |
-| 8 | Eu achei o sistema atrapalhado de usar. | Negativa |
-| 9 | Eu me senti confiante ao usar o sistema. | Positiva |
-| 10 | Eu precisei aprender várias coisas novas antes de conseguir usar o sistema. | Negativa |
+| 1 | Eu acho que gostaria de usar esse sistema frequentemente. | Positiva |
+| 2 | Eu achei esse sistema desnecessariamente complexo. | Negativa |
+| 3 | Eu achei esse sistema fácil de usar. | Positiva |
+| 4 | Eu achei que precisaria de ajuda de uma pessoa técnica para ser capaz de usar esse sistema. | Negativa |
+| 5 | Eu achei que as várias funções desse sistema foram bem integradas. | Positiva |
+| 6 | Eu acho que o sistema apresenta muita inconsistência. | Negativa |
+| 7 | Eu imagino que a maioria das pessoas pode aprender a usar esse sistema rapidamente. | Positiva |
+| 8 | Eu achei esse sistema muito pesado para usar. | Negativa |
+| 9 | Eu me senti muito seguro usando o sistema. | Positiva |
+| 10 | Eu precisei aprender muitas coisas antes que pudesse utilizar esse sistema. | Negativa |
 
-Itens ímpares são positivos e itens pares são negativos. Antes de usar com os participantes, a redação final deve ser conferida contra a publicação de Martins et al. (2015), e qualquer ajuste de redação deve ser registrado.
+Itens ímpares são positivos e itens pares são negativos.
+
+**Pendências de conferência (antes de imprimir o formulário):**
+
+1. **Item 7.** O texto dos Resultados do artigo traz "...pode aprender a usar esse sistema **muito** rapidamente", e a Tabela 1 traz "...rapidamente", sem "muito". Conferir no PDF publicado qual é a redação final e ajustar a tabela. Até lá, a tabela acima segue a Tabela 1.
+2. **Rótulo "pré-final".** O artigo intitula a Tabela 1 como versão "pre-final" e a usa no teste com 100 estudantes, sem sugestões de mudança; a conclusão adota o título "Escala de Usabilidade de Sistema — versão brasileira". Conferir se o PDF traz uma versão final diferente.
+3. A transcrição acima vem de leitura automatizada do artigo e **deve ser conferida item a item por quem tem o PDF em mãos**. Qualquer ajuste de redação deve ser registrado aqui.
+
+O artigo não traz os rótulos em português dos extremos da escala. A equipe usa "discordo totalmente" (1) e "concordo totalmente" (5), como na Fase 2.
 
 ## 4. Cálculo da pontuação
 
@@ -52,13 +61,13 @@ O resultado **não é um percentual**. A literatura cita 68 como média de refer
 
 ### Fórmula para planilha
 
-Com `r01` a `r10` nas colunas F a O do arquivo `sus-respostas.csv` (linha 2 como exemplo), a coluna `pontuacao_sus` (P):
+Com `r01` a `r10` nas colunas F a O do arquivo `sus-respostas.csv` (linha 2 como exemplo) e a pontuação na coluna `pontuacao_sus` (P). A fórmula só calcula quando as 10 respostas estão preenchidas e entre 1 e 5; caso contrário, devolve vazio:
 
 ```
-=2,5*((F2-1)+(5-G2)+(H2-1)+(5-I2)+(J2-1)+(5-K2)+(L2-1)+(5-M2)+(N2-1)+(5-O2))
+=SE(E(CONT.NÚM(F2:O2)=10;MIN(F2:O2)>=1;MAX(F2:O2)<=5);2,5*((F2-1)+(5-G2)+(H2-1)+(5-I2)+(J2-1)+(5-K2)+(L2-1)+(5-M2)+(N2-1)+(5-O2));"")
 ```
 
-Em planilha configurada em inglês, use ponto decimal: `=2.5*(...)`. A coluna deve ser calculada somente se as 10 respostas estiverem preenchidas.
+Em planilha configurada em inglês, troque `SE` por `IF`, `CONT.NÚM` por `COUNT`, `;` por `,` e `2,5` por `2.5`. Opcionalmente, aplique validação de dados (número inteiro de 1 a 5) às colunas `r01` a `r10`.
 
 ### Exemplo conferido
 
@@ -92,4 +101,4 @@ Valores-limite para teste da planilha: todas as respostas "melhores" (ímpares 5
 ## Referências
 
 - BROOKE, J. SUS: a "quick and dirty" usability scale. In: JORDAN, P. W. et al. (ed.). *Usability Evaluation in Industry*. London: Taylor & Francis, 1996. p. 189-194.
-- MARTINS, A. I. et al. Brazilian Portuguese translation and cross-cultural adaptation of the System Usability Scale (SUS). *Anais do CIAIQ*, 2015.
+- LOURENÇO, D. F.; CARMONA, E. V.; LOPES, M. H. B. M. Translation and cross-cultural adaptation of the System Usability Scale to Brazilian Portuguese. *Aquichan*, v. 22, n. 2, e2228, 2022. DOI: 10.5294/aqui.2022.22.2.8.
