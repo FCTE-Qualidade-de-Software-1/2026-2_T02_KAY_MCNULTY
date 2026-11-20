@@ -24,7 +24,7 @@ Os resultados empíricos, análises diagnósticas e intervenções práticas org
 | Dimensão da Avaliação | Subcaracterísticas e Escopo | Responsáveis Técnicos | Página de Resultados |
 | :--- | :--- | :--- | :---: |
 | **Compatibilidade** | Resultados empíricos de Coexistência (Cross-Browser e Responsividade) e Interoperabilidade | Artur Fernandes Galdino e Nicole Jovita Fernandes | [Acessar Resultados](../fase4/compatibilidade.md) |
-| **Usabilidade** | Resultados da Inspeção Heurística, Desempenho Operacional e Escore SUS | Natan França e Yan | [Acessar Resultados](../fase4/usabilidade.md) |
+| **Capacidade de Interação** | Resultados da Inspeção Heurística, Desempenho Operacional e Escore SUS | Natan França e Yan | [Acessar Resultados](../fase4/usabilidade.md) |
 | **Confiabilidade** | Resultados da Janela de Disponibilidade, Falhas em Fluxos e Tolerância a Anomalias | Davi Ursolino de Oliveira e João Eduardo Pereira Rabelo | [Acessar Resultados](../fase4/confiabilidade.md) |
 | **Ações de Melhoria** | Especificação, implementação e verificação da ação técnica de melhoria obrigatória | Toda a Equipe Kay McNulty | [Acessar Ações de Melhoria](../fase4/melhorias.md) |
 

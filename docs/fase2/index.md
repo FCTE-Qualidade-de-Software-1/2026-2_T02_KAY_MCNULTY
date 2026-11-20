@@ -13,5 +13,5 @@ A Fase 2 do processo de avaliação da SQuaRE (ISO/IEC 25040) tem como objetivo 
 ## 2. Divisão por Características de Qualidade
 
 * **[Compatibilidade](compatibilidade.md):** Avaliação de Coexistência e Interoperabilidade nos 4 módulos (Responsáveis: Artur Galdino e Nicole Jovita).
-* **[Usabilidade](usabilidade.md):** Avaliação de Aprendibilidade, Operabilidade e Proteção contra Erros nos 4 módulos (Responsáveis: Natan França e Yan).
+* **[Capacidade de Interação](usabilidade.md):** Avaliação de Aprendibilidade, Operabilidade e Proteção contra Erros nos 4 módulos (Responsáveis: Natan França e Yan).
 * **[Confiabilidade](confiabilidade.md):** Avaliação de Tolerância a Falhas e Disponibilidade nos 4 módulos (Responsáveis: João e Davi).

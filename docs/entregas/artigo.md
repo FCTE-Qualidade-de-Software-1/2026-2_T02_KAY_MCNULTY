@@ -11,7 +11,7 @@
 
 ## 1. Resumo
 
-O artigo apresenta a avaliação de qualidade do **Portal Detran Digital DF** em produção (caixa-preta), nos módulos de **Infração, Atendimento, Protocolo e Chatbot**, sob as características **Usabilidade, Confiabilidade e Compatibilidade** da ISO/IEC 25010:2023. A versão 1 cobre as Fases 1 (requisitos) e 2 (especificação via GQM) da ISO/IEC 25040, alinhadas aos **ODS 9 (Meta 9.c)** e **16 (Meta 16.6)**.
+O artigo apresenta a avaliação de qualidade do **Portal Detran Digital DF** em produção (caixa-preta), nos módulos de **Infração, Atendimento, Protocolo e Chatbot**, sob as características **Capacidade de Interação, Confiabilidade e Compatibilidade** da ISO/IEC 25010:2023. A versão 1 cobre as Fases 1 (requisitos) e 2 (especificação via GQM) da ISO/IEC 25040, alinhadas aos **ODS 9 (Meta 9.c)** e **16 (Meta 16.6)**.
 
 ---
 
@@ -19,7 +19,7 @@ O artigo apresenta a avaliação de qualidade do **Portal Detran Digital DF** em
 
 | Característica | Subcaracterísticas | Métricas |
 | :--- | :--- | :--- |
-| **Usabilidade** | Aprendibilidade, Operabilidade, Proteção contra Erros | $TCAPA$, $IEFO$, $TPRE$ |
+| **Capacidade de Interação** | Aprendibilidade, Operabilidade, Proteção contra Erros | $TCAPA$, $IEFO$, $TPRE$ |
 | **Compatibilidade** | Coexistência, Interoperabilidade | $TCBN$, $ICR$, $TSIS$ |
 | **Confiabilidade** | Disponibilidade, Ausência de Falhas, Tolerância, Recuperabilidade | $TDO$, $TCFF$, $DFF$, $TTOA$, $TRTI$, $TMR$ |
 
