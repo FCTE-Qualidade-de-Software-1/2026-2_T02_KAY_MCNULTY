@@ -1,0 +1,76 @@
+timestamp_utc,timestamp_brasilia,alvo_id,modulo,url,http_status,tempo_ms,elemento_ok,ok,erro
+2026-11-15T23:42:30Z,2026-11-15 20:42:30,A01,Portal (pagina inicial),https://portal.detran.df.gov.br/,,21794,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-15T23:42:30Z,2026-11-15 20:42:30,A02,Chatbot (script do widget),https://bot-server.s3.amazonaws.com/api/inbot.gz.js?bot_id=1010&bot_token=45lyi7gjii&bot_server_type=production,200,258,1,1,
+2026-11-15T23:42:30Z,2026-11-15 20:42:30,A04,Login (autenticacao),https://portal.detran.df.gov.br/#/login,200,1817,0,0,elemento esperado ausente
+2026-11-15T23:42:30Z,2026-11-15 20:42:30,A05,Atendimento (Balcao Virtual),https://balcaovirtual.detran.df.gov.br/,,22083,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-15T23:42:30Z,2026-11-15 20:42:30,C01,Controle (fora do portal),https://example.com/,200,20,1,1,
+2026-11-16T03:11:29Z,2026-11-16 00:11:29,A01,Portal (pagina inicial),https://portal.detran.df.gov.br/,,21178,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-16T03:11:29Z,2026-11-16 00:11:29,A02,Chatbot (script do widget),https://bot-server.s3.amazonaws.com/api/inbot.gz.js?bot_id=1010&bot_token=45lyi7gjii&bot_server_type=production,200,67,1,1,
+2026-11-16T03:11:29Z,2026-11-16 00:11:29,A04,Login (autenticacao),https://portal.detran.df.gov.br/#/login,200,1194,0,0,elemento esperado ausente
+2026-11-16T03:11:29Z,2026-11-16 00:11:29,A05,Atendimento (Balcao Virtual),https://balcaovirtual.detran.df.gov.br/,,21004,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-16T03:11:29Z,2026-11-16 00:11:29,C01,Controle (fora do portal),https://example.com/,200,30,1,1,
+2026-11-16T11:31:57Z,2026-11-16 08:31:57,A01,Portal (pagina inicial),https://portal.detran.df.gov.br/,,21237,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-16T11:31:57Z,2026-11-16 08:31:57,A02,Chatbot (script do widget),https://bot-server.s3.amazonaws.com/api/inbot.gz.js?bot_id=1010&bot_token=45lyi7gjii&bot_server_type=production,200,280,1,1,
+2026-11-16T11:31:57Z,2026-11-16 08:31:57,A04,Login (autenticacao),https://portal.detran.df.gov.br/#/login,,21231,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-16T11:31:57Z,2026-11-16 08:31:57,A05,Atendimento (Balcao Virtual),https://balcaovirtual.detran.df.gov.br/,200,1783,0,0,elemento esperado ausente
+2026-11-16T11:31:57Z,2026-11-16 08:31:57,C01,Controle (fora do portal),https://example.com/,200,31,1,1,
+2026-11-16T21:16:02Z,2026-11-16 18:16:02,A01,Portal (pagina inicial),https://portal.detran.df.gov.br/,200,1878,0,0,elemento esperado ausente
+2026-11-16T21:16:02Z,2026-11-16 18:16:02,A02,Chatbot (script do widget),https://bot-server.s3.amazonaws.com/api/inbot.gz.js?bot_id=1010&bot_token=45lyi7gjii&bot_server_type=production,200,217,1,1,
+2026-11-16T21:16:02Z,2026-11-16 18:16:02,A04,Login (autenticacao),https://portal.detran.df.gov.br/#/login,200,1395,0,0,elemento esperado ausente
+2026-11-16T21:16:02Z,2026-11-16 18:16:02,A05,Atendimento (Balcao Virtual),https://balcaovirtual.detran.df.gov.br/,200,1251,0,0,elemento esperado ausente
+2026-11-16T21:16:02Z,2026-11-16 18:16:02,C01,Controle (fora do portal),https://example.com/,200,52,1,1,
+2026-11-17T04:06:44Z,2026-11-17 01:06:44,A01,Portal (pagina inicial),https://portal.detran.df.gov.br/,,21626,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-17T04:06:44Z,2026-11-17 01:06:44,A02,Chatbot (script do widget),https://bot-server.s3.amazonaws.com/api/inbot.gz.js?bot_id=1010&bot_token=45lyi7gjii&bot_server_type=production,200,180,1,1,
+2026-11-17T04:06:44Z,2026-11-17 01:06:44,A04,Login (autenticacao),https://portal.detran.df.gov.br/#/login,200,1351,0,0,elemento esperado ausente
+2026-11-17T04:06:44Z,2026-11-17 01:06:44,A05,Atendimento (Balcao Virtual),https://balcaovirtual.detran.df.gov.br/,,20714,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-17T04:06:44Z,2026-11-17 01:06:44,C01,Controle (fora do portal),https://example.com/,200,76,1,1,
+2026-11-17T13:29:20Z,2026-11-17 10:29:20,A01,Portal (pagina inicial),https://portal.detran.df.gov.br/,200,1375,0,0,elemento esperado ausente
+2026-11-17T13:29:20Z,2026-11-17 10:29:20,A02,Chatbot (script do widget),https://bot-server.s3.amazonaws.com/api/inbot.gz.js?bot_id=1010&bot_token=45lyi7gjii&bot_server_type=production,200,142,1,1,
+2026-11-17T13:29:20Z,2026-11-17 10:29:20,A04,Login (autenticacao),https://portal.detran.df.gov.br/#/login,200,901,0,0,elemento esperado ausente
+2026-11-17T13:29:20Z,2026-11-17 10:29:20,A05,Atendimento (Balcao Virtual),https://balcaovirtual.detran.df.gov.br/,,21447,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-17T13:29:20Z,2026-11-17 10:29:20,C01,Controle (fora do portal),https://example.com/,200,34,1,1,
+2026-11-17T21:52:56Z,2026-11-17 18:52:56,A01,Portal (pagina inicial),https://portal.detran.df.gov.br/,200,1584,0,0,elemento esperado ausente
+2026-11-17T21:52:56Z,2026-11-17 18:52:56,A02,Chatbot (script do widget),https://bot-server.s3.amazonaws.com/api/inbot.gz.js?bot_id=1010&bot_token=45lyi7gjii&bot_server_type=production,200,77,1,1,
+2026-11-17T21:52:56Z,2026-11-17 18:52:56,A04,Login (autenticacao),https://portal.detran.df.gov.br/#/login,,21018,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-17T21:52:56Z,2026-11-17 18:52:56,A05,Atendimento (Balcao Virtual),https://balcaovirtual.detran.df.gov.br/,,21207,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-17T21:52:56Z,2026-11-17 18:52:56,C01,Controle (fora do portal),https://example.com/,200,44,1,1,
+2026-11-18T03:27:56Z,2026-11-18 00:27:56,A01,Portal (pagina inicial),https://portal.detran.df.gov.br/,200,1426,0,0,elemento esperado ausente
+2026-11-18T03:27:56Z,2026-11-18 00:27:56,A02,Chatbot (script do widget),https://bot-server.s3.amazonaws.com/api/inbot.gz.js?bot_id=1010&bot_token=45lyi7gjii&bot_server_type=production,200,163,1,1,
+2026-11-18T03:27:56Z,2026-11-18 00:27:56,A04,Login (autenticacao),https://portal.detran.df.gov.br/#/login,,21241,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-18T03:27:56Z,2026-11-18 00:27:56,A05,Atendimento (Balcao Virtual),https://balcaovirtual.detran.df.gov.br/,,21232,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-18T03:27:56Z,2026-11-18 00:27:56,C01,Controle (fora do portal),https://example.com/,200,60,1,1,
+2026-11-18T12:10:15Z,2026-11-18 09:10:15,A01,Portal (pagina inicial),https://portal.detran.df.gov.br/,,20686,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-18T12:10:15Z,2026-11-18 09:10:15,A02,Chatbot (script do widget),https://bot-server.s3.amazonaws.com/api/inbot.gz.js?bot_id=1010&bot_token=45lyi7gjii&bot_server_type=production,200,30,1,1,
+2026-11-18T12:10:15Z,2026-11-18 09:10:15,A04,Login (autenticacao),https://portal.detran.df.gov.br/#/login,200,980,0,0,elemento esperado ausente
+2026-11-18T12:10:15Z,2026-11-18 09:10:15,A05,Atendimento (Balcao Virtual),https://balcaovirtual.detran.df.gov.br/,,20589,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-18T12:10:15Z,2026-11-18 09:10:15,C01,Controle (fora do portal),https://example.com/,200,31,1,1,
+2026-11-18T20:35:20Z,2026-11-18 17:35:20,A01,Portal (pagina inicial),https://portal.detran.df.gov.br/,,21675,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-18T20:35:20Z,2026-11-18 17:35:20,A02,Chatbot (script do widget),https://bot-server.s3.amazonaws.com/api/inbot.gz.js?bot_id=1010&bot_token=45lyi7gjii&bot_server_type=production,200,156,1,1,
+2026-11-18T20:35:20Z,2026-11-18 17:35:20,A04,Login (autenticacao),https://portal.detran.df.gov.br/#/login,,21628,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-18T20:35:20Z,2026-11-18 17:35:20,A05,Atendimento (Balcao Virtual),https://balcaovirtual.detran.df.gov.br/,,20990,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-18T20:35:20Z,2026-11-18 17:35:20,C01,Controle (fora do portal),https://example.com/,200,58,1,1,
+2026-11-19T02:01:48Z,2026-11-18 23:01:48,A01,Portal (pagina inicial),https://portal.detran.df.gov.br/,200,1853,0,0,elemento esperado ausente
+2026-11-19T02:01:48Z,2026-11-18 23:01:48,A02,Chatbot (script do widget),https://bot-server.s3.amazonaws.com/api/inbot.gz.js?bot_id=1010&bot_token=45lyi7gjii&bot_server_type=production,200,103,1,1,
+2026-11-19T02:01:48Z,2026-11-18 23:01:48,A04,Login (autenticacao),https://portal.detran.df.gov.br/#/login,200,1619,0,0,elemento esperado ausente
+2026-11-19T02:01:48Z,2026-11-18 23:01:48,A05,Atendimento (Balcao Virtual),https://balcaovirtual.detran.df.gov.br/,,20930,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-19T02:01:48Z,2026-11-18 23:01:48,C01,Controle (fora do portal),https://example.com/,200,28,1,1,
+2026-11-19T10:24:01Z,2026-11-19 07:24:01,A01,Portal (pagina inicial),https://portal.detran.df.gov.br/,,21611,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-19T10:24:01Z,2026-11-19 07:24:01,A02,Chatbot (script do widget),https://bot-server.s3.amazonaws.com/api/inbot.gz.js?bot_id=1010&bot_token=45lyi7gjii&bot_server_type=production,200,226,1,1,
+2026-11-19T10:24:01Z,2026-11-19 07:24:01,A04,Login (autenticacao),https://portal.detran.df.gov.br/#/login,200,1357,0,0,elemento esperado ausente
+2026-11-19T10:24:01Z,2026-11-19 07:24:01,A05,Atendimento (Balcao Virtual),https://balcaovirtual.detran.df.gov.br/,,20858,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-19T10:24:01Z,2026-11-19 07:24:01,C01,Controle (fora do portal),https://example.com/,200,65,1,1,
+2026-11-19T19:07:09Z,2026-11-19 16:07:09,A01,Portal (pagina inicial),https://portal.detran.df.gov.br/,,22606,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-19T19:07:09Z,2026-11-19 16:07:09,A02,Chatbot (script do widget),https://bot-server.s3.amazonaws.com/api/inbot.gz.js?bot_id=1010&bot_token=45lyi7gjii&bot_server_type=production,200,231,1,1,
+2026-11-19T19:07:09Z,2026-11-19 16:07:09,A04,Login (autenticacao),https://portal.detran.df.gov.br/#/login,200,1732,0,0,elemento esperado ausente
+2026-11-19T19:07:09Z,2026-11-19 16:07:09,A05,Atendimento (Balcao Virtual),https://balcaovirtual.detran.df.gov.br/,200,1873,0,0,elemento esperado ausente
+2026-11-19T19:07:09Z,2026-11-19 16:07:09,C01,Controle (fora do portal),https://example.com/,200,47,1,1,
+2026-11-20T01:16:46Z,2026-11-19 22:16:46,A01,Portal (pagina inicial),https://portal.detran.df.gov.br/,,21252,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-20T01:16:46Z,2026-11-19 22:16:46,A02,Chatbot (script do widget),https://bot-server.s3.amazonaws.com/api/inbot.gz.js?bot_id=1010&bot_token=45lyi7gjii&bot_server_type=production,200,63,1,1,
+2026-11-20T01:16:46Z,2026-11-19 22:16:46,A04,Login (autenticacao),https://portal.detran.df.gov.br/#/login,200,1886,0,0,elemento esperado ausente
+2026-11-20T01:16:46Z,2026-11-19 22:16:46,A05,Atendimento (Balcao Virtual),https://balcaovirtual.detran.df.gov.br/,200,1058,0,0,elemento esperado ausente
+2026-11-20T01:16:46Z,2026-11-19 22:16:46,C01,Controle (fora do portal),https://example.com/,200,34,1,1,
+2026-11-20T08:58:56Z,2026-11-20 05:58:56,A01,Portal (pagina inicial),https://portal.detran.df.gov.br/,200,1975,0,0,elemento esperado ausente
+2026-11-20T08:58:56Z,2026-11-20 05:58:56,A02,Chatbot (script do widget),https://bot-server.s3.amazonaws.com/api/inbot.gz.js?bot_id=1010&bot_token=45lyi7gjii&bot_server_type=production,200,170,1,1,
+2026-11-20T08:58:56Z,2026-11-20 05:58:56,A04,Login (autenticacao),https://portal.detran.df.gov.br/#/login,,20890,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-20T08:58:56Z,2026-11-20 05:58:56,A05,Atendimento (Balcao Virtual),https://balcaovirtual.detran.df.gov.br/,,20823,0,0,URLError: _ssl.c:994: The handshake operation timed out
+2026-11-20T08:58:56Z,2026-11-20 05:58:56,C01,Controle (fora do portal),https://example.com/,200,46,1,1,
