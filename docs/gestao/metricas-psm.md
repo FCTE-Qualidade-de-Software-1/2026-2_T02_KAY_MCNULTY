@@ -126,7 +126,7 @@ flowchart TD
     subgraph PC1["Ponto de Controle 1 — Entrega 1 (26/10/2026 · v1.0.0-pc1)"]
         M0["M0: Setup Inicial e Governança (12/10)<br/>Configuração do Repositório Git · Estrutura MkDocs · Regras de Contribuição"]
         M1["M1: Requisitos da Avaliação (Fase 1 ISO/IEC 25040 · 18/10)<br/>Contexto Detran DF · 4 Módulos · Stakeholders · ODS 9/16 · Modelo ISO/IEC 25010:2023"]
-        M2["M2: Especificação da Avaliação (Fase 2 GQM · 21/10)<br/>Árvores GQM · Compatibilidade, Usabilidade e Confiabilidade · Limiares"]
+        M2["M2: Especificação da Avaliação (Fase 2 GQM · 21/10)<br/>Árvores GQM · Compatibilidade, Capacidade de Interação e Confiabilidade · Limiares"]
         M3["M3: Consolidação PC1 e Release E1 (26/10)<br/>Artigo v1 · Slides da Apresentação · Auditoria de Rubricas · Tag v1.0.0-pc1"]
         M0 --> M1 --> M2 --> M3
     end
@@ -151,7 +151,7 @@ flowchart TD
     * **Critério de Aceitação:** 100% dos requisitos de contextualização e escopo formalizados.
 
 * **Milestone M2 — Especificação da Avaliação / Fase 2 GQM (*Goal-Question-Metric*) (Concluído em 21/10/2026):**
-    * **Objetivo:** Construir as árvores formais GQM para Compatibilidade, Usabilidade (Capacidade de Interação) e Confiabilidade, definindo perguntas, hipóteses, métricas quantitativas e níveis de julgamento.
+    * **Objetivo:** Construir as árvores formais GQM para Compatibilidade, Capacidade de Interação (Capacidade de Interação) e Confiabilidade, definindo perguntas, hipóteses, métricas quantitativas e níveis de julgamento.
     * **Entregáveis:** Documentação da Fase 2 (`fase2/`) com diagramas conceituais, fórmulas operacionais e critérios de aceitação.
     * **Critério de Aceitação:** Rastreabilidade estrita $G \rightarrow Q \rightarrow M$ em todas as três características.
 
@@ -353,7 +353,7 @@ Cada issue do repositório da equipe Kay McNulty foi formulada de maneira atômi
 * **Milestone:** M1: Requisitos da Avaliação
 * **Responsáveis:** Artur Fernandes Galdino (`@ArturFGaldino`) e Nicole Jovita Fernandes (`@nicolejovita`)
 * **Horas Dedicadas:** 2h | **Custo:** R$ 100,00
-* **Goal:** Apresentar a adaptação gráfica do modelo de qualidade da norma ISO/IEC 25010:2023 e justificar a seleção de Usabilidade (Capacidade de Interação, *Interaction Capability*), Confiabilidade (*Reliability*) e Compatibilidade (*Compatibility*).
+* **Goal:** Apresentar a adaptação gráfica do modelo de qualidade da norma ISO/IEC 25010:2023 e justificar a seleção de Capacidade de Interação (Capacidade de Interação, *Interaction Capability*), Confiabilidade (*Reliability*) e Compatibilidade (*Compatibility*).
 * **Depends on:** Issue #05.
 * **Scope:** Matriz de criticidade e diagrama conceitual destacando as subcaracterísticas avaliadas no arquivo `docs/fase1/modelo-qualidade.md`.
 * **Task Realizada:** Elaboração das justificativas técnicas para o descarte justificado das demais características (ex.: Segurança avançada e Desempenho sob estresse).
@@ -389,14 +389,14 @@ Cada issue do repositório da equipe Kay McNulty foi formulada de maneira atômi
 * **Task Realizada:** Redação da fundamentação de Confiabilidade no artigo e preparação dos insumos para a árvore GQM.
 * **Critério de Aceitação:** Justificativa técnica sólida para a relevância de Confiabilidade em serviços estaduais de trânsito.
 
-#### Issue #14 — [Fase 1] Justificativa e Delimitação de Profundidade de Usabilidade
+#### Issue #14 — [Fase 1] Justificativa e Delimitação de Profundidade de Capacidade de Interação
 * **Milestone:** M1: Requisitos da Avaliação
 * **Responsáveis:** Natan José França (`@Natan8643`) e Yan Santos Rodrigues (`@yanrdgs-dev`)
 * **Horas Dedicadas:** 3h | **Custo:** R$ 150,00
-* **Goal:** Justificar a seleção da característica de Usabilidade (Capacidade de Interação, *Interaction Capability*) e detalhar a profundidade das inspeções ergonômicas nos 4 módulos.
+* **Goal:** Justificar a seleção da característica de Capacidade de Interação (Capacidade de Interação, *Interaction Capability*) e detalhar a profundidade das inspeções ergonômicas nos 4 módulos.
 * **Depends on:** Issue #06.
 * **Scope:** Enfoque no letramento digital diversificado da população do DF, autodescritividade (*Self-descriptiveness*) dos formulários e inclusividade (acessibilidade).
-* **Task Realizada:** Documentação da justificativa de Usabilidade no artigo e no arquivo de escopo.
+* **Task Realizada:** Documentação da justificativa de Capacidade de Interação no artigo e no arquivo de escopo.
 * **Critério de Aceitação:** Delimitação de limites operacionais (inspeção heurística e conformidade técnica ao e-MAG — Modelo de Acessibilidade em Governo Eletrônico — sem testes presenciais invasivos).
 
 ---
@@ -466,31 +466,31 @@ Cada issue do repositório da equipe Kay McNulty foi formulada de maneira atômi
 * **Task Realizada:** Homologação da notação matemática e alinhamento com os padrões editoriais da disciplina.
 * **Critério de Aceitação:** Fórmulas matemáticas renderizadas com clareza na documentação estática.
 
-#### Issue #15 — [Fase 2] Especificação Conceitual e Operacional do GQM de Usabilidade
+#### Issue #15 — [Fase 2] Especificação Conceitual e Operacional do GQM de Capacidade de Interação
 * **Milestone:** M2: Especificação da Avaliação
 * **Responsáveis:** Natan José França (`@Natan8643`) e Yan Santos Rodrigues (`@yanrdgs-dev`)
 * **Horas Dedicadas:** 3h | **Custo:** R$ 150,00
-* **Goal:** Estruturar o objetivo formal de Usabilidade (Capacidade de Interação), mapeando questões para Proteção contra Erros do Usuário (*User error protection*), Autodescritividade (*Self-descriptiveness*) e Inclusividade (acessibilidade).
+* **Goal:** Estruturar o objetivo formal de Capacidade de Interação (Capacidade de Interação), mapeando questões para Proteção contra Erros do Usuário (*User error protection*), Autodescritividade (*Self-descriptiveness*) e Inclusividade (acessibilidade).
 * **Depends on:** Issue #14.
 * **Scope:** Q1 (Mensagens e validações defensivas), Q2 (Navegação intuitiva) e Q3 (Conformidade com as diretrizes e-MAG 3.1 e WCAG 2.1 como referência complementar).
 * **Task Realizada:** Elaboração das perguntas e hipóteses conceituais em `docs/fase2/usabilidade.md`.
 * **Critério de Aceitação:** Rastreabilidade formal com os 4 módulos operacionais do portal.
 
-#### Issue #16 — [Fase 2] Definição de Métricas PSM, Níveis de Julgamento e Diagrama GQM de Usabilidade
+#### Issue #16 — [Fase 2] Definição de Métricas PSM, Níveis de Julgamento e Diagrama GQM de Capacidade de Interação
 * **Milestone:** M2: Especificação da Avaliação
 * **Responsáveis:** Natan José França (`@Natan8643`) e Yan Santos Rodrigues (`@yanrdgs-dev`)
 * **Horas Dedicadas:** 3h | **Custo:** R$ 150,00
-* **Goal:** Formalizar as métricas de Usabilidade (Índice de Proteção contra Erros $IPEU$, Índice de Autodescritividade $IAU$ e Taxa de Violações de Acessibilidade $TVA$), seus limiares e árvore GQM.
+* **Goal:** Formalizar as métricas de Capacidade de Interação (Índice de Proteção contra Erros $IPEU$, Índice de Autodescritividade $IAU$ e Taxa de Violações de Acessibilidade $TVA$), seus limiares e árvore GQM.
 * **Depends on:** Issue #15.
 * **Scope:** Definição das escalas numéricas de 1 (Crítico) a 4 (Excelente) e construção do diagrama visual.
 * **Task Realizada:** Documentação completa das tabelas de métricas e renderização do fluxo em `docs/fase2/usabilidade.md`.
 * **Critério de Aceitação:** Escala de julgamento perfeitamente calibrada para a auditoria de caixa-preta.
 
-#### PR #17 — docs: especificacao formal GQM da caracteristica de usabilidade
+#### PR #17 — docs: especificacao formal GQM da caracteristica de capacidade de interação
 * **Milestone:** M2: Especificação da Avaliação
 * **Responsáveis:** Natan José França (`@Natan8643`) e Yan Santos Rodrigues (`@yanrdgs-dev`)
 * **Horas (informativo, fora das Tabelas 2 e 3):** 3h
-* **Goal:** Fechamento documental da especificação formal de Usabilidade, garantindo a harmonia editorial, citações normativas e equações operacionais.
+* **Goal:** Fechamento documental da especificação formal de Capacidade de Interação, garantindo a harmonia editorial, citações normativas e equações operacionais.
 * **Depends on:** Issue #16.
 * **Scope:** Revisão técnica final de `docs/fase2/usabilidade.md` e integração com a Seção 4 do Artigo v1.
 * **Task Realizada:** Auditoria cruzada de referências e checagem de conformidade com a rubrica AG-C2.

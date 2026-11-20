@@ -12,6 +12,6 @@ Para este projeto, foram selecionadas três características prioritárias que c
 
 Conforme as premissas estabelecidas para o portal Detran Digital DF, a seleção e priorização técnica fundamentam-se nos seguintes aspectos:
 
-* **Usabilidade:** Essencial para garantir a acessibilidade e a usabilidade dos serviços por cidadãos de diferentes faixas etárias, níveis de letramento digital e pessoas com deficiência, promovendo uma experiência inclusiva, autônoma e livre de barreiras de interação.
+* **Capacidade de Interação:** Essencial para garantir a acessibilidade e a capacidade de interação dos serviços por cidadãos de diferentes faixas etárias, níveis de letramento digital e pessoas com deficiência, promovendo uma experiência inclusiva, autônoma e livre de barreiras de interação.
 * **Confiabilidade:** Crítica em sistemas transacionais do governo, onde indisponibilidades repentinas ou falhas não tratadas impedem o cumprimento de prazos legais e a emissão de guias de pagamento e certidões.
 * **Compatibilidade:** Imprescindível diante da enorme diversidade de aparelhos (smartphones, computadores e tablets) e navegadores utilizados pela população do DF, somada à necessidade imperativa de comunicação ininterrupta e íntegra com serviços externos (Gov.br, SEI-GDF e rede bancária).

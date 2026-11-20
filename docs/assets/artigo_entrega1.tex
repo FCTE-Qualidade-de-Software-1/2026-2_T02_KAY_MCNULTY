@@ -28,13 +28,13 @@ Digital public services play an indispensable role in citizens' daily lives, req
 \end{abstract}
 
 \begin{resumo}
-Os serviços públicos digitais exercem papel indispensável no exercício da cidadania, demandando rigor técnico na entrega de interfaces resilientes e acessíveis. Este artigo apresenta a primeira versão do planejamento e especificação formal da avaliação de qualidade de produto do portal Detran Digital do Distrito Federal (Detran Digital DF), adotando as diretrizes da norma ISO/IEC 25040 (SQuaRE) e a modelagem orientada a objetivos GQM (Goal-Question-Metric). O escopo delimitado compreende quatro módulos operacionais críticos: Módulo de Infrações, Atendimento, Protocolo e Chatbot de atendimento automatizado. A avaliação contempla a análise sistemática sob as dimensões de Usabilidade (ISO/IEC 25010:2023), Confiabilidade e Compatibilidade (Coexistência e Interoperabilidade). São estabelecidos os requisitos de avaliação (Fase 1) alinhados às partes interessadas e aos Objetivos de Desenvolvimento Sustentável (ODS 9 e 16 da ONU), seguidos pela definição das metas conceituais, questões operacionais, hipóteses empíricas, métricas quantitativas e réguas de decisão (Fase 2). A governança do projeto é suportada por métricas do framework Practical Software Measurement (PSM/CID).
+Os serviços públicos digitais exercem papel indispensável no exercício da cidadania, demandando rigor técnico na entrega de interfaces resilientes e acessíveis. Este artigo apresenta a primeira versão do planejamento e especificação formal da avaliação de qualidade de produto do portal Detran Digital do Distrito Federal (Detran Digital DF), adotando as diretrizes da norma ISO/IEC 25040 (SQuaRE) e a modelagem orientada a objetivos GQM (Goal-Question-Metric). O escopo delimitado compreende quatro módulos operacionais críticos: Módulo de Infrações, Atendimento, Protocolo e Chatbot de atendimento automatizado. A avaliação contempla a análise sistemática sob as dimensões de Capacidade de Interação (ISO/IEC 25010:2023), Confiabilidade e Compatibilidade (Coexistência e Interoperabilidade). São estabelecidos os requisitos de avaliação (Fase 1) alinhados às partes interessadas e aos Objetivos de Desenvolvimento Sustentável (ODS 9 e 16 da ONU), seguidos pela definição das metas conceituais, questões operacionais, hipóteses empíricas, métricas quantitativas e réguas de decisão (Fase 2). A governança do projeto é suportada por métricas do framework Practical Software Measurement (PSM/CID).
 \end{resumo}
 
 \section{Introdução}
 A transformação digital dos serviços públicos no Brasil tem exigido das instituições governamentais soluções de software robustas, inclusivas e de alta disponibilidade. O Departamento de Trânsito do Distrito Federal (Detran-DF) disponibiliza à população o portal Detran Digital DF (\url{https://portal.detran.df.gov.br/#/home}), canal por meio do qual cidadãos acessam consultas de veículos, habilitação, abertura de requerimentos, agendamento de serviços presenciais e suporte interativo.
 
-Nesse cenário, a disciplina de Qualidade de Software 1 (FGA/UnB) tem como objetivo conduzir uma auditoria rigorosa de qualidade sobre o portal Detran Digital DF, aplicando as normas da família ISO/IEC 25000 (SQuaRE), especialmente a ISO/IEC 25040 (Processo de Avaliação) e o modelo de qualidade de produto da ISO/IEC 25010:2023. Para garantir profundidade empírica, a avaliação foi delimitada em quatro módulos estratégicos: (i) Infração, (ii) Atendimento, (iii) Protocolo e (iv) Chatbot. Cada um desses módulos é avaliado pela equipe sob três características centrais: Usabilidade, Confiabilidade e Compatibilidade.
+Nesse cenário, a disciplina de Qualidade de Software 1 (FGA/UnB) tem como objetivo conduzir uma auditoria rigorosa de qualidade sobre o portal Detran Digital DF, aplicando as normas da família ISO/IEC 25000 (SQuaRE), especialmente a ISO/IEC 25040 (Processo de Avaliação) e o modelo de qualidade de produto da ISO/IEC 25010:2023. Para garantir profundidade empírica, a avaliação foi delimitada em quatro módulos estratégicos: (i) Infração, (ii) Atendimento, (iii) Protocolo e (iv) Chatbot. Cada um desses módulos é avaliado pela equipe sob três características centrais: Capacidade de Interação, Confiabilidade e Compatibilidade.
 
 Este trabalho abrange os produtos das Fases 1 (Estabelecimento dos Requisitos de Avaliação) e 2 (Especificação da Avaliação via GQM). O repositório oficial da equipe contendo os artefatos, atas de reunião e evidências de governança por PSM/CID está disponível em: \url{https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_KAY_MCNULTY}.
 
@@ -69,8 +69,8 @@ A avaliação concentra-se em quatro módulos fundamentais:
 \subsection{Modelo de Qualidade, Seleção e Priorização das Características}
 A equipe adotou a norma ISO/IEC 25010:2023 como base referencial, selecionando três características centrais para auditoria nos 4 módulos. A seguir, apresenta-se a justificativa técnica para cada uma das características escolhidas:
 
-\subsubsection{Justificativa da Característica Usabilidade (Natan e Yan)}
-\textit{[ESPAÇO RESERVADO PARA A DUPLA NATAN E YAN: Inserir a justificativa detalhada da escolha de Usabilidade no Detran Digital DF (relevância para cidadãos com diferentes níveis de letramento digital, ergonomia e clareza de fluxos).]}
+\subsubsection{Justificativa da Característica Capacidade de Interação (Natan e Yan)}
+\textit{[ESPAÇO RESERVADO PARA A DUPLA NATAN E YAN: Inserir a justificativa detalhada da escolha de Capacidade de Interação no Detran Digital DF (relevância para cidadãos com diferentes níveis de letramento digital, ergonomia e clareza de fluxos).]}
 
 \subsubsection{Justificativa da Característica Confiabilidade (João e Davi)}
 \textit{[ESPAÇO RESERVADO PARA A DUPLA JOÃO E DAVI: Inserir a justificativa detalhada da escolha de Confiabilidade no Detran Digital DF (tolerância a falhas, disponibilidade contínua de serviços transacionais e integridade contra perdas de dados).]}
@@ -81,8 +81,8 @@ A seleção da característica de Compatibilidade (composta pelas subcaracterís
 \subsection{Escopo, Profundidade e Limites da Avaliação}
 Para garantir viabilidade técnica e rigor empírico, a equipe definiu a profundidade da análise de cada característica sobre os 4 módulos operacionais, bem como os cortes metodológicos explícitos (o que fica de fora e por quê):
 
-\subsubsection{Profundidade e Limites de Usabilidade (Natan e Yan)}
-\textit{[ESPAÇO RESERVADO PARA A DUPLA NATAN E YAN: Inserir a profundidade de inspeção de Usabilidade nos 4 módulos e os limites do escopo (ex.: métodos aplicados vs o que não será feito, como testes laboratoriais presenciais com centenas de usuários).]}
+\subsubsection{Profundidade e Limites de Capacidade de Interação (Natan e Yan)}
+\textit{[ESPAÇO RESERVADO PARA A DUPLA NATAN E YAN: Inserir a profundidade de inspeção de Capacidade de Interação nos 4 módulos e os limites do escopo (ex.: métodos aplicados vs o que não será feito, como testes laboratoriais presenciais com centenas de usuários).]}
 
 \subsubsection{Profundidade e Limites de Confiabilidade (João e Davi)}
 \textit{[ESPAÇO RESERVADO PARA A DUPLA JOÃO E DAVI: Inserir a profundidade de inspeção de Confiabilidade nos 4 módulos e os limites do escopo (ex.: métricas de falha observáveis vs o que fica fora, como engenharia do caos/derrubada forçada de servidores).]}
@@ -182,8 +182,8 @@ Insuficiente & $< 70\%$ & $< 70\%$ & $< 80\%$ & Reprovado. Quebras graves em mob
 \end{tabular}
 \end{table}
 
-\subsection{GQM -- Característica: Usabilidade (Natan e Yan)}
-\textit{[ESPAÇO RESERVADO PARA A DUPLA NATAN E YAN: Inserir objetivo estruturado no template, questões, hipóteses, métricas com procedimentos de cálculo, critérios de julgamento e diagrama GQM para Usabilidade nos 4 módulos.]}
+\subsection{GQM -- Característica: Capacidade de Interação (Natan e Yan)}
+\textit{[ESPAÇO RESERVADO PARA A DUPLA NATAN E YAN: Inserir objetivo estruturado no template, questões, hipóteses, métricas com procedimentos de cálculo, critérios de julgamento e diagrama GQM para Capacidade de Interação nos 4 módulos.]}
 
 \subsection{GQM -- Característica: Confiabilidade (João e Davi)}
 \textit{[ESPAÇO RESERVADO PARA A DUPLA JOÃO E DAVI: Inserir objetivo estruturado no template, questões, hipóteses, métricas com procedimentos de cálculo, critérios de julgamento e diagrama GQM para Confiabilidade nos 4 módulos.]}
@@ -209,8 +209,8 @@ A formalização dos requisitos (Fase 1) e a especificação da medição via GQ
 \textbf{Membro} & \textbf{Principais Responsabilidades} & \textbf{\% Esforço} \\ \hline
 Artur & Fase 1 (Arquitetura e módulos); Fase 2 (GQM Compatibilidade, métricas, fórmulas). & 16,66\% \\ \hline
 Nicole & Fase 1 (Stakeholders e escopo); Fase 2 (GQM Compatibilidade, hipóteses). & 16,66\% \\ \hline
-Natan & Fase 1 (Contextualização e ODS); Fase 2 (GQM Usabilidade nos 4 módulos). & 16,67\% \\ \hline
-Yan & Fase 1 (Referencial teórico); Fase 2 (GQM Usabilidade e critérios). & 16,67\% \\ \hline
+Natan & Fase 1 (Contextualização e ODS); Fase 2 (GQM Capacidade de Interação nos 4 módulos). & 16,67\% \\ \hline
+Yan & Fase 1 (Referencial teórico); Fase 2 (GQM Capacidade de Interação e critérios). & 16,67\% \\ \hline
 João & Fase 1 (Metodologia e PSM); Fase 2 (GQM Confiabilidade nos 4 módulos). & 16,67\% \\ \hline
 Davi & Fase 1 (Descrição do sistema); Fase 2 (GQM Confiabilidade e hipóteses). & 16,67\% \\ \hline
 \end{tabular}
