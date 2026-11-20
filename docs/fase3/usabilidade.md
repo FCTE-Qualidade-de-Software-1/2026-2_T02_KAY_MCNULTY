@@ -219,23 +219,24 @@ Nas sessões, quem modera não conta passos, e quem observa não interfere. Os d
 
 ## 10. Cronograma da Coleta
 
-As datas abaixo são uma **proposta**, a confirmar pela dupla e pelo docente. Em 20/11/2026 (sexta-feira, feriado nacional da Consciência Negra) a coleta ainda não começou, e 21 e 22/11 são sábado e domingo; por isso o cronograma usa dias úteis a partir de 23/11. Isso **ultrapassa o encerramento da Fase 4 em 22/11**: o critério "cronograma termina antes de 22/11" se refere à **coleta**, e não pode ser cumprido com as datas reais. É preciso **confirmar com o docente o novo prazo** antes de seguir.
+A **coleta termina em 21/11/2026, sem prorrogação**, antes do encerramento da Fase 4 (22/11). Em 20/11 (sexta-feira) é feriado nacional (Consciência Negra), e 21/11 é sábado. As datas abaixo são uma **proposta**, e a disponibilidade da dupla e dos participantes nesses dois dias precisa ser **confirmada** antes de começar.
 
 | Rodada | Período | Atividade | Métricas | Issue |
 | :---: | :---: | :--- | :---: | :---: |
-| **R0** | 20/11 | Piloto dos instrumentos ([página do piloto](piloto-usabilidade.md)) | M1 a M5 | #54 |
-| **R1** | 20/11 a 24/11 (**corte em 24/11**) | Recrutamento; obter a conta com veículo; confirmar a questão do comitê de ética com o docente | – | #54 |
-| **R2** | 23/11 a 25/11 | Inspeção heurística **independente**, com calibração antes; cada avaliador entrega a lista individual **antes de moderar qualquer sessão** | M4 | #55 |
-| **R3** | 25/11 (P00) e 26/11 a 27/11 (sessões); **30/11 reserva** | Sessão P00 fora da amostra, sessões com os participantes e SUS | M1, M2, M3, M5 | #56 |
-| **R4** | 30/11 | Consolidação das listas heurísticas e conferência dos registros | M4 | #55 |
-| **R5** | 30/11 a 01/12 | Cálculo das métricas, julgamento e respostas GQM | M1 a M5 | #57 |
-| **R6** | A partir de 01/12 | Oportunidades, protótipo e validação (Fase 4) | – | #58, #59 e #60 |
+| **R0** | 20/11 | Piloto autenticado de T1 a T3 ([página do piloto](piloto-usabilidade.md)) | M1 a M5 | #54 |
+| **R1** | 20/11 (**corte ao fim do dia**) | Recrutamento; obter a conta com veículo | – | #54 |
+| **R2** | 20/11 | Inspeção heurística **independente**, com calibração antes; cada avaliador entrega a lista individual **antes de moderar qualquer sessão** | M4 | #55 |
+| **R3** | 21/11 | Sessão P00 (fora da amostra) e sessões com os participantes, com aplicação do SUS | M1, M2, M3, M5 | #56 |
+| **R4** | 21/11 | Consolidação das listas heurísticas e conferência dos registros | M4 | #55 |
+| **R5** | 21/11 a 22/11 | Cálculo das métricas, julgamento e respostas GQM | M1 a M5 | #57 |
+| **R6** | 22/11 | Oportunidades, protótipo e validação (Fase 4) | – | #58, #59 e #60 |
 
-**Tabela 7 – Cronograma de coleta (proposta).** Fonte: Elaborado pelos autores.
+**Tabela 7 – Cronograma de coleta (proposta).** Fonte: Elaborado pelos autores. A coleta compreende R1 a R4 e termina em 21/11.
 
-- **A mesma dupla** faz a inspeção (R2) e modera as sessões (R3). Por isso a inspeção termina **antes** das sessões: ver os participantes antes de fechar a lista comprometeria a independência.
-- **Data de corte do recrutamento: 24/11.** Se até lá houver menos de 6 participantes: com **4 ou 5** (ao menos 2 por dispositivo), a coleta segue com N_tot reduzido e a limitação registrada; com **menos de 4**, a dupla pede ao docente prorrogação ou a coleta é registrada como inconclusiva para M1 a M3.
-- A decisão sobre a T1 (Seção 6.1) também é tomada na data de corte.
+- **Independência.** A mesma dupla faz a inspeção (R2) e modera as sessões (R3). Por isso a inspeção termina **antes** das sessões: ver os participantes antes de fechar a lista comprometeria a independência.
+- **Carga do dia 21/11.** Seis sessões de 45 a 60 minutos mais a P00 somam cerca de 7 horas, com moderador e observador em cada uma. É o ponto de maior risco do cronograma. Se não couber, aplicam-se as regras de corte abaixo.
+- **Corte do recrutamento: fim de 20/11.** Se houver menos de 6 participantes, a coleta segue **com os disponíveis, sem adiar**: com **4 ou 5** (ao menos 2 por dispositivo), M1 a M3 e M5 são calculadas com N reduzido e a limitação registrada; com **menos de 4**, M1 a M3 e M5 são registradas como **inconclusivas** e a limitação é declarada nos resultados. M4 (IPH) não depende dos participantes.
+- **T1.** A decisão sobre a conta com veículo (Seção 6.1) é tomada no mesmo corte.
 - Os participantes da validação do protótipo (#60) devem ser, preferencialmente, outros, porque quem fez o teste deixa de estar em primeiro acesso.
 
 ---
