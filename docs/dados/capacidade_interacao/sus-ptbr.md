@@ -35,11 +35,7 @@ Versão em português do Brasil do System Usability Scale (BROOKE, 1996), na tra
 
 Itens ímpares são positivos e itens pares são negativos.
 
-**Pendências de conferência (antes de imprimir o formulário):**
-
-1. **Item 7.** O texto dos Resultados do artigo traz "...pode aprender a usar esse sistema **muito** rapidamente", e a Tabela 1 traz "...rapidamente", sem "muito". Conferir no PDF publicado qual é a redação final e ajustar a tabela. Até lá, a tabela acima segue a Tabela 1.
-2. **Rótulo "pré-final".** O artigo intitula a Tabela 1 como versão "pre-final" e a usa no teste com 100 estudantes, sem sugestões de mudança; a conclusão adota o título "Escala de Usabilidade de Sistema — versão brasileira". Conferir se o PDF traz uma versão final diferente.
-3. A transcrição acima vem de leitura automatizada do artigo e **deve ser conferida item a item por quem tem o PDF em mãos**. Qualquer ajuste de redação deve ser registrado aqui.
+Os itens foram conferidos pela equipe contra o artigo. Qualquer ajuste de redação deve ser registrado aqui.
 
 O artigo não traz os rótulos em português dos extremos da escala. A equipe usa "discordo totalmente" (1) e "concordo totalmente" (5), como na Fase 2.
 

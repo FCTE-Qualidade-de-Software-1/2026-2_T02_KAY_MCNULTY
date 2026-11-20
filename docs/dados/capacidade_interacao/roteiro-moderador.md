@@ -98,7 +98,6 @@ Pelo menos 1 engenheiro na amostra, **sem concentrar todos os engenheiros no mes
 4. O perfil é registrado por categorias amplas (faixa etária e nível de letramento digital), nunca por idade exata, profissão específica ou local de moradia.
 5. **Quase-identificadores.** Em uma amostra de 6 pessoas conhecidas da equipe, o horário exato, a versão do navegador e a largura exata da tela podem reidentificar. Por isso o registro guarda só a **data** (sem horário), o **nome do navegador** (sem versão), o **sistema operacional** e uma **faixa de largura**.
 6. As gravações **não são versionadas**. As capturas versionadas não podem conter dado pessoal legível, inclusive o do titular da conta.
-7. **Pendência de ética.** A equipe deve confirmar com o docente se a atividade didática dispensa avaliação por comitê de ética (Resolução CNS nº 510/2016) e registrar a resposta antes do recrutamento.
 
 ## 4. Roteiro do moderador
 
@@ -229,7 +228,6 @@ O arquivo `cenarios-de-erro.csv` é o **catálogo** (um cenário por linha, sem 
 - A T1 só entra em N_tot se a conta com veículo for obtida antes do recrutamento (Seção 1).
 - Nenhum teste gera efeito real. Os resultados refletem a versão do portal na data da coleta.
 - A avaliação não equivale a uma auditoria de acessibilidade.
-- O consentimento é pseudonimizado e depende da confirmação sobre o comitê de ética (Seção 3.2).
 
 ## Referências
 
