@@ -13,13 +13,13 @@ Uma tarefa principal por módulo do Portal Detran Digital DF, em desktop e mobil
 ## P_min por tarefa
 | Tarefa | Módulo | Desktop | Mobile |
 |---|---|---|---|
-| T1 | Consultar infrações | 8 | 8 |
-| T2 | Agendar atendimento | 15 | 15 |
-| T3 | Abrir protocolo (Requerimento Geral) | 10 | 10 |
+| T1 | Consultar infrações | 5 | 3 |
+| T2 | Agendar atendimento | 12 | 12 |
+| T3 | Abrir protocolo (Requerimento Geral) | 7 | 7 |
 | T4 | Chatbot | 3 | 3 |
 
 ## Login gov.br
-Todas as ações do portal, exceto o assistente virtual, exigem login gov.br. Decisão: as tarefas T1 a T3 começam sem sessão iniciada e **o login conta no P_min**. A T4 não exige login. Os participantes usam apenas conta de teste; nunca dados de terceiros.
+Todas as ações do portal, exceto o assistente virtual, exigem login gov.br. Decisão: as tarefas T1 a T3 começam com sessão iniciada e **o login não conta no P_min**. A T4 não exige login. Os participantes usam apenas conta de teste; nunca dados de terceiros.
 
 ## Pontos de parada seguros (Seção 6)
 Nenhuma tarefa gera protocolo, agendamento ou pagamento reais.
