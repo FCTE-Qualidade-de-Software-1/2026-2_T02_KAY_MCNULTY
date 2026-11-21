@@ -1,1 +1,6 @@
 cenario,data_hora,recuperado,tempo_recuperacao_s,origem_falha,evidencia
+B4,2026-11-20 11:43,nao,33,nenhuma,M5_B4_20261120_1142.mp4
+B5,2026-11-20 11:49,nao,3,nenhuma,M5_B5_20261120_1149.mp4
+B3,2026-11-20 12:00,nao,48,nenhuma,M5_B3_20261120_1159.mp4
+B7,2026-11-20 11:49,nao,1,nenhuma,M5_B7_20261119_1739.png
+B8,2026-11-20 12:00,sim,10,nenhuma,M5_B8_20261119_1740-1.png;M5_B8_20261119_1741-2.png
