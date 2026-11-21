@@ -2,10 +2,10 @@
 | :--- | :---: | :---: | :---: | :---: | :---: |
 | **Artur Fernandes Galdino** | [@ArturFGaldino](https://github.com/ArturFGaldino) | 8 | 15,0h | 6 | 75,0% |
 | **Nicole Jovita Fernandes** | [@nicolejovita](https://github.com/nicolejovita) | 9 | 18,0h | 7 | 77,8% |
-| **Davi Ursolino de Oliveira** | [@DaviUrsulino](https://github.com/DaviUrsulino) | 8 | 10,2h | 4 | 50,0% |
-| **João Eduardo Pereira Rabelo** | [@JoaoEduardoP](https://github.com/JoaoEduardoP) | 8 | 7,2h | 4 | 50,0% |
+| **Davi Ursolino de Oliveira** | [@DaviUrsulino](https://github.com/DaviUrsulino) | 8 | 12,7h | 5 | 62,5% |
+| **João Eduardo Pereira Rabelo** | [@JoaoEduardoP](https://github.com/JoaoEduardoP) | 8 | 9,7h | 5 | 62,5% |
 | **Natan José França** | [@Natan8643](https://github.com/Natan8643) | 9 | 7,7h | 5 | 55,6% |
 | **Yan Santos Rodrigues** | [@yanrdgs-dev](https://github.com/yanrdgs-dev) | 8 | 6,0h | 2 | 25,0% |
-| **TOTAL CONSOLIDADO** | — | **34** | **64,0h** | **19** | **55,9%** |
+| **TOTAL CONSOLIDADO** | — | **34** | **69,0h** | **20** | **58,8%** |
 
 *As horas são estimativas da equipe, obtidas do corpo das issues ou do catálogo homologado; quando uma issue possui mais de um responsável, o esforço é dividido igualmente.*
