@@ -8,3 +8,9 @@ INF-01,2,2026-11-17 17:24,falha,"Consulta de debitos do veiculo: HTTP 503 no end
 CHA-01,2,2026-11-17 20:47,ok,"conversa concluida; imagens das respostas do chat nao carregaram (requisicoes de imagem com falha)",chatbot,M2_CHA-01_e2_20261117_2047_1.png;M2_CHA-01_e2_20261117_2047_2.png;M2_CHA-01_e2_20261117_2048_3.png
 ATE-01,2,2026-11-17 20:49,ok,,nenhuma,M2_ATE-01_e2_20261117_2049_1.png;M2_ATE-01_e2_20261117_2049_2.png
 INF-01,3,2026-11-17 20:50,ok,,nenhuma,M2_INF-01_e3_20261117_2050_1.png;M2_INF-01_e3_20261117_2050_2.png
+INF-01,3,2026-11-17 20:51,ok,,nenhuma,M2_INF-01_e4_20261117_2051_1.png;M2_INF-01_e4_20261117_2051_2.png
+INF-01,4,2026-11-16 09:08,ok,,nenhuma,M2_INF-01_e4_20261116_0908_1.png
+INF-01,5,2026-11-16 22:14,ok,,nenhuma,M2_INF-01_e5_20261116_2214_1.png
+INF-01,6,2026-11-17 15:24,ok,,nenhuma,M2_INF-01_e6_20261117_1524_1.png
+INF-01,7,2026-11-18 10:50,ok,,nenhuma,M2_INF-01_e7_20261118_1050_1.png
+INF-01,8,2026-11-19 17:27,ok,,nenhuma,M2_INF-01_e8_20261119_1727_1.png
