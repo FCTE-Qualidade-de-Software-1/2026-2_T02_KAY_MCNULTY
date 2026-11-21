@@ -16,7 +16,7 @@ Uma tarefa principal por módulo do Portal Detran Digital DF, em desktop e mobil
 | T1 | Consultar infrações | 5 | 3 |
 | T2 | Agendar atendimento | 12 | 12 |
 | T3 | Abrir protocolo (Requerimento Geral) | 7 | 7 |
-| T4 | Chatbot | 3 | 3 |
+| T4 | Chatbot | 4 | 4 |
 
 ## Login gov.br
 Todas as ações do portal, exceto o assistente virtual, exigem login gov.br. Decisão: as tarefas T1 a T3 começam com sessão iniciada e **o login não conta no P_min**. A T4 não exige login. Os participantes usam apenas conta de teste; nunca dados de terceiros.
