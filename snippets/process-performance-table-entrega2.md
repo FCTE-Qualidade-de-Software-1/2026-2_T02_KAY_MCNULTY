@@ -4,8 +4,8 @@
 | **Nicole Jovita Fernandes** | [@nicolejovita](https://github.com/nicolejovita) | 9 | 18,0h | 7 | 77,8% |
 | **Davi Ursolino de Oliveira** | [@DaviUrsulino](https://github.com/DaviUrsulino) | 8 | 17,7h | 7 | 87,5% |
 | **João Eduardo Pereira Rabelo** | [@JoaoEduardoP](https://github.com/JoaoEduardoP) | 8 | 14,7h | 7 | 87,5% |
-| **Natan José França** | [@Natan8643](https://github.com/Natan8643) | 9 | 7,7h | 5 | 55,6% |
-| **Yan Santos Rodrigues** | [@yanrdgs-dev](https://github.com/yanrdgs-dev) | 8 | 16,0h | 5 | 62,5% |
-| **TOTAL CONSOLIDADO** | — | **34** | **89,0h** | **25** | **73,5%** |
+| **Natan José França** | [@Natan8643](https://github.com/Natan8643) | 9 | 10,2h | 6 | 66,7% |
+| **Yan Santos Rodrigues** | [@yanrdgs-dev](https://github.com/yanrdgs-dev) | 8 | 18,5h | 6 | 75,0% |
+| **TOTAL CONSOLIDADO** | — | **34** | **94,0h** | **26** | **76,5%** |
 
 *As horas são estimativas da equipe, obtidas do corpo das issues ou do catálogo homologado; quando uma issue possui mais de um responsável, o esforço é dividido igualmente.*
