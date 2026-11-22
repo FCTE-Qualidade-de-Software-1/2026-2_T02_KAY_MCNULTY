@@ -1,0 +1,267 @@
+/**
+ * detran-responsive-patch.css
+ * 
+ * Patch de Melhoria Técnica de Compatibilidade e Responsividade (ISO/IEC 25040 - F4-C5)
+ * Objeto: Portal Detran Digital DF (portal.detran.df.gov.br)
+ * Autores: Artur Fernandes Galdino e Nicole Jovita Fernandes
+ * Disciplina: Qualidade de Software 1 - UnB/FCTE (2026.2)
+ *
+ * Finalidade:
+ * 1. Eliminar sobreposição obstrutiva do widget de Chatbot (InBot) sobre botões de ação
+ *    primária nos módulos Infração, Atendimento e Protocolo em viewports mobile (<= 768px).
+ * 2. Garantir alinhamento aos critérios da WCAG 2.1 (Target Size 44x44px e área livre de toques).
+ * 3. Adequar o container de formulários ao modelo responsivo fluido, prevenindo overflow horizontal.
+ * 4. Fornecer contêiner estilizado para fallback resiliente em falhas de CDN externa (TCBN).
+ */
+
+:root {
+  /* Design Tokens de Identidade Visual Detran-DF */
+  --detran-color-primary: #004582;
+  --detran-color-primary-hover: #003366;
+  --detran-color-secondary: #ffcc00;
+  --detran-color-surface: #ffffff;
+  --detran-color-background: #f4f6f9;
+  --detran-color-text-main: #1f2937;
+  --detran-color-text-muted: #6b7280;
+  --detran-color-border: #d1d5db;
+  --detran-color-focus-ring: rgba(0, 69, 130, 0.35);
+
+  /* Dimensões e Espaçamentos Responsivos */
+  --detran-touch-target-min: 44px;
+  --detran-radius-base: 8px;
+  --detran-radius-full: 9999px;
+  --detran-action-bar-height: 68px;
+  --detran-safe-area-bottom: env(safe-area-inset-bottom, 16px);
+  --detran-safe-area-right: env(safe-area-inset-right, 16px);
+
+  /* Hierarquia de Z-Index */
+  --detran-z-content: 1;
+  --detran-z-sticky-bar: 500;
+  --detran-z-chatbot-dock: 600;
+  --detran-z-modal-backdrop: 1000;
+  --detran-z-modal-content: 1100;
+}
+
+/* ==========================================================================
+   1. Correção Estrutural de Containers e Grid Fluido (Evita Overflow)
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.detran-container-fluid {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.detran-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.detran-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.detran-input-control {
+  width: 100%;
+  min-height: var(--detran-touch-target-min);
+  padding: 10px 14px;
+  font-size: 16px; /* Previne auto-zoom indesejado no iOS Safari */
+  color: var(--detran-color-text-main);
+  background-color: var(--detran-color-surface);
+  border: 1px solid var(--detran-color-border);
+  border-radius: var(--detran-radius-base);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.detran-input-control:focus {
+  outline: none;
+  border-color: var(--detran-color-primary);
+  box-shadow: 0 0 0 3px var(--detran-focus-ring);
+}
+
+/* ==========================================================================
+   2. Barra Inferior Fixa/Adesiva de Ações (Sticky Action Bar)
+   Garante visibilidade e desobstrução permanente dos botões primários
+   ========================================================================== */
+
+.detran-action-bar-wrapper {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid var(--detran-color-border);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+  padding: 12px 16px calc(12px + var(--detran-safe-area-bottom));
+  z-index: var(--detran-z-sticky-bar);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.detran-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--detran-touch-target-min);
+  min-width: 120px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--detran-radius-base);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  user-select: none;
+  border: 1px solid transparent;
+}
+
+.detran-btn-primary {
+  background-color: var(--detran-color-primary);
+  color: #ffffff;
+}
+
+.detran-btn-primary:hover {
+  background-color: var(--detran-color-primary-hover);
+}
+
+.detran-btn-secondary {
+  background-color: transparent;
+  color: var(--detran-color-primary);
+  border-color: var(--detran-color-primary);
+}
+
+.detran-btn-secondary:hover {
+  background-color: rgba(0, 69, 130, 0.05);
+}
+
+/* ==========================================================================
+   3. Reposicionamento Responsivo do Widget de Chatbot (InBot)
+   Resolve o conflito de sobreposição do avatar flutuante
+   ========================================================================== */
+
+/* Container wrapper externo com pointer-events inteligente */
+.inbot-floating-widget-wrapper {
+  position: fixed;
+  z-index: var(--detran-z-chatbot-dock);
+  pointer-events: none; /* Não bloqueia cliques na página ao redor do botão */
+}
+
+/* Botão interativo do assistente virtual */
+.inbot-launcher-btn {
+  pointer-events: auto; /* Restabelece cliques estritamente no elemento circular */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--detran-radius-full);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+  cursor: pointer;
+  background-color: var(--detran-color-primary);
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+}
+
+.inbot-launcher-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+}
+
+/* Modo Desktop (> 768px): Avatar no canto inferior direito com afastamento seguro */
+@media screen and (min-width: 769px) {
+  .inbot-floating-widget-wrapper {
+    bottom: 32px;
+    right: 32px;
+  }
+  .inbot-launcher-btn {
+    width: 68px;
+    height: 68px;
+  }
+}
+
+/* Modo Mobile & Tablet (<= 768px): Deslocamento vertical acima da barra de ações */
+@media screen and (max-width: 768px) {
+  .inbot-floating-widget-wrapper {
+    /* Eleva o widget acima da barra fixa de ações e respeita margens seguras */
+    bottom: calc(var(--detran-action-bar-height) + var(--detran-safe-area-bottom) + 12px);
+    right: 16px;
+  }
+
+  .inbot-launcher-btn {
+    width: 52px;
+    height: 52px;
+  }
+
+  /* Ajusta a barra de ações para ocupar a largura total no mobile com botões simétricos */
+  .detran-action-bar-wrapper {
+    justify-content: stretch;
+  }
+
+  .detran-action-bar-wrapper .detran-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
+  }
+}
+
+/* Modo Ultra-Estreito (<= 360px): Minimização compacta para máxima área útil */
+@media screen and (max-width: 360px) {
+  .inbot-floating-widget-wrapper {
+    bottom: calc(var(--detran-action-bar-height) + var(--detran-safe-area-bottom) + 8px);
+    right: 12px;
+  }
+
+  .inbot-launcher-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .detran-action-bar-wrapper {
+    padding: 10px 12px calc(10px + var(--detran-safe-area-bottom));
+    gap: 8px;
+  }
+
+  .detran-btn {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+/* ==========================================================================
+   4. Fallback Resiliente para Falhas de CDN / Bloqueio Cross-Browser (TCBN)
+   ========================================================================== */
+
+.detran-chatbot-fallback-card {
+  display: none; /* Ativado via JS caso a CDN externa falhe */
+  background: #fffbeb;
+  border: 1px solid #fef3c7;
+  border-left: 4px solid #f59e0b;
+  border-radius: var(--detran-radius-base);
+  padding: 12px 16px;
+  margin-top: 16px;
+  font-size: 14px;
+  color: #92400e;
+}
+
+.detran-chatbot-fallback-card.active {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}

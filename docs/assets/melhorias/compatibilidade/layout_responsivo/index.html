@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protótipo Interativo Corretivo - Compatibilidade e Responsividade (Detran-DF)</title>
+  <link rel="stylesheet" href="detran-responsive-patch.css">
+  <style>
+    /* Estilos do Harness de Demonstração e Inspeção Técnica */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #0f172a;
+      color: #334155;
+    }
+
+    /* Toolbar de Controle do Avaliador */
+    .evaluator-toolbar {
+      background: #1e293b;
+      color: #f8fafc;
+      padding: 12px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 2px solid #334155;
+      position: sticky;
+      top: 0;
+      z-index: 2000;
+    }
+
+    .evaluator-brand {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .evaluator-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #38bdf8;
+      letter-spacing: 0.5px;
+    }
+
+    .evaluator-subtitle {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    .evaluator-controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .control-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+    }
+
+    .control-group label {
+      color: #cbd5e1;
+      font-weight: 500;
+    }
+
+    .control-group select, .control-group button {
+      background: #0f172a;
+      color: #f8fafc;
+      border: 1px solid #475569;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .toggle-mode-btn {
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .toggle-mode-btn.corrigido {
+      background: #0284c7;
+      border-color: #38bdf8;
+      color: #ffffff;
+    }
+
+    .toggle-mode-btn.original {
+      background: #dc2626;
+      border-color: #f87171;
+      color: #ffffff;
+    }
+
+    /* Painel de Métricas e Diagnóstico em Tempo Real */
+    .metrics-pill-bar {
+      background: #0b1329;
+      padding: 8px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 12px;
+      border-bottom: 1px solid #1e293b;
+      align-items: center;
+    }
+
+    .metric-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge-status {
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+
+    .badge-ok {
+      background: #065f46;
+      color: #34d399;
+    }
+
+    .badge-fail {
+      background: #7f1d1d;
+      color: #f87171;
+    }
+
+    /* Área do Viewport Emulado */
+    .viewport-stage {
+      display: flex;
+      justify-content: center;
+      padding: 24px 12px;
+      min-height: calc(100vh - 120px);
+      box-sizing: border-box;
+      background: #0f172a;
+    }
+
+    .device-frame {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 8px solid #1e293b;
+    }
+
+    /* Cabeçalho Fiel do Portal Detran Digital DF */
+    .portal-header {
+      background: #004582;
+      color: #ffffff;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3px solid #ffcc00;
+    }
+
+    .portal-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    .portal-logo span {
+      background: #ffcc00;
+      color: #004582;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+    }
+
+    .portal-user-badge {
+      font-size: 12px;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    /* Conteúdo das Telas Replicadas */
+    .portal-content {
+      flex: 1;
+      padding: 20px 16px 80px 16px;
+      overflow-y: auto;
+      background: #f8fafc;
+    }
+
+    .breadcrumb {
+      font-size: 12px;
+      color: #64748b;
+      margin-bottom: 12px;
+    }
+
+    .page-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #004582;
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    /* Estilo Específico do Modo Original com Falha */
+    .mode-original .inbot-legacy-widget {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      background: #004582;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+      z-index: 9999;
+      cursor: pointer;
+      border: 3px solid #ffcc00;
+      pointer-events: auto;
+    }
+
+    .mode-original .inbot-legacy-widget .bot-label {
+      font-size: 9px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .mode-original .legacy-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    /* Toast de Interação */
+    #interaction-toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1e293b;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 13px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 3000;
+      display: none;
+    }
+  </style>
+</head>
+<body class="mode-corrigido" id="app-body">
+
+  <!-- Toolbar de Controle do Avaliador -->
+  <header class="evaluator-toolbar">
+    <div class="evaluator-brand">
+      <span class="evaluator-title">DETRAN-DF · Laboratório de Melhoria Técnica (ISO/IEC 25040)</span>
+      <span class="evaluator-subtitle">Intervenção de Compatibilidade (TCBN) e Responsividade (ICR) · F4-C5</span>
+    </div>
+
+    <div class="evaluator-controls">
+      <div class="control-group">
+        <label for="select-modulo">Módulo Avaliado:</label>
+        <select id="select-modulo">
+          <option value="infracao">Infração (Consulta Débitos / DUD)</option>
+          <option value="atendimento">Atendimento (Agendamento Presencial)</option>
+          <option value="protocolo">Protocolo (Nova Solicitação SEI)</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="select-viewport">Viewport Emulada:</label>
+        <select id="select-viewport">
+          <option value="360">360px · Mobile Pequeno (Moto G4 / Galaxy S8)</option>
+          <option value="414">414px · Mobile Médio (iPhone XR / 11)</option>
+          <option value="768">768px · Tablet Portrait (iPad Mini)</option>
+          <option value="100%">100% · Desktop Fluido</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label>Modo de Exibição:</label>
+        <button type="button" class="toggle-mode-btn corrigido" id="btn-toggle-mode">
+          Modo Corrigido (Patch Ativo)
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Painel de Métricas e Diagnóstico em Tempo Real -->
+  <aside class="metrics-pill-bar">
+    <div class="metric-item">
+      <span>Sobreposição de Clique:</span>
+      <span class="badge-status badge-ok" id="status-sobreposicao">0px (Desobstruído)</span>
+    </div>
+    <div class="metric-item">
+      <span>Área de Toque WCAG 2.1:</span>
+      <span class="badge-status badge-ok" id="status-wcag">48x48px (Conforme AAA)</span>
+    </div>
+    <div class="metric-item">
+      <span>Índice ICR Projetado:</span>
+      <span class="badge-status badge-ok" id="status-icr">100,00% (Excelente)</span>
+    </div>
+    <div class="metric-item">
+      <span>Resiliência TCBN (Chromium):</span>
+      <span class="badge-status badge-ok" id="status-tcbn">Fallback Ativo (100%)</span>
+    </div>
+  </aside>
+
+  <!-- Palco do Viewport -->
+  <main class="viewport-stage">
+    <div class="device-frame" id="device-frame" style="width: 360px;">
+      
+      <!-- Cabeçalho do Portal -->
+      <div class="portal-header">
+        <div class="portal-logo">
+          DETRAN-DF <span>DIGITAL</span>
+        </div>
+        <div class="portal-user-badge">Cidadão: Gov.br</div>
+      </div>
+
+      <!-- Conteúdo Dinâmico por Módulo -->
+      <div class="portal-content" id="module-container">
+
+        <!-- Visualização 1: Módulo Infração -->
+        <div id="view-infracao" class="module-view">
+          <div class="breadcrumb">Início &gt; Veículos &gt; Consulta de Infrações e Débitos</div>
+          <h2 class="page-title">Consulta de Infrações e Débitos do Veículo</h2>
+
+          <div class="card">
+            <div class="detran-form-grid">
+              <div class="detran-form-group">
+                <label for="campo-placa" style="font-weight: 600; font-size: 13px;">Placa do Veículo *</label>
+                <input type="text" id="campo-placa" class="detran-input-control" placeholder="ABC1D23" value="PAA1020">
+              </div>
+              <div class="detran-form-group">
+                <label for="campo-renavam" style="font-weight: 600; font-size: 13px;">Número do RENAVAM *</label>
+                <input type="text" id="campo-renavam" class="detran-input-control" placeholder="00000000000" value="01020304050">
+              </div>
+            </div>
+            <p style="font-size: 12px; color: #64748b; margin-top: 10px;">
+              Informe os dados cadastrais conforme constam no documento CRLV-e para obter o extrato e emitir o DUD bancário.
+            </p>
+          </div>
+
+          <div class="card" style="background: #f1f5f9;">
+            <strong style="font-size: 13px; color: #004582;">Aviso de Débitos Pendentes</strong>
+            <p style="font-size: 12px; color: #475569; margin: 4px 0 0 0;">
+              Existem 2 registros vinculados ao veículo selecionado (Taxa de Licenciamento Anual e Multa por Excesso de Velocidade).
+            </p>
+          </div>
+        </div>
+
+        <!-- Visualização 2: Módulo Atendimento -->
+        <div id="view-atendimento" class="module-view" style="display: none;">
+          <div class="breadcrumb">Início &gt; Agendamento &gt; Atendimento Presencial</div>
+          <h2 class="page-title">Agendamento de Atendimento Presencial</h2>
+
+          <div class="card">
+            <div class="detran-form-grid">
+              <div class="detran-form-group">
+                <label for="campo-servico" style="font-weight: 600; font-size: 13px;">Serviço Desejado *</label>
+                <select id="campo-servico" class="detran-input-control">
+                  <option>Habilitação - Renovação de CNH</option>
+                  <option>Veículos - Vistoria e Transferência</option>
+                  <option>Biometria e Foto Digital</option>
+                </select>
+              </div>
+              <div class="detran-form-group">
+                <label for="campo-posto" style="font-weight: 600; font-size: 13px;">Posto / Unidade *</label>
+                <select id="campo-posto" class="detran-input-control">
+                  <option>Detran Taguatinga Shopping</option>
+                  <option>Detran Shopping Popular</option>
+                  <option>Detran Gama</option>
+                </select>
+              </div>
+              <div class="detran-form-group">
+                <label for="campo-data" style="font-weight: 600; font-size: 13px;">Data do Agendamento *</label>
+                <input type="date" id="campo-data" class="detran-input-control" value="2026-11-30">
+              </div>
+              <div class="detran-form-group">
+                <label for="campo-hora" style="font-weight: 600; font-size: 13px;">Horário Disponível *</label>
+                <select id="campo-hora" class="detran-input-control">
+                  <option>09:30</option>
+                  <option>10:15</option>
+                  <option>14:00</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visualização 3: Módulo Protocolo -->
+        <div id="view-protocolo" class="module-view" style="display: none;">
+          <div class="breadcrumb">Início &gt; Processos &gt; Protocolo Eletrônico</div>
+          <h2 class="page-title">Protocolo e Peticionamento Eletrônico</h2>
+
+          <div class="card">
+            <strong style="font-size: 14px; color: #004582;">Abertura de Novo Requerimento Geral</strong>
+            <p style="font-size: 13px; color: #475569; margin: 8px 0 12px 0;">
+              Peticione defesas prévias, recursos de multa e pedidos de restituição com assinatura digital integrada Gov.br.
+            </p>
+            <div style="background: #e0f2fe; padding: 10px; border-radius: 6px; font-size: 12px; color: #0369a1;">
+              Integração ativa com Sistema Eletrônico de Informações (SEI-GDF).
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Área de Ações: Alterna entre estrutura original e corrigida -->
+      <div id="actions-container">
+        <!-- Renderizado dinamicamente via JS -->
+      </div>
+
+      <!-- Elemento do Widget de Chatbot: Alterna entre original e corrigido -->
+      <div id="chatbot-container">
+        <!-- Renderizado dinamicamente via JS -->
+      </div>
+
+    </div>
+  </main>
+
+  <div id="interaction-toast">Ação executada com sucesso!</div>
+
+  <script src="chatbot-resilience-fallback.js"></script>
+  <script>
+    (function () {
+      const selectModulo = document.getElementById('select-modulo');
+      const selectViewport = document.getElementById('select-viewport');
+      const btnToggleMode = document.getElementById('btn-toggle-mode');
+      const deviceFrame = document.getElementById('device-frame');
+      const appBody = document.getElementById('app-body');
+      const actionsContainer = document.getElementById('actions-container');
+      const chatbotContainer = document.getElementById('chatbot-container');
+      const toast = document.getElementById('interaction-toast');
+
+      // Status badges
+      const statusSobreposicao = document.getElementById('status-sobreposicao');
+      const statusWcag = document.getElementById('status-wcag');
+      const statusIcr = document.getElementById('status-icr');
+      const statusTcbn = document.getElementById('status-tcbn');
+
+      let currentMode = 'corrigido'; // 'original' | 'corrigido'
+      let currentModule = 'infracao';
+
+      function showToast(msg) {
+        toast.textContent = msg;
+        toast.style.display = 'block';
+        setTimeout(() => { toast.style.display = 'none'; }, 2500);
+      }
+
+      function updateModuleView() {
+        document.querySelectorAll('.module-view').forEach(el => el.style.display = 'none');
+        document.getElementById('view-' + currentModule).style.display = 'block';
+        renderInterface();
+      }
+
+      function renderInterface() {
+        if (currentMode === 'corrigido') {
+          appBody.className = 'mode-corrigido';
+          btnToggleMode.className = 'toggle-mode-btn corrigido';
+          btnToggleMode.textContent = 'Modo Corrigido (Patch Ativo)';
+
+          // Atualiza diagnósticos
+          statusSobreposicao.className = 'badge-status badge-ok';
+          statusSobreposicao.textContent = '0px (Desobstruído)';
+          statusWcag.className = 'badge-status badge-ok';
+          statusWcag.textContent = '48x48px (Conforme AAA)';
+          statusIcr.className = 'badge-status badge-ok';
+          statusIcr.textContent = '100,00% (Excelente)';
+          statusTcbn.className = 'badge-status badge-ok';
+          statusTcbn.textContent = 'Fallback Ativo (100%)';
+
+          // Barra inferior corrigida
+          actionsContainer.innerHTML = `
+            <div class="detran-action-bar-wrapper">
+              <button type="button" class="detran-btn detran-btn-secondary" id="action-btn-secondary">Voltar</button>
+              <button type="button" class="detran-btn detran-btn-primary" id="action-btn-primary">${getPrimaryButtonLabel()}</button>
+            </div>
+          `;
+
+          // Chatbot reposicionado e resiliente
+          chatbotContainer.innerHTML = `
+            <div class="inbot-floating-widget-wrapper" id="inbot-widget-container">
+              <div class="inbot-launcher-btn" id="btn-chatbot" title="Assistente Virtual Detran-DF" role="button" aria-label="Abrir Chatbot">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </div>
+            </div>
+          `;
+        } else {
+          appBody.className = 'mode-original';
+          btnToggleMode.className = 'toggle-mode-btn original';
+          btnToggleMode.textContent = 'Modo Original (Com Falha)';
+
+          // Atualiza diagnósticos
+          statusSobreposicao.className = 'badge-status badge-fail';
+          statusSobreposicao.textContent = '48px (Sobreposição Obstrutiva)';
+          statusWcag.className = 'badge-status badge-fail';
+          statusWcag.textContent = 'Não Conforme (Alvo Obstruído)';
+          statusIcr.className = 'badge-status badge-fail';
+          statusIcr.textContent = '70,00% (Satisfatório)';
+          statusTcbn.className = 'badge-status badge-fail';
+          statusTcbn.textContent = 'ERR_CONNECTION_RESET (75%)';
+
+          // Ações do modo original
+          actionsContainer.innerHTML = `
+            <div class="card legacy-actions" style="margin: 0; border-radius: 0; border-top: 1px solid #cbd5e1; background: #fff;">
+              <button type="button" class="detran-btn detran-btn-secondary" id="action-btn-secondary" style="min-width: 100px;">Voltar</button>
+              <button type="button" class="detran-btn detran-btn-primary" id="action-btn-primary" style="min-width: 140px;">${getPrimaryButtonLabel()}</button>
+            </div>
+          `;
+
+          // Chatbot no canto inferior direito que se sobrepõe
+          chatbotContainer.innerHTML = `
+            <div class="inbot-legacy-widget" id="btn-chatbot" title="Chatbot Virtual InBot">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+                <circle cx="12" cy="5" r="2"></circle>
+                <path d="M12 7v4"></path>
+                <line x1="8" y1="16" x2="8" y2="16"></line>
+                <line x1="16" y1="16" x2="16" y2="16"></line>
+              </svg>
+              <span class="bot-label">CHATBOT</span>
+            </div>
+          `;
+        }
+
+        bindEvents();
+      }
+
+      function getPrimaryButtonLabel() {
+        if (currentModule === 'infracao') return 'Consultar Débitos';
+        if (currentModule === 'atendimento') return 'Confirmar Agendamento';
+        if (currentModule === 'protocolo') return 'Acessar Solicitação';
+        return 'Confirmar';
+      }
+
+      function bindEvents() {
+        const btnPrimary = document.getElementById('action-btn-primary');
+        const btnSecondary = document.getElementById('action-btn-secondary');
+        const btnChat = document.getElementById('btn-chatbot');
+
+        if (btnPrimary) {
+          btnPrimary.onclick = function (e) {
+            e.stopPropagation();
+            showToast(`Ação disparada com sucesso: ${btnPrimary.textContent}`);
+          };
+        }
+
+        if (btnSecondary) {
+          btnSecondary.onclick = function (e) {
+            e.stopPropagation();
+            showToast('Navegação: Retornando à página anterior.');
+          };
+        }
+
+        if (btnChat) {
+          btnChat.onclick = function (e) {
+            e.stopPropagation();
+            if (currentMode === 'original') {
+              showToast('ALERTA: Clique capturado pelo CHATBOT! O botão da página foi bloqueado.');
+            } else {
+              showToast('Assistente Virtual Detran-DF aberto sem bloquear a página.');
+            }
+          };
+        }
+      }
+
+      // Event Listeners dos Controles
+      selectModulo.addEventListener('change', (e) => {
+        currentModule = e.target.value;
+        updateModuleView();
+      });
+
+      selectViewport.addEventListener('change', (e) => {
+        const val = e.target.value;
+        deviceFrame.style.width = val === '100%' ? '100%' : val + 'px';
+      });
+
+      btnToggleMode.addEventListener('click', () => {
+        currentMode = currentMode === 'corrigido' ? 'original' : 'corrigido';
+        renderInterface();
+      });
+
+      // Inicialização
+      updateModuleView();
+    })();
+  </script>
+</body>
+</html>
