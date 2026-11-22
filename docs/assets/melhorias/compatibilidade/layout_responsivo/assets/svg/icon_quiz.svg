@@ -1,1 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><image width="50" height="50" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAD5UlEQVR4nOWYy28bRRzHvzvelx/x27ixnUeTNgltAioSLZXgBH8GcONccULigKoeEOKIBAf4CzhwozdunCrUQoCEkKZxYzvZxK4dJ37sxq+pZtJGbdLU7npj1stHGu1Dv5nd7+78HjMCpZS22m3c/O5r/Hj7JzQaDQwLC5cW8O3nX2EiMQYhs5Wln/zwBRY+fB+iIgGCgGGh3Wxh6+4qrutJCB/fukHjH12DSxYxrNz/+Q5I53J4qEUwxt69DCL53Rh21KAPBA6BwCEQOAQCh0DgEAgcgmj1gNu7BZRr+13toiMhRANhewqpGXWsbqZ7ss2Xi7jufQuSKNpPSLFS5sf5iRmosnKqXUWv4d/cOvbqFUT9IXsJabVbeLiT4wLCI8GX2sqiDAEC0jtZREaCECwoVAksgn1lRqSHLyy6XIgEQtAPDOzXq5Y8n1gyCoBsQePHqfgYKKVd2+upaW6v7ebtM7V2q3tHkerXpd9eqW9hr4R4MIqQL9DXO1giJL2dg1f1IBU9B1U63clfxN8bq3iY37SHkKpR49FHkWQsZe6j3WkjFohgLjV1wvaP9WXuF0z4hcQEPIqKigV+Qvoe4elAhGBtawMAhSxKyJcf4aD5/PqfCWAt6PXznLOuZexZooguFzqUHgk4HlbJk2uWPxhWJUPLhDx94bnUNP8bkkvETPI8P38Wn9uLyXgKiijDp3owm5ziEcwKRCsGOZxKRS6AJTgGmzoPNDbVThLxH9osZ9dQNepdE+jAhFxITGJpYxWbxR1T/SdeS9pDiPtJXRXwjmB6dBz31pb49TtzV07Y/plegd4wcHXmzaNz2/iIR3HzOb9Xq2Bx/R9+jyU5NuWONxammV/cXfsLRsPg+YOF4n4RYRHzk7N8LVI3dLgV9dTpMhZL8MKyVClzu1Rk9Cia2UII+9rjsURXOxchOBeK8WYlotmOjVaTt5fBsjYRCNgmudE86GlcFyFwy+pghHRoB3dWfke3DMBKkEQ4jvR2Btpuoaex3bKKt2feGNQfEaDICrrlsrDvMD+wuqtU7b6OZ3hUc1u4poQw52Ths1eCPj+uzfZuP1Af2derllStL1oGx0zsrpj2kcUHy119xGxOig1KCNs4uJg8j7NAOlZonq0QQbA8D/SLaKYTKzHY8lQ/0E099NL4RX7MPtJO+JkiKbxeG4wQUOQKW6Z85NnFllbKw2g8nyi9gw2/BO/NX0W/vEoI/9/sxhM4BAKHQOAQCBwCgUMgtHMWFdNgoR0KYmRLGHZKaQ1ktCRhXytimMn9sgih0WzSz765hQ2/jukPrsAlm6s+/wvyKxlkb9/D959+icdDAmHQzXpE1wAAAABJRU5ErkJggg=="/></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="64"
+     height="64"
+     viewBox="0 0 24 24"
+     fill="none">
+
+  <!-- Documento -->
+  <path d="M14 2H7C5.9 2 5 2.9 5 4V20C5 21.1 5.9 22 7 22H17C18.1 22 19 21.1 19 20V7L14 2Z"
+        stroke="#2962FF"
+        stroke-width="2"
+        stroke-linejoin="round"/>
+
+  <!-- Dobra da folha -->
+  <path d="M14 2V7H19"
+        stroke="#2962FF"
+        stroke-width="2"
+        stroke-linejoin="round"/>
+
+  <!-- Check -->
+  <path d="M9 13L11 15L15 11"
+        stroke="#2962FF"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+</svg>
