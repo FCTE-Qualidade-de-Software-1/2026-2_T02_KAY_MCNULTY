@@ -54,7 +54,7 @@ As heurísticas são indicadas pelo código **NH1** a **NH10**, para não confun
 
 ### 2.1 Por dispositivo
 
-Um problema que ocorre nos dois dispositivos (`D+M`) entra nas duas contagens, sem alterar a fórmula.
+Um problema que ocorre nos dois dispositivos (`D+M`) entra nas duas contagens, sem alterar a fórmula. Já no resultado geral por módulo (Tabela 3), cada problema é contado **uma única vez**, esteja em um dispositivo ou nos dois. Por isso a soma dos IPH por dispositivo não é igual ao total geral: 21 + 23 = 44, que corresponde aos 28 problemas distintos mais os 16 problemas `D+M`, contados uma vez em cada dispositivo.
 
 | Módulo | Desktop ($N_1$/$N_2$/$N_3$/$N_4$) | IPH Desktop | Mobile ($N_1$/$N_2$/$N_3$/$N_4$) | IPH Mobile |
 | :--- | :---: | :---: | :---: | :---: |
@@ -62,7 +62,7 @@ Um problema que ocorre nos dois dispositivos (`D+M`) entra nas duas contagens, s
 | Atendimento | 1 / 3 / 2 / 0 | 6 | 0 / 3 / 3 / 0 | 6 |
 | Protocolo | 0 / 3 / 2 / 1 | 6 | 1 / 2 / 3 / 1 | 7 |
 | Chatbot | 1 / 1 / 1 / 0 | 3 | 0 / 2 / 2 / 0 | 4 |
-| **Total** | 3 / 8 / 7 / 1 | **21** | 2 / 9 / 10 / 1 | **23** |
+| **Total** | 3 / 10 / 7 / 1 | **21** | 2 / 10 / 10 / 1 | **23** |
 
 **Tabela 4 – IPH por módulo e dispositivo (dados de exemplo).** Fonte: Elaborado pelos autores.
 
@@ -78,8 +78,8 @@ Legenda de dispositivo: **D** = Desktop, **M** = Mobile, **D+M** = ambos.
 | :---: | :---: | :--- | :---: | :--- | :---: |
 | CONS-INF-001 | D+M | Histórico de Infrações por Veículo | NH1 | Sem veículo na conta, a tela não lista nada e não mostra mensagem de estado vazio. | 3 |
 | CONS-INF-002 | D+M | Menu de veículos | NH4 | O mesmo caminho se chama "Consultar Débitos" no desktop e "Consultar Veículo" no mobile. | 2 |
-| CONS-INF-003 | D+M | Página inicial | NH8 | O aviso "É GOLPE!" bloqueia a tela até o clique em "ENTENDI". Registrado com a data da inspeção, pois pode não existir depois. | 2 |
-| CONS-INF-004 | D+M | Lista de veículos | NH6 | A lista não indica quais veículos têm débitos, e o usuário precisa abrir um por um. | 2 |
+| CONS-INF-003 | D+M | Página inicial | NH8 | O aviso "É GOLPE!" bloqueia a tela até o clique em "ENTENDI". Registrado com a data da inspeção, pois pode não existir depois. Heurística secundária: NH3, pelo caráter bloqueante do aviso. | 2 |
+| CONS-INF-004 | D+M | Lista de veículos | NH1 | A lista não indica quais veículos têm débitos, e o usuário precisa abrir um por um. | 2 |
 | CONS-INF-005 | D+M | Detalhe do débito | NH2 | Termos como "enquadramento" aparecem sem explicação para o cidadão. | 3 |
 | CONS-INF-006 | D | Histórico de Infrações | NH8 | O texto explicativo acima da lista é longo e empurra a lista para fora da primeira tela. | 1 |
 | CONS-INF-007 | M | Débitos | NH4 | O botão de voltar fica em posição diferente da usada nas demais telas. | 1 |
@@ -122,7 +122,7 @@ Legenda de dispositivo: **D** = Desktop, **M** = Mobile, **D+M** = ambos.
 | :---: | :---: | :--- | :---: | :--- | :---: |
 | CONS-BOT-001 | M | Conversa com o assistente | NH1 | O assistente não responde e não informa que houve falha, deixando o usuário sem saber se deve esperar. | 3 |
 | CONS-BOT-002 | M | Página inicial em 360 px | NH8 | O avatar do chatbot e o cartão flutuante cobrem o título e parte do conteúdo. Confirmar em aparelho real. | 2 |
-| CONS-BOT-003 | D+M | Resposta do assistente | NH10 | As respostas não trazem link para a página oficial, e o conteúdo varia entre desktop e mobile para a mesma pergunta. | 3 |
+| CONS-BOT-003 | D+M | Resposta do assistente | NH10 | As respostas não trazem link para a página oficial, e o conteúdo varia entre desktop e mobile para a mesma pergunta. Heurística secundária: NH4, pelas divergências entre dispositivos. | 3 |
 | CONS-BOT-004 | D+M | Início da conversa | NH6 | Não há sugestões de perguntas, e o usuário precisa formular tudo do zero. | 2 |
 | CONS-BOT-005 | D | Ícone do assistente | NH4 | O ícone muda de posição entre páginas do portal. | 1 |
 
@@ -132,10 +132,10 @@ Legenda de dispositivo: **D** = Desktop, **M** = Mobile, **D+M** = ambos.
 
 ## 4. Leitura dos resultados
 
-* **Protocolo** tem o único problema de severidade 4: a assinatura com validade legal sem aviso nem possibilidade de edição (CONS-PRO-001).
+* **Protocolo** tem o único problema de severidade 4: a assinatura com validade legal sem aviso nem possibilidade de edição (CONS-PRO-001). A severidade 4 se justifica porque a assinatura com gov.br tem validade legal e, uma vez concluída, o usuário não tem como revisá-la, editá-la nem desfazê-la pela interface. A prévia do documento não avisa que o conteúdo não pode ser alterado e não oferece caminho de correção antes da assinatura. Assim, há risco de uma ação irreversível, o que o guia de severidade classifica como catastrófico (nível 4).
 * **Atendimento** e **Infração** concentram problemas de severidade 3 ligados ao retorno ao usuário (NH1) e à ausência de resumo antes da ação final (NH5).
 * **Chatbot** tem o menor total, mas dois problemas de severidade 3 que afetam a confiança na resposta.
-* O **Mobile** soma mais problemas de severidade 3 e 4 do que o Desktop (11 contra 8), o que combina com a hipótese de que o toque e a tela pequena dificultam a operação.
+* O **Mobile** soma mais problemas de severidade 3 e 4 do que o Desktop (11 contra 8). Uma possível explicação é que o toque e a tela pequena dificultam a operação, mas isso é uma **hipótese levantada pela inspeção**, e não uma causa comprovada. Ela deve ser confirmada com os dados dos participantes (M1, M2 e M3) e com testes em aparelho real.
 * O total não deve ser lido isoladamente: um módulo com poucos problemas de severidade 4 pode ser mais crítico do que outro com muitos problemas cosméticos.
 
 ---
