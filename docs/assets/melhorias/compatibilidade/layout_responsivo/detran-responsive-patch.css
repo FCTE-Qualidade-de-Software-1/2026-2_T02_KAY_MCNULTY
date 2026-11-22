@@ -337,3 +337,134 @@ html, body {
 }
 
 
+
+
+/* ==========================================================================
+   7. Mapeamento Direto de Imagens, Banners e Icones do Portal Detran-DF
+   ========================================================================== */
+
+/* Banner Principal da Home - Mulher Dirigindo */
+@media screen and (min-width: 960px) {
+  .home-container-jumbo-picture {
+    display: block !important;
+    background-image: url(assets/images/banners/principal_home.png) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+  }
+}
+
+/* Figuras da Seção de Download do App e Marketing */
+#homeBannerFigure_1 {
+  display: block !important;
+  background-image: url(assets/images/banners/home_banner_figure_1.png) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+}
+
+.homeBannerFigure_2 {
+  display: block !important;
+  background-image: url(assets/images/banners/home_banner_figure_2.png) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+}
+
+.homeBannerFigure_3 {
+  display: block !important;
+  background-image: url(assets/images/banners/home_banner_figure_3.png) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+}
+
+#homeBannerFigure_4 {
+  display: block !important;
+  background-image: url(assets/images/banners/home_banner_figure_4.png) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+}
+
+/* Icones dos Cards de Servicos Mais Acessados */
+.label-balcao-virtual {
+  background-image: url(assets/svg/icon_balcao_virtual.svg) !important;
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.label-habilitacao-consulta {
+  background-image: url(assets/svg/icon_habilitacao_consulta.svg) !important;
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.label-veiculos-consulta, .label-habilitacao-outros {
+  background-image: url(assets/svg/icon_veiculos_consulta.svg) !important;
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.label-infracao-consulta {
+  background-image: url(assets/svg/icon_infracao_consulta.svg) !important;
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.label-agendamento-consulta {
+  background-image: url(assets/svg/icon_agendamento_consulta.svg) !important;
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.label-quiz {
+  background-image: url(assets/svg/icon_quiz.svg) !important;
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* Icones das Credenciadas */
+.label-administracao {
+  background-image: url(assets/svg/icon_administracao_empresas_credenciadas.svg) !important;
+  background-size: contain !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* Icones das Redes Sociais no Rodape */
+.facebook {
+  background-image: url(assets/svg/eva_facebook-fill.svg) !important;
+  background-size: 24px 24px !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  display: inline-block !important;
+  width: 36px !important;
+  height: 36px !important;
+}
+
+.twitter {
+  background-image: url(assets/svg/akar-icons_twitter-fill.svg) !important;
+  background-size: 24px 24px !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  display: inline-block !important;
+  width: 36px !important;
+  height: 36px !important;
+}
+
+.linkedin {
+  background-image: url(assets/svg/bx_bxl-linkedin.svg) !important;
+  background-size: 24px 24px !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  display: inline-block !important;
+  width: 36px !important;
+  height: 36px !important;
+}
