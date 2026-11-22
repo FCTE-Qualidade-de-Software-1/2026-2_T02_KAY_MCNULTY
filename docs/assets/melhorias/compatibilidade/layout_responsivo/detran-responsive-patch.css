@@ -307,3 +307,33 @@ html, body {
   }
 }
 
+/* ==========================================================================
+   6. Estilos de Navegação do Header (Alto Contraste Preto sobre Branco)
+   ========================================================================== */
+
+.header-nav-btn {
+  color: #111827 !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  padding: 8px 12px !important;
+  border-radius: 4px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  transition: background-color 0.2s ease, color 0.2s ease !important;
+  cursor: pointer !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.header-nav-btn:hover {
+  background-color: rgba(0, 69, 130, 0.08) !important;
+  color: #004582 !important;
+}
+
+.button-menu-mobile-open i, .button-menu {
+  color: #111827 !important;
+}
+
+
