@@ -152,8 +152,20 @@ def criar_painel_comparativo(img_orig_path, titulo_modulo, nome_saida, defeito_t
     # Desenha o Chatbot Launcher reposicionado com folga vertical segura
     bot_y = target_h - bar_h - 85
     bot_x = panel_w - 85
-    draw_corr.ellipse([(bot_x, bot_y), (bot_x + 65, bot_y + 65)], fill="#004582", outline="#ffffff", width=3)
-    draw_corr.text((bot_x + 18, bot_y + 24), "BOT", fill="#ffcc00")
+    avatar_path = BASE_DIR / "assets" / "fOTO_DET-removebg-preview.png"
+    if avatar_path.exists():
+        av = Image.open(avatar_path).convert("RGBA")
+        av = av.resize((65, 65), Image.Resampling.LANCZOS)
+        mask = Image.new("L", (65, 65), 0)
+        mask_draw = ImageDraw.Draw(mask)
+        mask_draw.ellipse((0, 0, 65, 65), fill=255)
+        bg = Image.new("RGBA", (65, 65), "#004582")
+        bg.paste(av, (0, 0), av)
+        corrigido.paste(bg, (bot_x, bot_y), mask)
+        draw_corr.ellipse([(bot_x, bot_y), (bot_x + 65, bot_y + 65)], outline="#ffffff", width=3)
+    else:
+        draw_corr.ellipse([(bot_x, bot_y), (bot_x + 65, bot_y + 65)], fill="#004582", outline="#ffffff", width=3)
+        draw_corr.text((bot_x + 18, bot_y + 24), "BOT", fill="#ffcc00")
     
     # Indicador de area livre de toques (caixa verde de conformidade)
     draw_corr.rectangle(
