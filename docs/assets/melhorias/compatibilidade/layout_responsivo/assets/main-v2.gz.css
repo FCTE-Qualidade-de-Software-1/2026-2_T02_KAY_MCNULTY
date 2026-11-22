@@ -1,0 +1,1581 @@
+@charset "utf-8";
+
+/*
+ versao 12.2
+
+ gzip -c main-v2.css > main-v2.gz.css
+ SUBIR EM S3 bot-server /in-framework/main-v2.gz.css
+
+ aws s3 cp main-v2.gz.css s3://bot-server/in-framework/main-v2.gz.css --content-encoding gzip --acl public-read
+
+// OLD:
+// aws s3 cp main-v2.gz.css s3://bot-server/in-framework/main-v2.gz.css --content-encoding gzip --acl public-read --endpoint-url https://bot-server.s3.amazonaws.com/
+
+*/
+
+
+/* not draggable elements */
+.no_drag {
+ cursor: default;
+}
+
+
+/* <td class="sortable"> */
+
+xth.sortable::after {
+  content: '\2195';
+  margin-left: 5px;
+}
+xth.sortable_asc::after {
+  content: '\25B2';
+}
+xth.sortable_desc::after {
+  content: '\25BC';
+}
+
+
+/* Header (th) fixa no topo:
+
+ <div class="container-table-sticky">
+  <table>...</table>
+ </div>
+
+ Para fazer a SEGUNDA linha ser sticky:
+
+ <div class="container-table-sticky2">
+  <table>...</table>
+ </div>
+
+
+
+CSS opcional para table header grudar abaixo do cabeçalho da página:
+ <div class="container-table-sticky-top-bar">
+:root {
+ --top-bar-height: 44px;
+}
+
+*/
+
+.container-table-sticky, .container-table-sticky-top-bar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-table-sticky tr:first-child th {
+ position: sticky;
+ top: 0px;
+ z-index: 1;
+}
+
+.container-table-sticky-top-bar tr:first-child th {
+ position: sticky;
+ top: var(--top-bar-height, 0px);
+ z-index: 1;
+}
+
+.container-table-sticky2 tr:nth-child(2) th {
+ position: sticky;
+ top: 0px;
+ z-index: 1;
+}
+
+.container-table-sticky-top-bar2 tr:nth-child(2) th {
+ position: sticky;
+ top: var(--top-bar-height, 0px);
+ z-index: 1;
+}
+
+
+
+
+.inShakeAnim {
+  animation: inShakeAnim_name 0.5s;
+}
+
+.inShakeAnim_fast {
+  animation: inShakeAnim_name 0.2s;
+}
+
+@keyframes inShakeAnim_name {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px)  rotate(1deg); }
+  30% { transform: translate(3px, 2px)   rotate(0deg); }
+  40% { transform: translate(1px, -1px)  rotate(1deg); }
+  50% { transform: translate(-1px, 2px)  rotate(-1deg); }
+  60% { transform: translate(-3px, 1px)  rotate(0deg); }
+  70% { transform: translate(3px, 1px)   rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px)   rotate(0deg); }
+ 100% { transform: translate(1px, -2px)  rotate(-1deg); }
+}
+
+
+/* 
+  CSS EFFECT: $in.pulse(id);     // Pulse once 
+  CSS EFFECT: $in.add_pulse(id); // Pulse on mouse enter
+*/
+
+@keyframes in_pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.in_pulse {
+  animation: in_pulse 0.4s cubic-bezier(0.1, .3, 0.7, 1);
+}
+
+
+
+/* CSS EFFECT: $in.progres('id_card1'); */
+
+
+
+@keyframes in_progress {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--progress-width);
+  }
+}
+
+@keyframes in_fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+
+.progress_green_border {
+  position: relative;
+  --progress-width: 100%;
+}
+
+.progress_green_border::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;  /* espessura da borda */
+    background-color: #4CAF50;  /* cor verde */
+    transform: translateY(var(--progress-offset-y, 0px));
+    animation: in_progress 0.5s linear forwards,
+               in_fadeOut 0.3s  linear forwards 0.5s;
+}
+
+
+/* CSS EFFECT: $in.flip('id_card1', 'id_card2'); */
+
+.flip-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d; /* Ativa o espaço 3D */
+}
+
+.flip-container > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Impede que o lado oposto seja visto */
+}
+
+.flip-front-div {
+}
+
+.flip-back-div {
+  transform: rotateY(180deg); /* Gira o lado de trás 180 graus */
+}
+
+.flip-container.flipped {
+  transform: rotateY(180deg); /* Rotaciona o container para mostrar o lado de trás */
+}
+
+.flip-container-outside {
+ perspective: 600px; /* Define a perspectiva para o efeito 3D */
+}
+
+
+/* CSS EFFECT: $in.ripple(this); */
+
+.ripple-grow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0px;
+  opacity: 0;
+  animation: ripple-grow-keyframes-enter-fade 550ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ripple-grow-child {
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0.3;
+  xborder-radius: 30px;
+  background-color: currentColor;
+}
+
+@-webkit-keyframes ripple-grow-keyframes-enter-fade {
+  0% {
+    opacity: 0.1;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.15);
+  }
+}
+
+
+
+
+/* <i class="fa fa-fw fa-spinner"></i> */
+@keyframes anim-fa-spinner {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.insite .fa-spinner {
+  animation: anim-fa-spinner 2s linear infinite;
+}
+
+.insite-body {
+ color: #303030;
+ border: 0;
+ margin: 0;
+ padding: 0;
+ font-family: "Segoe UI", Arial;
+}
+
+.insite a, .insite a:link, .insite a:visited {
+ color: #0069d6;
+ text-decoration: none;
+}
+
+.insite a:hover {
+ color: #0050a3;
+ text-decoration: underline;
+}
+
+/* no rounded corners and glare buttons (iOS forces rounded corners input button) */
+.insite-body input[type=button], .insite-body input[type=submit] {
+  -webkit-appearance: none;
+}
+
+.insite-body input,
+.insite-body textarea,
+.insite-body select,
+.uneditable-input {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+
+.insite-body textarea {
+ background-color: #ffffff;
+ border: 1px solid #ccc;
+ border-bottom-color: #999;
+ border-right-color: #999;
+ font-size: 15px;
+}
+
+.insite-body textarea:disabled {
+ background-color: #ebebe4;
+}
+
+/* Mudei de .insite-body para .insite pois widget do bot usa .insite */
+.insite hr {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border: 0;
+  border-bottom: 1px solid #bbb;
+}
+
+.insite-body ::placeholder {
+ color: #a9a9a9; /* pra nao ficar muito escuro e confundir com texto preenchido. Dizem que no chrome mac eh #a9a9a9 */
+}
+
+.insite-body .input-placeholder {
+ position: absolute;
+ font-style: italic;
+ color: #aaa;
+ margin-top: 0px;
+ margin-left: 6px;
+ font-size: 1.2em;
+}
+
+.insite .focus_shadow {
+ transition: box-shadow 0.5s ease;
+}
+
+.insite .focus_shadow:focus {
+ outline: none;
+ box-shadow: 0 0 10px rgba(0,0,0, 0.2);
+ transition: box-shadow 0.2s ease;
+}
+
+.insite table {
+ border-collapse: collapse;
+}
+
+.insite .monospace {
+  font-family: monospace;
+  background-color: rgba(0,0,0,0.02);
+}
+
+.insite code {
+  white-space: pre;
+  font-family: "Lucida Console", monospace;
+  font-size: 0.80em;
+  background-color: #fffcf5;
+  display: inline-block;
+  padding: 12px;
+  margin: 0 0 18px;
+  line-height: 18px;
+  border: 1px solid rgba(128, 40, 20, 0.75);
+  border-radius: 3px;
+}
+
+
+.insite #container, .insite .container {
+ padding-left: 3%;
+ padding-right: 3%;
+ max-width: 1200px;
+ margin: 0 auto;
+ margin-top: 10px;
+}
+
+.table-vtop td, .table-vtop th {
+  vertical-align: top;
+}
+
+/* sem #chatarea nao funcionava no site oralunic */
+#chatarea .table-normal td, #chatarea .table-normal th,
+#chatarea .table_normal td, #chatarea .table_normal th,
+.table-normal td, .table-normal th,
+.table_normal td, .table_normal th
+{
+  padding: 6px;
+}
+
+.table-td-right td {
+  text-align: right;
+}
+.table-td-center td {
+  text-align: center;
+}
+.table-td-top td {
+  vertical-align: top;
+}
+
+.cursor_zoom_in {
+ cursor: -webkit-zoom-in;
+ cursor: -moz-zoom-in;
+ cursor: zoom-in;
+}
+
+.cursor_zoom_out {
+ cursor: -webkit-zoom-out;
+ cursor: -moz-zoom-out;
+ cursor: zoom-out;
+}
+
+.dotted-line {
+ border: 0px;
+ border-bottom: 1px dotted #000;
+}
+
+.insite .center {
+ margin-left: auto;
+ margin-right: auto;
+}
+
+.semibold {
+  font-weight: 600;
+}
+
+.table-round th:first-child {
+ border-top-left-radius: 12px;
+}
+.table-round th:last-child {
+ border-top-right-radius: 12px;
+}
+
+.table-border-white td, .table-border-white th {
+  border: 2px solid #fdfdfd;
+}
+
+
+/* sem #chatarea nao funcionava no site oralunic */
+#chatarea .table-border1 td,.border1, .table-border1, .table-border1 td, .table-border1 th {
+  border: 1px solid #a8a8a8;
+}
+
+.table-border0 td {
+ border: 0px;
+ padding: 1px;
+ margin: 0px;
+}
+
+.round5 {
+ -moz-border-radius: 5px;
+ -webkit-border-radius: 5px;
+ border-radius: 5px;
+ border-collapse: separate;
+}
+
+.round10 {
+ -moz-border-radius: 10px;
+ -webkit-border-radius: 10px;
+ border-radius: 10px;
+ border-collapse: separate;
+}
+
+.round10top {
+ -moz-border-radius-topleft: 10px;
+ -moz-border-radius-topright: 10px;
+ -webkit-border-top-left-radius: 10px;
+ -webkit-border-top-right-radius: 10px;
+ border-top-left-radius: 10px;
+ border-top-right-radius: 10px;
+ border-collapse: separate;
+}
+
+.round10bottom {
+ -moz-border-radius-bottomleft: 10px;
+ -moz-border-radius-bottomright: 10px;
+ -webkit-border-bottom-left-radius: 10px;
+ -webkit-border-bottom-right-radius: 10px;
+ border-bottom-left-radius: 10px;
+ border-bottom-right-radius: 10px;
+ border-collapse: separate;
+}
+
+.round15 {
+ -moz-border-radius: 15px;
+ -webkit-border-radius: 15px;
+ border-radius: 15px;
+ border-collapse: separate;
+}
+
+.round20 {
+ -moz-border-radius: 20px;
+ -webkit-border-radius: 20px;
+ border-radius: 20px;
+ border-collapse: separate;
+}
+
+.imgshadow {
+ border: 1px solid black;
+ padding: 10px 10px 10px 10px;
+ box-shadow: 5px 5px 5px #aaa;
+-moz-box-shadow: 5px 5px 5px #aaa;
+-khtml-box-shadow: 5px 5px 5px #aaa;
+-webkit-box-shadow: 5px 5px 5px #aaa;
+ background-color: #ffffff;
+}
+
+#alert_message {
+ display: none;
+ position: relative;
+ z-Index: 1001;
+}
+
+
+.face-rating-sad {
+ background-image: url(https://in.bot/js/rating/face-rating-sad.png);
+ background-size: cover;
+ background-repeat: no-repeat;
+ width: 22px;
+ height: 22px;
+ vertical-align: middle;
+ display: inline-block;
+}
+.face-rating-happy {
+ background-image: url(https://in.bot/js/rating/face-rating-happy.png);
+ background-size: cover;
+ background-repeat: no-repeat;
+ width: 22px;
+ height: 22px;
+ vertical-align: middle;
+ display: inline-block;
+}
+.face-rating-neutral {
+ background-image: url(https://in.bot/js/rating/face-rating-neutral.png);
+ background-size: cover;
+ background-repeat: no-repeat;
+ width: 22px;
+ height: 22px;
+ vertical-align: middle;
+ display: inline-block;
+}
+
+
+.alert_message_default { /* alerta amarelo */
+ display: inline-block; /* pra funcionar com <span> */
+ border-radius: 8px;
+ background: url(/in-framework/warning16x16.png) no-repeat;
+ background-position: 10px 12px; 
+ background-color: #fcf8e3;
+ border: 1px solid #f6e0a0;
+ color: #8a6d3b;
+ padding-top: 8px; padding-bottom: 8px; padding-right: 8px; padding-left: 34px;
+ margin-top: 10px; margin-bottom: 10px;
+}
+
+.alert_message_error { /* alerta vermelho */
+ display: inline-block; /* pra funcionar com <span> */
+ border-radius: 8px;
+ background: url(/in-framework/warning-error-16x16.png) no-repeat;
+ background-position: 10px 12px; 
+ background-color: #f2dede;
+ border: 1px solid #ebcccc;
+ color: #a94442;
+ padding-top: 8px; padding-bottom: 8px; padding-right: 8px; padding-left: 34px; margin-top: 10px; margin-bottom: 10px;
+}
+
+.alert_message_success { /* alerta verde */
+ display: inline-block; /* pra funcionar com <span> */
+ border-radius: 8px;
+ color: #3c763d;
+ background: url(/in-framework/warning-ok-16x16.png) no-repeat;
+ background-position: 10px 12px; 
+ background-color:  #dff0d8;
+ border: 1px solid #d0e9c6;
+ padding-top: 8px; padding-bottom: 8px; padding-right: 8px; padding-left: 34px; margin-top: 10px; margin-bottom: 10px;
+}
+
+.close_x {
+ float: right;
+ text-align: right;
+ cursor: pointer;
+ margin-left: 20px;
+ margin-top: -7px;
+ color: #a00000;
+ font-size: 1.4em;
+ filter: alpha(opacity=50);
+ -khtml-opacity: 0.5;
+ -moz-opacity: 0.5;
+ opacity: 0.5;
+ font-weight: bold;
+}
+
+.close_x:before {
+ content: "×"; /* &times; */
+}
+
+.close_x:hover {
+  color: #f03030;
+  text-decoration: none;
+  filter: alpha(opacity=90);
+  -khtml-opacity: 0.9;
+  -moz-opacity: 0.9;
+  opacity: 0.9;
+}
+
+
+/* Efeito redondo em volta do icone: <i class="fa fa-trash fa-fw flash"></i> */
+.insite .flash {
+ display: inline-block;
+ border-radius: 50%;
+ padding: 4px;
+ cursor: pointer;
+}
+.insite .flash:hover {
+ background-color: #e0e0e0;
+}
+
+.insite .btn-success .flash:hover {
+ background-color: #008000;
+}
+.insite .btn-primary .flash:hover {
+ background-color: #0040a0;
+}
+
+
+/* Overwrites default Alex Gorbatchev's SyntaxHighligher */
+
+.syntaxhighlighter {
+  width: 690px !important;
+  border: 1px solid #cccccc;
+  /* Removes annoying useless vertical scroll bar */
+  /* xoverflow-y: hidden !important; */
+  padding-bottom: 1px;
+}
+
+.syntaxhighlighter .gutter .line {
+  border-right: 3px solid #ccddee !important; /* line numbers vertical bar */
+}
+
+.syntaxhighlighter .line.alt1 {
+  background-color: #f7f7ff !important;
+}
+
+.syntaxhighlighter .line.alt2 {
+  background-color: #f4f4f4 !important;
+}
+
+
+.insite .destructive {
+  background-color: #ffb8b0;
+}
+
+
+/*
+ From bootstrap 4:
+ https://raw.githubusercontent.com/twbs/bootstrap/13e4348dfd78c0f1a28d5a108a4ec4f55de1271a/dist/css/bootstrap.css
+ http://v4-alpha.getbootstrap.com/components/buttons/
+*/
+
+.insite .btn {
+  display: inline-block;
+  font-weight: normal;
+  line-height: 1.25;
+  min-height: 10px; /* pra resetar site que tem css com class .btn */
+  min-width: 10px; /* pra resetar site que tem css com class .btn */
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  padding-left: 6px; padding-right: 6px; padding-top: 4px; padding-bottom: 4px;
+  font-size: 0.9rem;
+  border-radius: 0.25rem;
+  transition: box-shadow 0.5s ease, background-color 0.2s ease;
+  text-decoration: none; /* no caso de ser <a href="" class="btn"> */
+}
+
+.insite .btn:active {
+ opacity: 0.8;
+}
+
+.insite .btn a {
+  text-decoration: none;
+}
+
+.insite .btn-selected {
+ border: 1px solid #505050;
+ box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.8);
+ font-weight: 600;
+}
+
+.insite .btn-hover:hover {
+ box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+ transition: all 0.2s ease;
+}
+
+.insite .btn-big {
+ padding-left: 15px;
+ padding-right: 15px;
+ padding-top: 8px;
+ padding-bottom: 8px;
+ font-size: 1rem;
+}
+
+.insite .btn-small {
+  font-size: 0.9rem; /* TODO: usar em px pois tem pg que redefine rem */
+  padding: 0.4rem 0.5rem;
+  line-height: 1rem;
+}
+
+.insite .btn-mini {
+  font-size: 12px;
+  padding: 0.15rem 0.5rem;
+  line-height: 1rem;
+}
+
+/* 
+TODO: Tirar !important ?
+ Nao sei pq tinha !important. Ruim pois nao da p/ sobrepor layout do .bot_layout_button_submit_message 
+  xbackground-color: #0275d8 !important;
+  xborder-color: #0275d8 !important;
+  btn-secondary: xbackground-color: #025aa5 !important;
+*/
+
+.insite .btn-secondary, .insite .btn-default, .insite .btn {
+  color: #373a3c;
+  background-color: #fff;
+  border-color: #ccc;
+}
+.insite .btn-secondary a, .insite .btn-default a, .insite .btn {
+  color: #373a3c;
+}
+
+.insite .btn-secondary:hover, .insite .btn-default:hover, .insite .btn:hover {
+  color: #373a3c;
+  background-color: #f4f4f4;
+  border-color: #adadad;
+  text-decoration: none; /* para o caso do tag "a" ter class=btn */
+}
+
+.insite .btn-primary {
+  color: #ffffff !important;
+  background-color: #0275d8;
+  border-color: #0275d8;
+}
+.insite .btn-primary a {
+  color: #ffffff;
+}
+
+/* btn-primary deve vir depois do .btn, pra fazer overwrite das propriedades e cores */
+
+.insite .btn-primary:hover {
+  color: #ffffff;
+  background-color: #025aa5;
+  border-color: #01549b;
+}
+
+.insite .orange-background {
+ background-color: #ee7924 !important;
+ color: white;
+}
+
+.insite .btn-orange {
+ color: #ffffff;
+ background-color: #ee7924;
+ border-color: #f08000;
+ padding: 0.4rem 0.5rem;
+}
+
+/* <a href="" class="btn-orange"> */
+.insite a:link.btn-orange {
+  color: white;
+}
+
+.insite .btn-orange:hover {
+ color: #fff;
+ background-color: #ee6924;
+/* background-color: #ff8000; */
+}
+
+
+
+.insite .btn-grey, .insite .btn-gray {
+ color: #ffffff;
+ background-color: #606060;
+ padding: 0.4rem 0.5rem;
+}
+.insite .btn-grey:hover, .insite .btn-gray:hover {
+ color: #ffffff;
+ background-color: #808080;
+}
+
+
+
+.insite .btn-success {
+ color: #ffffff;
+ background-color: #5cb85c;
+ border-color: #5cb85c;
+}
+.insite .btn-success a {
+ color: #ffffff;
+}
+
+.insite .btn-success:hover {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #419641;
+}
+
+
+.insite .btn-danger {
+  color: #ffffff;
+  background-color: #d9534f;
+}
+
+.insite .btn-danger a {
+  color: #ffffff;
+}
+
+.insite .btn-danger:hover {
+  color: #ffffff;
+  background-color: #c9302c;
+  border-color: #c12e2a;
+}
+
+
+.insite .btn:disabled, .insite .btn:disabled:hover {
+  background-color: #b8b8b8 !important;
+  border-color: #909090 !important;
+  cursor: default !important;
+  pointer-events: none; /* prevent further clicks */
+}
+
+/* adicionei important pois infelizmente o btn-primary tem important tambem */
+.insite .btn-disabled, .insite .btn-disabled:hover {
+  cursor: default;
+  background-color: #e4e4e4 !important;
+  border-color: #c0c0c0 !important;
+  color: #888888 !important;
+  outline: none; /* evita cor da borda ao clicar - get rid of outer border when clicking */
+  pointer-events: none; /* prevent further clicks */
+  user-select: none;
+}
+
+/* Ex: imagem do icone configuracoes do superivsor inchat aparece apagadinha assim enquanto está inativa */
+.btn-disabled img, img.btn-disabled {
+  opacity: 0.3;
+}
+
+/* Usado em supervisor inchat */
+.disabled-while-loading {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.btn-disabled:hover {
+ opacity: 0.85;
+}
+
+.insite .table-striped > tbody > tr:nth-child(odd) {
+  background-color: #f0f0f0;
+}
+
+.insite .table-striped > tbody > tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.insite .table-striped th {
+  background-color: #dadada;
+}
+
+
+/* Cinza em linhas pares (a partir da segunda): */
+.table-strip > tbody > tr:nth-child(2n+3) {
+  background-color: #eeeeee;
+}
+
+.table-strip > tbody > tr:nth-child(2n+2) {
+  background-color: #ffffff;
+}
+
+
+.insite .frm-error {
+  border-color:#f01030;
+}
+
+/* Bom para alertar campo input não preenchido */
+.insite .red_outline {
+  outline: 1px solid #f01030;
+}
+
+.insite-bar-chart {
+ xfont-size: 0;
+ border: 1px solid #ccc;
+ margin-top: 4px;
+ display: inline-block;
+ padding-bottom: 10px;
+ padding-left: 20px;
+ padding-right: 20px;
+ padding-top: 20px;
+}
+
+.insite-bar-chart .in-each-bar-container {
+ width: 25px;
+ display: inline-block;
+ position: relative;
+}
+
+.insite-bar-chart .in-each-bar {
+ display: inline-block;
+ background: linear-gradient(#e0f0ff, #a0c0ec);
+ height: 5px; /* initial height before animation transition */
+ width: 24px; /* blue bar width */
+ position: absolute;
+ bottom: 18px;
+ vertical-align: bottom;
+ border: 1px solid #aaa;
+ transition: height 0.5s ease;
+}
+
+.insite-bar-chart .in-each-bar:hover {
+ background: linear-gradient(#e0f0ff, #7090bc);
+ box-shadow: 0px 0px 5px #d0d0d0;
+}
+
+.insite-bar-chart .in-each-bar-key {
+ font-size: 0.7rem;
+ position: absolute;
+ bottom: 0px; /* posiciona legenda abaixo da barra */
+ margin-top: -20px;
+ width: 100%;
+ text-align: center;
+}
+
+.insite-bar-chart .in-each-bar-value {
+ font-size: 0.57rem; /* pra caber numero de 5 digitos acima do bar */
+ margin-top: -20px;
+ text-align: center;
+ position: relative; /* para z-index funcionar */
+ z-index: 1; /* para nao aparecer numero abaixo da barra do lado */
+}
+
+/* <div class="in_loader"></div> (loading / loader animation round spinner blue) */
+
+.in_loader {
+ display: inline-block;
+ border: 2px solid #f3f3f3;
+ border-radius: 50%;
+ border-top: 2px solid #3498db;
+ width: 16px;
+ height: 16px;
+ -webkit-animation: loader_spin 2s linear infinite;
+ animation: loader_spin 2s linear infinite;
+}
+@-webkit-keyframes loader_spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes loader_spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+.in_autocomplete {
+ position: relative;
+ xdisplay: inline-block;
+}
+
+.in_autocomplete-items {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  border-bottom: none;
+  border-top: none;
+  z-index: 999;
+  /* autocomplete-items will be the same width as the container */
+  top 100%;
+  left: 0;
+  right: 0;
+}
+
+.in_autocomplete-items div {
+ padding: 6px;
+ cursor: pointer;
+ background-color: #fff;
+ border-bottom: 1px solid #d4d4d4;
+}
+
+/*when hovering an item:*/
+.in_autocomplete-items div:hover {
+  background-color: #e9e9e9;
+}
+
+/*when navigating through the items using the arrow keys:*/
+.in_autocomplete-active {
+  background-color: DodgerBlue !important;
+  color: #ffffff;
+}
+
+
+.in_ball_green, .in_ball_status_online {
+ background-color: #20f020;
+ border: 1px solid green;
+ border-radius: 50%;
+ width: 10px;
+ height: 10px;
+ display: inline-block;
+}
+
+.in_ball_black {
+ background-color: #000000;
+ border: 1px solid #505050;
+ border-radius: 50%;
+ width: 10px;
+ height: 10px;
+ display: inline-block;
+}
+
+.in_ball_gray {
+ background-color: #b0b0b0;
+ border: 1px solid #303030;
+ border-radius: 50%;
+ width: 10px;
+ height: 10px;
+ display: inline-block;
+}
+
+.in_ball_orange, .in_ball_status_pause {
+ background-color: #ff8000;
+ xbackground-color: #ffd000;
+ border: 1px solid #f0b800;
+ border-radius: 50%;
+ width: 10px;
+ height: 10px;
+ display: inline-block;
+}
+
+.in_ball_yellow, .in_ball_status_pre_pause {
+ background-color: #fff900;
+ border: 1px solid #f0e000;
+ border-radius: 50%;
+ width: 10px;
+ height: 10px;
+ display: inline-block;
+}
+
+.in_ball_red, .in_ball_status_logout {
+ background-color: #f02020;
+ border: 1px solid #a00000;
+ border-radius: 50%;
+ width: 10px;
+ height: 10px;
+ display: inline-block;
+}
+
+.in_ball_purple {
+ background-color: #cc55dd;
+ border: 1px solid #a00080;
+ border-radius: 50%;
+ width: 10px;
+ height: 10px;
+ display: inline-block;
+}
+
+.in_ball_white {
+ background-color: #ffffff;
+ border: 1px solid #707070;
+ border-radius: 50%;
+ width: 10px;
+ height: 10px;
+ display: inline-block;
+}
+
+.insite .icon-loading {
+  display: inline-block;
+  width: 60px;
+  height: 20px;
+  background-image: url('https://in.bot/images/icons/icon-loading-3-dots.gif');
+  background-size: cover;
+  margin-bottom: -5px;
+}
+
+.insite .in-red-border {
+  border-color: red;
+}
+
+/* screen-reader only (invisible content for other devices), and findable with ctrl-f */
+
+.insite .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* DROPDOWN DIV MENU */
+
+.insite .dropdown {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+}
+
+.insite .dropdown-title {
+  cursor: pointer;
+  border: 0;
+  outline: 0; /* para tab selecionado em tabindex=0 nao ficar com borda preta */
+}
+
+.insite .dropdown-no-hover.dropdown-title { /* adicionar class="dropdown-no-hover dropdown-title" se nao quiser efeito de hover */
+ background-color: rgba(0,0,0,0) !important;
+}
+
+.insite .dropdown:hover .dropdown-title, .insite .dropdown-title:focus {
+  background-color: rgba(128,128,128,.2);
+}
+  
+.insite .dropdown > ul {
+  max-height: 0;
+  overflow: hidden;
+  position: absolute;
+  xposition: fixed;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  min-width: 150px;
+  box-shadow: 0px 3px 8px 0px rgba(0,0,0,0.1);
+  z-index: 1002;
+  transition: max-height 0.1s ease-out; /* Isso agora é controlado pelo main.js. tempo para fechar */
+  margin: 0;
+  list-style-type: none;
+  padding: 0;
+}
+
+.insite .dropdown.dropdown-dark > ul {
+  color: white;
+  background-color: black;
+}
+
+.insite ul.dropdown-show {
+  transition: max-height 0.2s ease-in; /* Isso agora é controlado pelo main.js. velocidade para abrir */
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.insite .dropdown-right .dropdown-show{
+  border-top-left-radius: 0px;
+  border-top-right-radius: 10px;
+}
+
+.insite .dropdown-left .dropdown-show{
+  border-top-left-radius: 10px;
+  border-top-right-radius: 0px;
+}
+
+
+.insite .dropdown li {
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+  line-height: 1rem;
+  text-align: left;
+}
+
+.insite .dropdown li a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.insite .dropdown li:last-child {
+  border-bottom: none;
+}
+
+.insite .dropdown li:hover, .insite .dropdown li:focus {
+  background-color: #f1f1f1;
+  outline: none; /* pra nao mostrar borda preta do focus ao navegar por tab */  
+}
+
+.insite .dropdown li:active {
+  background-color: #d8d8d8;
+}
+
+/* /DROPDOWN DIV MENU */
+
+
+.insite .accordion_head {
+ border-radius: 25px;
+ background-color: #707070;
+ color: white;
+ font-size: 1.1em;
+ padding: 7px;
+ padding-left: 20px;
+ margin-top: 10px;
+ user-select: none;
+}
+
+.insite .accordion_head:hover {
+ background-color: #888888;
+}
+
+.insite .accordion_head img {
+ height: 19px;
+ margin-bottom: -5px;
+ margin-right: 8px;
+}
+
+.insite .accordion_head_opened {
+ background: linear-gradient(6deg, rgba(5,20,110,1) 0%, rgba(100,150,220,1) 100%);
+}
+
+.insite .accordion_chevron {
+ display: inline=block;
+ float: right;
+ margin-right: 15px;
+ margin-top: 2px;">
+}
+
+.insite .accordion_body {
+ display: none;
+ background-color: white;
+ border-left: 1px solid #c0c0c0;
+ border-right: 1px solid #c0c0c0;
+ border-bottom: 1px solid #c0c0c0;
+ border-bottom-left-radius: 30px;
+ border-bottom-right-radius: 30px;
+ padding-top: 15px;
+ padding-left: 20px;
+ padding-right: 20px;
+ padding-bottom: 20px;
+ margin-left: 20px;
+ margin-right: 32px;
+ margin-bottom: 20px;
+}
+
+
+
+
+.in_tab {
+ display: inline-block;
+ background-color: #e8e8e8;
+ margin-right: 3px;
+ border: 1px solid #b0b0b0;
+ border-top-left-radius: 6px;
+ border-top-right-radius: 6px;
+ padding: 5px;
+ font-size: 0.9em;
+ margin-bottom: -2px;
+ cursor: pointer;
+ opacity: 0.6;
+ user-select: none;
+}
+
+.in_tab:hover {
+ background-color: white;
+}
+
+.in_tab_selected:hover {
+ background-color: white;
+}
+
+.in_tab_selected {
+ background-color: white;
+ border: 1px solid #a0a0a0;
+ border-bottom: 1px solid white;
+ font-weight: 600;
+ cursor: default;
+ opacity: 0.999;
+}
+
+.in_tab_content {
+ display: none;
+ background-color: white;
+ border: 1px solid #a0a0a0;
+ margin-top: 1px;
+ padding: 10px;
+ padding-top: 10px;
+ border-bottom-left-radius: 5px;
+ border-bottom-right-radius: 5px;
+ border-top-right-radius: 5px;
+}
+
+.display_none {
+  display: none;
+}
+
+
+
+
+.icon-magic-animated .ai-star-top {
+ animation: icon-magic-pulseSmall 1.3s ease-in-out infinite;
+ animation-delay: 0.3s;
+}
+.icon-magic-animated .ai-star-bottom {
+ animation: icon-magic-pulseSmall 1.4s ease-in-out infinite;
+ animation-delay: 0.6s;
+}
+.icon-magic-animated .ai-star-main {
+ animation: icon-magic-pulseLarge 1.5s ease-in-out infinite;
+}
+@keyframes icon-magic-pulseLarge {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+@keyframes icon-magic-pulseSmall {
+  0% { transform: scale(1); }
+  45% { transform: scale(0.8); }
+  100% { transform: scale(1); }
+}
+
+
+
+
+
+
+.text-truncate {
+  display: -webkit-box;
+  -webkit-line-clamp: 12; /* número de linhas visíveis */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* word-break: break-word; */
+  cursor: pointer;
+  position: relative;
+
+/*
+Comentei pq agora só adiciona transition ao .text-truncate depois que renderizar os [ver mais...]
+transition: max-height 3s ease; */
+
+  /* Efeito fade-out no final do texto antes do [...ver mais] */
+/*  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 65%, rgba(0,0,0,0));
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+*/
+}
+
+
+.text-truncate-anim {
+  transition: max-height 3s ease;
+}
+
+
+/* aplica o fade APENAS quando detectamos clamp */
+.text-truncate.is-clamped:not(.text-truncate-expanded) {
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 65%, rgba(0,0,0,0));
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 65%, rgba(0,0,0,0));
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%;
+}
+
+
+.text-truncate-ver-mais, .text-truncate-ver-menos {
+  color: #46c;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  display: block;
+  margin-top: 4px;
+  user-select: none;
+}
+
+.text-truncate-expanded {
+  display: block;
+  -webkit-line-clamp: unset;
+  overflow: visible;
+  cursor: auto;
+
+  max-height: 9999px !important; /* um valor alto só pra animar com transition. Coloquei important pra ter prioridade sobre max-height nativo do elemento que é setado por js em el.css("max-height", h + "px"); */
+
+  /* desfaz efeito do fade */
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+
+
+
+.in_switch_container {
+  margin-bottom: -4px; /* centraliza botão com o texto */
+  margin-right: 8px;   /* distancia do botao ao texto label da direita */
+  margin-top: 6px;
+  --w:40px; --h:20px;
+  --knob:12px; --pad:4px;
+  position:relative; display:inline-block;
+  width:var(--w); height:var(--h);
+
+}
+.in_switch_container input{ display:none; }
+.in_switch_slider{
+  position:absolute; inset:0; background:#ccc;
+  border-radius:calc(var(--h)/2); transition:.2s;
+}
+.in_switch_slider::before{
+  content:""; position:absolute; width:var(--knob); height:var(--knob);
+  left:var(--pad); bottom:var(--pad);
+  background:#fff; border-radius:50%; transition:.2s;
+}
+input:checked + .in_switch_slider{ background:#2196F3; }
+input:checked + .in_switch_slider::before{
+  transform:translateX(calc(var(--w) - var(--knob) - 2*var(--pad)));
+}
+.in_switch_status_on  { user-select: none; display:none; }
+.in_switch_status_off { user-select: none; }
+
+
+
+/* ========================================
+   TOAST SYSTEM — CSS (Merged & Updated)
+   ======================================== */
+
+.in-toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+  max-width: 420px;
+  width: calc(100% - 40px);
+}
+
+.in-toast {
+  position: relative; /* <-- CRÍTICO: Faltava no main-v2 */
+  pointer-events: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #1a1a2e;
+  background: #fff;
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.10),
+    0 1px 4px rgba(0, 0, 0, 0.06);
+  border-left: 4px solid transparent;
+  transform: translateX(calc(100% + 40px));
+  opacity: 0;
+  animation: in-toast-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transition: opacity 0.3s, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  cursor: default;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden; /* <-- CRÍTICO: Faltava no main-v2 */
+}
+
+.in-toast.in-toast-out {
+  animation: in-toast-out 0.35s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+}
+
+/* Barra de progresso */
+.in-toast-progress {
+  position: absolute;
+  bottom: 0;
+  left: 4px;
+  height: 3px;
+  border-radius: 0 0 6px 0;
+  animation: in-toast-progress linear forwards;
+  opacity: 0.5;
+}
+
+/* Ícone */
+.in-toast-icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-top: 1px;
+}
+
+.in-toast-icon svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Texto */
+.in-toast-body {
+  flex: 1;
+  min-width: 0;
+  word-wrap: break-word;
+}
+
+/* Botão fechar */
+.in-toast-close {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px;
+  margin: -2px -4px 0 0;
+  color: #999;
+  font-size: 18px;
+  line-height: 1;
+  transition: color 0.15s;
+  font-family: inherit; /* <-- MELHORIA mantida do main-v2 */
+}
+
+.in-toast-close:hover {
+  color: #333;
+}
+
+/* --- TIPOS --- */
+
+.in-toast-info {
+  border-left-color: #3b82f6;
+}
+.in-toast-info .in-toast-icon {
+  background: #eff6ff;
+  color: #3b82f6;
+}
+.in-toast-info .in-toast-progress {
+  background: #3b82f6;
+}
+
+.in-toast-success {
+  border-left-color: #22c55e;
+}
+.in-toast-success .in-toast-icon {
+  background: #f0fdf4;
+  color: #22c55e;
+}
+.in-toast-success .in-toast-progress {
+  background: #22c55e;
+}
+
+.in-toast-warning {
+  border-left-color: #f59e0b;
+}
+.in-toast-warning .in-toast-icon {
+  background: #fffbeb;
+  color: #f59e0b;
+}
+.in-toast-warning .in-toast-progress {
+  background: #f59e0b;
+}
+
+.in-toast-error {
+  border-left-color: #ef4444;
+}
+.in-toast-error .in-toast-icon {
+  background: #fef2f2;
+  color: #ef4444;
+}
+.in-toast-error .in-toast-progress {
+  background: #ef4444;
+}
+
+/* --- ANIMAÇÕES --- */
+
+@keyframes in-toast-in {
+  from {
+    transform: translateX(calc(100% + 40px));
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes in-toast-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(calc(100% + 40px));
+    opacity: 0;
+  }
+}
+
+@keyframes in-toast-progress {
+  from { width: 100%; }
+  to   { width: 0%; }
+}
+
+/* END */
+
