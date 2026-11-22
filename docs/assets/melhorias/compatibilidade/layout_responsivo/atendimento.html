@@ -263,6 +263,18 @@
 
 
 <script>
+  window.buscarProtocolo = function() {
+    var input = document.getElementById('input-num-protocolo');
+    var res = document.getElementById('resultado-protocolo');
+    var num = document.getElementById('res-num-protocolo');
+    if (res) {
+      if (input && input.value.trim() !== '') {
+        num.textContent = input.value.trim();
+      }
+      res.style.display = 'block';
+      res.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   // Handlers Globais para Selects e Dropdowns Customizados
   window.toggleDropdown = function(wrapperId) {
     var target = document.getElementById(wrapperId);
