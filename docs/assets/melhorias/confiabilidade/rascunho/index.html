@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Protótipo de rascunho de formulário</title>
+  <style>
+    :root {
+      --fundo: #f5f7fb;
+      --superficie: #ffffff;
+      --texto: #1c2733;
+      --suave: #5b6b7c;
+      --linha: #d5dde7;
+      --acento: #1a5fb4;
+      --aviso-fundo: #fff4d6;
+      --aviso-borda: #d39e00;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --fundo: #11161c;
+        --superficie: #1a222b;
+        --texto: #e7edf3;
+        --suave: #9db0c2;
+        --linha: #2d3a47;
+        --acento: #6aa9f5;
+        --aviso-fundo: #3a3114;
+        --aviso-borda: #d39e00;
+      }
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--fundo); color: var(--texto); font: 16px/1.5 system-ui, sans-serif; }
+    header, main, footer { max-width: 44rem; margin: 0 auto; padding: 1rem; }
+    nav a { color: var(--acento); margin-right: 1rem; }
+    .cartao { background: var(--superficie); border: 1px solid var(--linha); border-radius: 8px; padding: 1.25rem; }
+    label { display: block; margin: 0.9rem 0 0.25rem; font-weight: 600; }
+    input[type=text], select, textarea { width: 100%; padding: 0.55rem; border: 1px solid var(--linha); border-radius: 6px; background: var(--superficie); color: var(--texto); font: inherit; }
+    .opcao { display: flex; gap: 0.5rem; align-items: flex-start; margin-top: 0.6rem; font-weight: 400; }
+    .linha { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+    @media (max-width: 36rem) { .linha { grid-template-columns: 1fr; } }
+    button { margin-top: 1.25rem; padding: 0.6rem 1.2rem; border: 0; border-radius: 6px; background: var(--acento); color: #fff; font: inherit; cursor: pointer; }
+    #aviso { background: var(--aviso-fundo); border: 1px solid var(--aviso-borda); border-radius: 6px; padding: 0.6rem 0.8rem; margin-bottom: 1rem; }
+    #resultado { margin-top: 1rem; color: var(--suave); }
+    footer { color: var(--suave); font-size: 0.875rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Protótipo: formulário com rascunho</h1>
+    <nav aria-label="Navegação do protótipo">
+      <a href="#/inicio">Início</a>
+      <a href="#/requerimento">Requerimento Geral</a>
+      <a href="#/agendamento">Agendamento presencial</a>
+    </nav>
+  </header>
+
+  <main id="app" aria-live="polite"></main>
+
+  <footer>
+    Protótipo acadêmico da equipe Kay McNulty (UnB). Não é o portal oficial e não envia dados a nenhum servidor.
+    Use <code>?rascunho=off</code> no endereço para desativar o rascunho e reproduzir o comportamento atual do portal.
+  </footer>
+
+  <template id="tpl-inicio">
+    <section class="cartao">
+      <h2>Início</h2>
+      <p>Escolha um dos formulários acima. O que for digitado fica guardado como rascunho no navegador por 30 minutos.</p>
+    </section>
+  </template>
+
+  <template id="tpl-requerimento">
+    <section class="cartao">
+      <h2>Requerimento Geral</h2>
+      <p id="aviso" hidden></p>
+      <form id="form-requerimento" data-rascunho="requerimento">
+        <label class="opcao"><input type="checkbox" name="advogado"> Sou advogado</label>
+        <div class="linha">
+          <div><label for="placa">Placa</label><input type="text" id="placa" name="placa" autocomplete="off"></div>
+          <div><label for="renavam">Renavam</label><input type="text" id="renavam" name="renavam" autocomplete="off"></div>
+        </div>
+        <label for="objeto">Objeto do requerimento</label>
+        <textarea id="objeto" name="objeto" rows="5" required></textarea>
+        <button type="submit">Avançar</button>
+      </form>
+      <p id="resultado" role="status"></p>
+    </section>
+  </template>
+
+  <template id="tpl-agendamento">
+    <section class="cartao">
+      <h2>Agendamento presencial</h2>
+      <p id="aviso" hidden></p>
+      <form id="form-agendamento" data-rascunho="agendamento">
+        <label for="categoria">Categoria do serviço</label>
+        <select id="categoria" name="categoria" required>
+          <option value="">Selecionar</option>
+          <option>Biometria</option>
+          <option>Habilitação</option>
+          <option>Leilão</option>
+        </select>
+        <label class="opcao"><input type="checkbox" name="declaro" required> Declaro que minhas informações pessoais estão corretas.</label>
+        <label class="opcao"><input type="checkbox" name="ciente" required> Estou ciente das condições do atendimento.</label>
+        <label for="unidade">Unidade de atendimento</label>
+        <select id="unidade" name="unidade" required><option value="">Selecionar</option></select>
+        <div class="linha">
+          <div><label for="data">Data</label><select id="data" name="data" required><option value="">Selecionar</option></select></div>
+          <div><label for="hora">Hora</label><select id="hora" name="hora" required><option value="">Selecionar</option></select></div>
+        </div>
+        <button type="submit">Concluir</button>
+      </form>
+      <p id="resultado" role="status"></p>
+    </section>
+  </template>
+
+  <script src="rascunho.js"></script>
+  <script>
+    (function () {
+      'use strict';
+
+      var app = document.getElementById('app');
+      var usarRascunho = new URLSearchParams(location.search).get('rascunho') !== 'off';
+
+      var UNIDADES = ['Brazlândia', 'Gama', 'Taguatinga'];
+      var DATAS = ['04/12/2026', '07/12/2026', '08/12/2026'];
+      var HORAS = ['08:00', '08:20', '08:40', '09:00'];
+
+      function preencher(select, itens) {
+        select.length = 1;
+        itens.forEach(function (item) { select.add(new Option(item, item)); });
+      }
+
+      function ligarDependencias(form) {
+        var categoria = form.elements.categoria;
+        var unidade = form.elements.unidade;
+        var data = form.elements.data;
+        var hora = form.elements.hora;
+        categoria.addEventListener('change', function () { preencher(unidade, categoria.value ? UNIDADES : []); });
+        unidade.addEventListener('change', function () { preencher(data, unidade.value ? DATAS : []); });
+        data.addEventListener('change', function () { preencher(hora, data.value ? HORAS : []); });
+      }
+
+      function aoEnviar(form) {
+        form.addEventListener('submit', function (evento) {
+          evento.preventDefault();
+          document.getElementById('resultado').textContent =
+            'Protótipo: nenhum dado foi enviado e o rascunho foi descartado.';
+        });
+      }
+
+      function montar(rota) {
+        var modelo = document.getElementById('tpl-' + rota) || document.getElementById('tpl-inicio');
+        app.replaceChildren(modelo.content.cloneNode(true));
+        var form = app.querySelector('form');
+        if (!form) { return; }
+        if (form.id === 'form-agendamento') { ligarDependencias(form); }
+        aoEnviar(form);
+        if (usarRascunho) {
+          Rascunho.iniciar(form, { aviso: document.getElementById('aviso') });
+        }
+      }
+
+      function rotaAtual() {
+        var rota = location.hash.replace('#/', '');
+        return rota || 'inicio';
+      }
+
+      window.addEventListener('hashchange', function () { montar(rotaAtual()); });
+      montar(rotaAtual());
+    })();
+  </script>
+</body>
+</html>

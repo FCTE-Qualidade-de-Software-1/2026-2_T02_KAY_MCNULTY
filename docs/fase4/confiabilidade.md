@@ -263,7 +263,7 @@ Observação sem classificação como falha: a abertura do Requerimento Geral cr
 4. **Dar retorno ao cidadão em entradas vazias.** Mensagem de campo obrigatório no A3 e aviso ao enviar mensagem vazia no chatbot (A9).
 5. **Revisar a rejeição de requisições.** Trocar a página "Request Rejected" por uma mensagem compreensível e verificar se as regras do firewall estão rejeitando tráfego legítimo (C-05).
 
-A ação escolhida entre essas oportunidades será registrada em [Ações de Melhoria](melhorias.md).
+A ação escolhida, a oportunidade 1, está descrita em [Melhoria da Confiabilidade](melhoria-confiabilidade.md).
 
 ---
 
