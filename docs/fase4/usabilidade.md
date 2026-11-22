@@ -134,11 +134,11 @@ As heurísticas são indicadas pelo código **NH1** a **NH10**, para não confun
 | Chatbot | 1 | 2 | 2 | 0 | **5** |
 | **Total** | 5 | 12 | 10 | 1 | **28** |
 
-**Tabela 7 – IPH por módulo (dados de exemplo).** Fonte: Elaborado pelos autores.
+**Tabela 7 – IPH por módulo .** Fonte: Elaborado pelos autores.
 
 ![IPH por módulo e severidade](../img/usabilidade/resultados/m4-iph-modulo-severidade.png){ width="520" }
 
-**Figura 4 – IPH por módulo e severidade (dados de exemplo).** Fonte: Elaborado pelos autores, a partir da Tabela 7.
+**Figura 4 – IPH por módulo e severidade .** Fonte: Elaborado pelos autores, a partir da Tabela 7.
 
 #### 5.2.1 Por dispositivo
 
@@ -152,7 +152,7 @@ Um problema que ocorre nos dois dispositivos (`D+M`) entra nas duas contagens, s
 | Chatbot | 1 / 1 / 1 / 0 | 3 | 0 / 2 / 2 / 0 | 4 |
 | **Total** | 3 / 10 / 7 / 1 | **21** | 2 / 10 / 10 / 1 | **23** |
 
-**Tabela 8 – IPH por módulo e dispositivo (dados de exemplo).** Fonte: Elaborado pelos autores.
+**Tabela 8 – IPH por módulo e dispositivo .** Fonte: Elaborado pelos autores.
 
 A Tabela 9 reconcilia os totais com os problemas consolidados das Tabelas 10 a 13, contando cada um pela coluna "Disp." (D, M ou D+M).
 
@@ -164,7 +164,7 @@ A Tabela 9 reconcilia os totais com os problemas consolidados das Tabelas 10 a 1
 | Chatbot | 1 | 2 | 2 | 5 | 3 | 4 |
 | **Total** | 5 | 7 | **16** | **28** | **21** | **23** |
 
-**Tabela 9 – Reconciliação entre o IPH geral e o IPH por dispositivo (dados de exemplo).** Fonte: Elaborado pelos autores.
+**Tabela 9 – Reconciliação entre o IPH geral e o IPH por dispositivo .** Fonte: Elaborado pelos autores.
 
 Os 16 problemas `D+M` são: CONS-INF-001 a 005; CONS-ATE-001, 002, 004 e 005; CONS-PRO-001, 002, 003, 005 e 007; CONS-BOT-003 e 004. Conferência: 5 + 7 + 16 = 28 problemas distintos; Desktop = 5 + 16 = 21; Mobile = 7 + 16 = 23; 21 + 23 = 44 = 28 + 16.
 
@@ -185,7 +185,7 @@ Legenda de dispositivo: **D** = Desktop, **M** = Mobile, **D+M** = ambos.
 | CONS-INF-006 | D | Histórico de Infrações | NH8 | O texto explicativo acima da lista é longo e empurra a lista para fora da primeira tela. | 1 |
 | CONS-INF-007 | M | Débitos | NH4 | O botão de voltar fica em posição diferente da usada nas demais telas. | 1 |
 
-**Tabela 10 – Problemas do módulo Infração (dados de exemplo).** Fonte: Elaborado pelos autores.
+**Tabela 10 – Problemas do módulo Infração .** Fonte: Elaborado pelos autores.
 
 #### 5.3.2 Atendimento
 
@@ -200,7 +200,7 @@ Legenda de dispositivo: **D** = Desktop, **M** = Mobile, **D+M** = ambos.
 | CONS-ATE-007 | M | Unidade | NH7 | A lista de unidades é longa e não tem busca nem filtro. | 2 |
 | CONS-ATE-008 | D | Etapas do formulário | NH4 | Os botões "Avançar" e "Continuar" são usados com o mesmo sentido em etapas diferentes. | 1 |
 
-**Tabela 11 – Problemas do módulo Atendimento (dados de exemplo).** Fonte: Elaborado pelos autores.
+**Tabela 11 – Problemas do módulo Atendimento .** Fonte: Elaborado pelos autores.
 
 #### 5.3.3 Protocolo
 
@@ -215,7 +215,7 @@ Legenda de dispositivo: **D** = Desktop, **M** = Mobile, **D+M** = ambos.
 | CONS-PRO-007 | D+M | Menu | NH4 | A opção "Protocoloe" aparece repetida em dois níveis seguidos do menu. | 2 |
 | CONS-PRO-008 | M | Nova solicitação | NH8 | Os rótulos dos cartões de tipo de solicitação aparecem cortados. | 1 |
 
-**Tabela 12 – Problemas do módulo Protocolo (dados de exemplo).** Fonte: Elaborado pelos autores.
+**Tabela 12 – Problemas do módulo Protocolo .** Fonte: Elaborado pelos autores.
 
 #### 5.3.4 Chatbot
 
@@ -227,7 +227,7 @@ Legenda de dispositivo: **D** = Desktop, **M** = Mobile, **D+M** = ambos.
 | CONS-BOT-004 | D+M | Início da conversa | NH6 | Não há sugestões de perguntas, e o usuário precisa formular tudo do zero. | 2 |
 | CONS-BOT-005 | D | Ícone do assistente | NH4 | O ícone muda de posição entre páginas do portal. | 1 |
 
-**Tabela 13 – Problemas do módulo Chatbot (dados de exemplo).** Fonte: Elaborado pelos autores.
+**Tabela 13 – Problemas do módulo Chatbot .** Fonte: Elaborado pelos autores.
 
 ### 5.4 Leitura dos resultados
 
