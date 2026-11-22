@@ -5,5 +5,5 @@
 | **Davi Ursolino de Oliveira**<br>Matrícula: `241012202` | [@DaviUrsulino](https://github.com/DaviUrsulino) | Dupla 2 (Confiabilidade) | 25 | +1923 / -197 (+1726) | 9 | 23,7h | R$ 2.072,02 | **18,21%** |
 | **João Eduardo Pereira Rabelo**<br>Matrícula: `180053299` | [@JoaoEduardoP](https://github.com/JoaoEduardoP) | Dupla 2 (Confiabilidade) | 16 | +1399 / -196 (+1203) | 8 | 18,7h | R$ 1.634,27 | **14,36%** |
 | **Natan José França**<br>Matrícula: `241011537` | [@Natan8643](https://github.com/Natan8643) | Dupla 3 (Capacidade de Interação) | 25 | +856 / -363 (+493) | 8 | 12,2h | R$ 1.065,19 | **9,36%** |
-| **Yan Santos Rodrigues**<br>Matrícula: `241025480` | [@yanrdgs-dev](https://github.com/yanrdgs-dev) | Dupla 3 (Capacidade de Interação) | 17 | +1578 / -425 (+1153) | 8 | 22,5h | R$ 1.969,88 | **17,31%** |
-| **TOTAL CONSOLIDADO** | — | — | **163** | **+54748 / -2183 (+52565)** | **39** | **130,0h** | **R$ 11.381,50** | **100,00%** |
+| **Yan Santos Rodrigues**<br>Matrícula: `241025480` | [@yanrdgs-dev](https://github.com/yanrdgs-dev) | Dupla 3 (Capacidade de Interação) | 20 | +1753 / -436 (+1317) | 8 | 22,5h | R$ 1.969,88 | **17,31%** |
+| **TOTAL CONSOLIDADO** | — | — | **166** | **+54923 / -2194 (+52729)** | **39** | **130,0h** | **R$ 11.381,50** | **100,00%** |
