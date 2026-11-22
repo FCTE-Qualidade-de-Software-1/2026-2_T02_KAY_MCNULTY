@@ -1,0 +1,51 @@
+metrica,agregacao,modulo,dispositivo,numerador,denominador,valor,unidade,faixa_julgamento,n,observacao
+M1 TCAPA,total,todos,todos,13,22,59.1,%,Insuficiente,22,N_aut/N_tot; N_tot=22 (24 execuções menos 2 fora do primeiro acesso)
+M1 TCAPA,modulo,Infração,todos,5,5,100.0,%,não classificado (n por célula pequeno),5,
+M1 TCAPA,modulo,Atendimento,todos,4,6,66.7,%,não classificado (n por célula pequeno),6,
+M1 TCAPA,modulo,Protocolo,todos,2,6,33.3,%,não classificado (n por célula pequeno),6,
+M1 TCAPA,modulo,Chatbot,todos,2,5,40.0,%,não classificado (n por célula pequeno),5,
+M1 TCAPA,dispositivo,todos,Desktop,6,12,50.0,%,não classificado (n por célula pequeno),12,
+M1 TCAPA,dispositivo,todos,Mobile,7,10,70.0,%,não classificado (n por célula pequeno),10,
+M1 TCAPA,modulo_dispositivo,Infração,Desktop,3,3,,contagem,relatar contagem,3,3 de 3
+M1 TCAPA,modulo_dispositivo,Infração,Mobile,2,2,,contagem,relatar contagem,2,2 de 2
+M1 TCAPA,modulo_dispositivo,Atendimento,Desktop,2,3,,contagem,relatar contagem,3,2 de 3
+M1 TCAPA,modulo_dispositivo,Atendimento,Mobile,2,3,,contagem,relatar contagem,3,2 de 3
+M1 TCAPA,modulo_dispositivo,Protocolo,Desktop,0,3,,contagem,relatar contagem,3,0 de 3
+M1 TCAPA,modulo_dispositivo,Protocolo,Mobile,2,3,,contagem,relatar contagem,3,2 de 3
+M1 TCAPA,modulo_dispositivo,Chatbot,Desktop,1,3,,contagem,relatar contagem,3,1 de 3
+M1 TCAPA,modulo_dispositivo,Chatbot,Mobile,1,2,,contagem,relatar contagem,2,1 de 2
+M2 IEFO,total,todos,todos,10.699,14,76.4,%,Satisfatório,14,"média dos IEFO individuais: numerador = soma dos IEFO (fração), denominador = nº de execuções. Execuções concluídas sem auxílio, IEFO limitado a 100%"
+M2 IEFO,total_razao_agregada (sensibilidade),todos,todos,91,141,64.5,%,Insuficiente,14,ΣP_min/ΣP_exec: pondera pelo nº de passos e muda a faixa; a decisão do critério de agregação é da dupla
+M2 IEFO,modulo,Infração,todos,4.432,6,73.9,%,não classificado (n por célula pequeno),6,"média dos IEFO individuais: numerador = soma dos IEFO (fração), denominador = nº de execuções."
+M2 IEFO,modulo,Atendimento,todos,2.912,4,72.8,%,não classificado (n por célula pequeno),4,"média dos IEFO individuais: numerador = soma dos IEFO (fração), denominador = nº de execuções."
+M2 IEFO,modulo,Protocolo,todos,1.556,2,77.8,%,não classificado (n por célula pequeno),2,"média dos IEFO individuais: numerador = soma dos IEFO (fração), denominador = nº de execuções."
+M2 IEFO,modulo,Chatbot,todos,1.800,2,90.0,%,não classificado (n por célula pequeno),2,"média dos IEFO individuais: numerador = soma dos IEFO (fração), denominador = nº de execuções."
+M2 IEFO,dispositivo,todos,Desktop,3.813,6,63.6,%,não classificado (n por célula pequeno),6,"média dos IEFO individuais: numerador = soma dos IEFO (fração), denominador = nº de execuções."
+M2 IEFO,dispositivo,todos,Mobile,6.886,8,86.1,%,não classificado (n por célula pequeno),8,"média dos IEFO individuais: numerador = soma dos IEFO (fração), denominador = nº de execuções."
+M2 IEFO,modulo_dispositivo,Infração,Desktop,1.682,3,56.1,%,não classificado (n por célula pequeno),3,"média dos IEFO individuais: numerador = soma dos IEFO (fração), denominador = nº de execuções."
+M2 IEFO,modulo_dispositivo,Infração,Mobile,2.750,3,91.7,%,não classificado (n por célula pequeno),3,"média dos IEFO individuais: numerador = soma dos IEFO (fração), denominador = nº de execuções."
+M2 IEFO,modulo_dispositivo,Atendimento,Desktop,1.132,2,56.6,%,não classificado (n por célula pequeno),2,"média dos IEFO individuais: numerador = soma dos IEFO (fração), denominador = nº de execuções."
+M2 IEFO,modulo_dispositivo,Atendimento,Mobile,1.780,2,89.0,%,não classificado (n por célula pequeno),2,"média dos IEFO individuais: numerador = soma dos IEFO (fração), denominador = nº de execuções."
+M2 IEFO,modulo_dispositivo,Protocolo,Desktop,,0,,%,sem execução válida,0,nenhuma execução concluída sem ajuda
+M2 IEFO,modulo_dispositivo,Protocolo,Mobile,1.556,2,77.8,%,não classificado (n por célula pequeno),2,"média dos IEFO individuais: numerador = soma dos IEFO (fração), denominador = nº de execuções."
+M2 IEFO,modulo_dispositivo,Chatbot,Desktop,1.000,1,100.0,%,não classificado (n por célula pequeno),1,"média dos IEFO individuais: numerador = soma dos IEFO (fração), denominador = nº de execuções."
+M2 IEFO,modulo_dispositivo,Chatbot,Mobile,0.800,1,80.0,%,não classificado (n por célula pequeno),1,"média dos IEFO individuais: numerador = soma dos IEFO (fração), denominador = nº de execuções."
+M3 TPRE,total,todos,todos,5,8,62.5,%,Insuficiente,8,"E_prev/E_tot; 8 eventos: 3 sem_erro, 2 prevenido, 3 corrigido_1a_tentativa. Fonte: cenarios-de-erro-piloto.csv (execução dos avaliadores; não foram aplicados cenários de erro com os participantes). Desktop e mobile não separáveis (registro único)"
+M3 TPRE,total_somente_cenarios_nucleo (sensibilidade),todos,todos,4,7,57.1,%,Insuficiente,7,sem E-BOT-05 (opcional); mesma faixa do total
+M3 TPRE,modulo,Protocolo,todos,0,3,0.0,%,não classificado (n por célula pequeno),3,"E-PRO-01, 08 e 09: o portal avançou até a assinatura sem alerta (sem_erro). Fonte: cenarios-de-erro-piloto.csv (execução dos avaliadores; não foram aplicados cenários de erro com os participantes)"
+M3 TPRE,modulo,Chatbot,todos,5,5,100.0,%,não classificado (n por célula pequeno),5,"E-BOT-01 e 02 prevenido (a caixa treme, sem texto); E-BOT-03, 04 e 05 corrigido_1a_tentativa. Fonte: cenarios-de-erro-piloto.csv (execução dos avaliadores; não foram aplicados cenários de erro com os participantes)"
+M3 TPRE,modulo,Atendimento,todos,0,0,,%,não aplicável,0,"E-ATE-05: não houve erros no agendamento; E-ATE-01 a 04 são observações qualitativas (sem resumo, sem cancelar, sem voltar sem perder dados, sem orientação de cancelamento/reagendamento)"
+M3 TPRE,modulo,Infração,todos,0,0,,%,não aplicável,0,sem campo de entrada no portal (consulta usa o veículo da conta)
+M4 IPH,total,todos,todos,,,,problemas,pendente,0,inspecao-heuristica.csv e inspecao-heuristica-consolidada.csv estão sem linhas; IPH depende da issue #55
+M5 SUS,total,todos,todos,320,6,53.3,pontos (0 a 100),sem faixas na especificação; referência da literatura: 68,6,mediana 53.75; mín 45; máx 62.5; desvio-padrão amostral 6.8
+M5 SUS,dispositivo,todos,Desktop,167.5,3,55.8,pontos (0 a 100),sem faixas na especificação,3,
+M5 SUS,dispositivo,todos,Mobile,152.5,3,50.8,pontos (0 a 100),sem faixas na especificação,3,
+M5 SUS,individual,todos,Desktop,,,57.5,pontos (0 a 100),sem faixas na especificação,1,P01 (cidadao)
+M5 SUS,individual,todos,Desktop,,,62.5,pontos (0 a 100),sem faixas na especificação,1,P02 (cidadao)
+M5 SUS,individual,todos,Desktop,,,47.5,pontos (0 a 100),sem faixas na especificação,1,P03 (cidadao)
+M5 SUS,individual,todos,Mobile,,,57.5,pontos (0 a 100),sem faixas na especificação,1,P04 (cidadao)
+M5 SUS,individual,todos,Mobile,,,50,pontos (0 a 100),sem faixas na especificação,1,P05 (cidadao)
+M5 SUS,individual,todos,Mobile,,,45,pontos (0 a 100),sem faixas na especificação,1,P06 (engenheiro)
+Registro à parte,concluidas_com_ajuda,todos,todos,7,,,tarefas,fora de M1 (N_aut) e de M2,7,"P02 T2/T3/T4, P03 T3/T4, P05 T2, P06 T4"
+Registro à parte,nao_concluidas,todos,todos,3,,,tarefas,sem IEFO,3,P01 T3 (desistência); P06 T3 (teto de tempo); P04 T4 (falha técnica externa: chatbot não respondeu)
+Registro à parte,fora_de_N_tot,todos,todos,2,,,tarefas,não é primeiro acesso,2,P04 T1 (ja_executou_tarefa=sim) e P04 T4 (falha técnica externa na tentativa 1)
