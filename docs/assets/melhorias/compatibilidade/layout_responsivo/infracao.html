@@ -2,7 +2,7 @@
 <!-- saved from url=(0087)https://portal.detran.df.gov.br/#/servicos/detran-digital/agendamentos/novo-agendamento -->
 <html lang="en"><head>
   <!-- Detran Patch Responsivo e Resiliente (Melhoria Tecnica ISO/IEC 25040) -->
-  <link rel="stylesheet" href="detran-responsive-patch.css" />
+  <link rel="stylesheet" href="detran-responsive-patch.css?v=20261122b" />
   <script src="chatbot-resilience-fallback.js" defer></script>
 
   <!-- Google Fonts & Material Icons oficiais -->
@@ -308,6 +308,70 @@
 
 
 <!-- Widget de Atendimento Virtual InBot (Com Controle Retrátil e Seguro) -->
+<style>
+  #detran-chatbot-launcher-wrapper {
+    position: relative !important;
+    display: inline-block !important;
+    pointer-events: auto !important;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease !important;
+  }
+  #btn-retract-chatbot {
+    position: absolute !important;
+    right: -8px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 26px !important;
+    height: 26px !important;
+    border-radius: 50% !important;
+    background-color: #004582 !important;
+    color: #ffffff !important;
+    border: 2px solid #ffffff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    z-index: 1001 !important;
+    pointer-events: auto !important;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s ease !important;
+  }
+  #btn-retract-chatbot:hover {
+    background-color: #002d55 !important;
+    transform: translateY(-50%) scale(1.18) !important;
+  }
+  #btn-expand-chatbot {
+    position: fixed !important;
+    right: 0 !important;
+    bottom: 48px !important;
+    width: 34px !important;
+    height: 50px !important;
+    background-color: #004582 !important;
+    color: #ffffff !important;
+    border: 2.5px solid #ffffff !important;
+    border-right: none !important;
+    border-radius: 10px 0 0 10px !important;
+    box-shadow: -3px 3px 10px rgba(0, 0, 0, 0.3) !important;
+    display: none;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    z-index: 10001 !important;
+    pointer-events: auto !important;
+    padding: 0 !important;
+    transition: background-color 0.2s ease, width 0.2s ease !important;
+  }
+  #btn-expand-chatbot:hover {
+    background-color: #002d55 !important;
+    width: 40px !important;
+  }
+  @media screen and (max-width: 768px) {
+    #btn-expand-chatbot {
+      bottom: calc(var(--detran-action-bar-height, 64px) + var(--detran-safe-area-bottom, 0px) + 16px) !important;
+    }
+  }
+</style>
+
 <div id="divtoincludechat" class="inbot-floating-widget-wrapper">
   <!-- Wrapper do Botão Flutuante com Botão de Ocultar/Retrair -->
   <div id="detran-chatbot-launcher-wrapper" class="detran-launcher-wrapper">
@@ -315,8 +379,8 @@
       <img src="assets/fOTO_DET-removebg-preview.png" alt="Assistente Detran-DF" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
     </div>
     <!-- Botão discreto para recolher/ocultar o assistente (seta para a direita) -->
-    <button type="button" id="btn-retract-chatbot" class="btn-retract-widget" title="Ocultar Assistente Virtual" aria-label="Ocultar assistente virtual da tela">
-      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <button type="button" id="btn-retract-chatbot" class="btn-retract-widget" onclick="window.retrairChatbot(event)" title="Ocultar Assistente Virtual" aria-label="Ocultar assistente virtual da tela" style="position: absolute; right: -8px; top: 50%; transform: translateY(-50%); width: 26px; height: 26px; border-radius: 50%; background-color: #004582; color: #ffffff; border: 2px solid #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.35); display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; z-index: 1001; pointer-events: auto;">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display: block; pointer-events: none;">
         <polyline points="9 18 15 12 9 6"></polyline>
       </svg>
     </button>
@@ -347,8 +411,8 @@
 </div>
 
 <!-- Aba lateral discreta para puxar o chatbot de volta para a tela -->
-<button type="button" id="btn-expand-chatbot" class="btn-expand-widget" style="display: none;" title="Mostrar Assistente Virtual" aria-label="Mostrar assistente virtual na tela">
-  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+<button type="button" id="btn-expand-chatbot" class="btn-expand-widget" onclick="window.restaurarChatbot(event)" title="Mostrar Assistente Virtual" aria-label="Mostrar assistente virtual na tela" style="display: none; position: fixed; right: 0; bottom: 48px; width: 34px; height: 50px; background-color: #004582; color: #ffffff; border: 2.5px solid #ffffff; border-right: none; border-radius: 10px 0 0 10px; box-shadow: -3px 3px 10px rgba(0,0,0,0.3); align-items: center; justify-content: center; cursor: pointer; z-index: 10001; pointer-events: auto; padding: 0;">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="display: block; pointer-events: none;">
     <polyline points="15 18 9 12 15 6"></polyline>
   </svg>
 </button>
@@ -458,6 +522,48 @@
     }
   });
 
+  // Funções Globais de Controle Retrátil do Chatbot
+  window.retrairChatbot = function (e) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    var chatWindow = document.getElementById('detran-chatbot-window');
+    var launcherWrapper = document.getElementById('detran-chatbot-launcher-wrapper');
+    var btnExpand = document.getElementById('btn-expand-chatbot');
+    if (chatWindow) chatWindow.style.display = 'none';
+    if (launcherWrapper) {
+      launcherWrapper.style.transition = 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease';
+      launcherWrapper.style.transform = 'translateX(160px)';
+      launcherWrapper.style.opacity = '0';
+      launcherWrapper.style.pointerEvents = 'none';
+    }
+    try { sessionStorage.setItem('detran_chatbot_hidden', 'true'); } catch (err) {}
+    setTimeout(function () {
+      if (launcherWrapper) launcherWrapper.style.display = 'none';
+      if (btnExpand) btnExpand.style.display = 'flex';
+    }, 320);
+  };
+
+  window.restaurarChatbot = function (e) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    var launcherWrapper = document.getElementById('detran-chatbot-launcher-wrapper');
+    var btnExpand = document.getElementById('btn-expand-chatbot');
+    if (btnExpand) btnExpand.style.display = 'none';
+    if (launcherWrapper) {
+      launcherWrapper.style.display = 'inline-block';
+      setTimeout(function () {
+        launcherWrapper.style.transform = 'translateX(0)';
+        launcherWrapper.style.opacity = '1';
+        launcherWrapper.style.pointerEvents = 'auto';
+      }, 20);
+    }
+    try { sessionStorage.removeItem('detran_chatbot_hidden'); } catch (err) {}
+  };
+
   document.addEventListener('DOMContentLoaded', function () {
     // 1. Interacao do Chatbot
     var botIcon = document.getElementById('bot_icon');
@@ -481,48 +587,19 @@
       });
     }
 
-    // Funcionalidade Retratil (Ocultar e Restaurar o Widget)
-    if (btnRetract && launcherWrapper && btnExpand) {
-      btnRetract.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        if (chatWindow) chatWindow.style.display = 'none';
-
-        launcherWrapper.style.transition = 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease';
-        launcherWrapper.style.transform = 'translateX(140px)';
-        launcherWrapper.style.opacity = '0';
-        launcherWrapper.style.pointerEvents = 'none';
-
-        try { sessionStorage.setItem('detran_chatbot_hidden', 'true'); } catch (err) {}
-
-        setTimeout(function () {
-          launcherWrapper.style.display = 'none';
-          btnExpand.style.display = 'flex';
-        }, 320);
-      });
-
-      btnExpand.addEventListener('click', function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-        btnExpand.style.display = 'none';
-        launcherWrapper.style.display = 'inline-block';
-
-        try { sessionStorage.removeItem('detran_chatbot_hidden'); } catch (err) {}
-
-        setTimeout(function () {
-          launcherWrapper.style.transform = 'translateX(0)';
-          launcherWrapper.style.opacity = '1';
-          launcherWrapper.style.pointerEvents = 'auto';
-        }, 20);
-      });
-
-      try {
-        if (sessionStorage.getItem('detran_chatbot_hidden') === 'true') {
-          launcherWrapper.style.display = 'none';
-          btnExpand.style.display = 'flex';
-        }
-      } catch (err) {}
+    if (btnRetract) {
+      btnRetract.addEventListener('click', window.retrairChatbot);
     }
+    if (btnExpand) {
+      btnExpand.addEventListener('click', window.restaurarChatbot);
+    }
+
+    try {
+      if (sessionStorage.getItem('detran_chatbot_hidden') === 'true') {
+        if (launcherWrapper) launcherWrapper.style.display = 'none';
+        if (btnExpand) btnExpand.style.display = 'flex';
+      }
+    } catch (err) {}
 
     // 2. Interacao do Menu Mobile do Header
     var btnMenu = document.querySelector('.button-menu-mobile-open') || document.querySelector('.button-menu');
