@@ -793,3 +793,77 @@ html, body {
 .btn-atendimento-concluir.active:hover {
   background: #1d5ec2 !important;
 }
+
+/* ==========================================================================
+   INPUTS ESTILO MATERIAL OUTLINE (Páginas de Consulta e Formulários)
+   ========================================================================== */
+
+.custom-mat-input-wrapper {
+  position: relative;
+  width: 100%;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.custom-mat-input-label {
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  background: #fff;
+  padding: 0 5px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #506690;
+  line-height: 1;
+  pointer-events: none;
+  z-index: 2;
+  transition: color 0.2s;
+}
+
+.custom-mat-input-wrapper input {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border: 1px solid #c8d3df;
+  border-radius: 4px;
+  font-size: 15px;
+  color: #1e293b;
+  background: #fff;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.custom-mat-input-wrapper input:focus {
+  border-color: #2a70e2;
+  box-shadow: 0 0 0 1px #2a70e2;
+}
+
+.custom-mat-input-wrapper input:focus + .custom-mat-input-label,
+.custom-mat-input-wrapper:focus-within .custom-mat-input-label {
+  color: #2a70e2;
+}
+
+.custom-mat-input-wrapper input::placeholder {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+/* Badge do Card de Consulta de Veículo */
+.forms-wrapper-label.label-veiculos-consulta,
+.label-color-veiculos-consulta,
+.label-veiculo {
+  width: 64px !important;
+  height: 64px !important;
+  top: -32px !important;
+  left: 24px !important;
+  border-radius: 8px !important;
+  background-color: #c7e4ff !important;
+  border: 1px solid #a1d2ff !important;
+  background-image: url('assets/svg/icon_veiculos_consulta.svg') !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: 38px 38px !important;
+  position: absolute !important;
+  display: block !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}

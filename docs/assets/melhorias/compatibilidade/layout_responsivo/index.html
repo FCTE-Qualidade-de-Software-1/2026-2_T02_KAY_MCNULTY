@@ -163,6 +163,29 @@
       res.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  // Handlers para Consulta de Veículos e Débitos
+  window.checkVeiculoInputs = function() {
+    var p = document.getElementById('input-placa');
+    var r = document.getElementById('input-renavam');
+    var btn = document.getElementById('btn-consultar-veiculo');
+    if (btn) {
+      if (p && r && p.value.trim() !== '' && r.value.trim() !== '') {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    }
+  };
+
+  window.consultarDebitos = function() {
+    var res = document.getElementById('resultado-consulta');
+    if (res) {
+      res.style.display = 'block';
+      res.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   // Handlers Globais para Selects e Dropdowns Customizados
   window.toggleDropdown = function(wrapperId) {
     var target = document.getElementById(wrapperId);
