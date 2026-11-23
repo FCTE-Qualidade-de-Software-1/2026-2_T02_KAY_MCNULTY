@@ -221,12 +221,21 @@
 </div>
 
 
-<!-- Widget de Atendimento Virtual InBot (Com Dock Responsivo e Seguro) -->
+<!-- Widget de Atendimento Virtual InBot (Com Controle Retrátil e Seguro) -->
 <div id="divtoincludechat" class="inbot-floating-widget-wrapper">
-  <div id="bot_icon" class="inbot-launcher-btn" role="button" tabindex="0" title="Assistente Virtual Detran-DF" aria-label="Abrir Atendimento Virtual">
-    <img src="assets/fOTO_DET-removebg-preview.png" alt="Assistente Detran-DF" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+  <!-- Wrapper do Botão Flutuante com Botão de Ocultar/Retrair -->
+  <div id="detran-chatbot-launcher-wrapper" class="detran-launcher-wrapper">
+    <div id="bot_icon" class="inbot-launcher-btn" role="button" tabindex="0" title="Assistente Virtual Detran-DF" aria-label="Abrir Atendimento Virtual">
+      <img src="assets/fOTO_DET-removebg-preview.png" alt="Assistente Detran-DF" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+    </div>
+    <!-- Botão discreto para recolher/ocultar o assistente (seta para a direita) -->
+    <button type="button" id="btn-retract-chatbot" class="btn-retract-widget" title="Ocultar Assistente Virtual" aria-label="Ocultar assistente virtual da tela">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
   </div>
-  
+
   <!-- Janela de Chat InBot Embutida -->
   <div id="detran-chatbot-window" class="detran-chatbot-window" style="display: none; position: fixed; bottom: 100px; right: 28px; width: 340px; max-width: calc(100vw - 32px); height: 480px; max-height: calc(100vh - 140px); background: #ffffff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); border: 1px solid #cbd5e1; z-index: 1000; overflow: hidden; flex-direction: column;">
     <div style="background: #004582; color: #ffffff; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #ffcc00;">
@@ -250,6 +259,13 @@
     </div>
   </div>
 </div>
+
+<!-- Aba lateral discreta para puxar o chatbot de volta para a tela -->
+<button type="button" id="btn-expand-chatbot" class="btn-expand-widget" style="display: none;" title="Mostrar Assistente Virtual" aria-label="Mostrar assistente virtual na tela">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="15 18 9 12 15 6"></polyline>
+  </svg>
+</button>
 
 
 <script>
@@ -361,9 +377,13 @@
     var botIcon = document.getElementById('bot_icon');
     var chatWindow = document.getElementById('detran-chatbot-window');
     var closeChatBtn = document.getElementById('close-chat-btn');
+    var launcherWrapper = document.getElementById('detran-chatbot-launcher-wrapper');
+    var btnRetract = document.getElementById('btn-retract-chatbot');
+    var btnExpand = document.getElementById('btn-expand-chatbot');
 
     if (botIcon && chatWindow) {
-      botIcon.addEventListener('click', function () {
+      botIcon.addEventListener('click', function (e) {
+        if (e.target.closest('#btn-retract-chatbot')) return;
         var isOpen = chatWindow.style.display === 'flex';
         chatWindow.style.display = isOpen ? 'none' : 'flex';
       });
@@ -373,6 +393,49 @@
       closeChatBtn.addEventListener('click', function () {
         chatWindow.style.display = 'none';
       });
+    }
+
+    // Funcionalidade Retratil (Ocultar e Restaurar o Widget)
+    if (btnRetract && launcherWrapper && btnExpand) {
+      btnRetract.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        if (chatWindow) chatWindow.style.display = 'none';
+
+        launcherWrapper.style.transition = 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease';
+        launcherWrapper.style.transform = 'translateX(140px)';
+        launcherWrapper.style.opacity = '0';
+        launcherWrapper.style.pointerEvents = 'none';
+
+        try { sessionStorage.setItem('detran_chatbot_hidden', 'true'); } catch (err) {}
+
+        setTimeout(function () {
+          launcherWrapper.style.display = 'none';
+          btnExpand.style.display = 'flex';
+        }, 320);
+      });
+
+      btnExpand.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        btnExpand.style.display = 'none';
+        launcherWrapper.style.display = 'inline-block';
+
+        try { sessionStorage.removeItem('detran_chatbot_hidden'); } catch (err) {}
+
+        setTimeout(function () {
+          launcherWrapper.style.transform = 'translateX(0)';
+          launcherWrapper.style.opacity = '1';
+          launcherWrapper.style.pointerEvents = 'auto';
+        }, 20);
+      });
+
+      try {
+        if (sessionStorage.getItem('detran_chatbot_hidden') === 'true') {
+          launcherWrapper.style.display = 'none';
+          btnExpand.style.display = 'flex';
+        }
+      } catch (err) {}
     }
 
     // 2. Interacao do Menu Mobile do Header
