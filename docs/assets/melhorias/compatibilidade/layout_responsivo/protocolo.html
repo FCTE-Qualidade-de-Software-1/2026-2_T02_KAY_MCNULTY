@@ -144,40 +144,30 @@
 
 <!-- Widget de Atendimento Virtual InBot (Com Dock Responsivo e Seguro) -->
 <div id="divtoincludechat" class="inbot-floating-widget-wrapper">
-  <div id="bot_icon" title="Abrir Chatbot Detran" aria-label="Atendimento Virtual Detran" role="button" tabindex="0">
-    <div class="chat_pointer"></div>
-    <div class="chat_avatar">
-      <img src="assets/fOTO_DET-removebg-preview.png" alt="Assistente Virtual Detran" />
-    </div>
+  <div id="bot_icon" class="inbot-launcher-btn" role="button" tabindex="0" title="Assistente Virtual Detran-DF" aria-label="Abrir Atendimento Virtual">
+    <img src="assets/fOTO_DET-removebg-preview.png" alt="Assistente Detran-DF" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
   </div>
   
   <!-- Janela de Chat InBot Embutida -->
-  <div id="detran-chatbot-window" class="detran-chatbot-window" style="display: none;" role="dialog" aria-label="Janela de Atendimento Virtual">
-    <div class="detran-chatbot-header">
-      <div class="detran-chatbot-title">
-        <span class="detran-chat-avatar-mini">
-          <img src="assets/fOTO_DET-removebg-preview.png" alt="Detran Bot" />
-        </span>
-        <div>
-          <strong>Assistente Virtual Detran-DF</strong>
-          <small style="display: block; font-size: 11px; color: #e0f2fe;">Atendimento 24 horas</small>
-        </div>
+  <div id="detran-chatbot-window" class="detran-chatbot-window" style="display: none; position: fixed; bottom: 100px; right: 28px; width: 340px; max-width: calc(100vw - 32px); height: 480px; max-height: calc(100vh - 140px); background: #ffffff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.25); border: 1px solid #cbd5e1; z-index: 1000; overflow: hidden; flex-direction: column;">
+    <div style="background: #004582; color: #ffffff; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 2px solid #ffcc00;">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <img src="assets/fOTO_DET-removebg-preview.png" alt="Assistente" style="width: 28px; height: 28px; border-radius: 50%; background: #fff;">
+        <strong style="font-size: 14px;">Assistente Virtual Detran-DF</strong>
       </div>
-      <button id="close-chat-btn" class="detran-chatbot-close" title="Fechar Chat" aria-label="Fechar Chat">&times;</button>
+      <button type="button" id="close-chat-btn" style="background: transparent; border: none; color: #fff; font-size: 20px; cursor: pointer; padding: 0 4px;">&times;</button>
     </div>
-    <div class="detran-chatbot-body" id="detran-chat-messages">
-      <div class="chat-msg bot-msg">
-        <p>Olá! Sou a assistente virtual do Detran-DF. Como posso orientar seu atendimento hoje?</p>
-        <div class="chat-quick-actions">
-          <a href="infracao.html" class="quick-btn">Consultar Débitos</a>
-          <a href="atendimento.html" class="quick-btn">Agendar Atendimento</a>
-          <a href="protocolo.html" class="quick-btn">Protocolo-e</a>
-        </div>
+    <div style="padding: 16px; flex: 1; overflow-y: auto; font-size: 14px; background: #f8fafc;">
+      <p style="margin: 0 0 12px 0; color: #334155;">Olá! Sou a assistente virtual do Detran-DF. Como posso orientar seu atendimento hoje?</p>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <a href="infracao.html" style="display: block; background: #e0f2fe; color: #0284c7; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 500;">Consultar Débitos do Veículo</a>
+        <a href="atendimento.html" style="display: block; background: #e0f2fe; color: #0284c7; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 500;">Agendar Atendimento Presencial</a>
+        <a href="protocolo.html" style="display: block; background: #e0f2fe; color: #0284c7; padding: 8px 12px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 500;">Consultar Protocolo Eletrônico</a>
       </div>
     </div>
-    <div class="detran-chatbot-footer">
-      <input type="text" placeholder="Digite sua dúvida..." id="detran-chat-input" aria-label="Mensagem do chat" />
-      <button type="button" id="detran-send-btn">Enviar</button>
+    <div style="padding: 12px; border-top: 1px solid #e2e8f0; background: #ffffff; display: flex; gap: 8px;">
+      <input type="text" placeholder="Digite sua mensagem..." style="flex: 1; height: 36px; padding: 0 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; outline: none;">
+      <button type="button" style="height: 36px; padding: 0 16px; background: #004582; color: #fff; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;">Enviar</button>
     </div>
   </div>
 </div>
@@ -326,4 +316,5 @@
     }
   });
 </script>
+
 </body></html>

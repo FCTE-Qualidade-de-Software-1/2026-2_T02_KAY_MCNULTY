@@ -191,19 +191,19 @@
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
 }
 
-/* Modo Desktop (> 768px): Avatar no canto inferior direito com afastamento seguro */
+/* Modo Desktop (> 768px): Avatar no canto inferior direito com afastamento seguro e tamanho ampliado */
 @media screen and (min-width: 769px) {
   .inbot-floating-widget-wrapper {
     bottom: 32px;
     right: 32px;
   }
   .inbot-launcher-btn {
-    width: 68px;
-    height: 68px;
+    width: 80px;
+    height: 80px;
   }
 }
 
-/* Modo Mobile & Tablet (<= 768px): Deslocamento vertical acima da barra de ações */
+/* Modo Mobile & Tablet (<= 768px): Deslocamento vertical acima da barra de ações com tamanho ampliado */
 @media screen and (max-width: 768px) {
   .inbot-floating-widget-wrapper {
     /* Eleva o widget acima da barra fixa de ações e respeita margens seguras */
@@ -212,8 +212,8 @@
   }
 
   .inbot-launcher-btn {
-    width: 52px;
-    height: 52px;
+    width: 64px;
+    height: 64px;
   }
 
   /* Ajusta a barra de ações para ocupar a largura total no mobile com botões simétricos */
@@ -228,7 +228,7 @@
   }
 }
 
-/* Modo Ultra-Estreito (<= 360px): Minimização compacta para máxima área útil */
+/* Modo Ultra-Estreito (<= 360px): Minimização proporcional mantendo visibilidade */
 @media screen and (max-width: 360px) {
   .inbot-floating-widget-wrapper {
     bottom: calc(var(--detran-action-bar-height) + var(--detran-safe-area-bottom) + 8px);
@@ -236,8 +236,8 @@
   }
 
   .inbot-launcher-btn {
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
   }
 
   .detran-action-bar-wrapper {
