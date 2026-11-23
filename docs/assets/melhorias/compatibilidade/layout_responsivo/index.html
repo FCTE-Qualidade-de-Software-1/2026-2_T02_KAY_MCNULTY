@@ -2,7 +2,7 @@
 <!-- saved from url=(0038)https://portal.detran.df.gov.br/#/home -->
 <html lang="en"><head>
   <!-- Detran Patch Responsivo e Resiliente (Melhoria Tecnica ISO/IEC 25040) -->
-  <link rel="stylesheet" href="detran-responsive-patch.css?v=20261122b" />
+  <link rel="stylesheet" href="detran-responsive-patch.css?v=20261123c" />
   <script src="chatbot-resilience-fallback.js" defer></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
@@ -114,6 +114,8 @@
   #detran-chatbot-launcher-wrapper {
     position: relative !important;
     display: inline-block !important;
+    width: 80px !important;
+    height: 80px !important;
     pointer-events: auto !important;
     visibility: visible !important;
     transform: translateX(0) !important;
@@ -125,6 +127,32 @@
     opacity: 0 !important;
     pointer-events: none !important;
     visibility: hidden !important;
+  }
+  #bot_icon {
+    width: 80px !important;
+    height: 80px !important;
+    border-radius: 50% !important;
+    background-color: #004582 !important;
+    border: 2px solid #ffffff !important;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    overflow: hidden !important;
+    pointer-events: auto !important;
+    transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease !important;
+  }
+  #bot_icon:hover {
+    transform: scale(1.06) !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28) !important;
+  }
+  #bot_icon img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 50% !important;
+    display: block !important;
   }
   #btn-retract-chatbot {
     position: absolute !important;
@@ -180,6 +208,10 @@
     width: 44px !important;
   }
   @media screen and (max-width: 768px) {
+    #detran-chatbot-launcher-wrapper, #bot_icon {
+      width: 64px !important;
+      height: 64px !important;
+    }
     #btn-expand-chatbot {
       bottom: calc(var(--detran-action-bar-height, 64px) + var(--detran-safe-area-bottom, 0px) + 16px) !important;
     }
@@ -188,9 +220,9 @@
 
 <div id="divtoincludechat" class="inbot-floating-widget-wrapper">
   <!-- Wrapper do Botão Flutuante com Botão de Ocultar/Retrair -->
-  <div id="detran-chatbot-launcher-wrapper" class="detran-launcher-wrapper">
-    <div id="bot_icon" class="inbot-launcher-btn" role="button" tabindex="0" title="Assistente Virtual Detran-DF" aria-label="Abrir Atendimento Virtual">
-      <img src="assets/fOTO_DET-removebg-preview.png" alt="Assistente Detran-DF" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+  <div id="detran-chatbot-launcher-wrapper" class="detran-launcher-wrapper" style="position: relative; width: 80px; height: 80px; display: inline-block;">
+    <div id="bot_icon" class="inbot-launcher-btn" role="button" tabindex="0" title="Assistente Virtual Detran-DF" aria-label="Abrir Atendimento Virtual" style="width: 80px; height: 80px; border-radius: 50%; background-color: #004582; border: 2px solid #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.22); display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden;">
+      <img src="assets/fOTO_DET-removebg-preview.png" alt="Assistente Detran-DF" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; display: block;">
     </div>
     <!-- Botão discreto para recolher/ocultar o assistente (seta para a direita) -->
     <button type="button" id="btn-retract-chatbot" class="btn-retract-widget" onclick="window.retrairChatbot(event)" title="Ocultar Assistente Virtual" aria-label="Ocultar assistente virtual da tela" style="position: absolute; right: -8px; top: 50%; transform: translateY(-50%); width: 26px; height: 26px; border-radius: 50%; background-color: #004582; color: #ffffff; border: 2px solid #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.35); display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; z-index: 1001; pointer-events: auto;">
