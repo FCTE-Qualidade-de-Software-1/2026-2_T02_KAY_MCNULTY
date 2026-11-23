@@ -199,33 +199,44 @@
   position: relative;
   display: inline-block;
   pointer-events: auto;
+  visibility: visible;
+  transform: translateX(0);
+  opacity: 1;
   transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+}
+
+.detran-launcher-wrapper.detran-retracted {
+  transform: translateX(180px) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
 }
 
 .btn-retract-widget {
   position: absolute;
-  right: -4px;
+  right: -8px;
   top: 50%;
   transform: translateY(-50%);
-  width: 22px;
-  height: 22px;
+  width: 26px;
+  height: 26px;
   border-radius: var(--detran-radius-full);
   background: var(--detran-color-primary, #004582);
   color: #ffffff;
   border: 2px solid #ffffff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   padding: 0;
-  z-index: 10;
+  z-index: 1001;
+  pointer-events: auto;
   transition: background-color 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .btn-retract-widget:hover {
   background-color: #002d55;
-  transform: translateY(-50%) scale(1.15);
+  transform: translateY(-50%) scale(1.18);
 }
 
 .btn-expand-widget {
@@ -234,24 +245,28 @@
   display: none;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 44px;
+  width: 38px;
+  height: 56px;
   background: var(--detran-color-primary, #004582);
   color: #ffffff;
-  border: 2px solid #ffffff;
+  border: 2.5px solid #ffffff;
   border-right: none;
-  border-radius: 8px 0 0 8px;
-  box-shadow: -2px 3px 8px rgba(0, 0, 0, 0.25);
+  border-radius: 12px 0 0 12px;
+  box-shadow: -3px 3px 12px rgba(0, 0, 0, 0.35);
   cursor: pointer;
-  z-index: var(--detran-z-chatbot-dock);
+  z-index: 99999;
   pointer-events: auto;
   padding: 0;
   transition: background-color 0.2s ease, width 0.2s ease;
 }
 
+.btn-expand-widget.is-visible {
+  display: flex !important;
+}
+
 .btn-expand-widget:hover {
   background-color: #002d55;
-  width: 34px;
+  width: 44px;
 }
 
 @media screen and (min-width: 769px) {
