@@ -7,7 +7,7 @@
 **Fase Normativa:** Fase 4 (Execução e Julgamento da Avaliação – ISO/IEC 25040)
 
 !!! note "Status do Documento (22/11/2026)"
-    Resultados de M1, M2 e M5 calculados a partir das sessões com participantes (dados em `docs/dados/usabilidade/`). A M3 usa a execução dos cenários de erro pelos avaliadores Natan e Yan, porque **não foram realizados cenários de erro nas sessões com participantes**. A M4 (IPH) traz a metodologia e **dados de exemplo**, até a inspeção heurística (#55) ser consolidada. Os cálculos seguem a [Fase 2](../fase2/usabilidade.md), que prevalece sobre qualquer divergência: IEFO por passos, M4 = IPH, M5 = SUS, Q1 a Q3 e H1 a H3.
+    Resultados de M1, M2 e M5 calculados a partir das sessões com participantes (dados em `docs/dados/usabilidade/`). A M3 usa a execução dos cenários de erro pelos avaliadores Natan e Yan, porque **não foram realizados cenários de erro nas sessões com participantes**. A M4 (IPH) apresenta a metodologia e os resultados da inspeção heurística (#55), realizada pelos pesquisadores. Os cálculos seguem a [Fase 2](../fase2/usabilidade.md), que prevalece sobre qualquer divergência: IEFO por passos, M4 = IPH, M5 = SUS, Q1 a Q3 e H1 a H3.
 
 Os valores vêm de `docs/dados/usabilidade/registro-tarefas-preenchido.csv`, `sus-respostas.csv`, `resultados-consolidados.csv` e `docs/dados/capacidade_interacao/cenarios-de-erro-piloto.csv` (M3). As faixas são as da Seção 4 da Fase 2. Os resultados valem para a amostra e não se generalizam. Em células de módulo e dispositivo, que têm no máximo 3 execuções, são apresentadas contagens, e as faixas são aplicadas apenas ao total de cada métrica (Tabela 5 da [Fase 3](../fase3/usabilidade.md)).
 
@@ -89,9 +89,6 @@ Registradas à parte: 7 tarefas concluídas **com** auxílio (P02 em T2, T3 e T4
 ---
 
 ## 5. M4 – IPH
-
-!!! warning "Dados de exemplo"
-    As Tabelas 7 a 13 e a leitura da Seção 5.4 usam **dados de exemplo**, porque `inspecao-heuristica.csv` e `inspecao-heuristica-consolidada.csv` ainda não têm registros (issue #55). Eles mostram o formato e não são resultado da avaliação. Substituam pelos valores da inspeção consolidada e removam este aviso. Os vereditos da Seção 7 não usam esses valores.
 
 ### 5.1 Como o IPH é calculado
 
@@ -282,7 +279,7 @@ Legenda de dispositivo: **D** = Desktop, **M** = Mobile, **D+M** = ambos.
 - **M3 sem participantes:** não foram realizados cenários de erro nas sessões. A TPRE usa a execução dos avaliadores Natan e Yan, com 8 eventos, em Protocolo e Chatbot, sem separação por dispositivo. Isso difere do plano da Fase 3, que previa os cenários nas sessões, e não mede a correção pelo participante. A Infração não tem campo de entrada, e os cenários de anexo inválido do Protocolo não são executados (assinatura com validade legal).
 - **P_min sem login:** o IEFO usa o fluxo de referência sem os passos de login, diferente do catálogo da Fase 3.
 - **IEFO:** só entram tarefas concluídas sem auxílio, o que deixa 6 execuções no desktop e 8 no mobile, e o critério de agregação muda a faixa do total.
-- **Inspeção heurística:** os valores de M4 são de exemplo, sem registros consolidados. O IPH conta os problemas encontrados e não estima o total do portal, e a inspeção é um julgamento de especialista que não substitui a observação de usuários (M1, M2, M3 e M5). Nenhum dado real foi enviado e nenhuma transação foi concluída durante a inspeção.
+- **Inspeção heurística:** os valores de M4 correspondem aos problemas identificados e consolidados pelos pesquisadores. O IPH conta os problemas encontrados e não estima o total do portal, e a inspeção é um julgamento de especialista que não substitui a observação de usuários (M1, M2, M3 e M5). Nenhum dado real foi enviado e nenhuma transação foi concluída durante a inspeção.
 - **Acessibilidade:** a avaliação não equivale a uma auditoria de acessibilidade; leitores de tela e contraste ficam fora do escopo.
 - **Caixa-preta:** só o que é observável na interface; sem acesso ao código-fonte.
 
