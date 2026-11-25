@@ -1,5 +1,7 @@
 # Ação de Melhoria – Capacidade de Interação: Protótipo do Requerimento Geral
 
+**[Acesse o protótipo aqui](../assets/melhorias/compatibilidade/layout_responsivo/requerimento-geral.html)**
+
 **Responsável:** Yan  
 **Característica:** Capacidade de Interação (ISO/IEC 25010:2023), subcaracterísticas Operabilidade e Proteção contra Erros de Usuário  
 **Módulo Afetado:** Protocolo (Requerimento Geral, tarefa T3)  
