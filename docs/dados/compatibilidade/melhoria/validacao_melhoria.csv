@@ -1,0 +1,21 @@
+modulo,viewport,largura_px,resultado_original,sobreposicao_original_px2,defeito_diagnosticado,resultado_pos_melhoria,sobreposicao_pos_melhoria_px2,target_size_wcag,status_final
+Infração,Mobile Pequeno,360,Não Conforme,1764,Sobreposição do avatar do Chatbot sobre o botão Consultar e truncamento,Conforme,0,>= 48x48px (AAA),Aprovado
+Infração,Mobile Médio,414,Não Conforme,1420,Sobreposição parcial do Chatbot sobre o botão Consultar,Conforme,0,>= 48x48px (AAA),Aprovado
+Infração,Tablet Portrait,768,Não Conforme,980,Sobreposição do Chatbot sobre botões secundários da barra,Conforme,0,>= 48x48px (AAA),Aprovado
+Infração,Desktop HD,1366,Não Conforme,840,Sobreposição do Chatbot sobre card de resumo e botão Voltar,Conforme,0,>= 48x48px (AAA),Aprovado
+Infração,Desktop Full HD,1920,Conforme,0,Nenhum,Conforme,0,>= 48x48px (AAA),Aprovado
+Atendimento,Mobile Pequeno,360,Não Conforme,2100,Sobreposição do Chatbot sobre seletores e botão de agendamento,Conforme,0,>= 48x48px (AAA),Aprovado
+Atendimento,Mobile Médio,414,Conforme,0,Nenhum,Conforme,0,>= 48x48px (AAA),Aprovado
+Atendimento,Tablet Portrait,768,Conforme,0,Nenhum,Conforme,0,>= 48x48px (AAA),Aprovado
+Atendimento,Desktop HD,1366,Conforme,0,Nenhum,Conforme,0,>= 48x48px (AAA),Aprovado
+Atendimento,Desktop Full HD,1920,Conforme,0,Nenhum,Conforme,0,>= 48x48px (AAA),Aprovado
+Protocolo,Mobile Pequeno,360,Não Conforme,2450,Sobreposição do Chatbot sobre botão Acessar do card de Nova Solicitação,Conforme,0,>= 48x48px (AAA),Aprovado
+Protocolo,Mobile Médio,414,Conforme,0,Nenhum,Conforme,0,>= 48x48px (AAA),Aprovado
+Protocolo,Tablet Portrait,768,Conforme,0,Nenhum,Conforme,0,>= 48x48px (AAA),Aprovado
+Protocolo,Desktop HD,1366,Conforme,0,Nenhum,Conforme,0,>= 48x48px (AAA),Aprovado
+Protocolo,Desktop Full HD,1920,Conforme,0,Nenhum,Conforme,0,>= 48x48px (AAA),Aprovado
+Chatbot,Mobile Pequeno,360,Conforme,0,Nenhum,Conforme,0,>= 48x48px (AAA),Aprovado
+Chatbot,Mobile Médio,414,Conforme,0,Nenhum,Conforme,0,>= 48x48px (AAA),Aprovado
+Chatbot,Tablet Portrait,768,Conforme,0,Nenhum,Conforme,0,>= 48x48px (AAA),Aprovado
+Chatbot,Desktop HD,1366,Conforme,0,Nenhum,Conforme,0,>= 48x48px (AAA),Aprovado
+Chatbot,Desktop Full HD,1920,Conforme,0,Nenhum,Conforme,0,>= 48x48px (AAA),Aprovado

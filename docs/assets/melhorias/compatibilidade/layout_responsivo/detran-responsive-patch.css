@@ -1,0 +1,959 @@
+/**
+ * detran-responsive-patch.css
+ * 
+ * Patch de Melhoria Técnica de Compatibilidade e Responsividade (ISO/IEC 25040 - F4-C5)
+ * Objeto: Portal Detran Digital DF (portal.detran.df.gov.br)
+ * Autores: Artur Fernandes Galdino e Nicole Jovita Fernandes
+ * Disciplina: Qualidade de Software 1 - UnB/FCTE (2026.2)
+ *
+ * Finalidade:
+ * 1. Eliminar sobreposição obstrutiva do widget de Chatbot (InBot) sobre botões de ação
+ *    primária nos módulos Infração, Atendimento e Protocolo em viewports mobile (<= 768px).
+ * 2. Garantir alinhamento aos critérios da WCAG 2.1 (Target Size 44x44px e área livre de toques).
+ * 3. Adequar o container de formulários ao modelo responsivo fluido, prevenindo overflow horizontal.
+ * 4. Fornecer contêiner estilizado para fallback resiliente em falhas de CDN externa (TCBN).
+ */
+
+:root {
+  /* Design Tokens de Identidade Visual Detran-DF */
+  --detran-color-primary: #004582;
+  --detran-color-primary-hover: #003366;
+  --detran-color-secondary: #ffcc00;
+  --detran-color-surface: #ffffff;
+  --detran-color-background: #f4f6f9;
+  --detran-color-text-main: #1f2937;
+  --detran-color-text-muted: #6b7280;
+  --detran-color-border: #d1d5db;
+  --detran-color-focus-ring: rgba(0, 69, 130, 0.35);
+
+  /* Dimensões e Espaçamentos Responsivos */
+  --detran-touch-target-min: 44px;
+  --detran-radius-base: 8px;
+  --detran-radius-full: 9999px;
+  --detran-action-bar-height: 68px;
+  --detran-safe-area-bottom: env(safe-area-inset-bottom, 16px);
+  --detran-safe-area-right: env(safe-area-inset-right, 16px);
+
+  /* Hierarquia de Z-Index */
+  --detran-z-content: 1;
+  --detran-z-sticky-bar: 500;
+  --detran-z-chatbot-dock: 600;
+  --detran-z-modal-backdrop: 1000;
+  --detran-z-modal-content: 1100;
+}
+
+/* ==========================================================================
+   1. Correção Estrutural de Containers e Grid Fluido (Evita Overflow)
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+.detran-container-fluid {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.detran-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.detran-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.detran-input-control {
+  width: 100%;
+  min-height: var(--detran-touch-target-min);
+  padding: 10px 14px;
+  font-size: 16px; /* Previne auto-zoom indesejado no iOS Safari */
+  color: var(--detran-color-text-main);
+  background-color: var(--detran-color-surface);
+  border: 1px solid var(--detran-color-border);
+  border-radius: var(--detran-radius-base);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.detran-input-control:focus {
+  outline: none;
+  border-color: var(--detran-color-primary);
+  box-shadow: 0 0 0 3px var(--detran-focus-ring);
+}
+
+/* ==========================================================================
+   2. Barra Inferior Fixa/Adesiva de Ações (Sticky Action Bar)
+   Garante visibilidade e desobstrução permanente dos botões primários
+   ========================================================================== */
+
+.detran-action-bar-wrapper {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid var(--detran-color-border);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+  padding: 12px 16px calc(12px + var(--detran-safe-area-bottom));
+  z-index: var(--detran-z-sticky-bar);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.detran-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--detran-touch-target-min);
+  min-width: 120px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--detran-radius-base);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  user-select: none;
+  border: 1px solid transparent;
+}
+
+.detran-btn-primary {
+  background-color: var(--detran-color-primary);
+  color: #ffffff;
+}
+
+.detran-btn-primary:hover {
+  background-color: var(--detran-color-primary-hover);
+}
+
+.detran-btn-secondary {
+  background-color: transparent;
+  color: var(--detran-color-primary);
+  border-color: var(--detran-color-primary);
+}
+
+.detran-btn-secondary:hover {
+  background-color: rgba(0, 69, 130, 0.05);
+}
+
+/* ==========================================================================
+   3. Reposicionamento Responsivo do Widget de Chatbot (InBot)
+   Resolve o conflito de sobreposição do avatar flutuante
+   ========================================================================== */
+
+/* Container wrapper externo com pointer-events inteligente */
+.inbot-floating-widget-wrapper {
+  position: fixed;
+  z-index: var(--detran-z-chatbot-dock);
+  pointer-events: none; /* Não bloqueia cliques na página ao redor do botão */
+}
+
+/* Botão interativo do assistente virtual */
+.inbot-launcher-btn {
+  pointer-events: auto; /* Restabelece cliques estritamente no elemento circular */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--detran-radius-full);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+  cursor: pointer;
+  background-color: var(--detran-color-primary);
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+}
+
+.inbot-launcher-btn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--detran-radius-full);
+}
+
+.inbot-launcher-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+}
+
+/* ==========================================================================
+   Controle Retratil do Chatbot (Ocultar e Restaurar)
+   ========================================================================== */
+
+.detran-launcher-wrapper {
+  position: relative;
+  display: inline-block;
+  pointer-events: auto;
+  visibility: visible;
+  transform: translateX(0);
+  opacity: 1;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+}
+
+.detran-launcher-wrapper.detran-retracted {
+  transform: translateX(180px) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  visibility: hidden !important;
+}
+
+.btn-retract-widget {
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+  border-radius: var(--detran-radius-full);
+  background: var(--detran-color-primary, #004582);
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+  pointer-events: auto;
+  transition: background-color 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn-retract-widget:hover {
+  background-color: #002d55;
+  transform: translateY(-50%) scale(1.18);
+}
+
+.btn-expand-widget {
+  position: fixed;
+  right: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 56px;
+  background: var(--detran-color-primary, #004582);
+  color: #ffffff;
+  border: 2.5px solid #ffffff;
+  border-right: none;
+  border-radius: 12px 0 0 12px;
+  box-shadow: -3px 3px 12px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  z-index: 99999;
+  pointer-events: auto;
+  padding: 0;
+  transition: background-color 0.2s ease, width 0.2s ease;
+}
+
+.btn-expand-widget.is-visible {
+  display: flex !important;
+}
+
+.btn-expand-widget:hover {
+  background-color: #002d55;
+  width: 44px;
+}
+
+@media screen and (min-width: 769px) {
+  .btn-expand-widget {
+    bottom: 50px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .btn-expand-widget {
+    bottom: calc(var(--detran-action-bar-height) + var(--detran-safe-area-bottom) + 18px);
+  }
+}
+
+/* Modo Desktop (> 768px): Avatar no canto inferior direito com afastamento seguro e tamanho ampliado */
+@media screen and (min-width: 769px) {
+  .inbot-floating-widget-wrapper {
+    bottom: 32px;
+    right: 32px;
+  }
+  .inbot-launcher-btn {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* Modo Mobile & Tablet (<= 768px): Deslocamento vertical acima da barra de ações com tamanho ampliado */
+@media screen and (max-width: 768px) {
+  .inbot-floating-widget-wrapper {
+    /* Eleva o widget acima da barra fixa de ações e respeita margens seguras */
+    bottom: calc(var(--detran-action-bar-height) + var(--detran-safe-area-bottom) + 12px);
+    right: 16px;
+  }
+
+  .inbot-launcher-btn {
+    width: 64px;
+    height: 64px;
+  }
+
+  /* Ajusta a barra de ações para ocupar a largura total no mobile com botões simétricos */
+  .detran-action-bar-wrapper {
+    justify-content: stretch;
+  }
+
+  .detran-action-bar-wrapper .detran-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
+  }
+}
+
+/* Modo Ultra-Estreito (<= 360px): Minimização proporcional mantendo visibilidade */
+@media screen and (max-width: 360px) {
+  .inbot-floating-widget-wrapper {
+    bottom: calc(var(--detran-action-bar-height) + var(--detran-safe-area-bottom) + 8px);
+    right: 12px;
+  }
+
+  .inbot-launcher-btn {
+    width: 56px;
+    height: 56px;
+  }
+
+  .detran-action-bar-wrapper {
+    padding: 10px 12px calc(10px + var(--detran-safe-area-bottom));
+    gap: 8px;
+  }
+
+  .detran-btn {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
+
+/* ==========================================================================
+   4. Fallback Resiliente para Falhas de CDN / Bloqueio Cross-Browser (TCBN)
+   ========================================================================== */
+
+.detran-chatbot-fallback-card {
+  display: none; /* Ativado via JS caso a CDN externa falhe */
+  background: #fffbeb;
+  border: 1px solid #fef3c7;
+  border-left: 4px solid #f59e0b;
+  border-radius: var(--detran-radius-base);
+  padding: 12px 16px;
+  margin-top: 16px;
+  font-size: 14px;
+  color: #92400e;
+}
+
+.detran-chatbot-fallback-card.active {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* ==========================================================================
+   5. Responsividade Global da Landing Page Detran Digital (portal.detran.df.gov.br)
+   ========================================================================== */
+
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  .home-container {
+    max-width: 100vw !important;
+    padding: 12px !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+  }
+
+  .home-container-jumbo {
+    flex-direction: column !important;
+    max-width: 100% !important;
+  }
+
+  .mulher-nao-se-cale-card {
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+
+  .header-wrapper {
+    max-width: 100vw !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* ==========================================================================
+   6. Estilos de Navegação do Header (Alto Contraste Preto sobre Branco)
+   ========================================================================== */
+
+.header-nav-btn {
+  color: #111827 !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  padding: 8px 12px !important;
+  border-radius: 4px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  transition: background-color 0.2s ease, color 0.2s ease !important;
+  cursor: pointer !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.header-nav-btn:hover {
+  background-color: rgba(0, 69, 130, 0.08) !important;
+  color: #004582 !important;
+}
+
+.button-menu-mobile-open i, .button-menu {
+  color: #111827 !important;
+}
+
+
+
+
+/* ==========================================================================
+   7. Mapeamento Direto de Imagens, Banners e Icones do Portal Detran-DF
+   ========================================================================== */
+
+/* Banner Principal da Home - Mulher Dirigindo */
+@media screen and (min-width: 960px) {
+  .home-container-jumbo-picture {
+    display: block !important;
+    background-image: url(assets/images/banners/principal_home.png) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+  }
+}
+
+/* Figuras da Seção de Download do App e Marketing */
+#homeBannerFigure_1 {
+  display: block !important;
+  background-image: url(assets/images/banners/home_banner_figure_1.png) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+}
+
+.homeBannerFigure_2 {
+  display: block !important;
+  background-image: url(assets/images/banners/home_banner_figure_2.png) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+}
+
+.homeBannerFigure_3 {
+  display: block !important;
+  background-image: url(assets/images/banners/home_banner_figure_3.png) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+}
+
+#homeBannerFigure_4 {
+  display: block !important;
+  background-image: url(assets/images/banners/home_banner_figure_4.png) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+}
+
+/* ==========================================================================
+   ELEMENTOS VISUAIS E ASSETS OFICIAIS DO DETRAN-DF (Fidelidade Visual 100%)
+   ========================================================================== */
+
+/* 1. Imagem Principal da Hero Banner (Mulher Dirigindo) */
+.home-container-jumbo-picture {
+  display: block !important;
+  width: 580px !important;
+  max-width: 50% !important;
+  height: 345px !important;
+  background-image: url('assets/images/banners/principal_home.png') !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  border-bottom-left-radius: 96px !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  transform: scaleX(-1) !important;
+}
+
+@media (max-width: 960px) {
+  .home-container-jumbo-picture {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 240px !important;
+    border-radius: 0 0 32px 32px !important;
+    transform: none !important;
+    margin-top: 16px !important;
+  }
+}
+
+/* 2. Banners e Figuras da Landing Page (Download App, TEI e CNH Digital) */
+#homeBannerFigure_1 {
+  display: block !important;
+  background-image: url('assets/images/banners/home_banner_figure_1.png') !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  min-width: 320px !important;
+  min-height: 380px !important;
+}
+
+.homeBannerFigure_2,
+.homeBannerFigure_regular.homeBannerFigure_2 {
+  display: block !important;
+  background-image: url('assets/images/banners/home_banner_figure_2.png') !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  min-width: 320px !important;
+  min-height: 380px !important;
+}
+
+.home-container-banner_blueArea {
+  display: flex !important;
+  position: relative !important;
+  background: #2a70e2 !important;
+  min-height: 480px !important;
+  border-radius: 40px !important;
+  padding: 32px !important;
+  overflow: hidden !important;
+  width: 100% !important;
+}
+
+#homeBannerFigure_4 {
+  display: block !important;
+  background-image: url('assets/images/banners/home_banner_figure_4.png') !important;
+  background-position: bottom left !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  width: 45% !important;
+  min-height: 440px !important;
+  position: absolute !important;
+  left: 0 !important;
+  bottom: 0 !important;
+}
+
+.homeBannerFigure_3,
+.homeBannerFigure_regular.homeBannerFigure_3 {
+  display: block !important;
+  background-image: url('assets/images/banners/home_banner_figure_3.png') !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  min-width: 320px !important;
+  min-height: 380px !important;
+}
+
+/* 3. Ícones Oficiais dos Serviços Mais Acessados (SVGs Vetoriais) */
+.label-balcao-virtual {
+  background-image: url('assets/svg/icon_balcao_virtual.svg') !important;
+  background-size: 38px 38px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.label-habilitacao-consulta {
+  background-image: url('assets/svg/icon_habilitacao_consulta.svg') !important;
+  background-size: 38px 38px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.label-habilitacao-outros,
+.label-veiculos-consulta {
+  background-image: url('assets/svg/icon_veiculos_consulta.svg') !important;
+  background-size: 38px 38px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.label-infracao-consulta {
+  background-image: url('assets/svg/icon_infracao_consulta.svg') !important;
+  background-size: 38px 38px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.label-agendamento-consulta {
+  background-image: url('assets/svg/icon_agendamento_consulta.svg') !important;
+  background-size: 38px 38px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+.label-habilitacao-quiz,
+.label-quiz {
+  background-image: url('assets/svg/icon_quiz.svg') !important;
+  background-size: 38px 38px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* 4. Ícones Oficiais das Credenciadas (Todos usam o crachá roxo oficial) */
+.forms-wrapper-credenciadas-label-home,
+.home-cards-credenciadas-label,
+.label-credenciadas-consulta-home,
+.label-credenciadas-consulta,
+.label-administracao {
+  background-image: url('assets/svg/icon_administracao_empresas_credenciadas.svg') !important;
+  background-size: 24px 24px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
+
+/* 5. Botões das Redes Sociais no Rodapé com Vetores Brancos Oficiais */
+.footer-list-social-button {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 36px !important;
+  height: 36px !important;
+  background: #1d3451 !important;
+  border-radius: 8px !important;
+  position: relative !important;
+  margin-right: 12px !important;
+  border: none !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+}
+
+.footer-list-social-button a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.footer-list-social-button-icon {
+  display: block !important;
+  width: 18px !important;
+  height: 18px !important;
+  position: static !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+}
+
+.footer-list-social-button-icon.facebook,
+.facebook {
+  background-image: url('assets/svg/eva_facebook-fill.svg') !important;
+}
+
+.footer-list-social-button-icon.twitter,
+.twitter {
+  background-image: url('assets/svg/akar-icons_twitter-fill.svg') !important;
+}
+
+.footer-list-social-button-icon.linkedin,
+.linkedin {
+  background-image: url('assets/svg/bx_bxl-linkedin.svg') !important;
+}
+
+/* ==========================================================================
+   PÁGINA DE AGENDAMENTO (ATENDIMENTO PRESENCIAL) - Material Outline & Dropdowns
+   ========================================================================== */
+
+.atendimento-form-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  background: #fff;
+  margin-top: 20px;
+  margin-bottom: 24px;
+  overflow: visible;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.atendimento-panel-header {
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 16px 24px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+
+.atendimento-panel-header .header-title {
+  color: #2a5298;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.atendimento-form-body {
+  padding: 28px 24px 16px 24px;
+}
+
+.atendimento-form-row-3col {
+  display: flex;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.atendimento-form-row-3col .custom-mat-select-wrapper {
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .atendimento-form-row-3col {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+.custom-mat-select-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.custom-mat-select-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #c8d3df;
+  border-radius: 4px;
+  padding: 14px 16px;
+  background: #fff;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  min-height: 48px;
+  box-sizing: border-box;
+}
+
+.custom-mat-select-box:hover {
+  border-color: #8da4be;
+}
+
+.custom-mat-select-wrapper.is-open .custom-mat-select-box {
+  border-color: #2a70e2;
+  box-shadow: 0 0 0 1px #2a70e2;
+}
+
+.custom-mat-label {
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  background: #fff;
+  padding: 0 5px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #506690;
+  line-height: 1;
+  pointer-events: none;
+  transition: color 0.2s;
+}
+
+.custom-mat-select-wrapper.is-open .custom-mat-label {
+  color: #2a70e2;
+}
+
+.custom-mat-value {
+  font-size: 15px;
+  color: #64748b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.custom-mat-value.has-value {
+  color: #1e293b;
+  font-weight: 500;
+}
+
+.custom-mat-arrow {
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+  transition: transform 0.2s;
+}
+
+.custom-mat-select-wrapper.is-open .custom-mat-arrow {
+  transform: rotate(180deg);
+}
+
+.custom-mat-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+  max-height: 240px;
+  overflow-y: auto;
+  z-index: 9999;
+  list-style: none;
+  padding: 4px 0;
+  margin: 0;
+  border: 1px solid #e2e8f0;
+}
+
+.custom-mat-select-wrapper.is-open .custom-mat-dropdown {
+  display: block;
+}
+
+.custom-mat-dropdown li {
+  padding: 12px 18px;
+  font-size: 14px;
+  color: #1e293b;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+  line-height: 1.4;
+}
+
+.custom-mat-dropdown li:hover {
+  background-color: #f1f5f9;
+  color: #2a70e2;
+}
+
+.custom-mat-dropdown li.selected {
+  background-color: #e8f0fe;
+  color: #1a73e8;
+  font-weight: 600;
+}
+
+.atendimento-actions-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px 24px 24px;
+}
+
+.btn-atendimento-voltar {
+  border: 1px solid #2a70e2 !important;
+  color: #2a70e2 !important;
+  background: #fff !important;
+  border-radius: 4px !important;
+  padding: 10px 32px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
+  min-height: 40px !important;
+}
+
+.btn-atendimento-voltar:hover {
+  background: #f0f7ff !important;
+}
+
+.btn-atendimento-concluir {
+  background: #d0e1fd !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 4px !important;
+  padding: 10px 36px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  cursor: default !important;
+  transition: all 0.2s !important;
+  min-height: 40px !important;
+}
+
+.btn-atendimento-concluir.active {
+  background: #2a70e2 !important;
+  color: #fff !important;
+  cursor: pointer !important;
+  box-shadow: 0 2px 6px rgba(42, 112, 226, 0.3) !important;
+}
+
+.btn-atendimento-concluir.active:hover {
+  background: #1d5ec2 !important;
+}
+
+/* ==========================================================================
+   INPUTS ESTILO MATERIAL OUTLINE (Páginas de Consulta e Formulários)
+   ========================================================================== */
+
+.custom-mat-input-wrapper {
+  position: relative;
+  width: 100%;
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.custom-mat-input-label {
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  background: #fff;
+  padding: 0 5px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #506690;
+  line-height: 1;
+  pointer-events: none;
+  z-index: 2;
+  transition: color 0.2s;
+}
+
+.custom-mat-input-wrapper input {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border: 1px solid #c8d3df;
+  border-radius: 4px;
+  font-size: 15px;
+  color: #1e293b;
+  background: #fff;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.custom-mat-input-wrapper input:focus {
+  border-color: #2a70e2;
+  box-shadow: 0 0 0 1px #2a70e2;
+}
+
+.custom-mat-input-wrapper input:focus + .custom-mat-input-label,
+.custom-mat-input-wrapper:focus-within .custom-mat-input-label {
+  color: #2a70e2;
+}
+
+.custom-mat-input-wrapper input::placeholder {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+/* Badge do Card de Consulta de Veículo */
+.forms-wrapper-label.label-veiculos-consulta,
+.label-color-veiculos-consulta,
+.label-veiculo {
+  width: 64px !important;
+  height: 64px !important;
+  top: -32px !important;
+  left: 24px !important;
+  border-radius: 8px !important;
+  background-color: #c7e4ff !important;
+  border: 1px solid #a1d2ff !important;
+  background-image: url('assets/svg/icon_veiculos_consulta.svg') !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: 38px 38px !important;
+  position: absolute !important;
+  display: block !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}

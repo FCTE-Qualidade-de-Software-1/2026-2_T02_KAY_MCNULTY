@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="64"
+     height="64"
+     viewBox="0 0 24 24"
+     fill="none">
+
+  <!-- Documento -->
+  <path d="M14 2H7C5.9 2 5 2.9 5 4V20C5 21.1 5.9 22 7 22H17C18.1 22 19 21.1 19 20V7L14 2Z"
+        stroke="#2962FF"
+        stroke-width="2"
+        stroke-linejoin="round"/>
+
+  <!-- Dobra da folha -->
+  <path d="M14 2V7H19"
+        stroke="#2962FF"
+        stroke-width="2"
+        stroke-linejoin="round"/>
+
+  <!-- Check -->
+  <path d="M9 13L11 15L15 11"
+        stroke="#2962FF"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+</svg>

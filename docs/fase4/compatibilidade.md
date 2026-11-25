@@ -312,3 +312,14 @@ As 20 capturas de tela registradas pela avaliadora Nicole Jovita comprovam o com
 
 * **Registro de Tráfego HTTP Estruturado (Arquivo HAR):**
   Arquivo de auditoria completo salvo no repositório: `docs/assets/evidencias/compatibilidade/NET_INFRACAO_DUD.har` (2,67 MB de requisições, tempos e cabeçalhos capturados).
+
+---
+
+## 6. Ação Prática de Melhoria Técnica (ISO/IEC 25040)
+
+Com base nas não-conformidades críticas diagnosticadas na Fase 4 (sobreposição obstrutiva do assistente virtual em 6 viewports estreitas e falha de conexão na CDN da InBot em navegadores Chromium), a equipe desenvolveu e validou uma ação técnica de intervenção prática.
+
+A especificação da arquitetura da solução, os trechos de código do patch responsivo (`detran-responsive-patch.css`), o módulo de resiliência assíncrona (`chatbot-resilience-fallback.js`), o protótipo interativo funcional e os resultados comparativos antes versus depois (com elevação do $ICR$ de 70,00% para 100,00% e do $TCBN$ de 75,00% para 100,00%) estão detalhados em:
+
+* [Ação de Melhoria – Característica: Compatibilidade](melhoria-compatibilidade.md)
+* [Visão Geral Consolidada das Ações de Melhoria](melhorias.md)
