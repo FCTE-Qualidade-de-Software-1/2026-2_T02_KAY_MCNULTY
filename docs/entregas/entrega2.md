@@ -34,7 +34,7 @@ Este relatório formaliza o progresso cronológico e técnico da equipe Kay McNu
 ### 2.1 Compatibilidade (Coexistência e Interoperabilidade)
 * **Responsáveis:** Artur Fernandes Galdino e Nicole Jovita Fernandes.
 * **Avanço na Fase 3:** Elaboração do plano detalhado contemplando a matriz de testes *cross-browser* (Chrome, Firefox, Edge, Safari), a verificação responsiva nas 5 viewports críticas (360px a 1920px) e os pontos de verificação de cabeçalhos e payloads HTTP nos fluxos de integração com Gov.br, SEI-GDF e emissão de DUD bancário.
-* **Avanço na Fase 4:** Estruturação dos modelos de dados para tabulação dos índices $TCBN$, $ICR$ e $TSIS$.
+* **Avanço na Fase 4 e Ação de Melhoria:** Conclusão da coleta empírica em produção ($TCBN = 75,00\%$, $ICR = 70,00\%$, $TSIS = 83,33\%$). Desenvolvimento e homologação da intervenção técnica de melhoria com protótipo funcional integrado, patch CSS responsivo modular (`detran-responsive-patch.css`), mecanismo retrátil bidirecional do assistente virtual (`sessionStorage`), script de resiliência assíncrona (`chatbot-resilience-fallback.js`), automação de testes com Playwright/Microsoft Edge e gravação em vídeo de alta definição do fluxo completo (`demonstracao_fluxo_completo.mp4`), elevando tanto o $ICR$ quanto o $TCBN$ para **100,00%** (patamar Excelente).
 
 ### 2.2 Capacidade de Interação (Aprendibilidade, Operabilidade e Proteção contra Erros)
 * **Responsáveis:** Natan França e Yan.

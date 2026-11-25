@@ -45,6 +45,9 @@ Todos os artefatos técnicos desenvolvidos foram incorporados ao repositório in
   * Folha de Estilos Responsiva: [`docs/assets/melhorias/compatibilidade/layout_responsivo/detran-responsive-patch.css`](../assets/melhorias/compatibilidade/layout_responsivo/detran-responsive-patch.css)
   * Resiliência JavaScript: [`docs/assets/melhorias/compatibilidade/layout_responsivo/chatbot-resilience-fallback.js`](../assets/melhorias/compatibilidade/layout_responsivo/chatbot-resilience-fallback.js)
   * Script de Teste Automatizado: [`docs/assets/melhorias/compatibilidade/layout_responsivo/validar_melhoria.py`](../assets/melhorias/compatibilidade/layout_responsivo/validar_melhoria.py)
+  * Script de Captura Comparativa: [`docs/assets/melhorias/compatibilidade/layout_responsivo/capture_comparative_screenshots.py`](../assets/melhorias/compatibilidade/layout_responsivo/capture_comparative_screenshots.py)
+  * Script de Gravação de Vídeo: [`docs/assets/melhorias/compatibilidade/layout_responsivo/record_complete_flow_video.py`](../assets/melhorias/compatibilidade/layout_responsivo/record_complete_flow_video.py)
+  * Vídeo de Demonstração do Fluxo Completo: [`docs/assets/melhorias/compatibilidade/layout_responsivo/videos/demonstracao_fluxo_completo.mp4`](../assets/melhorias/compatibilidade/layout_responsivo/videos/demonstracao_fluxo_completo.mp4)
   * Dados Empíricos de Validação: [`docs/dados/compatibilidade/melhoria/validacao_melhoria.csv`](../dados/compatibilidade/melhoria/validacao_melhoria.csv)
 * **Diretório de Confiabilidade:**
   * Protótipo de Rascunho: [`docs/assets/melhorias/confiabilidade/rascunho/index.html`](../assets/melhorias/confiabilidade/rascunho/index.html)
