@@ -1,0 +1,105 @@
+id_teste,modo,largura_px,descricao,esperado,obtido,resultado
+E-PRO-01,prototipo,360,Objeto vazio – avançou sem bloquear?,nao,nao,passou
+E-PRO-01-msg,prototipo,360,Objeto vazio – mensagem junto do campo?,sim,sim,passou
+E-PRO-08,prototipo,360,Placa incompleta – avançou sem bloquear?,nao,nao,passou
+E-PRO-08-msg,prototipo,360,Placa incompleta – mensagem junto do campo?,sim,sim,passou
+E-PRO-09,prototipo,360,Renavam curto – avançou sem bloquear?,nao,nao,passou
+E-PRO-09-msg,prototipo,360,Renavam curto – mensagem junto do campo?,sim,sim,passou
+E-PRO-09b,prototipo,360,Renavam com dígito verificador errado – bloqueado?,sim,sim,passou
+F-01,prototipo,360,Placa e Renavam opcionais vazios – segue para a revisão?,revisao,revisao,passou
+F-02,prototipo,360,Dados válidos – chega à revisão?,revisao,revisao,passou
+F-03,prototipo,360,Revisão mostra os dados informados?,sim,sim,passou
+F-04,prototipo,360,Botão de assinatura começa desabilitado?,sim,sim,passou
+F-05,prototipo,360,Aviso sobre a validade legal está na revisão?,sim,sim,passou
+F-06,prototipo,360,Voltar e editar mantém o que foi digitado?,sim,sim,passou
+F-07,prototipo,360,Marcar a ciência habilita o botão?,sim,sim,passou
+F-08,prototipo,360,Chega à etapa de assinatura (simulada)?,confirmacao,confirmacao,passou
+A-01,prototipo,360,Campo inválido recebe aria-invalid?,sim,sim,passou
+A-02,prototipo,360,Resumo de erros tem role=alert?,sim,sim,passou
+C-form,prototipo,360,"Avatar do assistente sem sobrepor botões de ação (360 px), tela form",0,0,passou
+C-revisao,prototipo,360,"Avatar do assistente sem sobrepor botões de ação (360 px), tela revisao",0,0,passou
+C-confirmacao,prototipo,360,"Avatar do assistente sem sobrepor botões de ação (360 px), tela confirmacao",0,0,passou
+E-PRO-01,prototipo,414,Objeto vazio – avançou sem bloquear?,nao,nao,passou
+E-PRO-01-msg,prototipo,414,Objeto vazio – mensagem junto do campo?,sim,sim,passou
+E-PRO-08,prototipo,414,Placa incompleta – avançou sem bloquear?,nao,nao,passou
+E-PRO-08-msg,prototipo,414,Placa incompleta – mensagem junto do campo?,sim,sim,passou
+E-PRO-09,prototipo,414,Renavam curto – avançou sem bloquear?,nao,nao,passou
+E-PRO-09-msg,prototipo,414,Renavam curto – mensagem junto do campo?,sim,sim,passou
+E-PRO-09b,prototipo,414,Renavam com dígito verificador errado – bloqueado?,sim,sim,passou
+F-01,prototipo,414,Placa e Renavam opcionais vazios – segue para a revisão?,revisao,revisao,passou
+F-02,prototipo,414,Dados válidos – chega à revisão?,revisao,revisao,passou
+F-03,prototipo,414,Revisão mostra os dados informados?,sim,sim,passou
+F-04,prototipo,414,Botão de assinatura começa desabilitado?,sim,sim,passou
+F-05,prototipo,414,Aviso sobre a validade legal está na revisão?,sim,sim,passou
+F-06,prototipo,414,Voltar e editar mantém o que foi digitado?,sim,sim,passou
+F-07,prototipo,414,Marcar a ciência habilita o botão?,sim,sim,passou
+F-08,prototipo,414,Chega à etapa de assinatura (simulada)?,confirmacao,confirmacao,passou
+A-01,prototipo,414,Campo inválido recebe aria-invalid?,sim,sim,passou
+A-02,prototipo,414,Resumo de erros tem role=alert?,sim,sim,passou
+C-form,prototipo,414,"Avatar do assistente sem sobrepor botões de ação (414 px), tela form",0,0,passou
+C-revisao,prototipo,414,"Avatar do assistente sem sobrepor botões de ação (414 px), tela revisao",0,0,passou
+C-confirmacao,prototipo,414,"Avatar do assistente sem sobrepor botões de ação (414 px), tela confirmacao",0,0,passou
+E-PRO-01,prototipo,500,Objeto vazio – avançou sem bloquear?,nao,nao,passou
+E-PRO-01-msg,prototipo,500,Objeto vazio – mensagem junto do campo?,sim,sim,passou
+E-PRO-08,prototipo,500,Placa incompleta – avançou sem bloquear?,nao,nao,passou
+E-PRO-08-msg,prototipo,500,Placa incompleta – mensagem junto do campo?,sim,sim,passou
+E-PRO-09,prototipo,500,Renavam curto – avançou sem bloquear?,nao,nao,passou
+E-PRO-09-msg,prototipo,500,Renavam curto – mensagem junto do campo?,sim,sim,passou
+E-PRO-09b,prototipo,500,Renavam com dígito verificador errado – bloqueado?,sim,sim,passou
+F-01,prototipo,500,Placa e Renavam opcionais vazios – segue para a revisão?,revisao,revisao,passou
+F-02,prototipo,500,Dados válidos – chega à revisão?,revisao,revisao,passou
+F-03,prototipo,500,Revisão mostra os dados informados?,sim,sim,passou
+F-04,prototipo,500,Botão de assinatura começa desabilitado?,sim,sim,passou
+F-05,prototipo,500,Aviso sobre a validade legal está na revisão?,sim,sim,passou
+F-06,prototipo,500,Voltar e editar mantém o que foi digitado?,sim,sim,passou
+F-07,prototipo,500,Marcar a ciência habilita o botão?,sim,sim,passou
+F-08,prototipo,500,Chega à etapa de assinatura (simulada)?,confirmacao,confirmacao,passou
+A-01,prototipo,500,Campo inválido recebe aria-invalid?,sim,sim,passou
+A-02,prototipo,500,Resumo de erros tem role=alert?,sim,sim,passou
+C-form,prototipo,500,"Avatar do assistente sem sobrepor botões de ação (500 px), tela form",0,0,passou
+C-revisao,prototipo,500,"Avatar do assistente sem sobrepor botões de ação (500 px), tela revisao",0,0,passou
+C-confirmacao,prototipo,500,"Avatar do assistente sem sobrepor botões de ação (500 px), tela confirmacao",0,0,passou
+E-PRO-01,prototipo,768,Objeto vazio – avançou sem bloquear?,nao,nao,passou
+E-PRO-01-msg,prototipo,768,Objeto vazio – mensagem junto do campo?,sim,sim,passou
+E-PRO-08,prototipo,768,Placa incompleta – avançou sem bloquear?,nao,nao,passou
+E-PRO-08-msg,prototipo,768,Placa incompleta – mensagem junto do campo?,sim,sim,passou
+E-PRO-09,prototipo,768,Renavam curto – avançou sem bloquear?,nao,nao,passou
+E-PRO-09-msg,prototipo,768,Renavam curto – mensagem junto do campo?,sim,sim,passou
+E-PRO-09b,prototipo,768,Renavam com dígito verificador errado – bloqueado?,sim,sim,passou
+F-01,prototipo,768,Placa e Renavam opcionais vazios – segue para a revisão?,revisao,revisao,passou
+F-02,prototipo,768,Dados válidos – chega à revisão?,revisao,revisao,passou
+F-03,prototipo,768,Revisão mostra os dados informados?,sim,sim,passou
+F-04,prototipo,768,Botão de assinatura começa desabilitado?,sim,sim,passou
+F-05,prototipo,768,Aviso sobre a validade legal está na revisão?,sim,sim,passou
+F-06,prototipo,768,Voltar e editar mantém o que foi digitado?,sim,sim,passou
+F-07,prototipo,768,Marcar a ciência habilita o botão?,sim,sim,passou
+F-08,prototipo,768,Chega à etapa de assinatura (simulada)?,confirmacao,confirmacao,passou
+A-01,prototipo,768,Campo inválido recebe aria-invalid?,sim,sim,passou
+A-02,prototipo,768,Resumo de erros tem role=alert?,sim,sim,passou
+C-form,prototipo,768,"Avatar do assistente sem sobrepor botões de ação (768 px), tela form",0,0,passou
+C-revisao,prototipo,768,"Avatar do assistente sem sobrepor botões de ação (768 px), tela revisao",0,0,passou
+C-confirmacao,prototipo,768,"Avatar do assistente sem sobrepor botões de ação (768 px), tela confirmacao",0,0,passou
+E-PRO-01,prototipo,1366,Objeto vazio – avançou sem bloquear?,nao,nao,passou
+E-PRO-01-msg,prototipo,1366,Objeto vazio – mensagem junto do campo?,sim,sim,passou
+E-PRO-08,prototipo,1366,Placa incompleta – avançou sem bloquear?,nao,nao,passou
+E-PRO-08-msg,prototipo,1366,Placa incompleta – mensagem junto do campo?,sim,sim,passou
+E-PRO-09,prototipo,1366,Renavam curto – avançou sem bloquear?,nao,nao,passou
+E-PRO-09-msg,prototipo,1366,Renavam curto – mensagem junto do campo?,sim,sim,passou
+E-PRO-09b,prototipo,1366,Renavam com dígito verificador errado – bloqueado?,sim,sim,passou
+F-01,prototipo,1366,Placa e Renavam opcionais vazios – segue para a revisão?,revisao,revisao,passou
+F-02,prototipo,1366,Dados válidos – chega à revisão?,revisao,revisao,passou
+F-03,prototipo,1366,Revisão mostra os dados informados?,sim,sim,passou
+F-04,prototipo,1366,Botão de assinatura começa desabilitado?,sim,sim,passou
+F-05,prototipo,1366,Aviso sobre a validade legal está na revisão?,sim,sim,passou
+F-06,prototipo,1366,Voltar e editar mantém o que foi digitado?,sim,sim,passou
+F-07,prototipo,1366,Marcar a ciência habilita o botão?,sim,sim,passou
+F-08,prototipo,1366,Chega à etapa de assinatura (simulada)?,confirmacao,confirmacao,passou
+A-01,prototipo,1366,Campo inválido recebe aria-invalid?,sim,sim,passou
+A-02,prototipo,1366,Resumo de erros tem role=alert?,sim,sim,passou
+C-form,prototipo,1366,"Avatar do assistente sem sobrepor botões de ação (1366 px), tela form",0,0,passou
+C-revisao,prototipo,1366,"Avatar do assistente sem sobrepor botões de ação (1366 px), tela revisao",0,0,passou
+C-confirmacao,prototipo,1366,"Avatar do assistente sem sobrepor botões de ação (1366 px), tela confirmacao",0,0,passou
+E-PRO-01,atual,360,Objeto vazio – avançou sem bloquear?,sim,sim,passou
+E-PRO-08,atual,360,Placa incompleta – avançou sem bloquear?,sim,sim,passou
+E-PRO-09,atual,360,Renavam curto – avançou sem bloquear?,sim,sim,passou
+F-02,atual,360,"Dados válidos – vai direto à assinatura, sem revisão?",confirmacao,confirmacao,passou

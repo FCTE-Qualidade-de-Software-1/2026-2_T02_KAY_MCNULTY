@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Harness de testes – Requerimento Geral</title>
+</head>
+<body style="margin:0">
+  <!-- Usado por validar_requerimento_geral.py: carrega a página em um iframe com a largura pedida
+       (?w=360), porque o Chrome sem interface não gera janelas abaixo de 500 px. -->
+  <iframe id="f" title="Página sob teste" style="border:0"></iframe>
+  <script>
+    var q = new URLSearchParams(location.search);
+    var f = document.getElementById("f");
+    f.width = q.get("w") || "360";
+    f.height = q.get("h") || "800";
+    f.src = "requerimento-geral.html?teste=1" + (q.get("modo") === "atual" ? "&modo=atual" : "");
+    var tentativas = 0;
+    var espera = setInterval(function () {
+      var r = null;
+      try { r = f.contentDocument.getElementById("resultado-testes"); } catch (e) {}
+      if (r || ++tentativas > 120) {
+        clearInterval(espera);
+        var pre = document.createElement("pre");
+        pre.id = "resultado-testes";
+        pre.textContent = r ? r.textContent : "[]";
+        document.body.appendChild(pre);
+      }
+    }, 100);
+  </script>
+</body>
+</html>
