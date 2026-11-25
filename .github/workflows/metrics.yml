@@ -17,6 +17,10 @@ permissions:
   issues: read
   pull-requests: read
 
+concurrency:
+  group: update-metrics-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   update-metrics:
     runs-on: ubuntu-latest
