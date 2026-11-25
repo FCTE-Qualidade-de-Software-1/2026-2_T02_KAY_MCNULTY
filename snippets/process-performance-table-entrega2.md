@@ -5,7 +5,7 @@
 | **Davi Ursolino de Oliveira** | [@DaviUrsulino](https://github.com/DaviUrsulino) | 8 | 20,2h | 8 | 100,0% |
 | **João Eduardo Pereira Rabelo** | [@JoaoEduardoP](https://github.com/JoaoEduardoP) | 8 | 17,2h | 8 | 100,0% |
 | **Natan José França** | [@Natan8643](https://github.com/Natan8643) | 9 | 19,2h | 9 | 100,0% |
-| **Yan Santos Rodrigues** | [@yanrdgs-dev](https://github.com/yanrdgs-dev) | 8 | 19,5h | 6 | 75,0% |
-| **TOTAL CONSOLIDADO** | — | **34** | **122,0h** | **32** | **94,1%** |
+| **Yan Santos Rodrigues** | [@yanrdgs-dev](https://github.com/yanrdgs-dev) | 8 | 25,5h | 7 | 87,5% |
+| **TOTAL CONSOLIDADO** | — | **34** | **128,0h** | **33** | **97,1%** |
 
 *As horas são estimativas da equipe, obtidas do corpo das issues ou do catálogo homologado; quando uma issue possui mais de um responsável, o esforço é dividido igualmente.*
