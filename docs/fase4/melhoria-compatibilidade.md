@@ -90,6 +90,9 @@ A intervenção prática foi materializada em três artefatos técnicos completo
 | **Patch de Estilos CSS** | [detran-responsive-patch.css](../assets/melhorias/compatibilidade/layout_responsivo/detran-responsive-patch.css) | Folha de estilos modular pronta para produção contendo design tokens, sticky bar, dock flutuante e media queries responsivas. |
 | **Script de Resiliência Cross-Browser** | [chatbot-resilience-fallback.js](../assets/melhorias/compatibilidade/layout_responsivo/chatbot-resilience-fallback.js) | Módulo JavaScript assíncrono com tolerância a falhas na CDN InBot e chaveamento de fallback gracioso. |
 | **Script de Validação Automatizada** | [validar_melhoria.py](../assets/melhorias/compatibilidade/layout_responsivo/validar_melhoria.py) | Script de teste automatizado para medição de áreas de sobreposição e geração das evidências gráficas. |
+| **Script de Captura Comparativa** | [capture_comparative_screenshots.py](../assets/melhorias/compatibilidade/layout_responsivo/capture_comparative_screenshots.py) | Automação via Playwright/MS Edge para captura dos prints corrigidos e montagem dos painéis comparativos. |
+| **Script de Gravação do Fluxo** | [record_complete_flow_video.py](../assets/melhorias/compatibilidade/layout_responsivo/record_complete_flow_video.py) | Script de automação e gravação do fluxo completo de navegação e testes de responsividade em vídeo. |
+| **Vídeo de Demonstração do Fluxo** | [demonstracao_fluxo_completo.mp4](../assets/melhorias/compatibilidade/layout_responsivo/videos/demonstracao_fluxo_completo.mp4) | Registro em vídeo (MP4/H.264 e WebM) executando o teste integrado de todas as telas, botões e mecanismo retrátil. |
 | **Base de Dados de Validação** | [validacao_melhoria.csv](../dados/compatibilidade/melhoria/validacao_melhoria.csv) | Tabela estruturada com o registro dos 20 ensaios de responsividade antes e depois da intervenção. |
 
 **Tabela 1 – Matriz de artefatos da entrega técnica de melhoria.** Fonte: Elaborado pelos autores.
@@ -149,22 +152,63 @@ Para auditar o impacto prático da solução, realizou-se a reavaliação dos me
 
 ### 4.1 Evidências Visuais Comparativas
 
-As figuras a seguir documentam a eliminação das falhas diagnosticadas nas três telas mais críticas:
+As figuras a seguir documentam a eliminação das 6 falhas diagnosticadas na avaliação original, comparando lado a lado a interface original em produção (*Antes*) com o protótipo corrigido (*Depois*), capturados em seus respectivos viewports de ensaio via Microsoft Edge automatizado:
 
-#### Módulo Infração (Viewport 360px)
-No portal original, o avatar do chatbot bloqueava o botão "Consultar". No modelo corrigido, o botão ganha largura total na barra inferior adesiva e o avatar é elevado com margem livre:
+#### 1. Módulo Infração – Mobile Pequeno (Viewport 360x640)
+No portal original, o avatar circular de 82px bloqueava diretamente o botão "Consultar". No modelo corrigido, a barra inferior de ações garante largura total e o avatar mantém espaçamento seguro, integrando o botão retrátil discreto:
 
-![Comparativo Antes e Depois - Módulo Infração](../assets/melhorias/compatibilidade/layout_responsivo/evidencias/INFRA_ANTES_DEPOIS_360px.png)
+![Comparativo Antes e Depois - Módulo Infração 360px](../assets/melhorias/compatibilidade/layout_responsivo/evidencias/INFRA_ANTES_DEPOIS_360px.png)
 
-#### Módulo Atendimento (Viewport 360px)
-No portal original, o formulário de agendamento presencial sofria sobreposição nos seletores finais. Com a melhoria, o fluxo de agendamento fica 100% desimpedido:
+#### 2. Módulo Infração – Mobile Médio (Viewport 414x896)
+No portal original, a lateral direita do botão "Consultar" sofria sobreposição de $1.420\,\text{px}^2$. Na interface melhorada, a área de toque é 100% livre e atende aos critérios WCAG 2.1 Target Size AAA:
 
-![Comparativo Antes e Depois - Módulo Atendimento](../assets/melhorias/compatibilidade/layout_responsivo/evidencias/ATEND_ANTES_DEPOIS_360px.png)
+![Comparativo Antes e Depois - Módulo Infração 414px](../assets/melhorias/compatibilidade/layout_responsivo/evidencias/INFRA_ANTES_DEPOIS_414px.png)
 
-#### Módulo Protocolo (Viewport 360px)
-No portal original, o botão "Acessar" de Nova Solicitação ficava inacessível por toque direto. A intervenção garante área de toque de 48x48px sem interceptação:
+#### 3. Módulo Infração – Tablet Portrait (Viewport 768x1024)
+Em tablets, o posicionamento absoluto do widget causava interceptação sobre os botões secundários. O patch dinâmico eleva o dock para $80\,\text{px}$ acima do rodapé, desobstruindo a navegação:
 
-![Comparativo Antes e Depois - Módulo Protocolo](../assets/melhorias/compatibilidade/layout_responsivo/evidencias/PROT_ANTES_DEPOIS_360px.png)
+![Comparativo Antes e Depois - Módulo Infração 768px](../assets/melhorias/compatibilidade/layout_responsivo/evidencias/INFRA_ANTES_DEPOIS_768px.png)
+
+#### 4. Módulo Infração – Desktop HD (Viewport 1366x768)
+Em notebooks e monitores de 1366px, o widget anterior ficava excessivamente colado ao rodapé e cards de resumo. A intervenção fixa o dock a 32px das bordas, com proporções harmônicas de 80px e controle retrátil integrado:
+
+![Comparativo Antes e Depois - Módulo Infração 1366px](../assets/melhorias/compatibilidade/layout_responsivo/evidencias/INFRA_ANTES_DEPOIS_1366px.png)
+
+#### 5. Módulo Atendimento – Mobile Pequeno (Viewport 360x640)
+No portal original, o formulário de agendamento presencial sofria sobreposição de $2.100\,\text{px}^2$ nos seletores inferiores de unidade e data. Com a melhoria, todos os campos e o fluxo de agendamento ficam 100% desimpedidos:
+
+![Comparativo Antes e Depois - Módulo Atendimento 360px](../assets/melhorias/compatibilidade/layout_responsivo/evidencias/ATEND_ANTES_DEPOIS_360px.png)
+
+#### 6. Módulo Protocolo – Mobile Pequeno (Viewport 360x640)
+No portal original, o botão "Acessar" do card de "Nova Solicitação" sofria $2.450\,\text{px}^2$ de bloqueio. A melhoria assegura que o card e o botão permaneçam completamente acessíveis ao toque:
+
+![Comparativo Antes e Depois - Módulo Protocolo 360px](../assets/melhorias/compatibilidade/layout_responsivo/evidencias/PROT_ANTES_DEPOIS_360px.png)
+
+---
+
+### 4.1.1 Mecanismo Retrátil de Ocultação e Restauração
+
+Para permitir máxima flexibilidade visual ao usuário sem alterar a identidade estética do avatar circular de 80px, foi adicionado um controle retrátil bidirecional com persistência de estado via `sessionStorage`:
+
+1. **Ocultação Suave:** Ao clicar no botão circular com seta lateral para a direita (`#btn-retract-chatbot`), o assistente desliza suavemente para fora da tela (`translateX(180px)` e `opacity: 0`).
+2. **Restauração Rápida:** Ao ser recolhido, surge fixada na borda direita da viewport uma discreta aba azul marinho com seta para a esquerda (`#btn-expand-chatbot`). Um clique sobre essa aba restaura o avatar imediatamente para a sua posição original.
+3. **Independência de Tela:** O comportamento é idêntico em todas as resoluções (Mobile, Tablet e Desktop), garantindo que usuários em telas compactas possam liberar 100% do espaço de tela sempre que desejarem.
+
+---
+
+### 4.1.2 Demonstração em Vídeo do Fluxo Completo da Aplicação
+
+Como evidência complementar dinâmica, foi gravada uma execução automatizada completa navegando por todas as páginas da solução desenvolvida, testando o preenchimento de formulários, o redimensionamento dinâmico de tela e o mecanismo retrátil do assistente:
+
+* **Arquivo de Vídeo (MP4 / H.264 Universal):** [demonstracao_fluxo_completo.mp4](../assets/melhorias/compatibilidade/layout_responsivo/videos/demonstracao_fluxo_completo.mp4) (Tamanho: 1,72 MB, Resolução: 1280x720, Duração: 01:36)
+* **Arquivo de Vídeo (WebM Original):** [demonstracao_fluxo_completo.webm](../assets/melhorias/compatibilidade/layout_responsivo/videos/demonstracao_fluxo_completo.webm) (Tamanho: 10,94 MB)
+* **Script de Automação:** [record_complete_flow_video.py](../assets/melhorias/compatibilidade/layout_responsivo/record_complete_flow_video.py)
+
+<video width="100%" controls style="border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.15); margin-top: 12px; margin-bottom: 24px;">
+  <source src="../assets/melhorias/compatibilidade/layout_responsivo/videos/demonstracao_fluxo_completo.mp4" type="video/mp4">
+  <source src="../assets/melhorias/compatibilidade/layout_responsivo/videos/demonstracao_fluxo_completo.webm" type="video/webm">
+  Seu navegador nao suporta a reproducao direta de video HTML5. Baixe o arquivo pelo link acima.
+</video>
 
 ---
 
