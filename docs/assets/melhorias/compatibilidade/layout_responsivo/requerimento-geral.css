@@ -1,0 +1,264 @@
+/* Camada de usabilidade do Requerimento Geral (Protocolo).
+   Usa o visual das telas do portal (cabeçalho, barra azul, cartões) e as classes do
+   detran-responsive-patch.css (.detran-btn, .detran-action-bar-wrapper, .detran-input-control,
+   .inbot-floating-widget-wrapper). Dados fictícios. Não é o portal em produção. */
+
+:root {
+  --rg-azul: #2a70e2;
+  --rg-azul-hover: #1d5cc4;
+  --rg-azul-escuro: #1d3451;
+  --rg-texto: #1f2937;
+  --rg-suave: #5b6675;
+  --rg-borda: #d1d5db;
+  --rg-erro: #a61b1b;
+  --rg-erro-fundo: #fdecec;
+  --rg-ok: #0b6b3a;
+  --rg-ok-fundo: #e6f6ee;
+  --rg-aviso: #7a4f00;
+  --rg-aviso-fundo: #fff5e0;
+  --rg-roxo: #8b5cf6;
+  --rg-verde: #12b173;
+}
+
+/* O patch usa o azul institucional; aqui seguimos o azul das telas do portal. */
+.rg-body .detran-btn-primary { background-color: var(--rg-azul); }
+.rg-body .detran-btn-primary:hover { background-color: var(--rg-azul-hover); }
+.rg-body .detran-btn-secondary { color: var(--rg-azul); border-color: var(--rg-azul); }
+.rg-body .detran-btn[disabled] { background-color: #9aa5b1; border-color: #9aa5b1; color: #fff; cursor: not-allowed; }
+
+.rg-body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--rg-texto);
+  background: #fff;
+}
+[hidden] { display: none !important; }
+a { color: var(--rg-azul); }
+:focus-visible { outline: 3px solid #1a4fb8; outline-offset: 2px; }
+
+.rg-faixa {
+  background: #1f2937;
+  color: #fff;
+  font-size: 13px;
+  padding: 8px 16px;
+  text-align: center;
+}
+.rg-faixa strong { color: #ffd166; }
+
+/* Cabeçalho */
+.rg-header { background: #fff; border-bottom: 2px solid #edecec; position: relative; z-index: 33; }
+.rg-header-linha {
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 64px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.rg-logo {
+  font-family: Khand, "Arial Narrow", sans-serif;
+  font-size: 28px;
+  color: var(--rg-azul);
+  text-decoration: none;
+  white-space: nowrap;
+  line-height: 1;
+  padding-top: 4px;
+}
+.rg-nav { display: flex; align-items: center; gap: 4px; flex: 1; }
+.rg-nav a {
+  color: #111827;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 4px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.rg-nav a:hover, .rg-nav a[aria-current="page"] { background: #edf3fd; color: var(--rg-azul); }
+.rg-usuario {
+  margin-left: auto;
+  color: var(--rg-azul);
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.rg-menu-botao {
+  display: none;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 0;
+  color: #111827;
+  cursor: pointer;
+}
+
+/* Barra azul de ações do protocolo */
+.rg-subbarra { background: var(--rg-azul); }
+.rg-subbarra-interno, .rg-subbarra { display: flex; justify-content: flex-end; }
+.rg-subbarra button {
+  min-height: 44px;
+  background: transparent;
+  border: 0;
+  color: #fff;
+  font: inherit;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+.rg-subbarra button:hover { background: rgba(255, 255, 255, 0.14); }
+
+/* Conteúdo */
+.rg-principal { max-width: 880px; margin: 0 auto; padding: 16px; }
+.rg-migalhas { font-size: 14px; color: var(--rg-suave); margin: 4px 0 12px; }
+.rg-principal h1 { font-size: 26px; font-weight: 700; margin: 0 0 4px; color: var(--rg-azul-escuro); }
+.rg-principal h2 { font-size: 18px; font-weight: 700; margin: 0 0 8px; color: var(--rg-azul-escuro); }
+.rg-subtitulo { margin: 0 0 16px; color: var(--rg-suave); }
+
+.rg-cartao {
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.12);
+  padding: 20px 16px;
+  margin-bottom: 20px;
+}
+.rg-cartao-roxo { border-left: 6px solid var(--rg-roxo); }
+
+.rg-etapas { list-style: none; display: flex; gap: 8px; padding: 0; margin: 0 0 8px; }
+.rg-etapas li {
+  flex: 1;
+  padding: 8px 6px;
+  border-top: 4px solid #cfd8e6;
+  font-size: 13px;
+  color: var(--rg-suave);
+}
+.rg-etapas li[aria-current="step"] { border-top-color: var(--rg-azul); color: var(--rg-azul-escuro); font-weight: 700; }
+.rg-etapas li.feita { border-top-color: var(--rg-verde); color: var(--rg-ok); }
+.rg-etapa-texto { font-size: 14px; color: var(--rg-suave); margin: 0 0 16px; }
+
+/* Formulário */
+.rg-campo { margin-bottom: 20px; }
+.rg-campo label { display: block; font-weight: 700; margin-bottom: 4px; color: var(--rg-azul-escuro); }
+.rg-opcional { font-weight: 400; color: var(--rg-suave); }
+.rg-dica { font-size: 14px; color: var(--rg-suave); margin: 0 0 6px; }
+.rg-exemplo {
+  font-size: 14px;
+  background: #edf3fd;
+  border-left: 4px solid var(--rg-azul);
+  padding: 6px 10px;
+  margin: 0 0 8px;
+}
+.rg-campo textarea.detran-input-control { min-height: 120px; resize: vertical; font-family: inherit; }
+.rg-campo .detran-input-control { border-width: 2px; }
+.detran-input-control[aria-invalid="true"] { border-color: var(--rg-erro); background: var(--rg-erro-fundo); }
+.rg-contador { font-size: 13px; color: var(--rg-suave); text-align: right; margin-top: 2px; }
+.rg-erro { color: var(--rg-erro); font-size: 14px; font-weight: 700; margin: 6px 0 0; display: flex; gap: 6px; }
+.rg-erro::before { content: "\26A0"; }
+
+.rg-resumo-erros {
+  background: var(--rg-erro-fundo);
+  border: 2px solid var(--rg-erro);
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+.rg-resumo-erros h2 { color: var(--rg-erro); font-size: 17px; }
+.rg-resumo-erros ul { margin: 0; padding-left: 20px; }
+.rg-resumo-erros a { color: var(--rg-erro); font-weight: 700; }
+
+/* Barra de ações do patch: dentro do cartão, sem sombra extra */
+.rg-cartao .detran-action-bar-wrapper { border-radius: 0 0 12px 12px; margin-top: 8px; }
+@media (max-width: 768px) {
+  .rg-cartao .detran-action-bar-wrapper { flex-direction: row-reverse; }
+}
+
+/* Revisão */
+.rg-dados { margin: 0; }
+.rg-dados div { padding: 10px 0; border-bottom: 1px solid #e4e7eb; }
+.rg-dados div:last-child { border-bottom: 0; }
+.rg-dados dt { font-size: 14px; color: var(--rg-suave); }
+.rg-dados dd { margin: 2px 0 0; font-weight: 700; word-break: break-word; }
+.rg-dados dd.vazio { font-weight: 400; color: var(--rg-suave); }
+
+.rg-aviso {
+  background: var(--rg-aviso-fundo);
+  border-left: 6px solid #c98a2b;
+  border-radius: 15px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+}
+.rg-aviso h2 { color: var(--rg-aviso); font-size: 17px; }
+.rg-aviso ul { margin: 6px 0 0; padding-left: 20px; }
+
+.rg-confirma { display: flex; gap: 10px; align-items: flex-start; min-height: 44px; margin: 4px 0 12px; }
+.rg-confirma input { width: 24px; height: 24px; margin-top: 4px; flex: none; }
+
+/* Estado vazio e confirmação */
+.rg-vazio { text-align: center; padding: 28px 16px; }
+.rg-icone {
+  width: 72px; height: 72px; margin: 0 auto 12px;
+  border-radius: 50%; background: #edf3fd;
+  display: grid; place-items: center;
+}
+.rg-btn { margin-top: 8px; }
+.rg-sucesso {
+  background: var(--rg-ok-fundo);
+  border-left: 6px solid var(--rg-verde);
+  border-radius: 15px;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+}
+.rg-sucesso h2 { color: var(--rg-ok); }
+
+.rg-selo-modo {
+  display: inline-block;
+  background: #fff3cd;
+  border: 1px solid #e0a100;
+  color: #6b4b00;
+  font-size: 13px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+}
+
+.rg-rodape { max-width: 880px; margin: 0 auto; padding: 8px 16px 120px; font-size: 13px; color: var(--rg-suave); }
+.rg-rodape nav a { margin-right: 12px; white-space: nowrap; display: inline-block; padding: 8px 0; }
+
+/* Mobile: o menu vira botão e as ações da barra azul ocupam a linha toda */
+@media (max-width: 768px) {
+  .rg-menu-botao { display: inline-flex; }
+  .rg-header-linha { flex-wrap: wrap; gap: 8px; padding: 8px 12px; min-height: 56px; }
+  .rg-usuario-nome { display: none; }
+  .rg-nav {
+    display: none;
+    flex-basis: 100%;
+    order: 5;
+    flex-direction: column;
+    align-items: stretch;
+    border-top: 1px solid #edecec;
+    padding: 4px 0;
+  }
+  .rg-nav.aberto { display: flex; }
+  .rg-subbarra { justify-content: space-between; }
+  .rg-subbarra button { flex: 1; justify-content: center; font-size: 15px; padding: 8px; }
+  .rg-principal h1 { font-size: 22px; }
+}
+
+@media (min-width: 769px) {
+  .rg-principal { padding: 24px; }
+  .rg-cartao { padding: 24px; }
+  .rg-etapas li { font-size: 15px; }
+  .rg-dados div { display: grid; grid-template-columns: 220px 1fr; gap: 12px; }
+  .rg-cartao .detran-action-bar-wrapper { position: static; box-shadow: none; background: transparent; border-top: 0; backdrop-filter: none; padding: 8px 0 0; justify-content: flex-end; }
+}

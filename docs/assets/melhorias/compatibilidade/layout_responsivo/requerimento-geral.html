@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Requerimento Geral – Detran Digital (protótipo)</title>
+  <!-- Camada de compatibilidade e responsividade (Artur e Nicole) -->
+  <link rel="stylesheet" href="detran-responsive-patch.css?v=20261123c">
+  <script src="chatbot-resilience-fallback.js" defer></script>
+  <!-- Camada de usabilidade do Requerimento Geral -->
+  <link rel="stylesheet" href="requerimento-geral.css">
+</head>
+<body class="rg-body">
+  <div class="rg-faixa" role="note">
+    <strong>PROTÓTIPO</strong> · Dados fictícios · Não é o portal em produção e nenhuma assinatura é feita
+  </div>
+
+  <!-- Cabeçalho no padrão das telas do portal (index, infração, atendimento e protocolo) -->
+  <header class="rg-header">
+    <div class="rg-header-linha">
+      <button type="button" class="rg-menu-botao" id="rg-menu-botao" aria-expanded="false" aria-controls="rg-nav" aria-label="Abrir menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <a class="rg-logo" href="index.html" aria-label="Detran-DF, página inicial"><strong>DETRAN</strong> - DF</a>
+      <nav class="rg-nav" id="rg-nav" aria-label="Menu principal">
+        <a href="index.html">Início</a>
+        <a href="infracao.html">Veículos &#9662;</a>
+        <a href="atendimento.html">Atendimento &#9662;</a>
+        <a href="protocolo.html" aria-current="page">Protocolo-e &#9662;</a>
+      </nav>
+      <span class="rg-usuario" title="Usuário de teste (fictício)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7z"/></svg>
+        <span class="rg-usuario-nome">USUÁRIO DE TESTE</span>
+      </span>
+    </div>
+    <div class="rg-subbarra">
+      <button type="button" data-ir="form">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+        Nova Solicitação
+      </button>
+      <button type="button" data-ir="lista">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h2M9 7h11M4 12h2M9 12h11M4 17h2M9 17h11"/></svg>
+        Minhas Solicitações
+      </button>
+    </div>
+  </header>
+
+  <main id="conteudo" class="rg-principal">
+
+    <!-- TELA 1: lista de requerimentos (estado vazio) -->
+    <section id="tela-lista" hidden aria-labelledby="titulo-lista">
+      <p class="rg-migalhas">Início › Protocolo-e › Minhas Solicitações</p>
+      <h1 id="titulo-lista" tabindex="-1">Minhas Solicitações</h1>
+      <p class="rg-subtitulo">Acompanhe as solicitações que você registrou no Detran-DF.</p>
+      <div class="rg-cartao rg-vazio">
+        <div class="rg-icone" aria-hidden="true">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#2a70e2" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
+        </div>
+        <h2>Você ainda não tem requerimentos</h2>
+        <p>Quando você registrar uma solicitação, ela aparece aqui para você acompanhar.</p>
+        <button type="button" class="detran-btn detran-btn-primary rg-btn" data-ir="form">Nova solicitação</button>
+      </div>
+    </section>
+
+    <!-- TELA 2: formulário -->
+    <section id="tela-form" hidden aria-labelledby="titulo-form">
+      <p class="rg-migalhas">Início › Protocolo-e › Nova Solicitação</p>
+      <span class="rg-selo-modo" id="selo-modo" hidden>Modo portal atual (linha de base): sem validação e sem revisão</span>
+      <h1 id="titulo-form" tabindex="-1">Requerimento Geral</h1>
+
+      <div id="bloco-etapas">
+        <ol class="rg-etapas" aria-label="Etapas do requerimento">
+          <li aria-current="step"><span class="n">1.</span> Preencher</li>
+          <li><span class="n">2.</span> Revisar</li>
+          <li><span class="n">3.</span> Assinar</li>
+        </ol>
+        <p class="rg-etapa-texto">Etapa 1 de 3: preencha o requerimento. Você poderá revisar tudo antes de assinar.</p>
+      </div>
+
+      <div id="resumo-erros" class="rg-resumo-erros" role="alert" tabindex="-1" hidden>
+        <h2>Corrija os campos abaixo para continuar</h2>
+        <ul id="lista-erros"></ul>
+      </div>
+
+      <form id="form" class="rg-cartao rg-cartao-roxo" novalidate>
+        <div class="rg-campo">
+          <label for="objeto">Objeto do requerimento</label>
+          <p class="rg-dica" id="dica-objeto">Escreva, com suas palavras, o que você está pedindo ao Detran-DF.</p>
+          <p class="rg-exemplo" id="exemplo-objeto"><strong>Exemplo:</strong> Solicito informações sobre o prazo para renovação da minha CNH.</p>
+          <textarea id="objeto" name="objeto" class="detran-input-control" maxlength="500" aria-describedby="dica-objeto erro-objeto contador-objeto" autocomplete="off"></textarea>
+          <div class="rg-contador" id="contador-objeto" aria-live="polite">0 de 500 caracteres</div>
+          <p class="rg-erro" id="erro-objeto" hidden></p>
+        </div>
+
+        <div class="rg-campo">
+          <label for="placa">Placa do veículo <span class="rg-opcional">(opcional)</span></label>
+          <p class="rg-dica" id="dica-placa">Preencha só se o pedido estiver ligado a um veículo. Ex.: ABC1D23 ou ABC-1234.</p>
+          <input type="text" id="placa" name="placa" class="detran-input-control" maxlength="8" inputmode="text" autocapitalize="characters" autocomplete="off" spellcheck="false" aria-describedby="dica-placa erro-placa">
+          <p class="rg-erro" id="erro-placa" hidden></p>
+        </div>
+
+        <div class="rg-campo">
+          <label for="renavam">Renavam <span class="rg-opcional">(opcional)</span></label>
+          <p class="rg-dica" id="dica-renavam">São 11 números, sem pontos nem traços.</p>
+          <input type="text" id="renavam" name="renavam" class="detran-input-control" maxlength="11" inputmode="numeric" autocomplete="off" aria-describedby="dica-renavam erro-renavam">
+          <p class="rg-erro" id="erro-renavam" hidden></p>
+        </div>
+
+        <div class="detran-action-bar-wrapper" id="barra-form">
+          <a class="detran-btn detran-btn-secondary" href="protocolo.html">Cancelar</a>
+          <button type="submit" class="detran-btn detran-btn-primary" id="btn-continuar">Continuar para a revisão</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- TELA 3: revisão -->
+    <section id="tela-revisao" hidden aria-labelledby="titulo-revisao">
+      <p class="rg-migalhas">Início › Protocolo-e › Nova Solicitação › Revisão</p>
+      <h1 id="titulo-revisao" tabindex="-1">Revise seu requerimento</h1>
+      <ol class="rg-etapas" aria-label="Etapas do requerimento">
+        <li class="feita"><span class="n">1.</span> Preencher</li>
+        <li aria-current="step"><span class="n">2.</span> Revisar</li>
+        <li><span class="n">3.</span> Assinar</li>
+      </ol>
+      <p class="rg-etapa-texto">Etapa 2 de 3: confira os dados. Depois da assinatura, o documento não poderá ser alterado.</p>
+
+      <div class="rg-cartao rg-cartao-roxo">
+        <h2>Dados informados</h2>
+        <dl class="rg-dados" id="dados-revisao"></dl>
+      </div>
+
+      <div class="rg-aviso" role="note">
+        <h2>O que a assinatura significa</h2>
+        <ul>
+          <li>A assinatura com gov.br tem <strong>validade legal</strong>.</li>
+          <li>Depois de assinado, o requerimento <strong>não pode ser editado nem desfeito</strong> por aqui.</li>
+          <li>Se algo estiver errado, volte e edite agora.</li>
+        </ul>
+      </div>
+
+      <div class="rg-cartao rg-cartao-roxo">
+        <label class="rg-confirma" for="confirma-revisao">
+          <input type="checkbox" id="confirma-revisao">
+          <span>Revisei os dados e estou ciente de que a assinatura não pode ser desfeita.</span>
+        </label>
+        <div class="detran-action-bar-wrapper" id="barra-revisao">
+          <button type="button" class="detran-btn detran-btn-secondary" data-ir="form-editar">Voltar e editar</button>
+          <button type="button" class="detran-btn detran-btn-primary" id="btn-assinar" disabled>Ir para a assinatura</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TELA 4: confirmação (pronto para assinar, simulado) -->
+    <section id="tela-confirmacao" hidden aria-labelledby="titulo-confirmacao">
+      <p class="rg-migalhas">Início › Protocolo-e › Nova Solicitação › Assinatura</p>
+      <h1 id="titulo-confirmacao" tabindex="-1">Assinar documento</h1>
+      <ol class="rg-etapas" aria-label="Etapas do requerimento">
+        <li class="feita"><span class="n">1.</span> Preencher</li>
+        <li class="feita"><span class="n">2.</span> Revisar</li>
+        <li aria-current="step"><span class="n">3.</span> Assinar</li>
+      </ol>
+      <p class="rg-etapa-texto">Etapa 3 de 3: assinatura.</p>
+
+      <div class="rg-sucesso" role="status" id="msg-pronto">
+        <h2>Tudo pronto para assinar</h2>
+        <p>Seus dados foram conferidos. <strong>Neste protótipo nenhuma assinatura é feita</strong>: o fluxo termina aqui.</p>
+      </div>
+
+      <div class="rg-cartao rg-cartao-roxo">
+        <h2>Documento</h2>
+        <dl class="rg-dados" id="dados-documento"></dl>
+        <div class="detran-action-bar-wrapper" id="barra-confirmacao">
+          <button type="button" class="detran-btn detran-btn-secondary" data-ir="lista-reiniciar">Recomeçar o protótipo</button>
+          <button type="button" class="detran-btn detran-btn-primary" disabled aria-disabled="true">Assinar com gov.br (simulado)</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="rg-rodape">
+    <p>Estados do protótipo (para avaliação e capturas):</p>
+    <nav aria-label="Estados do protótipo">
+      <a href="?estado=vazio">Vazio</a>
+      <a href="?estado=padrao">Padrão</a>
+      <a href="?estado=erro">Erro</a>
+      <a href="?estado=revisao">Revisão</a>
+      <a href="?estado=confirmacao">Confirmação</a>
+      <a href="?modo=atual&amp;estado=padrao">Portal atual (linha de base)</a>
+    </nav>
+  </footer>
+
+  <!-- Assistente virtual: o patch do Artur posiciona o avatar acima da barra de ações.
+       Se a CDN falhar, chatbot-resilience-fallback.js troca o avatar pelos canais de atendimento. -->
+  <div id="inbot-widget-container" class="inbot-floating-widget-wrapper">
+    <div id="bot_icon" class="inbot-launcher-btn" role="button" tabindex="0" title="Assistente Virtual Detran-DF" aria-label="Abrir Atendimento Virtual">
+      <img src="assets/fOTO_DET-removebg-preview.png" alt="Assistente Detran-DF">
+    </div>
+  </div>
+
+  <script src="requerimento-geral.js"></script>
+</body>
+</html>
