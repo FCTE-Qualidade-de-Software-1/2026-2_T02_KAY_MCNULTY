@@ -24,11 +24,11 @@ João [Sobrenome]\inst{1}, Natan [Sobrenome]\inst{1}, Yan [Sobrenome]\inst{1}}
 \maketitle
 
 \begin{abstract}
-Digital public services play an indispensable role in citizens' daily lives, requiring technical rigor to ensure resilient, accessible, and high-quality software interfaces. This paper presents the first version of the software quality evaluation planning for the Detran Digital portal of the Federal District of Brazil (Detran Digital DF), following the ISO/IEC 25040 standard (SQuaRE) and the Goal-Question-Metric (GQM) methodology. The evaluation scope focuses on four critical modules: Infractions, Attendance/Scheduling, Protocol/Process Filing, and Chatbot. The assessment covers Usability, Reliability, and Compatibility (Coexistence and Interoperability) according to ISO/IEC 25010. The paper details evaluation requirements (Phase 1) mapped to stakeholders and UN Sustainable Development Goals (SDGs 9 and 16), as well as measurement goals, questions, hypotheses, formal metrics, and judgment levels (Phase 2), governed by Practical Software Measurement (PSM/CID).
+Digital public services play an indispensable role in citizens' daily lives, requiring technical rigor to ensure resilient, accessible, and high-quality software interfaces. This paper presents the updated version of the software quality evaluation for the Detran Digital portal of the Federal District of Brazil (Detran Digital DF), following the ISO/IEC 25040 standard (SQuaRE) and the Goal-Question-Metric (GQM) methodology. The evaluation scope focuses on four critical modules: Infractions, Attendance/Scheduling, Protocol/Process Filing, and Chatbot. The assessment covers Usability, Reliability, and Compatibility (Coexistence and Interoperability) according to ISO/IEC 25010. The paper details evaluation requirements (Phase 1) mapped to stakeholders and UN Sustainable Development Goals (SDGs 9 and 16), as well as measurement goals, questions, hypotheses, formal metrics, and judgment levels (Phase 2). For interaction capability, six participants and two evaluators contributed to the assessment. Autonomous completion reached 59.1\%, and the heuristic inspection identified 28 distinct issues.
 \end{abstract}
 
 \begin{resumo}
-Os serviços públicos digitais exercem papel indispensável no exercício da cidadania, demandando rigor técnico na entrega de interfaces resilientes e acessíveis. Este artigo apresenta a primeira versão do planejamento e especificação formal da avaliação de qualidade de produto do portal Detran Digital do Distrito Federal (Detran Digital DF), adotando as diretrizes da norma ISO/IEC 25040 (SQuaRE) e a modelagem orientada a objetivos GQM (Goal-Question-Metric). O escopo delimitado compreende quatro módulos operacionais críticos: Módulo de Infrações, Atendimento, Protocolo e Chatbot de atendimento automatizado. A avaliação contempla a análise sistemática sob as dimensões de Capacidade de Interação (ISO/IEC 25010:2023), Confiabilidade e Compatibilidade (Coexistência e Interoperabilidade). São estabelecidos os requisitos de avaliação (Fase 1) alinhados às partes interessadas e aos Objetivos de Desenvolvimento Sustentável (ODS 9 e 16 da ONU), seguidos pela definição das metas conceituais, questões operacionais, hipóteses empíricas, métricas quantitativas e réguas de decisão (Fase 2). A governança do projeto é suportada por métricas do framework Practical Software Measurement (PSM/CID).
+Os serviços públicos digitais exercem papel indispensável no exercício da cidadania, demandando rigor técnico na entrega de interfaces resilientes e acessíveis. Este artigo apresenta a versão atualizada do planejamento e especificação formal da avaliação de qualidade de produto do portal Detran Digital do Distrito Federal (Detran Digital DF), adotando as diretrizes da norma ISO/IEC 25040 (SQuaRE) e a modelagem orientada a objetivos GQM (Goal-Question-Metric). O escopo delimitado compreende quatro módulos operacionais críticos: Módulo de Infrações, Atendimento, Protocolo e Chatbot de atendimento automatizado. A avaliação contempla a análise sistemática sob as dimensões de Capacidade de Interação (ISO/IEC 25010:2023), Confiabilidade e Compatibilidade (Coexistência e Interoperabilidade). São estabelecidos os requisitos de avaliação (Fase 1) alinhados às partes interessadas e aos Objetivos de Desenvolvimento Sustentável (ODS 9 e 16 da ONU), seguidos pela definição das metas conceituais, questões operacionais, hipóteses empíricas, métricas quantitativas e réguas de decisão (Fase 2). Na capacidade de interação, seis participantes e dois avaliadores contribuíram para a avaliação. A conclusão autônoma atingiu 59,1\%, e a inspeção identificou 28 problemas distintos.
 \end{resumo}
 
 \section{Introdução}
@@ -36,12 +36,12 @@ A transformação digital dos serviços públicos no Brasil tem exigido das inst
 
 Nesse cenário, a disciplina de Qualidade de Software 1 (FGA/UnB) tem como objetivo conduzir uma auditoria rigorosa de qualidade sobre o portal Detran Digital DF, aplicando as normas da família ISO/IEC 25000 (SQuaRE), especialmente a ISO/IEC 25040 (Processo de Avaliação) e o modelo de qualidade de produto da ISO/IEC 25010:2023. Para garantir profundidade empírica, a avaliação foi delimitada em quatro módulos estratégicos: (i) Infração, (ii) Atendimento, (iii) Protocolo e (iv) Chatbot. Cada um desses módulos é avaliado pela equipe sob três características centrais: Capacidade de Interação, Confiabilidade e Compatibilidade.
 
-Este trabalho abrange os produtos das Fases 1 (Estabelecimento dos Requisitos de Avaliação) e 2 (Especificação da Avaliação via GQM). O repositório oficial da equipe contendo os artefatos, atas de reunião e evidências de governança por PSM/CID está disponível em: \url{https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_KAY_MCNULTY}.
+Este trabalho abrange as Fases 1 e 2 e incorpora o projeto e a execução da avaliação de Capacidade de Interação (Fases 3 e 4). O repositório oficial da equipe contendo os artefatos e atas de reunião está disponível em: \url{https://github.com/FCTE-Qualidade-de-Software-1/2026-2_T02_KAY_MCNULTY}.
 
 \section{Referencial Teórico}
-A engenharia de qualidade de software apoia-se em normas e frameworks consolidados para assegurar objetividade e reprodutibilidade nas medições. A série ISO/IEC 25000 (SQuaRE) estabelece um arcabouço estruturado para especificação e avaliação de software. A norma ISO/IEC 25040 define o processo de avaliação em cinco fases iterativas: (1) Estabelecer os requisitos da avaliação, (2) Especificar a avaliação, (3) Projetar a avaliação, (4) Executar a avaliação e (5) Concluir a avaliação. A presente entrega contempla as Fases 1 e 2 do processo.
+A engenharia de qualidade de software apoia-se em normas e frameworks consolidados para assegurar objetividade e reprodutibilidade nas medições. A série ISO/IEC 25000 (SQuaRE) estabelece um arcabouço estruturado para especificação e avaliação de software. A norma ISO/IEC 25040 define o processo de avaliação em cinco fases iterativas: (1) Estabelecer os requisitos da avaliação, (2) Especificar a avaliação, (3) Projetar a avaliação, (4) Executar a avaliação e (5) Concluir a avaliação. A presente versão incorpora também as Fases 3 e 4 de Capacidade de Interação.
 
-Para a formalização das métricas, emprega-se a abordagem Goal-Question-Metric (GQM), formulada por Victor Basili. O GQM opera em três níveis: Conceitual (Objetivo de Medição estruturado), Operacional (Questões e Hipóteses) e Quantitativo (Métricas objetivas associadas). A governança é complementada pelas práticas do Practical Software Measurement (PSM/CID).
+Para a formalização das métricas, emprega-se a abordagem Goal-Question-Metric (GQM), formulada por Victor Basili. O GQM opera em três níveis: Conceitual (Objetivo de Medição estruturado), Operacional (Questões e Hipóteses) e Quantitativo (Métricas objetivas associadas).
 
 \section{Metodologia e Requisitos da Avaliação (Fase 1 da SQuaRE)}
 
@@ -182,26 +182,108 @@ Insuficiente & $< 70\%$ & $< 70\%$ & $< 80\%$ & Reprovado. Quebras graves em mob
 \end{tabular}
 \end{table}
 
-\subsection{GQM -- Característica: Capacidade de Interação (Natan e Yan)}
-\textit{[ESPAÇO RESERVADO PARA A DUPLA NATAN E YAN: Inserir objetivo estruturado no template, questões, hipóteses, métricas com procedimentos de cálculo, critérios de julgamento e diagrama GQM para Capacidade de Interação nos 4 módulos.]}
+\subsection{GQM -- Característica: Capacidade de Interação}
+O objetivo é analisar os módulos de Infração, Atendimento, Protocolo e Chatbot para avaliar a capacidade de interação, com foco em aprendibilidade, operabilidade e proteção contra erros de usuário, do ponto de vista dos cidadãos e dos engenheiros avaliadores, em acessos desktop e mobile no Distrito Federal.
+
+As questões operacionais investigam a conclusão autônoma no primeiro acesso (Q1), a clareza e eficiência dos fluxos (Q2) e a prevenção e recuperação de erros (Q3). H1 prevê maior facilidade de aprendizado em Infração e Chatbot; H2 prevê melhor operabilidade em desktop; H3 prevê fragilidades nas salvaguardas e mensagens de erro.
+
+\begin{align*}
+M1\ (TCAPA)&=100\,N_{aut}/N_{tot}\\
+M2\ (IEFO)&=100\,P_{min}/P_{exec}\\
+M3\ (TPRE)&=100\,E_{prev}/E_{tot}\\
+M4\ (IPH)&=\sum_{s=1}^{4}N_s\\
+M5\ (SUS)&=2{,}5\left[\sum_{i\in\{1,3,5,7,9\}}(R_i-1)+\sum_{i\in\{2,4,6,8,10\}}(5-R_i)\right].
+\end{align*}
+M1 relaciona tarefas autônomas às tarefas válidas de primeiro acesso; M2 compara passos mínimos e realizados; M3 relaciona erros prevenidos ou corrigidos na primeira tentativa aos eventos válidos; M4 conta problemas heurísticos distintos por severidade; M5 utiliza dez respostas em escala de 1 a 5, produzindo pontuação de 0 a 100, não percentual. M1 e M2 são insuficientes abaixo de 70\%, e M3 abaixo de 75\%. M4 e M5 não possuem faixas formais de julgamento na especificação; 68 pontos constitui referência interpretativa para SUS.
 
 \subsection{GQM -- Característica: Confiabilidade (João e Davi)}
 \textit{[ESPAÇO RESERVADO PARA A DUPLA JOÃO E DAVI: Inserir objetivo estruturado no template, questões, hipóteses, métricas com procedimentos de cálculo, critérios de julgamento e diagrama GQM para Confiabilidade nos 4 módulos.]}
 
-\section{Considerações Iniciais e Planejamento da Próxima Fase}
-A formalização dos requisitos (Fase 1) e a especificação da medição via GQM (Fase 2) fundamentam a futura execução das Fases 3 e 4. A abrangência conjunta sobre os quatro módulos operacionais garante consistência e correlação entre os resultados finais.
+\section{Projeto da Avaliação (Fase 3 da SQuaRE)}
+\subsection{Capacidade de Interação}
+Adotou-se avaliação caixa-preta, combinando inspeção das dez heurísticas de Nielsen por dois avaliadores e sessões observacionais com participantes, seguidas do questionário SUS. Os instrumentos incluíram catálogo de tarefas, fluxos de referência, registros de execução e auxílio, cenários de erro e planilhas de inspeção individual e consolidada. Os enunciados não indicavam os controles a utilizar. Cada clique, toque ou campo preenchido foi contabilizado como passo, inclusive cliques sem efeito; rolagem não foi contabilizada.
+
+\begin{table}[htbp]
+\centering
+\caption{Tarefas e pontos de parada seguros.}
+\begin{tabular}{lp{4cm}p{6cm}}
+\toprule Tarefa & Módulo & Ponto de parada \\ \midrule
+T1 & Infração & Lista de infrações, sem pagamento ou recurso.\\
+T2 & Atendimento & Antes de concluir o agendamento.\\
+T3 & Protocolo & Etapa de assinatura, sem assinatura legal.\\
+T4 & Chatbot & Resposta exibida.\\ \bottomrule
+\end{tabular}
+\par\small Fonte: Elaborado pelos autores, Fase 3.
+\end{table}
+O piloto foi conduzido pelos avaliadores para verificar os instrumentos, sem integrar a amostra oficial. A consulta de infrações não pôde ser concluída no piloto por ausência de veículo vinculado à conta. A contagem de passos foi revisada, incluindo cliques sem efeito e distinguindo os fluxos com e sem autenticação. A coleta oficial ocorreu em 21 e 22 de novembro de 2026, com seis participantes: três em desktop e três em mobile, cinco cidadãos e um engenheiro, todos com alto letramento digital. A amostra de conveniência não cobriu o perfil de baixo letramento previsto. As sessões começaram com a conta autenticada; os cenários de erro foram executados separadamente pelos avaliadores, e não pelos participantes.
+
+\section{Execução e Julgamento da Avaliação (Fase 4 da SQuaRE)}
+\subsection{Resultados de Capacidade de Interação}
+\begin{table}[htbp]
+\centering
+\caption{Resultados por módulo das métricas de desempenho e inspeção.}
+\begin{tabular}{lrrrr}
+\toprule Módulo & TCAPA & IEFO & TPRE & IPH \\ \midrule
+Infração & 5/5 & 73,9\% & N/A & 7\\
+Atendimento & 4/6 & 72,8\% & N/A & 8\\
+Protocolo & 2/6 & 77,8\% & 0/3 & 8\\
+Chatbot & 2/5 & 90,0\% & 5/5 & 5\\
+Total & 13/22 & 76,4\% & 5/8 & 28\\ \bottomrule
+\end{tabular}
+\par\small Fonte: Elaborado pelos autores, registros da Fase 4.
+\end{table}
+A TCAPA foi de 59,1\%, insuficiente. Duas execuções foram excluídas do denominador por experiência anterior na tarefa e falha técnica externa. O Protocolo apresentou a menor autonomia (2/6), sem conclusão autônoma em desktop. O IEFO médio das 14 execuções autônomas foi 76,4\%, satisfatório, com 63,6\% em desktop e 86,1\% em mobile. A razão agregada de passos (91/141) produz 64,5\%, insuficiente; portanto, a classificação é sensível ao método de agregação. O fluxo de referência utilizado excluiu o login, diferentemente do catálogo inicial.
+
+A TPRE foi 62,5\%, insuficiente: três entradas inválidas no Protocolo avançaram sem alerta, enquanto cinco eventos no Chatbot foram prevenidos ou corrigidos pelos avaliadores. Infração e Atendimento não tiveram eventos válidos para cálculo. No Atendimento observaram-se ausência de resumo, cancelamento e retorno sem perda de dados. A métrica não representa recuperação de erros pelos participantes.
+
+\begin{table}[htbp]
+\centering
+\caption{Distribuição dos problemas heurísticos por severidade.}
+\begin{tabular}{lrrrrr}
+\toprule Módulo & $N_1$ & $N_2$ & $N_3$ & $N_4$ & IPH\\ \midrule
+Infração & 2 & 3 & 2 & 0 & 7\\
+Atendimento & 1 & 4 & 3 & 0 & 8\\
+Protocolo & 1 & 3 & 3 & 1 & 8\\
+Chatbot & 1 & 2 & 2 & 0 & 5\\
+Total & 5 & 12 & 10 & 1 & 28\\ \bottomrule
+\end{tabular}
+\par\small Fonte: Elaborado pelos autores, inspeção heurística da Fase 4.
+\end{table}
+A inspeção identificou 28 problemas distintos, incluindo dez de severidade maior e um catastrófico, no Protocolo: ausência de aviso e possibilidade de edição antes da assinatura com validade legal. Foram registrados 21 problemas em desktop e 23 em mobile, com 16 compartilhados. O IPH não estima a quantidade total de problemas do portal. O SUS médio foi 53,3 pontos (55,8 em desktop e 50,8 em mobile); todos os seis participantes ficaram abaixo da referência de 68. O questionário avaliou o portal como um todo, excluindo o login gov.br.
+
+\begin{figure}[htbp]\centering\includegraphics[width=0.78\linewidth]{figuras/m1-tcapa-modulo-dispositivo.png}\caption{TCAPA por módulo e dispositivo.}\small Fonte: Elaborado pelos autores, Fase 4.\end{figure}
+\begin{figure}[htbp]\centering\includegraphics[width=0.78\linewidth]{figuras/m2-iefo-modulo-dispositivo.png}\caption{IEFO por módulo e dispositivo.}\small Fonte: Elaborado pelos autores, Fase 4.\end{figure}
+\begin{figure}[htbp]\centering\includegraphics[width=0.78\linewidth]{figuras/m3-tpre-modulo.png}\caption{TPRE por módulo.}\small Fonte: Elaborado pelos autores, Fase 4.\end{figure}
+\begin{figure}[htbp]\centering\includegraphics[width=0.78\linewidth]{figuras/m4-iph-modulo-severidade.png}\caption{IPH por módulo e severidade.}\small Fonte: Elaborado pelos autores, Fase 4.\end{figure}
+\begin{figure}[htbp]\centering\includegraphics[width=0.78\linewidth]{figuras/m5-sus-individual.png}\caption{SUS por participante.}\small Fonte: Elaborado pelos autores, Fase 4.\end{figure}
+
+\subsection{Julgamento por módulo e verificação das hipóteses}
+Infração apresentou maior autonomia, embora com problemas de feedback. Atendimento apresentou autonomia intermediária e ausência de salvaguardas antes da conclusão. Protocolo concentrou a menor autonomia, falhas de prevenção e o único problema catastrófico. Chatbot apresentou boa prevenção nos cenários executados, mas baixa autonomia e problemas de retorno e confiança. Esses julgamentos são qualitativos; as faixas formais foram aplicadas aos totais, não às pequenas células por módulo.
+
+H1 foi considerada inconclusiva: Infração superou os demais módulos em autonomia, mas Chatbot ficou abaixo de Atendimento. H2 foi refutada nos indicadores de desempenho, com ressalvas: mobile superou desktop em TCAPA e IEFO, enquanto o SUS favoreceu desktop. H3 foi confirmada com ressalvas, sobretudo pelas falhas no Protocolo e pelas salvaguardas ausentes no Atendimento. Os vereditos são propostos na documentação e não se generalizam além da amostra.
+
+\subsection{Ação de melhoria: protótipo}
+A documentação de oportunidades prioriza um protótipo de alta fidelidade do Requerimento Geral, no Protocolo, com validação de preenchimento junto aos campos Objeto, placa e RENAVAM, revisão e aviso antes da assinatura e indicação de etapa. A proposta decorre da convergência entre baixa autonomia, falhas de prevenção e risco de ação irreversível. A evidência sobre Objeto vazio diverge do registro de Confiabilidade, que observou resposta 409 com mensagem clara; essa divergência deve ser considerada na interpretação da proposta.
+
+A entrega contempla exclusivamente o protótipo como proposta de melhoria, sem implantação no portal e sem uma nova rodada de avaliação. A validação empírica do protótipo está fora do escopo da Entrega 2.
+
+\subsection{Limitações}
+A amostra pequena, de conveniência e com alto letramento limita a generalização. A ausência de cenários de erro com participantes, a exclusão de tarefas auxiliadas do IEFO, a alteração do fluxo de referência e a sensibilidade à agregação restringem a interpretação. A inspeção foi realizada por dois avaliadores, não substitui testes com usuários e não constitui auditoria de acessibilidade. A avaliação restringe-se à interface observável na versão do portal disponível durante a coleta. O protótipo não foi submetido a testes com usuários; portanto, não é possível quantificar seu impacto sobre as métricas de Capacidade de Interação nem afirmar sua eficácia empírica.
+
+\section{Considerações finais parciais}
+Os resultados de capacidade de interação apontam prioridade para o fluxo de Protocolo. A proposta de protótipo busca tratar os problemas identificados, sem que sua eficácia tenha sido mensurada. A consolidação das demais características permanece dependente dos respectivos artefatos.
 
 \section*{Referências}
 \begin{description}
     \item Basili, V. R., Caldiera, G., \& Rombach, H. D. (1994). The Goal Question Metric Approach. Encyclopedia of Software Engineering, 2, 528-532.
     \item ISO/IEC 25010 (2023). Systems and software engineering -- Systems and software Quality Requirements and Evaluation (SQuaRE) -- Product quality model.
     \item ISO/IEC 25040 (2011). Systems and software engineering -- Systems and software Quality Requirements and Evaluation (SQuaRE) -- Evaluation process.
-    \item McGarry, J. et al. (2002). Practical Software Measurement: Objective Information for Decision Makers. Addison-Wesley.
     \item Portal Detran Digital DF (2026). Detran-DF. Disponível em: \url{https://portal.detran.df.gov.br/#/home}.
 \end{description}
 
 \appendix
 \section*{Apêndice A -- Tabela de Contribuição dos Membros da Equipe}
+Os percentuais abaixo correspondem à Entrega 1; a consolidação do esforço da Entrega 2 permanece pendente.
 \begin{table}[h]
 \centering
 \begin{tabular}{|l|p{8.5cm}|c|}
@@ -218,9 +300,23 @@ Davi & Fase 1 (Descrição do sistema); Fase 2 (GQM Confiabilidade e hipóteses)
 
 \section*{Apêndice B -- Declaração de Uso de Ferramentas de Inteligência Artificial}
 \begin{itemize}
-    \item \textbf{Ferramenta:} Antigravity AI Assistant (Google DeepMind).
-    \item \textbf{Tarefas Realizadas:} Estruturação inicial do GQM no template padrão da disciplina, conferência de fórmulas das métricas e organização do esqueleto no modelo SBC.
+    \item \textbf{Ferramenta:} Antigravity AI Assistant (Google DeepMind) e ChatGPT (OpenAI).
+    \item \textbf{Tarefas Realizadas:} Estruturação inicial do GQM no template padrão da disciplina, conferência de fórmulas das métricas e organização do esqueleto no modelo SBC. O ChatGPT auxiliou na síntese dos artefatos das Fases 2 a 4 de Capacidade de Interação e na redação em LaTeX; a revisão humana das novas seções permanece pendente.
     \item \textbf{Revisão Humana:} O conteúdo foi conferido criticamente pela equipe, validado com base nas normas ISO/IEC 25010:2023 e 25040, e adaptado ao portal Detran Digital DF. Não foram utilizados ícones ou emojis gerados por IA.
 \end{itemize}
+
+\section*{Apêndice C -- Gestão do Projeto com PSM/CID}
+A governança do projeto é complementada pelas práticas de Practical Software Measurement (PSM/CID), orientadas às necessidades de informação e à tomada de decisão gerencial. Conforme a documentação de gestão da equipe, foram selecionadas três categorias: desempenho dos processos, calendário e progresso, e recursos e custos. As medidas de commits e linhas adicionadas ou removidas são evidências auxiliares de integração.
+
+\begin{itemize}
+    \item \textbf{Calendário e progresso:} acompanhar a concentração do fechamento de issues. Na Entrega 1, 10 de 14 issues foram fechadas em um único dia (71\%), acima do limite de 50\% definido pela equipe.
+    \item \textbf{Desempenho dos processos:} acompanhar a revisão cruzada de pull requests. Na Entrega 1, um de quatro PRs integrados recebeu revisão de outra pessoa (25\%), diante da meta de 100\%.
+    \item \textbf{Recursos e custos:} acompanhar as horas registradas nas issues, com meta de cobertura de 100\% e valor de referência de R\$ 50,00 por hora. Na Entrega 1, as horas e os custos eram estimativas, pois não havia registros de horas nas issues.
+\end{itemize}
+Os resultados acima referem-se à Entrega 1, conforme a documentação de gestão de 10/11/2026, e não representam medições consolidadas da Entrega 2. As decisões de gestão incluem distribuir os fechamentos, exigir revisão cruzada e registrar as horas dedicadas em cada issue.
+
+Fonte: documentação de gestão da equipe, \texttt{docs/gestao/metricas-psm.md}, disponível no repositório oficial.
+
+\noindent Referência do apêndice: McGarry, J. et al. (2002). Practical Software Measurement: Objective Information for Decision Makers. Addison-Wesley.
 
 \end{document}
