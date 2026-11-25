@@ -1,1 +1,7 @@
 id_participante,grupo,dispositivo,escopo,tarefas_executadas,r01,r02,r03,r04,r05,r06,r07,r08,r09,r10,pontuacao_sus,observacoes
+P01,cidadao,Desktop,Portal como um todo,"T1,T2,T3,T4",2,4,1,2,3,1,3,1,3,1,57.5,
+P02,cidadao,Desktop,Portal como um todo,"T1,T2,T3,T4",3,3,3,4,5,2,3,2,5,3,62.5,precisou de ajuda durante as tarefas
+P03,cidadao,Desktop,Portal como um todo,"T1,T2,T3,T4",2,5,3,1,3,3,2,1,2,3,47.5,
+P04,cidadao,Mobile,Portal como um todo,"T1,T2,T3,T4",2,3,3,1,2,4,2,1,4,1,57.5,
+P05,cidadao,Mobile,Portal como um todo,"T1,T2,T3,T4",1,3,2,2,2,2,3,1,2,2,50,
+P06,engenheiro,Mobile,Portal como um todo,"T1,T2,T3,T4",2,2,3,3,2,5,2,1,1,1,45,

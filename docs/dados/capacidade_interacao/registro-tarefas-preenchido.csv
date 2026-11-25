@@ -1,0 +1,25 @@
+id_participante,grupo,faixa_etaria,letramento_digital,ja_usou_portal,dispositivo,sistema_operacional,navegador,faixa_largura,ordem_sessao,id_tarefa,modulo,ja_executou_tarefa,primeiro_acesso,tentativa,concluiu,motivo_nao_conclusao,pediu_ajuda,tipo_ajuda,p_min,passos_executados,erros_espontaneos,usou_ajuda_do_portal,data,moderador,observador,observacoes
+P01,cidadao,45-59,alto,sim,Desktop,Windows 11,Chrome,acima_1024,T1-T2-T3-T4,T1,Consultar infrações,nao,sim,1,sim,,nao,,4,4,,nao,2026-11-21,,,
+P01,cidadao,45-59,alto,sim,Desktop,Windows 11,Chrome,acima_1024,T1-T2-T3-T4,T2,Agendar atendimento,nao,sim,1,sim,,nao,,12,24,,nao,2026-11-21,,,
+P01,cidadao,45-59,alto,sim,Desktop,Windows 11,Chrome,acima_1024,T1-T2-T3-T4,T3,Abrir protocolo,nao,sim,1,nao,desistencia,nao,,7,74,,sim,2026-11-21,,,"pediu ajuda ao chatbot do portal, mas sem sucesso"
+P01,cidadao,45-59,alto,sim,Desktop,Windows 11,Chrome,acima_1024,T1-T2-T3-T4,T4,Chatbot,nao,sim,1,sim,,nao,,4,4,,,2026-11-21,,,
+P02,cidadao,30-44,alto,nao,Desktop,Windows 11,Chrome,acima_1024,T2-T3-T1-T4,T2,Agendar atendimento,nao,sim,1,sim,,sim,instrucao_moderador,12,20,,nao,2026-11-21,,,
+P02,cidadao,30-44,alto,nao,Desktop,Windows 11,Chrome,acima_1024,T2-T3-T1-T4,T3,Abrir protocolo,nao,sim,1,sim,,sim,instrucao_moderador,7,28,,nao,2026-11-21,,,as cores atrapalharam sua visão
+P02,cidadao,30-44,alto,nao,Desktop,Windows 11,Chrome,acima_1024,T2-T3-T1-T4,T1,Consultar infrações,nao,sim,1,sim,,nao,,4,22,,nao,2026-11-21,,,
+P02,cidadao,30-44,alto,nao,Desktop,Windows 11,Chrome,acima_1024,T2-T3-T1-T4,T4,Chatbot,nao,sim,1,sim,,sim,instrucao_moderador,4,17,,nao,2026-11-21,,,
+P03,cidadao,18-29,alto,nao,Desktop,Windows 11,Chrome,acima_1024,T3-T1-T2-T4,T3,Abrir protocolo,nao,sim,1,sim,,sim,instrucao_moderador,7,126,,nao,2026-11-21,,,o número elevado de cliques foi porque o usuário clicou repetidas vezes em vários lugares da página
+P03,cidadao,18-29,alto,nao,Desktop,Windows 11,Chrome,acima_1024,T3-T1-T2-T4,T1,Consultar infrações,nao,sim,1,sim,,nao,,4,8,,nao,2026-11-21,,,
+P03,cidadao,18-29,alto,nao,Desktop,Windows 11,Chrome,acima_1024,T3-T1-T2-T4,T2,Agendar atendimento,nao,sim,1,sim,,nao,,12,19,,nao,2026-11-21,,,
+P03,cidadao,18-29,alto,nao,Desktop,Windows 11,Chrome,acima_1024,T3-T1-T2-T4,T4,Chatbot,nao,sim,1,sim,,sim,instrucao_moderador,4,16,,nao,2026-11-21,,,
+P04,cidadao,45-59,alto,sim,Mobile,iOS,Safari,acima_1024,T1-T3-T2-T4,T1,Consultar infrações,sim,nao,1,sim,,nao,,3,3,,nao,2026-11-22,,,
+P04,cidadao,45-59,alto,sim,Mobile,iOS,Safari,acima_1024,T1-T3-T2-T4,T3,Abrir protocolo,nao,sim,1,sim,,nao,,7,9,,nao,2026-11-22,,,
+P04,cidadao,45-59,alto,sim,Mobile,iOS,Safari,acima_1024,T1-T3-T2-T4,T2,Agendar atendimento,nao,sim,1,sim,,nao,,12,13,,nao,2026-11-22,,,
+P04,cidadao,45-59,alto,sim,Mobile,iOS,Safari,acima_1024,T1-T3-T2-T4,T4,Chatbot,nao,nao,1,nao,falha_tecnica_externa,nao,,4,10,,nao,2026-11-22,,,chatbot não respondeu ao pedido
+P05,cidadao,45-59,alto,nao,Mobile,iOS,Safari,acima_1024,T3-T2-T1-T4,T3,Abrir protocolo,nao,sim,1,sim,,nao,,7,9,,nao,2026-11-22,,,
+P05,cidadao,45-59,alto,nao,Mobile,iOS,Safari,acima_1024,T3-T2-T1-T4,T2,Agendar atendimento,nao,sim,1,sim,,sim,instrucao_moderador,12,17,,nao,2026-11-22,,,ajuda para escolher unidade
+P05,cidadao,45-59,alto,nao,Mobile,iOS,Safari,acima_1024,T3-T2-T1-T4,T1,Consultar infrações,nao,sim,1,sim,,nao,,3,4,,nao,2026-11-22,,,
+P05,cidadao,45-59,alto,nao,Mobile,iOS,Safari,acima_1024,T3-T2-T1-T4,T4,Chatbot,nao,sim,1,sim,,nao,,4,5,,nao,2026-11-22,,,
+P06,engenheiro,18-29,alto,nao,Mobile,iOS,Safari,acima_1024,T2-T1-T3-T4,T2,Agendar atendimento,nao,sim,1,sim,,nao,,12,14,,,2026-11-22,,,
+P06,engenheiro,18-29,alto,nao,Mobile,iOS,Safari,acima_1024,T2-T1-T3-T4,T1,Consultar infrações,nao,sim,1,sim,,nao,,3,3,,,2026-11-22,,,
+P06,engenheiro,18-29,alto,nao,Mobile,iOS,Safari,acima_1024,T2-T1-T3-T4,T3,Abrir protocolo,nao,sim,1,nao,teto_de_tempo,nao,,7,31,,sim,2026-11-22,,,se perdeu entre os menus e não estava conseguindo voltar
+P06,engenheiro,18-29,alto,nao,Mobile,iOS,Safari,acima_1024,T2-T1-T3-T4,T4,Chatbot,nao,sim,1,sim,,sim,instrucao_moderador,4,6,,nao,2026-11-22,,,não entendeu a pergunta direito
